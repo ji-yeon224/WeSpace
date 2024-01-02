@@ -18,6 +18,7 @@
 		CE6C1FE52B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FE42B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift */; };
 		CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF62B43E99E00AA7F9C /* Constants.swift */; };
 		CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF82B43E9B300AA7F9C /* Color.swift */; };
+		CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FFA2B43F1A900AA7F9C /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		CE6C1FE42B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTalkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE6C1FF62B43E99E00AA7F9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE6C1FF82B43E9B300AA7F9C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		CE6C1FFA2B43F1A900AA7F9C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
 			isa = PBXGroup;
 			children = (
+				CEB7F82A2B444A9F00B9A035 /* New Group */,
 				CE6C1FF42B43E98900AA7F9C /* View */,
 				CE6C1FF32B43E97900AA7F9C /* Model */,
 				CE6C1FF22B43E97200AA7F9C /* Scene */,
@@ -169,8 +172,16 @@
 			children = (
 				CE6C1FF62B43E99E00AA7F9C /* Constants.swift */,
 				CE6C1FF82B43E9B300AA7F9C /* Color.swift */,
+				CE6C1FFA2B43F1A900AA7F9C /* Image.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		CEB7F82A2B444A9F00B9A035 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
+				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
