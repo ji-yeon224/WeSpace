@@ -17,12 +17,8 @@ final class OnBoardingView: BaseView {
     }()
     
     let title = {
-        let view = UILabel()
-        view.textColor = Constants.Color.basicText
-        
-        view.font = Constants.Design.title1Font
-        view.setTextWithLineHeight(text: "새싹톡을 사용하면 어디서나 팀을 모을 수 있습니다.", fontType: .title1)
-        view.numberOfLines = 0
+        let view = CustomBasicLabel(text: "새싹톡을 사용하면 어디서나 \n팀을 모을 수 있습니다.", fontType: .title1, color: Constants.Color.basicText ?? .black, line: 0)
+        view.textAlignment = .center
         return view
     }()
     
