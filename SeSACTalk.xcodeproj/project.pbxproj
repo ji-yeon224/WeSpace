@@ -27,6 +27,12 @@
 		CEB7F8392B444B4A00B9A035 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8382B444B4A00B9A035 /* BaseView.swift */; };
 		CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F83C2B4456E000B9A035 /* OnBoardingViewController.swift */; };
 		CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F83F2B44571800B9A035 /* OnBoardingView.swift */; };
+		CEB7F8422B44585600B9A035 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8412B44585600B9A035 /* Design.swift */; };
+		CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8442B4459D800B9A035 /* CustomButton.swift */; };
+		CEB7F84A2B445E7900B9A035 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEB7F8482B445E7900B9A035 /* SF-Pro.ttf */; };
+		CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */; };
+		CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84E2B44622C00B9A035 /* Font.swift */; };
+		CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +73,12 @@
 		CEB7F8382B444B4A00B9A035 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CEB7F83C2B4456E000B9A035 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		CEB7F83F2B44571800B9A035 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		CEB7F8412B44585600B9A035 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		CEB7F8442B4459D800B9A035 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		CEB7F8482B445E7900B9A035 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		CEB7F84E2B44622C00B9A035 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBasicLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +169,7 @@
 		CE6C1FF12B43E96600AA7F9C /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CEB7F84B2B44618700B9A035 /* Extension */,
 				CE6C1FF52B43E98E00AA7F9C /* Constants */,
 			);
 			path = Utility;
@@ -180,6 +193,9 @@
 		CE6C1FF42B43E98900AA7F9C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEB7F8462B445E2D00B9A035 /* Font */,
+				CEB7F8432B4459CF00B9A035 /* Buttons */,
+				CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,6 +206,8 @@
 				CE6C1FF62B43E99E00AA7F9C /* Constants.swift */,
 				CE6C1FF82B43E9B300AA7F9C /* Color.swift */,
 				CE6C1FFA2B43F1A900AA7F9C /* Image.swift */,
+				CEB7F8412B44585600B9A035 /* Design.swift */,
+				CEB7F84E2B44622C00B9A035 /* Font.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -210,6 +228,30 @@
 				CEB7F83F2B44571800B9A035 /* OnBoardingView.swift */,
 			);
 			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		CEB7F8432B4459CF00B9A035 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				CEB7F8442B4459D800B9A035 /* CustomButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		CEB7F8462B445E2D00B9A035 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				CEB7F8482B445E7900B9A035 /* SF-Pro.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		CEB7F84B2B44618700B9A035 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +372,7 @@
 				CE6C1FCE2B43E8BB00AA7F9C /* LaunchScreen.storyboard in Resources */,
 				CE6C1FCB2B43E8BB00AA7F9C /* Assets.xcassets in Resources */,
 				CE6C1FC92B43E8BA00AA7F9C /* Main.storyboard in Resources */,
+				CEB7F84A2B445E7900B9A035 /* SF-Pro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,11 +399,16 @@
 			files = (
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
+				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
+				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
+				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
+				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
+				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
 				CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */,
 				CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */,
 				CEB7F8392B444B4A00B9A035 /* BaseView.swift in Sources */,
