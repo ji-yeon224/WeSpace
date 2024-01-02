@@ -8,6 +8,10 @@
 import UIKit
 
 extension Constants {
-    static let onBoarding = UIImage(named: "OnBoarding")
-    static let xmark = UIImage(named: "Close")
+    
+    enum Image {
+        static let onBoarding = UIImage(named: "OnBoarding")
+        static let xmark = UIImage(named: "Close")
+    }
+    
 }
