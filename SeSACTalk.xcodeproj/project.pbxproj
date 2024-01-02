@@ -16,6 +16,8 @@
 		CE6C1FD92B43E8BC00AA7F9C /* SeSACTalkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FD82B43E8BC00AA7F9C /* SeSACTalkTests.swift */; };
 		CE6C1FE32B43E8BC00AA7F9C /* SeSACTalkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FE22B43E8BC00AA7F9C /* SeSACTalkUITests.swift */; };
 		CE6C1FE52B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FE42B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift */; };
+		CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF62B43E99E00AA7F9C /* Constants.swift */; };
+		CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF82B43E9B300AA7F9C /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		CE6C1FDE2B43E8BC00AA7F9C /* SeSACTalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeSACTalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FE22B43E8BC00AA7F9C /* SeSACTalkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTalkUITests.swift; sourceTree = "<group>"; };
 		CE6C1FE42B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTalkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE6C1FF62B43E99E00AA7F9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CE6C1FF82B43E9B300AA7F9C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,10 @@
 		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
 			isa = PBXGroup;
 			children = (
+				CE6C1FF42B43E98900AA7F9C /* View */,
+				CE6C1FF32B43E97900AA7F9C /* Model */,
+				CE6C1FF22B43E97200AA7F9C /* Scene */,
+				CE6C1FF12B43E96600AA7F9C /* Utility */,
 				CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */,
 				CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */,
 				CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */,
@@ -125,6 +133,44 @@
 				CE6C1FE42B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift */,
 			);
 			path = SeSACTalkUITests;
+			sourceTree = "<group>";
+		};
+		CE6C1FF12B43E96600AA7F9C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C1FF52B43E98E00AA7F9C /* Constants */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		CE6C1FF22B43E97200AA7F9C /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		CE6C1FF32B43E97900AA7F9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE6C1FF42B43E98900AA7F9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE6C1FF52B43E98E00AA7F9C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				CE6C1FF62B43E99E00AA7F9C /* Constants.swift */,
+				CE6C1FF82B43E9B300AA7F9C /* Color.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +307,8 @@
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
+				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
+				CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
