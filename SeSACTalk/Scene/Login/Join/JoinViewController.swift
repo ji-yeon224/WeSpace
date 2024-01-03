@@ -26,9 +26,21 @@ final class JoinViewController: BaseViewController {
     override func configure() {
         super.configure()
         configNavBar()
+        view.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                owner.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
+        
     }
     
+    
+    
 }
+
+
 
 extension JoinViewController {
     private func configNavBar() {

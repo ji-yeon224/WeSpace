@@ -23,7 +23,12 @@ final class JoinView: BaseView {
     private let passwordLabel = CustomBasicLabel(text: "비밀번호", fontType: .title2)
     private let checkLabel = CustomBasicLabel(text: "비밀번호 확인", fontType: .title2)
     
-    let emailTextField = CustomTextField(placeholder: "이메일을 입력하세요")
+    let emailTextField = {
+        let view = CustomTextField(placeholder: "이메일을 입력하세요")
+        view.keyboardType = UIKeyboardType.emailAddress
+        return view
+    }()
+        
     let nickNameTextField = CustomTextField(placeholder: "닉네임을 입력하세요")
     let phoneTextField = CustomTextField(placeholder: "연락처를 입력하세요")
     let passwordTextField = CustomTextField(placeholder: "비밀번호를 입력하세요")
@@ -48,6 +53,9 @@ final class JoinView: BaseView {
         configChildView()
         [emailView, nickNameView, phoneView, passwordView, checkView, seperator, joinButtonView].forEach {
             addSubview($0)
+        }
+        [emailTextField, nickNameTextField, phoneTextField, passwordTextField, checkTextField].forEach {
+            $0.delegate = self
         }
     }
     
@@ -162,4 +170,23 @@ final class JoinView: BaseView {
     }
     
     
+}
+
+extension JoinView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case self.emailTextField:
+            nickNameTextField.becomeFirstResponder()
+        case self.nickNameTextField:
+            phoneTextField.becomeFirstResponder()
+        case self.phoneTextField:
+            passwordTextField.becomeFirstResponder()
+        case self.passwordTextField:
+            checkTextField.becomeFirstResponder()
+        case self.checkTextField:
+            checkTextField.resignFirstResponder()
+        default: break
+        }
+        return true
+    }
 }
