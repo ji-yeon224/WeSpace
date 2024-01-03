@@ -32,9 +32,17 @@ final class OnBoardingViewController: BaseViewController {
             .asDriver()
             .drive(with: self) { owner, _ in
                 let vc = LoginViewController()
+                let detentIdentifier = UISheetPresentationController.Detent.Identifier("customDetent")
+                let customDetent = UISheetPresentationController.Detent.custom(identifier: detentIdentifier) { _ in
+                    // safe area bottom을 구하기 위한 선언.
+                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                    let safeAreaBottom = windowScene?.windows.first?.safeAreaInsets.bottom ?? 0
+
+                    return 300 - safeAreaBottom
+                }
                 let nav = UINavigationController(rootViewController: vc)
                 if let sheet = nav.sheetPresentationController {
-                    sheet.detents = [.medium()]
+                    sheet.detents = [customDetent]
                     sheet.prefersScrollingExpandsWhenScrolledToEdge = false
                     sheet.prefersGrabberVisible = true
                 }

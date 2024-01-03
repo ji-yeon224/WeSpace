@@ -9,7 +9,7 @@ import UIKit
 
 final class CustomBasicLabel: UILabel {
     
-    init(text: String, fontType: Font, color: UIColor, line: Int = 1) {
+    init(text: String, fontType: Font, color: UIColor?, line: Int = 1) {
         super.init(frame: .zero)
         font = fontType.fontStyle
         textColor = color
