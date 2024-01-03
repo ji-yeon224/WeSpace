@@ -9,14 +9,14 @@ import UIKit
 
 final class OnBoardingView: BaseView {
     
-    let imageView = {
+    private let imageView = {
         let view = UIImageView()
         view.image = Constants.Image.onBoarding
         view.contentMode = .scaleAspectFit
         return view
     }()
     
-    let titleView = {
+    private let titleView = {
         let view = UIImageView()
         view.image = Constants.Image.splash
         view.contentMode = .scaleAspectFit
