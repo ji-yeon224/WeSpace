@@ -10,11 +10,14 @@ import UIKit
 final class CustomButton: UIButton {
     
     
-    init(bgColor: UIColor, title: String) {
+    init(bgColor: UIColor?, title: String, radius: CGFloat = Constants.Design.cornerRadius) {
         super.init(frame: .zero)
         backgroundColor = bgColor
-        setTitleColor(Constants.Color.white, for: .normal)
+        setTitle(title, for: .normal)
+        titleLabel?.font = Font.title2.fontStyle
         
+        setTitleColor(Constants.Color.white, for: .normal)
+        layer.cornerRadius = radius
     }
     
     @available(*, unavailable)

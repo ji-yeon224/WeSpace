@@ -23,10 +23,13 @@ final class OnBoardingView: BaseView {
         return view
     }()
     
+    let startButton = CustomButton(bgColor: Constants.Color.green, title: "시작하기")
+    
     override func configure() {
         super.configure()
         addSubview(titleView)
         addSubview(imageView)
+        addSubview(startButton)
     }
     override func setConstraints() {
         titleView.snp.makeConstraints { make in
@@ -35,6 +38,10 @@ final class OnBoardingView: BaseView {
         }
         imageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+        startButton.snp.makeConstraints { make in
+            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide).inset(24)
+            make.height.equalTo(Constants.Design.buttonHeight)
         }
     }
     
