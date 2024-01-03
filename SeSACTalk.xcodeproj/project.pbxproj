@@ -43,6 +43,7 @@
 		CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */; };
 		CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84E2B44622C00B9A035 /* Font.swift */; };
 		CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */; };
+		CED65F852B45B5FA00CFD04C /* .gitIgnore in Resources */ = {isa = PBXBuildFile; fileRef = CED65F842B45B5FA00CFD04C /* .gitIgnore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		CEB7F84E2B44622C00B9A035 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBasicLabel.swift; sourceTree = "<group>"; };
+		CED65F842B45B5FA00CFD04C /* .gitIgnore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitIgnore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				CE6C1FCC2B43E8BB00AA7F9C /* LaunchScreen.storyboard */,
 				CE57E4172B452A02009BD53A /* splashImg.png */,
 				CE6C1FCF2B43E8BB00AA7F9C /* Info.plist */,
+				CED65F842B45B5FA00CFD04C /* .gitIgnore */,
 			);
 			path = SeSACTalk;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			files = (
 				CE6C1FCE2B43E8BB00AA7F9C /* LaunchScreen.storyboard in Resources */,
 				CE57E4182B452A02009BD53A /* splashImg.png in Resources */,
+				CED65F852B45B5FA00CFD04C /* .gitIgnore in Resources */,
 				CE6C1FCB2B43E8BB00AA7F9C /* Assets.xcassets in Resources */,
 				CE6C1FC92B43E8BA00AA7F9C /* Main.storyboard in Resources */,
 				CEB7F84A2B445E7900B9A035 /* SF-Pro.ttf in Resources */,
