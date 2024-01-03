@@ -44,6 +44,10 @@
 		CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84E2B44622C00B9A035 /* Font.swift */; };
 		CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */; };
 		CED65F852B45B5FA00CFD04C /* .gitIgnore in Resources */ = {isa = PBXBuildFile; fileRef = CED65F842B45B5FA00CFD04C /* .gitIgnore */; };
+		CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F872B45B67C00CFD04C /* APIKey.swift */; };
+		CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F892B45B68300CFD04C /* BaseURL.swift */; };
+		CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F8C2B45B6F800CFD04C /* CommonError.swift */; };
+		CED65F902B45B78600CFD04C /* EmailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F8F2B45B78600CFD04C /* EmailError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +104,10 @@
 		CEB7F84E2B44622C00B9A035 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBasicLabel.swift; sourceTree = "<group>"; };
 		CED65F842B45B5FA00CFD04C /* .gitIgnore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitIgnore; sourceTree = "<group>"; };
+		CED65F872B45B67C00CFD04C /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		CED65F892B45B68300CFD04C /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		CED65F8C2B45B6F800CFD04C /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
+		CED65F8F2B45B78600CFD04C /* EmailError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +183,7 @@
 		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
 			isa = PBXGroup;
 			children = (
+				CED65F862B45B67100CFD04C /* Network */,
 				CE6C1FF32B43E97900AA7F9C /* Model */,
 				CE6C1FF12B43E96600AA7F9C /* Utility */,
 				CE6C1FF42B43E98900AA7F9C /* View */,
@@ -300,6 +309,33 @@
 				CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		CED65F862B45B67100CFD04C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CED65F8B2B45B6EE00CFD04C /* Error */,
+				CED65F872B45B67C00CFD04C /* APIKey.swift */,
+				CED65F892B45B68300CFD04C /* BaseURL.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CED65F8B2B45B6EE00CFD04C /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				CED65F8E2B45B77900CFD04C /* Auth */,
+				CED65F8C2B45B6F800CFD04C /* CommonError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		CED65F8E2B45B77900CFD04C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CED65F8F2B45B78600CFD04C /* EmailError.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
@@ -459,12 +496,15 @@
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
+				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
+				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
+				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
