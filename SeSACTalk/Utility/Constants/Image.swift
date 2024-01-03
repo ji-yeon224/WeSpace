@@ -12,6 +12,7 @@ extension Constants {
     enum Image {
         static let onBoarding = UIImage(named: "OnBoarding")
         static let xmark = UIImage(named: "Close")
+        static let splash = UIImage(named: "Splash")
     }
     
 }
