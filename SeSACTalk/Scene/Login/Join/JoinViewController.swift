@@ -20,6 +20,7 @@ final class JoinViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "회원가입"
     }
     
     override func configure() {
@@ -31,6 +32,7 @@ final class JoinViewController: BaseViewController {
 
 extension JoinViewController {
     private func configNavBar() {
+        navigationController?.navigationBar.backgroundColor = Constants.Color.white
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(closeButtonTapped))
         navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black
        

@@ -14,6 +14,8 @@
 		CE57E4232B454136009BD53A /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4222B454136009BD53A /* JoinView.swift */; };
 		CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4242B454594009BD53A /* LoginViewControllerDelegate.swift */; };
 		CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4262B454726009BD53A /* PageSheetManager.swift */; };
+		CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4282B454E52009BD53A /* CustomTextField.swift */; };
+		CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E42A2B4557CE009BD53A /* CustomStackView.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -67,6 +69,8 @@
 		CE57E4222B454136009BD53A /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		CE57E4242B454594009BD53A /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		CE57E4262B454726009BD53A /* PageSheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSheetManager.swift; sourceTree = "<group>"; };
+		CE57E4282B454E52009BD53A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		CE57E42A2B4557CE009BD53A /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				CEB7F8462B445E2D00B9A035 /* Font */,
 				CEB7F8432B4459CF00B9A035 /* Buttons */,
 				CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */,
+				CE57E4282B454E52009BD53A /* CustomTextField.swift */,
+				CE57E42A2B4557CE009BD53A /* CustomStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -436,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
+				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
@@ -447,6 +454,7 @@
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
+				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
