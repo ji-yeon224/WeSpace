@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EmailError: Error {
+enum EmailError: String, Error {
     case E11
     case E12
     

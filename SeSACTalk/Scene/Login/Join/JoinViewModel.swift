@@ -19,6 +19,7 @@ final class JoinViewModel {
         let phoneValue: ControlProperty<String>
         let pwValue: ControlProperty<String>
         let checkValue: ControlProperty<String>
+        let emailButtonTap: PublishRelay<String>
     }
     
     struct Output {
@@ -27,6 +28,8 @@ final class JoinViewModel {
     
     func transform(input: Input) -> Output {
         let checkButtonEnable = BehaviorRelay(value: false)
+        var email: String?
+        let emailValid = BehaviorRelay(value: false)
         let nickNameValid: BehaviorRelay<(String?, Bool)> = BehaviorRelay(value: (nil, false))
         let phoneValid = BehaviorRelay(value: false)
         let passValid: BehaviorRelay<(String?, Bool)> = BehaviorRelay(value: (nil, false))
@@ -40,6 +43,35 @@ final class JoinViewModel {
                     checkButtonEnable.accept(false)
                 }
                     
+            }
+            .disposed(by: disposeBag)
+        
+        input.emailButtonTap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .map { 
+                email = $0
+                return $0
+            }
+            .flatMap { email in
+                
+                UsersAPIManager.shared.request(api: .validation(email: EmailValidationRequest(email: email)), responseType: EmptyResponse.self)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    print("[Valid Email]")
+                    emailValid.accept(true)
+                case .failure(let error):
+                    emailValid.accept(false)
+                    email = nil
+                    if let error = EmailError(rawValue: error.errorCode) {
+                        print(error.localizedDescription)
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        print(error.localizedDescription)
+                    } else {
+                        print(CommonError.E99.localizedDescription)
+                    }
+                }
             }
             .disposed(by: disposeBag)
         

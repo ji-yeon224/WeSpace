@@ -16,6 +16,8 @@ final class JoinViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = JoinViewModel()
     
+    private let emailText = PublishRelay<String>()
+    
     override func loadView() {
         self.view = mainView
     }
@@ -46,7 +48,8 @@ final class JoinViewController: BaseViewController {
             nickNameValue: mainView.nickNameTextField.rx.text.orEmpty,
             phoneValue: mainView.phoneTextField.rx.text.orEmpty,
             pwValue: mainView.passwordTextField.rx.text.orEmpty,
-            checkValue: mainView.checkTextField.rx.text.orEmpty
+            checkValue: mainView.checkTextField.rx.text.orEmpty,
+            emailButtonTap: emailText
         )
         
         let output = viewModel.transform(input: input)
@@ -86,8 +89,14 @@ final class JoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        
-        
+        mainView.emailCheckButton.rx.tap
+            .withLatestFrom(mainView.emailTextField.rx.text.orEmpty) { _, value in
+                return "\(value)"
+            }
+            .bind(with: self) { owner, value in
+                self.emailText.accept(value)
+            }
+            .disposed(by: disposeBag)
     }
     
     

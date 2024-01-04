@@ -52,6 +52,13 @@
 		CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAA2B4697650059D1AF /* Regex.swift */; };
 		CEEE4EAD2B46987F0059D1AF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */; };
 		CEEE4EB02B46A1340059D1AF /* AnyFormatKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEEE4EAF2B46A1340059D1AF /* AnyFormatKit */; };
+		CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EB22B46DBF40059D1AF /* UsersAPI.swift */; };
+		CEEE4EB62B46DC220059D1AF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = CEEE4EB52B46DC220059D1AF /* Moya */; };
+		CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */; };
+		CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */; };
+		CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */; };
+		CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */; };
+		CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +122,12 @@
 		CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
 		CEEE4EAA2B4697650059D1AF /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		CEEE4EB22B46DBF40059D1AF /* UsersAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPI.swift; sourceTree = "<group>"; };
+		CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationRequest.swift; sourceTree = "<group>"; };
+		CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIManager.swift; sourceTree = "<group>"; };
+		CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +140,7 @@
 				CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */,
 				CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */,
 				CEB7F8352B444B2A00B9A035 /* RxGesture in Frameworks */,
+				CEEE4EB62B46DC220059D1AF /* Moya in Frameworks */,
 				CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +206,7 @@
 		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
 			isa = PBXGroup;
 			children = (
+				CED65F8B2B45B6EE00CFD04C /* Error */,
 				CED65F862B45B67100CFD04C /* Network */,
 				CE6C1FF32B43E97900AA7F9C /* Model */,
 				CE6C1FF12B43E96600AA7F9C /* Utility */,
@@ -250,6 +265,10 @@
 		CE6C1FF32B43E97900AA7F9C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */,
+				CEEE4EB92B46DE900059D1AF /* Users */,
+				CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */,
+				CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,7 +344,7 @@
 		CED65F862B45B67100CFD04C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				CED65F8B2B45B6EE00CFD04C /* Error */,
+				CEEE4EB12B46DBB50059D1AF /* Users */,
 				CED65F872B45B67C00CFD04C /* APIKey.swift */,
 				CED65F892B45B68300CFD04C /* BaseURL.swift */,
 			);
@@ -347,6 +366,23 @@
 				CED65F8F2B45B78600CFD04C /* EmailError.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		CEEE4EB12B46DBB50059D1AF /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE4EB22B46DBF40059D1AF /* UsersAPI.swift */,
+				CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		CEEE4EB92B46DE900059D1AF /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +408,7 @@
 				CEB7F8342B444B2A00B9A035 /* RxGesture */,
 				CE57E42D2B455A61009BD53A /* IQKeyboardManagerSwift */,
 				CEEE4EAF2B46A1340059D1AF /* AnyFormatKit */,
+				CEEE4EB52B46DC220059D1AF /* Moya */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -451,6 +488,7 @@
 				CEB7F8332B444B2A00B9A035 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				CEEE4EAE2B46A1340059D1AF /* XCRemoteSwiftPackageReference "AnyFormatKit" */,
+				CEEE4EB42B46DC220059D1AF /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -498,6 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
@@ -505,9 +544,11 @@
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
+				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
+				CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
@@ -515,6 +556,7 @@
 				CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */,
 				CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
+				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
@@ -522,7 +564,9 @@
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
+				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
+				CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */,
 				CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */,
 				CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */,
 				CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */,
@@ -916,6 +960,14 @@
 				minimumVersion = 2.5.2;
 			};
 		};
+		CEEE4EB42B46DC220059D1AF /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -948,6 +1000,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEEE4EAE2B46A1340059D1AF /* XCRemoteSwiftPackageReference "AnyFormatKit" */;
 			productName = AnyFormatKit;
+		};
+		CEEE4EB52B46DC220059D1AF /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEEE4EB42B46DC220059D1AF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
