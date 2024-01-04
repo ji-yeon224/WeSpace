@@ -60,6 +60,7 @@
 		CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */; };
 		CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */; };
 		CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */; };
+		CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC72B470B250059D1AF /* JoinInputValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinToastMessage.swift; sourceTree = "<group>"; };
+		CEEE4EC72B470B250059D1AF /* JoinInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinInputValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 		CE6C1FF12B43E96600AA7F9C /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CEEE4EC62B470B190059D1AF /* Type */,
 				CEEE4EC32B4702830059D1AF /* Toast */,
 				CEEE4EC22B4702750059D1AF /* Service */,
 				CEB7F84B2B44618700B9A035 /* Extension */,
@@ -402,6 +405,14 @@
 				CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */,
 			);
 			path = Toast;
+			sourceTree = "<group>";
+		};
+		CEEE4EC62B470B190059D1AF /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE4EC72B470B250059D1AF /* JoinInputValue.swift */,
+			);
+			path = Type;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +572,7 @@
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
+				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,

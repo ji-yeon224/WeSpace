@@ -26,17 +26,18 @@ final class JoinViewModel {
     struct Output {
         let checkButtonEnable: BehaviorRelay<Bool>
         let joinButtonEnable: BehaviorRelay<Bool>
-        let validationErrors: PublishRelay<[JoinToastMessage]>
+        let validationErrors: PublishRelay<[JoinInputValue]>
         let msg: PublishRelay<String>
     }
     
     func transform(input: Input) -> Output {
         let checkButtonEnable = BehaviorRelay(value: false)
         let joinButtonEnable = BehaviorRelay(value: false)
-        let validationErrors = PublishRelay<[JoinToastMessage]>()
+        let validationErrors = PublishRelay<[JoinInputValue]>()
         let msg = PublishRelay<String>()
         
-        var emailCheckRequest = PublishRelay<String>()
+        let emailCheckRequest = PublishRelay<String>()
+        let joinRequest = PublishRelay<Bool>()
         
         var email: String?
         let emailValid = BehaviorRelay(value: false)
@@ -78,7 +79,6 @@ final class JoinViewModel {
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .map {
-                print("check")
                 email = $0
                 return $0
             }
@@ -148,11 +148,29 @@ final class JoinViewModel {
         }
         .disposed(by: disposeBag)
         
-        
+        var invalidInputs: [JoinInputValue] = []
         input.joinButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind { _ in
-                print("tap")
+                invalidInputs.removeAll()
+                if !emailValid.value { invalidInputs.append(.email)}
+                if !nickNameValid.value.1 { invalidInputs.append(.nickname)}
+                if !phoneValid.value { invalidInputs.append(.phone)}
+                if !passValid.value.1 { invalidInputs.append(.password)}
+                if !checkInput.value { invalidInputs.append(.check)}
+                
+                if invalidInputs.count == 0 {
+                    joinRequest.accept(true)
+                } else {
+                    validationErrors.accept(invalidInputs)
+                }
+                
+            }
+            .disposed(by: disposeBag)
+        
+        joinRequest
+            .bind { value in
+                print("join go")
             }
             .disposed(by: disposeBag)
         
