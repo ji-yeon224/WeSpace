@@ -41,7 +41,8 @@ final class JoinViewController: BaseViewController {
     private func bind() {
         
         let input = JoinViewModel.Input(
-            emailValid: mainView.emailTextField.rx.text.orEmpty
+            emailValue: mainView.emailTextField.rx.text.orEmpty,
+            nickNameValue: mainView.nickNameTextField.rx.text.orEmpty
         )
         
         let output = viewModel.transform(input: input)
@@ -53,6 +54,8 @@ final class JoinViewController: BaseViewController {
                 owner.mainView.emailCheckButton.backgroundColor = value ? Constants.Color.green : Constants.Color.inActive
             }
             .disposed(by: disposeBag)
+        
+        
         
     }
     

@@ -14,7 +14,8 @@ final class JoinViewModel {
     private let disposeBag = DisposeBag()
     
     struct Input {
-        let emailValid: ControlProperty<String>
+        let emailValue: ControlProperty<String>
+        let nickNameValue: ControlProperty<String>
     }
     
     struct Output {
@@ -23,8 +24,8 @@ final class JoinViewModel {
     
     func transform(input: Input) -> Output {
         let checkButtonEnable = BehaviorRelay(value: false)
-        
-        input.emailValid
+        let nickNameValid = BehaviorRelay(value: false)
+        input.emailValue
             .bind(with: self) { owner, value in
                 if value.contains("@") && value.contains(".com") {
                     checkButtonEnable.accept(true)
@@ -32,6 +33,13 @@ final class JoinViewModel {
                     checkButtonEnable.accept(false)
                 }
                     
+            }
+            .disposed(by: disposeBag)
+        
+        input.nickNameValue
+            .bind(with: self) { owner, value in
+                let valid = 1...30 ~= value.count
+                nickNameValid.accept(valid)
             }
             .disposed(by: disposeBag)
         
