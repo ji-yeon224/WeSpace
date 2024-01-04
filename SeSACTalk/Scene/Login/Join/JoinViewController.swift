@@ -62,6 +62,19 @@ final class JoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.joinButtonEnable
+            .asDriver()
+            .drive(with: self) { owner, value in
+                
+                owner.mainView.joinButton.isEnabled = value
+                owner.mainView.joinButton.backgroundColor = value ? Constants.Color.green : Constants.Color.inActive
+            }
+            .disposed(by: disposeBag)
+        mainView.joinButton.rx.tap
+            .bind { _ in
+                print("join button tap")
+            }
+        
         mainView.phoneTextField.rx.text.orEmpty
             .map {
                 if "\($0)".lastString.isNumber {
