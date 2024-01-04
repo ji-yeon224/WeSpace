@@ -13,6 +13,7 @@ final class JoinViewController: BaseViewController {
     
     private let mainView = JoinView()
     private let disposeBag = DisposeBag()
+    private let viewModel = JoinViewModel()
     
     override func loadView() {
         self.view = mainView
@@ -21,6 +22,7 @@ final class JoinViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "회원가입"
+        bind()
     }
     
     override func configure() {
@@ -35,6 +37,25 @@ final class JoinViewController: BaseViewController {
         
         
     }
+    
+    private func bind() {
+        
+        let input = JoinViewModel.Input(
+            emailValid: mainView.emailTextField.rx.text.orEmpty
+        )
+        
+        let output = viewModel.transform(input: input)
+        
+        output.checkButtonEnable
+            .asDriver()
+            .drive(with: self) { owner, value in
+                owner.mainView.emailCheckButton.isEnabled = value
+                owner.mainView.emailCheckButton.backgroundColor = value ? Constants.Color.green : Constants.Color.inActive
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
     
     
     

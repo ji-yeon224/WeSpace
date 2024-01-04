@@ -50,6 +50,9 @@ final class JoinView: BaseView {
     
     override func configure() {
         super.configure()
+        
+        emailCheckButton.isEnabled = false
+        
         configChildView()
         [emailView, nickNameView, phoneView, passwordView, checkView, seperator, joinButtonView].forEach {
             addSubview($0)
