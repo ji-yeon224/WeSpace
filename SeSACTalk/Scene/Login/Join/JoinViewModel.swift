@@ -16,6 +16,7 @@ final class JoinViewModel {
     struct Input {
         let emailValue: ControlProperty<String>
         let nickNameValue: ControlProperty<String>
+        let phoneValue: ControlProperty<String>
     }
     
     struct Output {
@@ -25,9 +26,10 @@ final class JoinViewModel {
     func transform(input: Input) -> Output {
         let checkButtonEnable = BehaviorRelay(value: false)
         let nickNameValid = BehaviorRelay(value: false)
+        let phoneValid = BehaviorRelay(value: false)
         input.emailValue
             .bind(with: self) { owner, value in
-                if value.contains("@") && value.contains(".com") {
+                if value.isValidEmail() {
                     checkButtonEnable.accept(true)
                 } else {
                     checkButtonEnable.accept(false)
@@ -40,6 +42,12 @@ final class JoinViewModel {
             .bind(with: self) { owner, value in
                 let valid = 1...30 ~= value.count
                 nickNameValid.accept(valid)
+            }
+            .disposed(by: disposeBag)
+        
+        input.phoneValue
+            .bind(with: self) { owner, value in
+                phoneValid.accept(value.isValidPhone())
             }
             .disposed(by: disposeBag)
         

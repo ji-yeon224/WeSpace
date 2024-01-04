@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "anyformatkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/luximetr/AnyFormatKit.git",
+      "state" : {
+        "revision" : "ae3a965164005b07f81d6aa066520d7ad14ea54e",
+        "version" : "2.5.2"
+      }
+    },
+    {
       "identity" : "iqkeyboardmanager",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hackiftekhar/IQKeyboardManager",

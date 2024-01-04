@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class JoinView: BaseView {
     
     private let emailView = CustomStackView()
@@ -28,7 +29,7 @@ final class JoinView: BaseView {
         view.keyboardType = UIKeyboardType.emailAddress
         return view
     }()
-        
+    
     let nickNameTextField = CustomTextField(placeholder: "닉네임을 입력하세요")
     let phoneTextField = CustomTextField(placeholder: "연락처를 입력하세요")
     let passwordTextField = CustomTextField(placeholder: "비밀번호를 입력하세요")
@@ -52,7 +53,7 @@ final class JoinView: BaseView {
         super.configure()
         
         emailCheckButton.isEnabled = false
-        
+        phoneTextField.delegate = self
         configChildView()
         [emailView, nickNameView, phoneView, passwordView, checkView, seperator, joinButtonView].forEach {
             addSubview($0)
@@ -118,7 +119,7 @@ final class JoinView: BaseView {
             make.horizontalEdges.equalTo(self)
             make.bottom.equalTo(keyboardLayoutGuide.snp.top)
         }
-                
+        
         setChildViewConstraints()
     }
     
@@ -192,4 +193,6 @@ extension JoinView: UITextFieldDelegate {
         }
         return true
     }
+    
+    
 }
