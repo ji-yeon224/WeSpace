@@ -26,11 +26,17 @@ final class JoinViewModel {
     struct Output {
         let checkButtonEnable: BehaviorRelay<Bool>
         let joinButtonEnable: BehaviorRelay<Bool>
+        let validationErrors: PublishRelay<[JoinToastMessage]>
+        let msg: PublishRelay<String>
     }
     
     func transform(input: Input) -> Output {
         let checkButtonEnable = BehaviorRelay(value: false)
         let joinButtonEnable = BehaviorRelay(value: false)
+        let validationErrors = PublishRelay<[JoinToastMessage]>()
+        let msg = PublishRelay<String>()
+        
+        var emailCheckRequest = PublishRelay<String>()
         
         var email: String?
         let emailValid = BehaviorRelay(value: false)
@@ -43,18 +49,32 @@ final class JoinViewModel {
         
         input.emailValue
             .bind(with: self) { owner, value in
-                emailInput.accept(!value.isEmpty)
-                if value.isValidEmail() {
-                    checkButtonEnable.accept(true)
-                } else {
-                    checkButtonEnable.accept(false)
-                    emailValid.accept(false)
-                }
-                    
+                let bool = !value.isEmpty
+                emailInput.accept(bool)
+                checkButtonEnable.accept(bool)
+                emailValid.accept(false)
             }
             .disposed(by: disposeBag)
         
         input.emailButtonTap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind(with: self) { owner, value in
+                if emailValid.value {
+                    msg.accept(JoinToastMessage.alreadyValid.message)
+                } else {
+                    if value.isValidEmail() {
+                        msg.accept(JoinToastMessage.validEmail.message)
+                        emailCheckRequest.accept(value)
+                    } else {
+                        msg.accept(JoinToastMessage.emailValidationError.message)
+                    }
+                }
+                
+            }
+            .disposed(by: disposeBag)
+        
+        
+        emailCheckRequest
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .map {
@@ -129,11 +149,12 @@ final class JoinViewModel {
         .disposed(by: disposeBag)
         
         
-//        input.joinButtonTap
-//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
-//            .bind { _ in
-//                print("tap")
-//            }
+        input.joinButtonTap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind { _ in
+                print("tap")
+            }
+            .disposed(by: disposeBag)
         
 //        Observable.combineLatest(emailValid, nickNameValid, passValid, checkValid) { email, nick, password, check in
 //            return email && nick.1 && password.1 && check
@@ -147,7 +168,9 @@ final class JoinViewModel {
         
         return Output(
             checkButtonEnable: checkButtonEnable,
-            joinButtonEnable: joinButtonEnable
+            joinButtonEnable: joinButtonEnable,
+            validationErrors: validationErrors,
+            msg: msg
         )
     }
     

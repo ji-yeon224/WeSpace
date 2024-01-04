@@ -59,6 +59,7 @@
 		CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */; };
 		CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */; };
 		CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */; };
+		CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIManager.swift; sourceTree = "<group>"; };
 		CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
+		CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinToastMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,9 +248,10 @@
 		CE6C1FF12B43E96600AA7F9C /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CEEE4EC32B4702830059D1AF /* Toast */,
+				CEEE4EC22B4702750059D1AF /* Service */,
 				CEB7F84B2B44618700B9A035 /* Extension */,
 				CE6C1FF52B43E98E00AA7F9C /* Constants */,
-				CE57E4262B454726009BD53A /* PageSheetManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -383,6 +386,22 @@
 				CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */,
 			);
 			path = Users;
+			sourceTree = "<group>";
+		};
+		CEEE4EC22B4702750059D1AF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CE57E4262B454726009BD53A /* PageSheetManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CEEE4EC32B4702830059D1AF /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -542,6 +561,7 @@
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
+				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,

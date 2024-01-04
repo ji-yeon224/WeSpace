@@ -72,7 +72,11 @@ final class JoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        
+        output.msg
+            .bind { value in
+                print("[MSG] \(value)")
+            }
+            .disposed(by: disposeBag)
         mainView.phoneTextField.rx.text.orEmpty
             .map {
                 if "\($0)".lastString.isNumber {
