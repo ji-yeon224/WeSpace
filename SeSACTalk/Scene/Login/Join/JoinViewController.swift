@@ -44,7 +44,9 @@ final class JoinViewController: BaseViewController {
         let input = JoinViewModel.Input(
             emailValue: mainView.emailTextField.rx.text.orEmpty,
             nickNameValue: mainView.nickNameTextField.rx.text.orEmpty,
-            phoneValue: mainView.phoneTextField.rx.text.orEmpty
+            phoneValue: mainView.phoneTextField.rx.text.orEmpty,
+            pwValue: mainView.passwordTextField.rx.text.orEmpty,
+            checkValue: mainView.checkTextField.rx.text.orEmpty
         )
         
         let output = viewModel.transform(input: input)
@@ -81,11 +83,9 @@ final class JoinViewController: BaseViewController {
                         owner.mainView.phoneTextField.text = result.formattedText
                     }
                 }
-                
-                
-                
             }
             .disposed(by: disposeBag)
+        
         
         
     }

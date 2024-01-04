@@ -35,5 +35,10 @@ extension String {
         let pred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return pred.evaluate(with: self)
     }
+    func isValidPassword()-> Bool {
+        let pwRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[.!@#$%^&*()_+=-]).{8,50}"
+        let pred = NSPredicate(format: "SELF MATCHES %@", pwRegex)
+        return pred.evaluate(with: self)
+    }
     
 }

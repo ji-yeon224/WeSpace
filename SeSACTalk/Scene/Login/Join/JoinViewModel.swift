@@ -17,6 +17,8 @@ final class JoinViewModel {
         let emailValue: ControlProperty<String>
         let nickNameValue: ControlProperty<String>
         let phoneValue: ControlProperty<String>
+        let pwValue: ControlProperty<String>
+        let checkValue: ControlProperty<String>
     }
     
     struct Output {
@@ -25,8 +27,11 @@ final class JoinViewModel {
     
     func transform(input: Input) -> Output {
         let checkButtonEnable = BehaviorRelay(value: false)
-        let nickNameValid = BehaviorRelay(value: false)
+        let nickNameValid: BehaviorRelay<(String?, Bool)> = BehaviorRelay(value: (nil, false))
         let phoneValid = BehaviorRelay(value: false)
+        let passValid: BehaviorRelay<(String?, Bool)> = BehaviorRelay(value: (nil, false))
+        let checkValid = BehaviorRelay(value: false)
+        
         input.emailValue
             .bind(with: self) { owner, value in
                 if value.isValidEmail() {
@@ -41,13 +46,32 @@ final class JoinViewModel {
         input.nickNameValue
             .bind(with: self) { owner, value in
                 let valid = 1...30 ~= value.count
-                nickNameValid.accept(valid)
+                nickNameValid.accept((value, valid))
             }
             .disposed(by: disposeBag)
         
         input.phoneValue
             .bind(with: self) { owner, value in
                 phoneValid.accept(value.isValidPhone())
+            }
+            .disposed(by: disposeBag)
+        
+        input.pwValue
+            .bind(with: self) { owner, value in
+                if value.isValidPassword() {
+                    passValid.accept((value, true))
+                } else {
+                    passValid.accept((nil, false))
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        input.checkValue
+            .bind(with: self) { owner, value in
+                if passValid.value.1 && (value == passValid.value.0) {
+                    checkValid.accept(true)
+                    print("pwcheck true")
+                }
             }
             .disposed(by: disposeBag)
         
