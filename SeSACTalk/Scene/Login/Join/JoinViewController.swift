@@ -49,7 +49,8 @@ final class JoinViewController: BaseViewController {
             phoneValue: mainView.phoneTextField.rx.text.orEmpty,
             pwValue: mainView.passwordTextField.rx.text.orEmpty,
             checkValue: mainView.checkTextField.rx.text.orEmpty,
-            emailButtonTap: emailText
+            emailButtonTap: emailText,
+            joinButtonTap: mainView.joinButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -70,10 +71,7 @@ final class JoinViewController: BaseViewController {
                 owner.mainView.joinButton.backgroundColor = value ? Constants.Color.green : Constants.Color.inActive
             }
             .disposed(by: disposeBag)
-        mainView.joinButton.rx.tap
-            .bind { _ in
-                print("join button tap")
-            }
+        
         
         mainView.phoneTextField.rx.text.orEmpty
             .map {

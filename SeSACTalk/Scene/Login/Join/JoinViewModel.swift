@@ -20,6 +20,7 @@ final class JoinViewModel {
         let pwValue: ControlProperty<String>
         let checkValue: ControlProperty<String>
         let emailButtonTap: PublishRelay<String>
+        let joinButtonTap: ControlEvent<Void>
     }
     
     struct Output {
@@ -38,10 +39,11 @@ final class JoinViewModel {
         let passValid: BehaviorRelay<(String?, Bool)> = BehaviorRelay(value: (nil, false))
         let checkValid = BehaviorRelay(value: false)
         
-        
+        var emailInput = BehaviorRelay(value: false), nickInput = BehaviorRelay(value: false), passInput = BehaviorRelay(value: false), checkInput = BehaviorRelay(value: false)
         
         input.emailValue
             .bind(with: self) { owner, value in
+                emailInput.accept(!value.isEmpty)
                 if value.isValidEmail() {
                     checkButtonEnable.accept(true)
                 } else {
@@ -54,7 +56,9 @@ final class JoinViewModel {
         
         input.emailButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .map { 
+            .distinctUntilChanged()
+            .map {
+                print("check")
                 email = $0
                 return $0
             }
@@ -83,6 +87,7 @@ final class JoinViewModel {
         
         input.nickNameValue
             .bind(with: self) { owner, value in
+                nickInput.accept(!value.isEmpty)
                 let valid = 1...30 ~= value.count
                 nickNameValid.accept((value, valid))
             }
@@ -96,6 +101,7 @@ final class JoinViewModel {
         
         input.pwValue
             .bind(onNext: { value in
+                passInput.accept(!value.isEmpty)
                 if value.isValidPassword() {
                     passValid.accept((value, true))
                 } else {
@@ -105,6 +111,7 @@ final class JoinViewModel {
             .disposed(by: disposeBag)
         
         Observable.combineLatest(input.checkValue, passValid) { check, password in
+            checkInput.accept(!check.isEmpty)
             return password.1 && check == password.0
         }
         .bind { value in
@@ -112,13 +119,29 @@ final class JoinViewModel {
         }
         .disposed(by: disposeBag)
         
-        Observable.combineLatest(emailValid, nickNameValid, passValid, checkValid) { email, nick, password, check in
-            return email && nick.1 && password.1 && check
+        
+        Observable.combineLatest(emailInput, nickInput, passInput, checkInput) { email, nick, pass, check in
+            return email && nick && pass && check
         }
-        .bind(onNext: { value in
+        .bind { value in
             joinButtonEnable.accept(value)
-        })
+        }
         .disposed(by: disposeBag)
+        
+        
+//        input.joinButtonTap
+//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+//            .bind { _ in
+//                print("tap")
+//            }
+        
+//        Observable.combineLatest(emailValid, nickNameValid, passValid, checkValid) { email, nick, password, check in
+//            return email && nick.1 && password.1 && check
+//        }
+//        .bind(onNext: { value in
+//            joinButtonEnable.accept(value)
+//        })
+//        .disposed(by: disposeBag)
         
         
         
