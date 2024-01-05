@@ -73,9 +73,9 @@ final class JoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.msg
-            .bind { value in
-                print("[MSG] \(value)")
-            }
+            .bind(with: self, onNext: { owner, value in
+                owner.showToastMessage(message: value, position: .top)
+            })
             .disposed(by: disposeBag)
         
         output.validationErrors

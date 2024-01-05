@@ -165,7 +165,7 @@ final class JoinViewModel {
         var invalidInputs: [JoinInputValue] = []
         input.joinButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .bind { _ in
+            .bind(with: self, onNext: { owner, _ in
                 invalidInputs.removeAll()
                 if !emailValid.value { invalidInputs.append(.email)}
                 if !nickNameValid.value.1 { invalidInputs.append(.nickname)}
@@ -176,10 +176,10 @@ final class JoinViewModel {
                 if invalidInputs.count == 0 {
                     joinRequest.accept(true)
                 } else {
+                    msg.accept(owner.joinInvalidMsg(input: invalidInputs[0]))
                     validationErrors.accept(invalidInputs)
                 }
-                
-            }
+            })
             .disposed(by: disposeBag)
         
         joinRequest
@@ -196,6 +196,19 @@ final class JoinViewModel {
         )
     }
     
-    
+    private func joinInvalidMsg(input: JoinInputValue) -> String {
+        switch input {
+        case .email:
+            return JoinToastMessage.notCheckEmail.message
+        case .nickname:
+            return JoinToastMessage.nickConditionError.message
+        case .phone:
+            return JoinToastMessage.phoneValidError.message
+        case .password:
+            return JoinToastMessage.passwordValidError.message
+        case .check:
+            return JoinToastMessage.notEqualPassword.message
+        }
+    }
     
 }
