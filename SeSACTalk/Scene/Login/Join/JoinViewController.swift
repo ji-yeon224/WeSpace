@@ -78,6 +78,24 @@ final class JoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.validationErrors
+            .bind(with: self) { owner, value in
+                owner.mainView.setTitleValidColor(title: .email, valid: !value.contains(.email))
+                owner.mainView.setTitleValidColor(title: .nickname, valid: !value.contains(.nickname))
+                owner.mainView.setTitleValidColor(title: .password, valid: !value.contains(.password))
+                owner.mainView.setTitleValidColor(title: .phone, valid: !value.contains(.phone))
+                owner.mainView.setTitleValidColor(title: .check, valid: !value.contains(.check))
+                
+                owner.mainView.keyboardFocus(field: value[0])
+                
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.joinButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
         
         mainView.phoneTextField.rx.text.orEmpty
             .map {

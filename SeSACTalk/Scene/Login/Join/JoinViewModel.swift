@@ -39,21 +39,27 @@ final class JoinViewModel {
         let emailCheckRequest = PublishRelay<String>()
         let joinRequest = PublishRelay<Bool>()
         
-        var email: String?
+        var email: String?, nickName: String?, phone: String?, password: String?
         let emailValid = BehaviorRelay(value: false)
         let nickNameValid: BehaviorRelay<(String?, Bool)> = BehaviorRelay(value: (nil, false))
         let phoneValid = BehaviorRelay(value: false)
         let passValid: BehaviorRelay<(String?, Bool)> = BehaviorRelay(value: (nil, false))
         let checkValid = BehaviorRelay(value: false)
         
-        var emailInput = BehaviorRelay(value: false), nickInput = BehaviorRelay(value: false), passInput = BehaviorRelay(value: false), checkInput = BehaviorRelay(value: false)
+        let emailInput = BehaviorRelay(value: false), nickInput = BehaviorRelay(value: false), passInput = BehaviorRelay(value: false), checkInput = BehaviorRelay(value: false)
+        
         
         input.emailValue
             .bind(with: self) { owner, value in
                 let bool = !value.isEmpty
                 emailInput.accept(bool)
                 checkButtonEnable.accept(bool)
-                emailValid.accept(false)
+                if email != value && emailValid.value {
+                    emailValid.accept(false)
+                } else if email == value && !emailValid.value{
+                    emailValid.accept(true)
+                }
+                
             }
             .disposed(by: disposeBag)
         
@@ -88,7 +94,7 @@ final class JoinViewModel {
             }
             .subscribe(with: self) { owner, result in
                 switch result {
-                case .success(let response):
+                case .success(_):
                     print("[Valid Email]")
                     emailValid.accept(true)
                 case .failure(let error):
@@ -130,6 +136,14 @@ final class JoinViewModel {
             })
             .disposed(by: disposeBag)
         
+        input.checkValue
+            .bind { value in
+                if password != value && checkValid.value {
+                    checkValid.accept(false)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         Observable.combineLatest(input.checkValue, passValid) { check, password in
             checkInput.accept(!check.isEmpty)
             return password.1 && check == password.0
@@ -157,7 +171,7 @@ final class JoinViewModel {
                 if !nickNameValid.value.1 { invalidInputs.append(.nickname)}
                 if !phoneValid.value { invalidInputs.append(.phone)}
                 if !passValid.value.1 { invalidInputs.append(.password)}
-                if !checkInput.value { invalidInputs.append(.check)}
+                if !checkValid.value { invalidInputs.append(.check)}
                 
                 if invalidInputs.count == 0 {
                     joinRequest.accept(true)
@@ -173,16 +187,6 @@ final class JoinViewModel {
                 print("join go")
             }
             .disposed(by: disposeBag)
-        
-//        Observable.combineLatest(emailValid, nickNameValid, passValid, checkValid) { email, nick, password, check in
-//            return email && nick.1 && password.1 && check
-//        }
-//        .bind(onNext: { value in
-//            joinButtonEnable.accept(value)
-//        })
-//        .disposed(by: disposeBag)
-        
-        
         
         return Output(
             checkButtonEnable: checkButtonEnable,

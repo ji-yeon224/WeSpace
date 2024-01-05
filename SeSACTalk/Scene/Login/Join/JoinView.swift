@@ -173,6 +173,38 @@ final class JoinView: BaseView {
         }
     }
     
+    func setTitleValidColor(title: JoinInputValue, valid: Bool) {
+        let color = valid ? Constants.Color.basicText : Constants.Color.error
+        switch title {
+        case .email:
+            emailLabel.textColor = color
+        case .nickname:
+            nickNameLabel.textColor = color
+        case .phone:
+            phoneLabel.textColor = color
+        case .password:
+            passwordLabel.textColor = color
+        case .check:
+            checkLabel.textColor = color
+        }
+    }
+    
+    func keyboardFocus(field: JoinInputValue) {
+        print(field)
+        switch field {
+        case .email:
+            emailTextField.becomeFirstResponder()
+        case .nickname:
+            nickNameTextField.becomeFirstResponder()
+        case .phone:
+            phoneTextField.becomeFirstResponder()
+        case .password:
+            passwordTextField.becomeFirstResponder()
+        case .check:
+            checkTextField.becomeFirstResponder()
+        }
+    }
+    
     
 }
 
