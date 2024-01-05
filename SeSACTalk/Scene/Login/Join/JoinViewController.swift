@@ -91,11 +91,6 @@ final class JoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        mainView.joinButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.view.endEditing(true)
-            }
-            .disposed(by: disposeBag)
         
         mainView.phoneTextField.rx.text.orEmpty
             .map {

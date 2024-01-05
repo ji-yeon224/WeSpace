@@ -190,7 +190,6 @@ final class JoinView: BaseView {
     }
     
     func keyboardFocus(field: JoinInputValue) {
-        print(field)
         switch field {
         case .email:
             emailTextField.becomeFirstResponder()
@@ -220,7 +219,7 @@ extension JoinView: UITextFieldDelegate {
         case self.passwordTextField:
             checkTextField.becomeFirstResponder()
         case self.checkTextField:
-            checkTextField.resignFirstResponder()
+            endEditing(true)
         default: break
         }
         return true
