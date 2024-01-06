@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KakaoLoginRequestDTO: Decodable {
+struct KakaoLoginRequestDTO: Encodable {
     
     let oauthToken: String
     let deviceToken: String?

@@ -14,18 +14,22 @@ final class LoginViewModel {
     private let disposeBag = DisposeBag()
     
     struct Input {
-        let kakaoLoginRequest: ControlEvent<Void>
+        let kakaoLogin: ControlEvent<Void>
     }
     
     struct Output {
-        
+        let loginSuccess: PublishRelay<Bool>
+        let msg: PublishRelay<String>
     }
     
-    func transform(input: Input) {
+    func transform(input: Input) -> Output {
         
+        let requestKakao = PublishRelay<KakaoLoginRequestDTO>()
         
+        let msg = PublishRelay<String>()
+        let loginSuccess = PublishRelay<Bool>()
         
-        input.kakaoLoginRequest
+        input.kakaoLogin
             .bind {
                 KakaoLoginManager.shared.requestLogin()
             }
@@ -36,11 +40,44 @@ final class LoginViewModel {
                 switch result {
                 case .success(let oauth):
                     print(oauth)
+                    requestKakao.accept(KakaoLoginRequestDTO(oauthToken: oauth, deviceToken: UserDefaultsManager.deviceToken))
                 case .failure(let error):
                     print(error)
                 }
             }
             .disposed(by: KakaoLoginManager.shared.disposeBag)
         
+        requestKakao
+            .flatMap {
+                UsersAPIManager.shared.request(api: .kakaoLogin(data: $0), responseType: JoinResponseDTO.self)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    if let data = response?.toDomain() {
+                        UserDefaultsManager.accessToken = data.accessToken
+                        UserDefaultsManager.refreshToken = data.refreshToken
+                        UserDefaultsManager.nickName = data.nickname
+                    }
+                    loginSuccess.accept(true)
+                    
+                case .failure(let error):
+                    let code = error.errorCode
+                    var errorMsg = CommonError.E99.localizedDescription
+                    if let error = LoginError(rawValue: code) {
+                        errorMsg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: code) {
+                        errorMsg = error.localizedDescription
+                    }
+                    
+                    msg.accept(errorMsg)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        return Output(
+            loginSuccess: loginSuccess,
+            msg: msg
+        )
     }
 }

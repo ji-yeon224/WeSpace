@@ -44,6 +44,7 @@
 		CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C22B4970570062B45C /* KakaoLoginManager.swift */; };
 		CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C42B497C670062B45C /* LoginViewModel.swift */; };
 		CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C72B4981930062B45C /* KakaoLoginRequestDTO.swift */; };
+		CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9CA2B49891E0062B45C /* LoginError.swift */; };
 		CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82C2B444B0100B9A035 /* SnapKit */; };
 		CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82F2B444B1000B9A035 /* RxCocoa */; };
 		CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F8312B444B1000B9A035 /* RxSwift */; };
@@ -135,6 +136,7 @@
 		CEA8F9C22B4970570062B45C /* KakaoLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginManager.swift; sourceTree = "<group>"; };
 		CEA8F9C42B497C670062B45C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CEA8F9C72B4981930062B45C /* KakaoLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginRequestDTO.swift; sourceTree = "<group>"; };
+		CEA8F9CA2B49891E0062B45C /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		CEB7F8362B444B4400B9A035 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CEB7F8382B444B4A00B9A035 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CEB7F83C2B4456E000B9A035 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 			children = (
 				CED65F8F2B45B78600CFD04C /* EmailError.swift */,
 				CEA8F9AF2B4926DA0062B45C /* JoinError.swift */,
+				CEA8F9CA2B49891E0062B45C /* LoginError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 			files = (
 				CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
+				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
