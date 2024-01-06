@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import KakaoSDKCommon
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         UIApplication.shared.registerForRemoteNotifications()
+        KakaoSDK.initSDK(appKey: APIKey.kakaokey)
         return true
     }
 
