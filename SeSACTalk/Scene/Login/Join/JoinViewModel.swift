@@ -193,7 +193,7 @@ final class JoinViewModel {
                             let request = JoinRequest(email: email, password: pw, nickname: nick, phone: phone, deviceToken: UserDefaultsManager.deviceToken)
                             joinRequest.accept(request)
                         } else {
-                            let request = JoinRequest(email: email, password: pw, nickname: nick, phone: nil, deviceToken: UserDefaultsManager.deviceToken)
+                            let request = JoinRequest(email: email, password: pw, nickname: nick, phone: nil, deviceToken: nil)
                             joinRequest.accept(request)
                         }
                         
