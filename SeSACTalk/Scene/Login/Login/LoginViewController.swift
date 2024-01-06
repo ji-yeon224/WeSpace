@@ -47,9 +47,12 @@ final class LoginViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.emailButton.rx.tap
-            .bind { _ in
-                KakaoLoginManager.shared.kakaoUnlinkAccount()
-            }
+            .bind(with: self, onNext: { owner, _ in
+                let vc = EmailLoginViewController()
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            })
             .disposed(by: disposeBag)
         
         mainView.joinLabel.rx.tapGesture()

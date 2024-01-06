@@ -45,6 +45,10 @@
 		CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C42B497C670062B45C /* LoginViewModel.swift */; };
 		CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C72B4981930062B45C /* KakaoLoginRequestDTO.swift */; };
 		CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9CA2B49891E0062B45C /* LoginError.swift */; };
+		CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9CE2B49920E0062B45C /* EmailLoginViewController.swift */; };
+		CEA8F9D12B4992130062B45C /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9D02B4992130062B45C /* EmailLoginView.swift */; };
+		CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9D22B49921A0062B45C /* EmailLoginViewModel.swift */; };
+		CEA8F9D62B4993A20062B45C /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9D52B4993A20062B45C /* Then */; };
 		CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82C2B444B0100B9A035 /* SnapKit */; };
 		CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82F2B444B1000B9A035 /* RxCocoa */; };
 		CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F8312B444B1000B9A035 /* RxSwift */; };
@@ -137,6 +141,9 @@
 		CEA8F9C42B497C670062B45C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CEA8F9C72B4981930062B45C /* KakaoLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginRequestDTO.swift; sourceTree = "<group>"; };
 		CEA8F9CA2B49891E0062B45C /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		CEA8F9CE2B49920E0062B45C /* EmailLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
+		CEA8F9D02B4992130062B45C /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
+		CEA8F9D22B49921A0062B45C /* EmailLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginViewModel.swift; sourceTree = "<group>"; };
 		CEB7F8362B444B4400B9A035 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CEB7F8382B444B4A00B9A035 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CEB7F83C2B4456E000B9A035 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +182,7 @@
 				CEEE4EB02B46A1340059D1AF /* AnyFormatKit in Frameworks */,
 				CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */,
 				CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */,
+				CEA8F9D62B4993A20062B45C /* Then in Frameworks */,
 				CEB7F8352B444B2A00B9A035 /* RxGesture in Frameworks */,
 				CEEE4EB62B46DC220059D1AF /* Moya in Frameworks */,
 				CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */,
@@ -202,11 +210,9 @@
 		CE57E4192B452FDF009BD53A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CEA8F9CD2B4992010062B45C /* EmailLogin */,
+				CEA8F9CC2B4991EE0062B45C /* Login */,
 				CE57E41F2B454120009BD53A /* Join */,
-				CE57E41A2B452FE9009BD53A /* LoginViewController.swift */,
-				CE57E41C2B452FF2009BD53A /* LoginView.swift */,
-				CE57E4242B454594009BD53A /* LoginViewControllerDelegate.swift */,
-				CEA8F9C42B497C670062B45C /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -376,6 +382,27 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		CEA8F9CC2B4991EE0062B45C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				CE57E41A2B452FE9009BD53A /* LoginViewController.swift */,
+				CE57E41C2B452FF2009BD53A /* LoginView.swift */,
+				CE57E4242B454594009BD53A /* LoginViewControllerDelegate.swift */,
+				CEA8F9C42B497C670062B45C /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CEA8F9CD2B4992010062B45C /* EmailLogin */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F9CE2B49920E0062B45C /* EmailLoginViewController.swift */,
+				CEA8F9D02B4992130062B45C /* EmailLoginView.swift */,
+				CEA8F9D22B49921A0062B45C /* EmailLoginViewModel.swift */,
+			);
+			path = EmailLogin;
+			sourceTree = "<group>";
+		};
 		CEB7F82A2B444A9F00B9A035 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +548,7 @@
 				CEEE4EB52B46DC220059D1AF /* Moya */,
 				CEA8F9A42B48425C0062B45C /* Toast */,
 				CEA8F9C02B496EB80062B45C /* KakaoSDK */,
+				CEA8F9D52B4993A20062B45C /* Then */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -603,6 +631,7 @@
 				CEEE4EB42B46DC220059D1AF /* XCRemoteSwiftPackageReference "Moya" */,
 				CEA8F9A32B48425C0062B45C /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				CEA8F9BF2B496EB80062B45C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -666,10 +695,12 @@
 				CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
+				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
+				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
 				CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
@@ -694,6 +725,7 @@
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
+				CEA8F9D12B4992130062B45C /* EmailLoginView.swift in Sources */,
 				CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */,
 				CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */,
 				CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */,
@@ -1076,6 +1108,14 @@
 				minimumVersion = 2.20.0;
 			};
 		};
+		CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		CEB7F82B2B444B0100B9A035 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1133,6 +1173,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEA8F9BF2B496EB80062B45C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDK;
+		};
+		CEA8F9D52B4993A20062B45C /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 		CEB7F82C2B444B0100B9A035 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

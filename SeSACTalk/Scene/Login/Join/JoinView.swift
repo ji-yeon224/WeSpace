@@ -24,16 +24,21 @@ final class JoinView: BaseView {
     private let passwordLabel = CustomBasicLabel(text: "비밀번호", fontType: .title2)
     private let checkLabel = CustomBasicLabel(text: "비밀번호 확인", fontType: .title2)
     
-    let emailTextField = {
-        let view = CustomTextField(placeholder: "이메일을 입력하세요")
-        view.keyboardType = UIKeyboardType.emailAddress
-        return view
-    }()
+    let emailTextField = CustomTextField(placeholder: "이메일을 입력하세요").then {
+        $0.keyboardType = UIKeyboardType.emailAddress
+    }
     
     let nickNameTextField = CustomTextField(placeholder: "닉네임을 입력하세요")
-    let phoneTextField = CustomTextField(placeholder: "연락처를 입력하세요")
-    let passwordTextField = CustomTextField(placeholder: "비밀번호를 입력하세요")
-    let checkTextField = CustomTextField(placeholder: "비밀번호를 한 번 더 입력하세요")
+    let phoneTextField = CustomTextField(placeholder: "연락처를 입력하세요").then {
+        $0.keyboardType = .phonePad
+    }
+    let passwordTextField =  CustomTextField(placeholder: "비밀번호를 입력하세요").then {
+        $0.isSecureTextEntry = true
+    }
+    
+    let checkTextField = CustomTextField(placeholder: "비밀번호를 한 번 더 입력하세요").then {
+        $0.isSecureTextEntry = true
+    }
     
     let emailCheckButton = CustomButton(bgColor: Constants.Color.inActive, title: "중복 확인")
     
@@ -51,6 +56,8 @@ final class JoinView: BaseView {
     
     override func configure() {
         super.configure()
+        
+        
         
         emailCheckButton.isEnabled = false
         phoneTextField.delegate = self
