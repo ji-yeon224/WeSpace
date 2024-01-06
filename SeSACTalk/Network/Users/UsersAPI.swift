@@ -12,6 +12,7 @@ enum UsersAPI {
     
     case validation(email: EmailValidationRequest)
     case join(data: JoinRequest)
+    case kakaoLogin(data: KakaoLoginRequestDTO)
     
 }
 extension UsersAPI: TargetType {
@@ -26,12 +27,14 @@ extension UsersAPI: TargetType {
             return Endpoint.user.rawValue + "/validation/email"
         case .join:
             return Endpoint.user.rawValue + "/join"
+        case .kakaoLogin:
+            return Endpoint.user.rawValue + "/login/kakao"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .validation, .join:
+        case .validation, .join, .kakaoLogin:
             return .post
         }
     }
@@ -42,12 +45,14 @@ extension UsersAPI: TargetType {
             return .requestJSONEncodable(email)
         case .join(let data):
             return .requestJSONEncodable(data)
+        case .kakaoLogin(let data):
+            return .requestJSONEncodable(data)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .validation, .join:
+        case .validation, .join, .kakaoLogin:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key]
         }
     }

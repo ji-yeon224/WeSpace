@@ -10,7 +10,7 @@ import UIKit
 final class InitialView: BaseView {
     
     private let completedLabel = CustomBasicLabel(text: "출시 준비 완료!", fontType: .title1)
-    private let completedMessage = CustomBasicLabel(text: Text.completMessage, fontType: .body, line: 0)
+    private let completedMessage = CustomBasicLabel(text: UserDefaultsManager.nickName + Text.completMessage, fontType: .body, line: 0)
     private let completImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit

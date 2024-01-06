@@ -12,6 +12,7 @@ import RxGesture
 
 final class LoginViewController: BaseViewController {
     
+    private let viewModel = LoginViewModel()
     private let mainView = LoginView()
     private let disposeBag = DisposeBag()
     
@@ -31,6 +32,26 @@ final class LoginViewController: BaseViewController {
     }
     
     private func bind() {
+        
+        let input = LoginViewModel.Input(kakaoLogin: mainView.kakaoButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.loginSuccess
+            .bind(with: self) { owner, _ in
+                let vc = InitialViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.setupBarAppearance()
+                owner.view.window?.rootViewController = nav
+                owner.view.window?.makeKeyAndVisible()
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.emailButton.rx.tap
+            .bind { _ in
+                KakaoLoginManager.shared.kakaoUnlinkAccount()
+            }
+            .disposed(by: disposeBag)
+        
         mainView.joinLabel.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
