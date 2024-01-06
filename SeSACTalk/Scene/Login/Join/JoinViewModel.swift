@@ -215,6 +215,7 @@ final class JoinViewModel {
                     if let result = result {
                         UserDefaultsManager.accessToken = result.token.accessToken
                         UserDefaultsManager.refreshToken = result.token.refreshToken
+                        UserDefaultsManager.nickName = result.nickname
                         successJoin.accept(true)
                     }
                     
@@ -238,7 +239,7 @@ final class JoinViewModel {
             joinButtonEnable: joinButtonEnable,
             validationErrors: validationErrors,
             msg: msg,
-            successJoin: <#T##PublishRelay<Bool>#>
+            successJoin: successJoin
         )
     }
     

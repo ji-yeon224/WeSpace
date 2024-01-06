@@ -91,6 +91,16 @@ final class JoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.successJoin
+            .bind(with: self) { owner, _ in
+                let vc = InitialViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.setupBarAppearance()
+                owner.view.window?.rootViewController = nav
+                owner.view.window?.makeKeyAndVisible()
+            }
+            .disposed(by: disposeBag)
+        
         
         mainView.phoneTextField.rx.text.orEmpty
             .map {

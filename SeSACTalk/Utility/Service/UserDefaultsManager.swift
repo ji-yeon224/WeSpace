@@ -27,10 +27,12 @@ final class UserDefaultsManager {
         case deviceToken
         case accessToken
         case refreshToken
+        case nickName
     }
     
     @Defaults(key: Key.deviceToken.rawValue, defaultValue: "") static var deviceToken
     @Defaults(key: Key.accessToken.rawValue, defaultValue: "") static var accessToken
     @Defaults(key: Key.refreshToken.rawValue, defaultValue: "") static var refreshToken
+    @Defaults(key: Key.nickName.rawValue, defaultValue: "") static var nickName
 }
 
