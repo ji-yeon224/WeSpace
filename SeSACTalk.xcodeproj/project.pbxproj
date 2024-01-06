@@ -30,6 +30,12 @@
 		CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF82B43E9B300AA7F9C /* Color.swift */; };
 		CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FFA2B43F1A900AA7F9C /* Image.swift */; };
 		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
+		CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A62B4849E80062B45C /* JoinRequest.swift */; };
+		CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */; };
+		CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */; };
+		CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9AD2B4924FD0062B45C /* JoinSuccess.swift */; };
+		CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9AF2B4926DA0062B45C /* JoinError.swift */; };
+		CEA8F9B32B492D370062B45C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9B22B492D370062B45C /* UserDefaultsManager.swift */; };
 		CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82C2B444B0100B9A035 /* SnapKit */; };
 		CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82F2B444B1000B9A035 /* RxCocoa */; };
 		CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F8312B444B1000B9A035 /* RxSwift */; };
@@ -107,6 +113,13 @@
 		CE6C1FF62B43E99E00AA7F9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE6C1FF82B43E9B300AA7F9C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CE6C1FFA2B43F1A900AA7F9C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		CEA8F9A62B4849E80062B45C /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
+		CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponseDTO.swift; sourceTree = "<group>"; };
+		CEA8F9AD2B4924FD0062B45C /* JoinSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinSuccess.swift; sourceTree = "<group>"; };
+		CEA8F9AF2B4926DA0062B45C /* JoinError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinError.swift; sourceTree = "<group>"; };
+		CEA8F9B12B492B9D0062B45C /* SeSACTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSACTalk.entitlements; sourceTree = "<group>"; };
+		CEA8F9B22B492D370062B45C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		CEB7F8362B444B4400B9A035 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CEB7F8382B444B4A00B9A035 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CEB7F83C2B4456E000B9A035 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +225,7 @@
 		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
 			isa = PBXGroup;
 			children = (
+				CEA8F9B12B492B9D0062B45C /* SeSACTalk.entitlements */,
 				CED65F8B2B45B6EE00CFD04C /* Error */,
 				CED65F862B45B67100CFD04C /* Network */,
 				CE6C1FF32B43E97900AA7F9C /* Model */,
@@ -306,6 +320,16 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		CEA8F9AC2B4924640062B45C /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8F9A62B4849E80062B45C /* JoinRequest.swift */,
+				CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */,
+				CEA8F9AD2B4924FD0062B45C /* JoinSuccess.swift */,
+			);
+			path = Join;
+			sourceTree = "<group>";
+		};
 		CEB7F82A2B444A9F00B9A035 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +379,7 @@
 				CEEE4EB12B46DBB50059D1AF /* Users */,
 				CED65F872B45B67C00CFD04C /* APIKey.swift */,
 				CED65F892B45B68300CFD04C /* BaseURL.swift */,
+				CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -372,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				CED65F8F2B45B78600CFD04C /* EmailError.swift */,
+				CEA8F9AF2B4926DA0062B45C /* JoinError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -388,6 +414,7 @@
 		CEEE4EB92B46DE900059D1AF /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				CEA8F9AC2B4924640062B45C /* Join */,
 				CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */,
 			);
 			path = Users;
@@ -397,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				CE57E4262B454726009BD53A /* PageSheetManager.swift */,
+				CEA8F9B22B492D370062B45C /* UserDefaultsManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -575,11 +603,13 @@
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
+				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
+				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
@@ -594,15 +624,19 @@
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
+				CEA8F9B32B492D370062B45C /* UserDefaultsManager.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
 				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
+				CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
+				CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */,
 				CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */,
+				CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */,
 				CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */,
 				CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */,
 				CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */,
@@ -787,6 +821,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DJP8DYB9HG;
@@ -815,6 +850,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DJP8DYB9HG;

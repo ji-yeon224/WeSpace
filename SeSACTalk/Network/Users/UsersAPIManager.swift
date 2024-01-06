@@ -22,7 +22,6 @@ final class UsersAPIManager {
                 case .success(let response):
                     let code = response.statusCode
                     if code == 200 {
-                        print(type(of: T.self))
                         do {
                             if response.data.isEmpty {
                                 single(.success(.success(nil)))
@@ -41,6 +40,7 @@ final class UsersAPIManager {
                             print(e.errorCode)
                             single(.success(.failure(e)))
                         } catch {
+                            print("error decoded Error")
                             let e = ErrorResponse(errorCode: "E99")
                             single(.success(.failure(e)))
                         }

@@ -28,6 +28,7 @@ final class JoinViewModel {
         let joinButtonEnable: BehaviorRelay<Bool>
         let validationErrors: PublishRelay<[JoinInputValue]>
         let msg: PublishRelay<String>
+        let successJoin: PublishRelay<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -35,9 +36,10 @@ final class JoinViewModel {
         let joinButtonEnable = BehaviorRelay(value: false)
         let validationErrors = PublishRelay<[JoinInputValue]>()
         let msg = PublishRelay<String>()
+        let successJoin = PublishRelay<Bool>()
         
         let emailCheckRequest = PublishRelay<String>()
-        let joinRequest = PublishRelay<Bool>()
+        let joinRequest = PublishRelay<JoinRequest>()
         
         var email: String?, nickName: String?, phone: String?, password: String?
         let emailValid = BehaviorRelay(value: false)
@@ -70,7 +72,6 @@ final class JoinViewModel {
                     msg.accept(JoinToastMessage.alreadyValid.message)
                 } else {
                     if value.isValidEmail() {
-                        msg.accept(JoinToastMessage.validEmail.message)
                         emailCheckRequest.accept(value)
                     } else {
                         msg.accept(JoinToastMessage.emailValidationError.message)
@@ -95,17 +96,18 @@ final class JoinViewModel {
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(_):
-                    print("[Valid Email]")
                     emailValid.accept(true)
+                    msg.accept(JoinToastMessage.validEmail.message)
                 case .failure(let error):
                     emailValid.accept(false)
                     email = nil
                     if let error = EmailError(rawValue: error.errorCode) {
                         print(error.localizedDescription)
+                        msg.accept(error.localizedDescription)
                     } else if let error = CommonError(rawValue: error.errorCode) {
-                        print(error.localizedDescription)
+                        msg.accept(error.localizedDescription)
                     } else {
-                        print(CommonError.E99.localizedDescription)
+                        msg.accept(CommonError.E99.localizedDescription)
                     }
                 }
             }
@@ -116,12 +118,19 @@ final class JoinViewModel {
                 nickInput.accept(!value.isEmpty)
                 let valid = 1...30 ~= value.count
                 nickNameValid.accept((value, valid))
+                if valid { nickName = value }
             }
             .disposed(by: disposeBag)
         
         input.phoneValue
             .bind(with: self) { owner, value in
-                phoneValid.accept(value.isValidPhone())
+                let valid = value.isValidPhone()
+                phoneValid.accept(valid)
+                if valid {
+                    phone = value
+                } else {
+                    phone = nil
+                }
             }
             .disposed(by: disposeBag)
         
@@ -146,10 +155,13 @@ final class JoinViewModel {
         
         Observable.combineLatest(input.checkValue, passValid) { check, password in
             checkInput.accept(!check.isEmpty)
-            return password.1 && check == password.0
+            return (password.1 && check == password.0, password.0)
         }
         .bind { value in
-            checkValid.accept(value)
+            checkValid.accept(value.0)
+            if value.0 {
+                password = value.1
+            } else { password = nil }
         }
         .disposed(by: disposeBag)
         
@@ -169,12 +181,23 @@ final class JoinViewModel {
                 invalidInputs.removeAll()
                 if !emailValid.value { invalidInputs.append(.email)}
                 if !nickNameValid.value.1 { invalidInputs.append(.nickname)}
-                if !phoneValid.value { invalidInputs.append(.phone)}
+                if !phoneValid.value && phone != nil { invalidInputs.append(.phone)}
                 if !passValid.value.1 { invalidInputs.append(.password)}
                 if !checkValid.value { invalidInputs.append(.check)}
                 
                 if invalidInputs.count == 0 {
-                    joinRequest.accept(true)
+                    if let email = email, let pw = password, let nick = nickName {
+                       
+                        if let phone = phone, phone.count > 0 {
+                            print(phone)
+                            let request = JoinRequest(email: email, password: pw, nickname: nick, phone: phone, deviceToken: UserDefaultsManager.deviceToken)
+                            joinRequest.accept(request)
+                        } else {
+                            let request = JoinRequest(email: email, password: pw, nickname: nick, phone: nil, deviceToken: UserDefaultsManager.deviceToken)
+                            joinRequest.accept(request)
+                        }
+                        
+                    }
                 } else {
                     msg.accept(owner.joinInvalidMsg(input: invalidInputs[0]))
                     validationErrors.accept(invalidInputs)
@@ -183,16 +206,35 @@ final class JoinViewModel {
             .disposed(by: disposeBag)
         
         joinRequest
-            .bind { value in
-                print("join go")
+            .flatMap {
+                UsersAPIManager.shared.request(api: .join(data: $0), responseType: JoinResponseDTO.self)
             }
+            .bind(with: self, onNext: { owner, value in
+                switch value {
+                case .success(let result):
+                    
+                    successJoin.accept(true)
+                case .failure(let error):
+                    guard let error = JoinError(rawValue: error.errorCode) else {
+                        if let commonError = CommonError(rawValue: error.errorCode) {
+                            msg.accept(commonError.localizedDescription)
+                        } else {
+                            msg.accept(CommonError.E99.localizedDescription)
+                        }
+                        return
+                    }
+                    msg.accept(error.localizedDescription)
+                    
+                }
+            })
             .disposed(by: disposeBag)
         
         return Output(
             checkButtonEnable: checkButtonEnable,
             joinButtonEnable: joinButtonEnable,
             validationErrors: validationErrors,
-            msg: msg
+            msg: msg,
+            successJoin: <#T##PublishRelay<Bool>#>
         )
     }
     

@@ -9,11 +9,13 @@ import Foundation
 import Moya
 
 enum UsersAPI {
-    case validation(email: EmailValidationRequest)
     
+    case validation(email: EmailValidationRequest)
+    case join(data: JoinRequest)
     
 }
 extension UsersAPI: TargetType {
+    
     var baseURL: URL {
         return URL(string: BaseURL.baseURL)!
     }
@@ -21,13 +23,15 @@ extension UsersAPI: TargetType {
     var path: String {
         switch self {
         case .validation:
-            return "v1/users/validation/email"
+            return Endpoint.user.rawValue + "/validation/email"
+        case .join:
+            return Endpoint.user.rawValue + "/join"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .validation:
+        case .validation, .join:
             return .post
         }
     }
@@ -36,12 +40,14 @@ extension UsersAPI: TargetType {
         switch self {
         case .validation(let email):
             return .requestJSONEncodable(email)
+        case .join(let data):
+            return .requestJSONEncodable(data)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .validation:
+        case .validation, .join:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key]
         }
     }
