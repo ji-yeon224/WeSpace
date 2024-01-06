@@ -212,8 +212,12 @@ final class JoinViewModel {
             .bind(with: self, onNext: { owner, value in
                 switch value {
                 case .success(let result):
+                    if let result = result {
+                        UserDefaultsManager.accessToken = result.token.accessToken
+                        UserDefaultsManager.refreshToken = result.token.refreshToken
+                        successJoin.accept(true)
+                    }
                     
-                    successJoin.accept(true)
                 case .failure(let error):
                     guard let error = JoinError(rawValue: error.errorCode) else {
                         if let commonError = CommonError(rawValue: error.errorCode) {

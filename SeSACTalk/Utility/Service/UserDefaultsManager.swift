@@ -26,9 +26,11 @@ final class UserDefaultsManager {
     enum Key: String {
         case deviceToken
         case accessToken
-        case refresh
+        case refreshToken
     }
     
     @Defaults(key: Key.deviceToken.rawValue, defaultValue: "") static var deviceToken
+    @Defaults(key: Key.accessToken.rawValue, defaultValue: "") static var accessToken
+    @Defaults(key: Key.refreshToken.rawValue, defaultValue: "") static var refreshToken
 }
 
