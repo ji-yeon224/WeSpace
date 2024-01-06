@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 class BaseViewController: UIViewController {
     
@@ -17,5 +18,15 @@ class BaseViewController: UIViewController {
     func configure() {
         view.backgroundColor = Constants.Color.background
     }
-    
+    func showToastMessage(message: String, position: ToastPosition) {
+            
+        var style = ToastStyle()
+        style.backgroundColor = .customGreen
+        style.messageFont = Font.body.fontStyle
+        style.messageColor = Constants.Color.white
+        
+        DispatchQueue.main.async {
+            self.view.makeToast(message, duration: 1.0, position: position, style: style)
+        }
+    }
 }
