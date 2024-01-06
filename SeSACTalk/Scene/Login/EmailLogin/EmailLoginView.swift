@@ -21,7 +21,9 @@ final class EmailLoginView: BaseView {
         $0.isSecureTextEntry = true
     }
     
-    let loginButton = CustomButton(bgColor: .inactive, title: "로그인")
+    let loginButton = CustomButton(bgColor: .inactive, title: "로그인").then {
+        $0.isEnabled = false
+    }
     
     override func configure() {
         super.configure()
@@ -57,6 +59,12 @@ final class EmailLoginView: BaseView {
         }
         passwordTextField.snp.makeConstraints { make in
             make.height.equalTo(Constants.Design.buttonHeight)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(24)
+            make.height.equalTo(Constants.Design.buttonHeight)
+            make.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-24)
         }
         
     }

@@ -22,6 +22,7 @@ final class EmailLoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "이메일 로그인"
+        bind()
     }
     
     override func configure() {
@@ -30,6 +31,20 @@ final class EmailLoginViewController: BaseViewController {
     }
     
     func bind() {
+        
+        let input = EmailLoginViewModel.Input(
+            emailText: mainView.emailTextField.rx.text.orEmpty,
+            passwordText: mainView.passwordTextField.rx.text.orEmpty,
+            loginButtonTap: mainView.loginButton.rx.tap
+        )
+        
+        let output = viewModel.transform(input: input)
+        
+        output.loginButtonEnable
+            .bind(with: self) { owner, value in
+                owner.mainView.setButtonValid(valid: value)
+            }
+            .disposed(by: disposeBag)
         
     }
     

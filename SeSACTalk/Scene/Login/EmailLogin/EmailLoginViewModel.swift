@@ -19,10 +19,36 @@ final class EmailLoginViewModel {
     }
     
     struct Output {
-        
+        let loginButtonEnable: BehaviorRelay<Bool>
     }
     
-    func transform(input: Input) {
+    func transform(input: Input) -> Output {
         
+        let loginButtonEnable = BehaviorRelay(value: false)
+        let emailInput = BehaviorRelay(value: false), passInput = BehaviorRelay(value: false)
+        
+        input.emailText
+            .bind { value in
+                emailInput.accept(!value.isEmpty)
+            }
+            .disposed(by: disposeBag)
+        
+        input.passwordText
+            .bind { value in
+                passInput.accept(!value.isEmpty)
+            }
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(emailInput, passInput) { email, password in
+            return email && password
+        }
+        .bind { value in
+            loginButtonEnable.accept(value)
+        }
+        .disposed(by: disposeBag)
+        
+        return Output(
+            loginButtonEnable: loginButtonEnable
+        )
     }
 }
