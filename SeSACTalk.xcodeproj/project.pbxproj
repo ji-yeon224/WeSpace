@@ -29,6 +29,8 @@
 		CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF62B43E99E00AA7F9C /* Constants.swift */; };
 		CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF82B43E9B300AA7F9C /* Color.swift */; };
 		CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FFA2B43F1A900AA7F9C /* Image.swift */; };
+		CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE85748E2B4AFD810025ED1B /* ReactorKit */; };
+		CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574922B4AFEB50025ED1B /* LoginReactor.swift */; };
 		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
 		CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A62B4849E80062B45C /* JoinRequest.swift */; };
 		CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */; };
@@ -138,6 +140,7 @@
 		CE6C1FF62B43E99E00AA7F9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE6C1FF82B43E9B300AA7F9C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CE6C1FFA2B43F1A900AA7F9C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		CE8574922B4AFEB50025ED1B /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
 		CEA8F9A62B4849E80062B45C /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
 		CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponseDTO.swift; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 			files = (
 				CEA8F9A52B48425C0062B45C /* Toast in Frameworks */,
 				CE57E42E2B455A61009BD53A /* IQKeyboardManagerSwift in Frameworks */,
+				CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */,
 				CEEE4EB02B46A1340059D1AF /* AnyFormatKit in Frameworks */,
 				CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */,
 				CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */,
@@ -418,6 +422,7 @@
 				CE57E41C2B452FF2009BD53A /* LoginView.swift */,
 				CE57E4242B454594009BD53A /* LoginViewControllerDelegate.swift */,
 				CEA8F9C42B497C670062B45C /* LoginViewModel.swift */,
+				CE8574922B4AFEB50025ED1B /* LoginReactor.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -609,6 +614,7 @@
 				CEA8F9A42B48425C0062B45C /* Toast */,
 				CEA8F9C02B496EB80062B45C /* KakaoSDK */,
 				CEA8F9D52B4993A20062B45C /* Then */,
+				CE85748E2B4AFD810025ED1B /* ReactorKit */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -692,6 +698,7 @@
 				CEA8F9A32B48425C0062B45C /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				CEA8F9BF2B496EB80062B45C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */,
+				CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -757,6 +764,7 @@
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */,
 				CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */,
+				CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
@@ -1164,6 +1172,14 @@
 				minimumVersion = 6.5.16;
 			};
 		};
+		CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactorKit/ReactorKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 		CEA8F9A32B48425C0062B45C /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift";
@@ -1235,6 +1251,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		CE85748E2B4AFD810025ED1B /* ReactorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */;
+			productName = ReactorKit;
 		};
 		CEA8F9A42B48425C0062B45C /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
