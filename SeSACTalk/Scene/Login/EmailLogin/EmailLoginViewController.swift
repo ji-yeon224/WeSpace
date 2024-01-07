@@ -46,6 +46,19 @@ final class EmailLoginViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.msg
+            .bind(with: self) { owner, value in
+                owner.showToastMessage(message: value, position: .top)
+            }
+            .disposed(by: disposeBag)
+        
+        output.validationError
+            .bind(with: self) { owner, value in
+                owner.mainView.setEmailValidColor(valid: !value.contains(.email))
+                owner.mainView.setPasswordValidColor(valid: !value.contains(.password))
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     
