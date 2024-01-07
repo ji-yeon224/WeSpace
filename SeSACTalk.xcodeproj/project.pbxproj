@@ -78,6 +78,8 @@
 		CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */; };
 		CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989A02B4A85E000590A19 /* HomeTopView.swift */; };
 		CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989A22B4A874300590A19 /* ProfileImageView.swift */; };
+		CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989A42B4A9FDA00590A19 /* LoginCompletedManager.swift */; };
+		CEE989A72B4AA36900590A19 /* HomeEmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989A62B4AA36900590A19 /* HomeEmptyViewModel.swift */; };
 		CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */; };
 		CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAA2B4697650059D1AF /* Regex.swift */; };
 		CEEE4EAD2B46987F0059D1AF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */; };
@@ -179,6 +181,8 @@
 		CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		CEE989A02B4A85E000590A19 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
 		CEE989A22B4A874300590A19 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		CEE989A42B4A9FDA00590A19 /* LoginCompletedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCompletedManager.swift; sourceTree = "<group>"; };
+		CEE989A62B4AA36900590A19 /* HomeEmptyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewModel.swift; sourceTree = "<group>"; };
 		CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
 		CEEE4EAA2B4697650059D1AF /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -515,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE9899A2B4A7E8C00590A19 /* HomeEmptyViewController.swift */,
+				CEE989A62B4AA36900590A19 /* HomeEmptyViewModel.swift */,
 				CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */,
 			);
 			path = Home;
@@ -554,6 +559,7 @@
 				CE57E4262B454726009BD53A /* PageSheetManager.swift */,
 				CEA8F9B22B492D370062B45C /* UserDefaultsManager.swift */,
 				CEA8F9C22B4970570062B45C /* KakaoLoginManager.swift */,
+				CEE989A42B4A9FDA00590A19 /* LoginCompletedManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -755,6 +761,7 @@
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
+				CEE989A72B4AA36900590A19 /* HomeEmptyViewModel.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
@@ -780,6 +787,7 @@
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
 				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,
+				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,

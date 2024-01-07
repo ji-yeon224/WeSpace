@@ -14,6 +14,7 @@ enum UsersAPI {
     case join(data: JoinRequest)
     case kakaoLogin(data: KakaoLoginRequestDTO)
     case emailLogin(data: EmailLoginRequestDTO)
+    case my
     
 }
 extension UsersAPI: TargetType {
@@ -32,6 +33,9 @@ extension UsersAPI: TargetType {
             return Endpoint.user.rawValue + "/login/kakao"
         case .emailLogin:
             return Endpoint.user.rawValue + "/login"
+        case .my:
+            return Endpoint.user.rawValue + "/my"
+        
         }
     }
     
@@ -39,6 +43,9 @@ extension UsersAPI: TargetType {
         switch self {
         case .validation, .join, .kakaoLogin, .emailLogin:
             return .post
+        case .my:
+            return .get
+            
         }
     }
     
@@ -52,6 +59,8 @@ extension UsersAPI: TargetType {
             return .requestJSONEncodable(data)
         case .emailLogin(let data):
             return .requestJSONEncodable(data)
+        case .my:
+            return .requestPlain
         }
     }
     
@@ -59,6 +68,8 @@ extension UsersAPI: TargetType {
         switch self {
         case .validation, .join, .kakaoLogin, .emailLogin:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key]
+        case .my:
+            return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         }
     }
     

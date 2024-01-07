@@ -12,7 +12,10 @@ import RxCocoa
 final class HomeEmptyViewController: BaseViewController {
     
     private let mainView = HomeEmptyView()
+    private let viewModel = HomeEmptyViewModel()
     private let disposeBag = DisposeBag()
+    
+    private let requestUserInfo = BehaviorRelay(value: true)
     
     override func loadView() {
         self.view = mainView
@@ -25,8 +28,16 @@ final class HomeEmptyViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
     override func configure() {
         view.backgroundColor = Constants.Color.secondaryBG
+    }
+    
+    func bind() {
+        let input = HomeEmptyViewModel.Input(requestUserInfo: requestUserInfo)
+        let output = viewModel.transform(input: input)
+        
+        
     }
 }
