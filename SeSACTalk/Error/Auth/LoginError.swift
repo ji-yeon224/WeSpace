@@ -15,7 +15,7 @@ extension LoginError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .E03:
-            return "로그인에 실패하였습니다."
+            return "이메일 또는 비밀번호가 올바르지 않습니다."
         }
     }
 }

@@ -12,14 +12,12 @@ final class LoginView: BaseView {
     let appleButton = CustomButton(image: Constants.Image.appleLogin)
     let kakaoButton = CustomButton(image: Constants.Image.kakaoLogin)
     let emailButton = CustomButton(bgColor: Constants.Color.green, img: Constants.Image.email, title: "이메일로 계속하기")
-    let joinLabel = {
-        let view = CustomBasicLabel(text: "또는 새롭게 회원가입 하기", fontType: .title2, color: Constants.Color.green)
-        let attributedStr = NSMutableAttributedString(string: view.text!)
-        attributedStr.addAttribute(.foregroundColor, value: Constants.Color.black, range: (view.text! as NSString).range(of:"또는"))
-        view.attributedText = attributedStr
-        view.textAlignment = .center
-        return view
-    }()
+    let joinLabel = CustomBasicLabel(text: "또는 새롭게 회원가입 하기", fontType: .title2, color: Constants.Color.green).then {
+        let attributedStr = NSMutableAttributedString(string: $0.text!)
+        attributedStr.addAttribute(.foregroundColor, value: Constants.Color.black, range: ($0.text! as NSString).range(of:"또는"))
+        $0.attributedText = attributedStr
+        $0.textAlignment = .center
+    }
     
     override func configure() {
         super.configure()

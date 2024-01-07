@@ -24,15 +24,31 @@ struct Defaults<T> {
 final class UserDefaultsManager {
     private init() { }
     enum Key: String {
+        case isLogin
         case deviceToken
         case accessToken
         case refreshToken
         case nickName
     }
     
+    @Defaults(key: Key.isLogin.rawValue, defaultValue: false) static var isLogin
     @Defaults(key: Key.deviceToken.rawValue, defaultValue: "") static var deviceToken
     @Defaults(key: Key.accessToken.rawValue, defaultValue: "") static var accessToken
     @Defaults(key: Key.refreshToken.rawValue, defaultValue: "") static var refreshToken
     @Defaults(key: Key.nickName.rawValue, defaultValue: "") static var nickName
+    
+    
+    static func setToken(token: Token) {
+        UserDefaultsManager.isLogin = true
+        UserDefaultsManager.accessToken = token.accessToken
+        UserDefaultsManager.refreshToken = token.refreshToken
+    }
+    
+    static func initToken() {
+        UserDefaultsManager.isLogin = false
+        UserDefaultsManager.accessToken = ""
+        UserDefaultsManager.refreshToken = ""
+    }
+    
 }
 
