@@ -74,6 +74,10 @@
 		CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989922B4A4FE800590A19 /* EmailLoginResponseDTO.swift */; };
 		CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989942B4A52C600590A19 /* MyProfile.swift */; };
 		CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989972B4A52EE00590A19 /* MyProfileRequestDto.swift */; };
+		CEE9899B2B4A7E8C00590A19 /* HomeEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9899A2B4A7E8C00590A19 /* HomeEmptyViewController.swift */; };
+		CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */; };
+		CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989A02B4A85E000590A19 /* HomeTopView.swift */; };
+		CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989A22B4A874300590A19 /* ProfileImageView.swift */; };
 		CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */; };
 		CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAA2B4697650059D1AF /* Regex.swift */; };
 		CEEE4EAD2B46987F0059D1AF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */; };
@@ -171,6 +175,10 @@
 		CEE989922B4A4FE800590A19 /* EmailLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginResponseDTO.swift; sourceTree = "<group>"; };
 		CEE989942B4A52C600590A19 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 		CEE989972B4A52EE00590A19 /* MyProfileRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRequestDto.swift; sourceTree = "<group>"; };
+		CEE9899A2B4A7E8C00590A19 /* HomeEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewController.swift; sourceTree = "<group>"; };
+		CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
+		CEE989A02B4A85E000590A19 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
+		CEE989A22B4A874300590A19 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
 		CEEE4EAA2B4697650059D1AF /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -336,11 +344,13 @@
 		CE6C1FF42B43E98900AA7F9C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEE9899F2B4A85C700590A19 /* Custom */,
 				CEB7F8462B445E2D00B9A035 /* Font */,
 				CEB7F8432B4459CF00B9A035 /* Buttons */,
 				CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */,
 				CE57E4282B454E52009BD53A /* CustomTextField.swift */,
 				CE57E42A2B4557CE009BD53A /* CustomStackView.swift */,
+				CEE989A22B4A874300590A19 /* ProfileImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +382,7 @@
 		CEA8F9B52B4949010062B45C /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				CEE989992B4A7E3200590A19 /* Home */,
 				CEA8F9B62B4949090062B45C /* Initial */,
 			);
 			path = WorkSpace;
@@ -498,6 +509,23 @@
 				CEE989972B4A52EE00590A19 /* MyProfileRequestDto.swift */,
 			);
 			path = MyProfile;
+			sourceTree = "<group>";
+		};
+		CEE989992B4A7E3200590A19 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CEE9899A2B4A7E8C00590A19 /* HomeEmptyViewController.swift */,
+				CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CEE9899F2B4A85C700590A19 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				CEE989A02B4A85E000590A19 /* HomeTopView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		CEEE4EB12B46DBB50059D1AF /* Users */ = {
@@ -708,6 +736,7 @@
 				CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */,
 				CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
+				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
 				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
@@ -721,6 +750,7 @@
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */,
+				CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
@@ -739,6 +769,7 @@
 				CEA8F9BC2B494A620062B45C /* Text.swift in Sources */,
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
+				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
 				CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */,
@@ -756,6 +787,7 @@
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
+				CEE9899B2B4A7E8C00590A19 /* HomeEmptyViewController.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
 				CEA8F9D12B4992130062B45C /* EmailLoginView.swift in Sources */,
 				CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */,

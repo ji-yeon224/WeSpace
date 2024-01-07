@@ -60,9 +60,9 @@ final class EmailLoginViewController: BaseViewController {
             .disposed(by: disposeBag)
         output.loginSuccess
             .bind(with: self) { owner, _ in
-                let vc = InitialViewController()
+                let vc = HomeEmptyViewController()
                 let nav = UINavigationController(rootViewController: vc)
-                nav.setupBarAppearance()
+//                nav.setupLargeTitleBar()
                 owner.view.window?.rootViewController = nav
                 owner.view.window?.makeKeyAndVisible()
             }
