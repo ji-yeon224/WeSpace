@@ -40,26 +40,21 @@ final class JoinView: BaseView {
         $0.isSecureTextEntry = true
     }
     
-    let emailCheckButton = CustomButton(bgColor: Constants.Color.inActive, title: "중복 확인")
+    let emailCheckButton = CustomButton(bgColor: Constants.Color.inActive, title: "중복 확인").then {
+        $0.isEnabled = false
+    }
     
-    private let joinButtonView = {
-        let view = UIView()
-        view.backgroundColor = Constants.Color.background
-        return view
-    }()
-    private let seperator = {
-        let view = UIView()
-        view.backgroundColor = Constants.Color.seperator
-        return view
-    }()
+    private let joinButtonView = UIView().then {
+        $0.backgroundColor = Constants.Color.background
+    }
+    private let seperator = UIView().then {
+        $0.backgroundColor = Constants.Color.seperator
+    }
     let joinButton = CustomButton(bgColor: Constants.Color.inActive, title: "가입하기")
     
     override func configure() {
         super.configure()
         
-        
-        
-        emailCheckButton.isEnabled = false
         phoneTextField.delegate = self
         configChildView()
         [emailView, nickNameView, phoneView, passwordView, checkView, seperator, joinButtonView].forEach {

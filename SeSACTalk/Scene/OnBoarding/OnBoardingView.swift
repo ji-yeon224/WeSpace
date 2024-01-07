@@ -9,19 +9,15 @@ import UIKit
 
 final class OnBoardingView: BaseView {
     
-    private let imageView = {
-        let view = UIImageView()
-        view.image = Constants.Image.onBoarding
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
+    private let imageView = UIImageView().then {
+        $0.image = Constants.Image.onBoarding
+        $0.contentMode = .scaleAspectFit
+    }
     
-    private let titleView = {
-        let view = UIImageView()
-        view.image = Constants.Image.splash
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
+    private let titleView = UIImageView().then {
+        $0.image = Constants.Image.splash
+        $0.contentMode = .scaleAspectFit
+    }
     
     let startButton = CustomButton(bgColor: Constants.Color.green, title: "시작하기")
     

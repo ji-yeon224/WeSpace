@@ -9,14 +9,16 @@ import UIKit
 
 final class InitialView: BaseView {
     
-    private let completedLabel = CustomBasicLabel(text: "출시 준비 완료!", fontType: .title1)
-    private let completedMessage = CustomBasicLabel(text: UserDefaultsManager.nickName + Text.completMessage, fontType: .body, line: 0)
-    private let completImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        view.image = .launching
-        return view
-    }()
+    private let completedLabel = CustomBasicLabel(text: "출시 준비 완료!", fontType: .title1).then {
+        $0.textAlignment = .center
+    }
+    private let completedMessage = CustomBasicLabel(text: UserDefaultsManager.nickName + Text.completMessage, fontType: .body, line: 0).then {
+        $0.textAlignment = .center
+    }
+    private let completImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .launching
+    }
     let makeButton = CustomButton(bgColor: .customGreen, title: Text.makeWorkspace)
     
     override func configure() {
@@ -24,8 +26,7 @@ final class InitialView: BaseView {
         [completedLabel, completedMessage, completImageView, makeButton].forEach {
             addSubview($0)
         }
-        completedLabel.textAlignment = .center
-        completedMessage.textAlignment = .center
+        
     }
     
     override func setConstraints() {
