@@ -22,7 +22,7 @@ final class HomeEmptyView: BaseView {
         $0.contentMode = .scaleAspectFit
         $0.image = .emptySpace
     }
-    let makeButton = CustomButton(bgColor: .customGreen, title: Text.makeWorkspace)
+    let makeButton = CustomButton(bgColor: .brand, title: Text.makeWorkspace)
     
     override func configure() {
         super.configure()

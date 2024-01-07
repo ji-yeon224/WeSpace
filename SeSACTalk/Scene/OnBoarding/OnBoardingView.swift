@@ -19,7 +19,7 @@ final class OnBoardingView: BaseView {
         $0.contentMode = .scaleAspectFit
     }
     
-    let startButton = CustomButton(bgColor: Constants.Color.green, title: "시작하기")
+    let startButton = CustomButton(bgColor: Constants.Color.mainColor, title: "시작하기")
     
     override func configure() {
         super.configure()

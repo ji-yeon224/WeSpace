@@ -59,7 +59,7 @@ final class JoinViewController: BaseViewController {
             .asDriver()
             .drive(with: self) { owner, value in
                 owner.mainView.emailCheckButton.isEnabled = value
-                owner.mainView.emailCheckButton.backgroundColor = value ? Constants.Color.green : Constants.Color.inActive
+                owner.mainView.emailCheckButton.backgroundColor = value ? Constants.Color.mainColor : Constants.Color.inActive
             }
             .disposed(by: disposeBag)
         
@@ -68,7 +68,7 @@ final class JoinViewController: BaseViewController {
             .drive(with: self) { owner, value in
                 
                 owner.mainView.joinButton.isEnabled = value
-                owner.mainView.joinButton.backgroundColor = value ? Constants.Color.green : Constants.Color.inActive
+                owner.mainView.joinButton.backgroundColor = value ? Constants.Color.mainColor : Constants.Color.inActive
             }
             .disposed(by: disposeBag)
         

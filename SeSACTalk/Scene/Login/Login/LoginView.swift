@@ -11,8 +11,8 @@ final class LoginView: BaseView {
     
     let appleButton = CustomButton(image: Constants.Image.appleLogin)
     let kakaoButton = CustomButton(image: Constants.Image.kakaoLogin)
-    let emailButton = CustomButton(bgColor: Constants.Color.green, img: Constants.Image.email, title: "이메일로 계속하기")
-    let joinLabel = CustomBasicLabel(text: "또는 새롭게 회원가입 하기", fontType: .title2, color: Constants.Color.green).then {
+    let emailButton = CustomButton(bgColor: Constants.Color.mainColor, img: Constants.Image.email, title: "이메일로 계속하기")
+    let joinLabel = CustomBasicLabel(text: "또는 새롭게 회원가입 하기", fontType: .title2, color: Constants.Color.mainColor).then {
         let attributedStr = NSMutableAttributedString(string: $0.text!)
         attributedStr.addAttribute(.foregroundColor, value: Constants.Color.black, range: ($0.text! as NSString).range(of:"또는"))
         $0.attributedText = attributedStr

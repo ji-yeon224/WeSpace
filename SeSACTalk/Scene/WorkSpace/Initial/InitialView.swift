@@ -19,7 +19,7 @@ final class InitialView: BaseView {
         $0.contentMode = .scaleAspectFit
         $0.image = .launching
     }
-    let makeButton = CustomButton(bgColor: .customGreen, title: Text.makeWorkspace)
+    let makeButton = CustomButton(bgColor: .brand, title: Text.makeWorkspace)
     
     override func configure() {
         super.configure()

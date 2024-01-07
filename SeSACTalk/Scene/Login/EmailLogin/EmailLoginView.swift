@@ -78,7 +78,7 @@ final class EmailLoginView: BaseView {
     
     func setButtonValid(valid: Bool) {
         loginButton.isEnabled = valid
-        loginButton.backgroundColor = valid ? Constants.Color.green : Constants.Color.inActive
+        loginButton.backgroundColor = valid ? Constants.Color.mainColor : Constants.Color.inActive
     }
     
     
