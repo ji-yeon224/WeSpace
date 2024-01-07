@@ -22,6 +22,7 @@ final class EmailLoginViewModel {
         let loginButtonEnable: BehaviorRelay<Bool>
         let validationError: PublishRelay<[LoginInputValue]>
         let msg: PublishRelay<String>
+        let loginSuccess: PublishRelay<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -29,9 +30,10 @@ final class EmailLoginViewModel {
         let loginButtonEnable = BehaviorRelay(value: false)
         let validationErrors = PublishRelay<[LoginInputValue]>()
         let msg = PublishRelay<String>()
+        let loginSuccess = PublishRelay<Bool>()
         
         let emailInput = BehaviorRelay(value: false), passInput = BehaviorRelay(value: false)
-        let loginRequest = PublishRelay<Bool>()
+        let loginRequest = PublishRelay<EmailLoginRequestDTO>()
         
         var email: String?, password: String?
         
@@ -71,7 +73,8 @@ final class EmailLoginViewModel {
                         validationErrors.accept(invalidInputs)
                         msg.accept(owner.loginInvalidMsg(input: invalidInputs[0]))
                     } else { // login request
-                        loginRequest.accept(true)
+                        let data = EmailLoginRequestDTO(email: email, password: password, deviceToken: nil)
+                        loginRequest.accept(data)
                     }
                     
                 }
@@ -80,14 +83,40 @@ final class EmailLoginViewModel {
             .disposed(by: disposeBag)
         
         loginRequest
-            .bind { value in
-                print("login request \(value)")
+            .flatMap {
+                UsersAPIManager.shared.request(api: .emailLogin(data: $0), responseType: EmailLoginResponseDTO.self)
             }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let result):
+                    print("[LOGIN SUCCESS]")
+                    if let result = result {
+                        let token = Token(accessToken: result.accessToken, refreshToken: result.refreshToken)
+                        UserDefaultsManager.setToken(token: token)
+                        UserDefaultsManager.nickName = result.nickname
+                        loginSuccess.accept(true)
+                    }
+                   
+                case .failure(let error):
+                    var errorMsg: String = ""
+                    if let error = LoginError(rawValue: error.errorCode) {
+                        errorMsg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        print(error.localizedDescription)
+                        errorMsg = LoginToastMessage.other.message
+                    } else {
+                        errorMsg = LoginToastMessage.other.message
+                    }
+                    msg.accept(errorMsg)
+                }
+            }
+            .disposed(by: disposeBag)
         
         return Output(
             loginButtonEnable: loginButtonEnable,
             validationError: validationErrors,
-            msg: msg
+            msg: msg,
+            loginSuccess: loginSuccess
         )
     }
     

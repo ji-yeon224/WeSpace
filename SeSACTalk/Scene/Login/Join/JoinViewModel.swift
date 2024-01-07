@@ -213,8 +213,7 @@ final class JoinViewModel {
                 switch value {
                 case .success(let result):
                     if let result = result {
-                        UserDefaultsManager.accessToken = result.token.accessToken
-                        UserDefaultsManager.refreshToken = result.token.refreshToken
+                        UserDefaultsManager.setToken(token: result.token)
                         UserDefaultsManager.nickName = result.nickname
                         successJoin.accept(true)
                     }

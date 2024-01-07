@@ -58,7 +58,15 @@ final class EmailLoginViewController: BaseViewController {
                 owner.mainView.setPasswordValidColor(valid: !value.contains(.password))
             }
             .disposed(by: disposeBag)
-        
+        output.loginSuccess
+            .bind(with: self) { owner, _ in
+                let vc = InitialViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.setupBarAppearance()
+                owner.view.window?.rootViewController = nav
+                owner.view.window?.makeKeyAndVisible()
+            }
+            .disposed(by: disposeBag)
     }
     
     
