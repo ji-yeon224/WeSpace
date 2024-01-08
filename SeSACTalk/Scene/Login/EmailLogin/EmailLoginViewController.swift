@@ -8,12 +8,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ReactorKit
 
-final class EmailLoginViewController: BaseViewController {
+final class EmailLoginViewController: BaseViewController, View {
     
     private let mainView = EmailLoginView()
-    private let viewModel = EmailLoginViewModel()
-    private let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     override func loadView() {
         self.view = mainView
@@ -22,7 +22,7 @@ final class EmailLoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "이메일 로그인"
-        bind()
+        self.reactor = EmailLoginReactor()
     }
     
     override func configure() {
@@ -30,44 +30,100 @@ final class EmailLoginViewController: BaseViewController {
         
     }
     
-    func bind() {
+    func bind(reactor: EmailLoginReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+    }
+    
+    private func bindAction(reactor: EmailLoginReactor) {
         
-        let input = EmailLoginViewModel.Input(
-            emailText: mainView.emailTextField.rx.text.orEmpty,
-            passwordText: mainView.passwordTextField.rx.text.orEmpty,
-            loginButtonTap: mainView.loginButton.rx.tap
-        )
+        Observable.combineLatest(mainView.emailTextField.rx.text.orEmpty, mainView.passwordTextField.rx.text.orEmpty) { email, password in
+            return (email, password)
+        }
+        .map { Reactor.Action.inputValue(email: $0.0, password: $0.1)}
+        .observe(on: MainScheduler.asyncInstance)
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
         
-        let output = viewModel.transform(input: input)
+        let input = Observable.combineLatest(mainView.emailTextField.rx.text.orEmpty, mainView.passwordTextField.rx.text.orEmpty)
         
-        output.loginButtonEnable
+        mainView.loginButton.rx.tap
+            .withLatestFrom(input) { _, value in
+                return value
+            }
+            .map { Reactor.Action.loginButtonTapped(email: $0.0, password: $0.1) }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        mainView.loginButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func bindState(reactor: EmailLoginReactor) {
+        reactor.state
+            .map { $0.buttonEnable }
+            .distinctUntilChanged()
             .bind(with: self) { owner, value in
                 owner.mainView.setButtonValid(valid: value)
             }
             .disposed(by: disposeBag)
         
-        output.msg
+        reactor.state
+            .map { $0.msg }
+            .filter({ value in
+                value != nil
+            })
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                owner.showToastMessage(message: value, position: .top)
+                if let value = value, !value.isEmpty {
+                    owner.showToastMessage(message: value, position: .top)
+                }
+                
             }
             .disposed(by: disposeBag)
         
-        output.validationError
+        reactor.state
+            .map { $0.validationError }
+            .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 owner.mainView.setEmailValidColor(valid: !value.contains(.email))
                 owner.mainView.setPasswordValidColor(valid: !value.contains(.password))
             }
             .disposed(by: disposeBag)
-        output.loginSuccess
-            .bind(with: self) { owner, _ in
-                let vc = HomeEmptyViewController()
-                let nav = UINavigationController(rootViewController: vc)
-//                nav.setupLargeTitleBar()
-                owner.view.window?.rootViewController = nav
-                owner.view.window?.makeKeyAndVisible()
+        
+        reactor.state
+            .map { $0.loginSuccess }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self, onNext: { owner, value in
+                if value {
+                    owner.transitionHomeView()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.showIndicator }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                owner.showIndicator(show: value)
             }
             .disposed(by: disposeBag)
     }
     
+    private func transitionHomeView() {
+        let vc = HomeEmptyViewController()
+        let nav = UINavigationController(rootViewController: vc)
+//                nav.setupLargeTitleBar()
+        view.window?.rootViewController = nav
+        view.window?.makeKeyAndVisible()
+    }
     
 }
