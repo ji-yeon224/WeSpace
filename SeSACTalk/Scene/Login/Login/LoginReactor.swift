@@ -9,7 +9,7 @@ import Foundation
 import ReactorKit
 
 final class LoginReactor: Reactor {
-    var initialState: State = State(kakaoLoginSuccess: "", loginSuccess: false)
+    var initialState: State = State(kakaoLoginSuccess: "", loginSuccess: false, indicator: false)
     
     
     enum Action {
@@ -27,6 +27,7 @@ final class LoginReactor: Reactor {
         var kakaoLoginSuccess: String
         var loginSuccess: Bool
         var msg: String?
+        var indicator: Bool
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -46,6 +47,10 @@ final class LoginReactor: Reactor {
                 }
         case .requestKakaoComplete(let oauth):
             return Observable.just(KakaoLoginRequestDTO(oauthToken: oauth, deviceToken: nil))
+                .skip(while: { token in
+                    if token.oauthToken.isEmpty { return true }
+                    else { return false}
+                })
                 .flatMap {
                     UsersAPIManager.shared.request(api: .kakaoLogin(data: $0), responseType: JoinResponseDTO.self)
                 }
@@ -76,9 +81,11 @@ final class LoginReactor: Reactor {
         switch mutation {
         case .kakaoSuccess(let oauth):
             newState.kakaoLoginSuccess = oauth
+            newState.indicator = true
         case .msg(let msg):
             newState.msg = msg
         case .kakaoRequestComplete:
+            newState.indicator = false
             newState.loginSuccess = true
         }
         return newState

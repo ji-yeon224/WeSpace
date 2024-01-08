@@ -13,7 +13,6 @@ import ReactorKit
 
 final class LoginViewController: BaseViewController, View {
     
-    private let viewModel = LoginViewModel()
     private let mainView = LoginView()
     var disposeBag = DisposeBag()
     
@@ -25,7 +24,6 @@ final class LoginViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        bind1()
         self.reactor = LoginReactor()
         
     }
@@ -46,6 +44,23 @@ final class LoginViewController: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        mainView.emailButton.rx.tap
+            .bind(with: self, onNext: { owner, _ in
+                let vc = EmailLoginViewController()
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        mainView.joinLabel.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                owner.dismiss(animated: false)
+                owner.delegate?.presentJoinView()
+                
+            }
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: LoginReactor) {
@@ -68,8 +83,18 @@ final class LoginViewController: BaseViewController, View {
         reactor.state
             .map { $0.msg }
             .distinctUntilChanged()
-            .bind { value in
-                print(value ?? "error-")
+            .bind(with: self, onNext: { owner, value in
+                if let value = value {
+                    owner.showToastMessage(message: value, position: .top)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.indicator }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                owner.showIndicator(show: value, position: .top)
             }
             .disposed(by: disposeBag)
         
@@ -83,39 +108,12 @@ final class LoginViewController: BaseViewController, View {
         view.window?.makeKeyAndVisible()
     }
     
-    private func bind1() {
-        
-        let input = LoginViewModel.Input(kakaoLogin: mainView.kakaoButton.rx.tap)
-        let output = viewModel.transform(input: input)
-        
-        output.loginSuccess
-            .bind(with: self) { owner, _ in
-                let vc = InitialViewController()
-                let nav = UINavigationController(rootViewController: vc)
-                nav.setupBarAppearance()
-                owner.view.window?.rootViewController = nav
-                owner.view.window?.makeKeyAndVisible()
-            }
-            .disposed(by: disposeBag)
-        
-        mainView.emailButton.rx.tap
-            .bind(with: self, onNext: { owner, _ in
-                let vc = EmailLoginViewController()
-                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
-                nav.setupBarAppearance()
-                owner.present(nav, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
-        mainView.joinLabel.rx.tapGesture()
-            .when(.recognized)
-            .bind(with: self) { owner, _ in
-                owner.dismiss(animated: false)
-                owner.delegate?.presentJoinView()
-                
-            }
-            .disposed(by: disposeBag)
-        
+    private func presentEmailLoginView() {
+        let vc = EmailLoginViewController()
+        let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+        nav.setupBarAppearance()
+        present(nav, animated: true)
     }
+    
     
 }

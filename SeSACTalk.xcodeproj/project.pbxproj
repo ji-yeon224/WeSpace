@@ -31,6 +31,7 @@
 		CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FFA2B43F1A900AA7F9C /* Image.swift */; };
 		CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE85748E2B4AFD810025ED1B /* ReactorKit */; };
 		CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574922B4AFEB50025ED1B /* LoginReactor.swift */; };
+		CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574942B4BD5670025ED1B /* EmailLoginReactor.swift */; };
 		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
 		CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A62B4849E80062B45C /* JoinRequest.swift */; };
 		CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */; };
@@ -141,6 +142,7 @@
 		CE6C1FF82B43E9B300AA7F9C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CE6C1FFA2B43F1A900AA7F9C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CE8574922B4AFEB50025ED1B /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
+		CE8574942B4BD5670025ED1B /* EmailLoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginReactor.swift; sourceTree = "<group>"; };
 		CEA8F9A62B4849E80062B45C /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
 		CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponseDTO.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				CEA8F9CE2B49920E0062B45C /* EmailLoginViewController.swift */,
 				CEA8F9D02B4992130062B45C /* EmailLoginView.swift */,
 				CEA8F9D22B49921A0062B45C /* EmailLoginViewModel.swift */,
+				CE8574942B4BD5670025ED1B /* EmailLoginReactor.swift */,
 			);
 			path = EmailLogin;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
+				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
