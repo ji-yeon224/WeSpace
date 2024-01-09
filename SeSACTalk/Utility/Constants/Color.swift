@@ -21,7 +21,7 @@ extension Constants {
         
         static let inActive = UIColor(named: "Inactive")
         static let error = UIColor(named: "Error")
-        static let green = UIColor(named: "CustomGreen")
+        static let mainColor = UIColor(named: "BrandColor")
         static let white = UIColor.white
         static let black = UIColor.black
         static let gray = UIColor(named: "CustomGray")

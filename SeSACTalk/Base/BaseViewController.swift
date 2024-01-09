@@ -21,7 +21,7 @@ class BaseViewController: UIViewController {
     func showToastMessage(message: String, position: ToastPosition) {
             
         var style = ToastStyle()
-        style.backgroundColor = .customGreen
+        style.backgroundColor = .brand
         style.messageFont = Font.body.fontStyle
         style.messageColor = Constants.Color.white
         

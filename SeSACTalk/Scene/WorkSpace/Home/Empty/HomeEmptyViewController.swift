@@ -38,6 +38,14 @@ final class HomeEmptyViewController: BaseViewController {
         let input = HomeEmptyViewModel.Input(requestUserInfo: requestUserInfo)
         let output = viewModel.transform(input: input)
         
+        mainView.makeButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = MakeViewController()
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
         
     }
 }
