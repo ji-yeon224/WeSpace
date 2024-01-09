@@ -31,10 +31,10 @@ final class UnreadCntView: BaseView {
         }
         backView.snp.makeConstraints { make in
             make.edges.equalTo(self)
-            make.height.equalTo(18)
+            make.height.equalTo(20)
         }
         countLabel.snp.makeConstraints { make in
-            make.edges.equalTo(backView)
+            make.edges.equalTo(backView).inset(5)
         }
     }
     
