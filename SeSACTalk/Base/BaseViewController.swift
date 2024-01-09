@@ -29,4 +29,17 @@ class BaseViewController: UIViewController {
             self.view.makeToast(message, duration: 1.0, position: position, style: style)
         }
     }
+    
+    func showIndicator(show: Bool, position: ToastPosition = .center) {
+        if show {
+            self.view.makeToastActivity(position)
+        } else {
+            self.view.hideToastActivity()
+        }
+        
+        
+    }
+    func stopIndicator() {
+        self.view.hideToastActivity()
+    }
 }
