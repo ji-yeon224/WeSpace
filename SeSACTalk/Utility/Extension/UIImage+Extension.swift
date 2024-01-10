@@ -20,5 +20,26 @@ extension UIImage {
         }
         
         return renderImage
+        
+        
+    }
+    
+    func imageToData() -> Data? {
+        let imgData = self
+        let destSize = 1 * 1024 * 1024
+        let compression = ImageCompression.allCases.sorted(by: { $0.rawValue > $1.rawValue })
+        
+        
+        for value in compression {
+            guard let data = imgData.jpegData(compressionQuality: value.rawValue) else { return nil }
+
+            if data.count < destSize {
+                return data
+            }
+        }
+        
+        return nil
+        
+        
     }
 }

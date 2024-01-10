@@ -16,6 +16,9 @@ final class MakeView: BaseView {
     let completeButton =  CustomButton(bgColor: .inactive, title: "완료").then {
         $0.isEnabled = false
     }
+    
+    lazy var wsImage = self.imageView.image
+    
     override func configure() {
         super.configure()
         [imageView, workSpaceName, workSpaceDesc, completeButton].forEach {

@@ -8,6 +8,7 @@
 import UIKit
 import RxGesture
 import ReactorKit
+import RxCocoa
 
 final class MakeViewController: BaseViewController, View {
     
@@ -55,8 +56,18 @@ final class MakeViewController: BaseViewController, View {
             .bind(to: reactor.action )
             .disposed(by: disposeBag)
        
+        Observable.combineLatest(mainView.completeButton.rx.tap, mainView.workSpaceName.textfield.rx.text.orEmpty) { _, value in
+            value
+        }
+        .withLatestFrom(mainView.workSpaceDesc.textfield.rx.text.orEmpty) { name, desc in
+            return (name, desc)
+        }
+        .map { Reactor.Action.completeButtonTap(name: $0.0, description: $0.1, image: SelectImage(img: self.mainView.wsImage))}
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
         
     }
+    
     
     private func bindState(reactor: MakeViewReactor) {
         reactor.state
@@ -66,7 +77,24 @@ final class MakeViewController: BaseViewController, View {
                 owner.mainView.setEnableButton(isEnable: value)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.msg }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                owner.showToastMessage(message: value, position: .top)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.completeCreate }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                print("create", value)
+            }
+            .disposed(by: disposeBag)
     }
+    
     
 }
 
