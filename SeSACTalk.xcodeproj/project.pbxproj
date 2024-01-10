@@ -25,6 +25,10 @@
 		CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4282B454E52009BD53A /* CustomTextField.swift */; };
 		CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E42A2B4557CE009BD53A /* CustomStackView.swift */; };
 		CE57E42E2B455A61009BD53A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE57E42D2B455A61009BD53A /* IQKeyboardManagerSwift */; };
+		CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */; };
+		CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */; };
+		CE5D06652B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06642B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift */; };
+		CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -151,6 +155,10 @@
 		CE57E4262B454726009BD53A /* PageSheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSheetManager.swift; sourceTree = "<group>"; };
 		CE57E4282B454E52009BD53A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CE57E42A2B4557CE009BD53A /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
+		CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesAPI.swift; sourceTree = "<group>"; };
+		CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesAPIManager.swift; sourceTree = "<group>"; };
+		CE5D06642B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceResponseDTO.swift; sourceTree = "<group>"; };
+		CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpace.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -305,6 +313,24 @@
 			path = Join;
 			sourceTree = "<group>";
 		};
+		CE5D065E2B4E67E800C067A3 /* WorkSpaces */ = {
+			isa = PBXGroup;
+			children = (
+				CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */,
+				CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */,
+			);
+			path = WorkSpaces;
+			sourceTree = "<group>";
+		};
+		CE5D06632B4E6A7400C067A3 /* Workspaces */ = {
+			isa = PBXGroup;
+			children = (
+				CE5D06642B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift */,
+				CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */,
+			);
+			path = Workspaces;
+			sourceTree = "<group>";
+		};
 		CE6C1FB52B43E8BA00AA7F9C = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +417,7 @@
 		CE6C1FF32B43E97900AA7F9C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CE5D06632B4E6A7400C067A3 /* Workspaces */,
 				CE4904D22B4D0EA9003B0204 /* Data */,
 				CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */,
 				CEEE4EB92B46DE900059D1AF /* Users */,
@@ -569,6 +596,7 @@
 		CED65F862B45B67100CFD04C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CE5D065E2B4E67E800C067A3 /* WorkSpaces */,
 				CEEE4EB12B46DBB50059D1AF /* Users */,
 				CED65F872B45B67C00CFD04C /* APIKey.swift */,
 				CED65F892B45B68300CFD04C /* BaseURL.swift */,
@@ -849,10 +877,12 @@
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
 				CE4904CA2B4CD001003B0204 /* HomeViewModel.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
+				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
 				CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */,
 				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
+				CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
@@ -885,6 +915,7 @@
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
+				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
 				CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
 				CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */,
@@ -921,6 +952,7 @@
 				CEE9899B2B4A7E8C00590A19 /* HomeEmptyViewController.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
 				CEA8F9D12B4992130062B45C /* EmailLoginView.swift in Sources */,
+				CE5D06652B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift in Sources */,
 				CE85749C2B4BFEA50025ED1B /* HomeView.swift in Sources */,
 				CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */,
 				CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */,

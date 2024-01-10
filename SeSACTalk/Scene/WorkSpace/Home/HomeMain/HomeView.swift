@@ -47,7 +47,7 @@ extension HomeView {
          let size = UIScreen.main.bounds.width - 10 //self.frame.width - 40
          layout.itemSize = CGSize(width: size, height: 50)
          layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-         
+        
         
         return layout
     }

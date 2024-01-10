@@ -9,7 +9,7 @@ import Foundation
 import ReactorKit
 
 final class EmailLoginReactor: Reactor {
-    var initialState: State = State(buttonEnable: false, msg: nil, validationError: [], loginSuccess: false, showIndicator: false)
+    var initialState: State = State(buttonEnable: false, msg: nil, validationError: [], loginSuccess: false, showIndicator: false, workSpace: (nil, false))
     
     private var invalidInputs: [LoginInputValue] = []
     
@@ -17,6 +17,7 @@ final class EmailLoginReactor: Reactor {
         
         case inputValue(email: String, password: String)
         case loginButtonTapped(email: String, password: String)
+        case fetchWorkspace
     }
     
     enum Mutation {
@@ -25,6 +26,7 @@ final class EmailLoginReactor: Reactor {
         case loginSuccess
         case msg(msg: String)
         case showIndicator(show: Bool)
+        case fetchWorkspace(data: WorkSpace?)
     }
     
     struct State {
@@ -33,6 +35,7 @@ final class EmailLoginReactor: Reactor {
         var validationError: [LoginInputValue]
         var loginSuccess: Bool
         var showIndicator: Bool
+        var workSpace: (WorkSpace?, Bool)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -55,10 +58,15 @@ final class EmailLoginReactor: Reactor {
                     Observable.just(Mutation.showIndicator(show: true)),
                     reqeustLogin(data: data),
                     Observable.just(Mutation.showIndicator(show: false))
-                    
                 ])
                     
             }
+        case .fetchWorkspace:
+            return Observable.concat([
+                Observable.just(Mutation.showIndicator(show: true)),
+                requestFetchWorkspace(),
+                Observable.just(Mutation.showIndicator(show: false))
+            ])
         }
     }
     
@@ -75,9 +83,26 @@ final class EmailLoginReactor: Reactor {
             newState.msg = msg
         case .showIndicator(let show):
             newState.showIndicator = show
+        case .fetchWorkspace(data: let data):
+            newState.workSpace = (data, true)
         }
         
         return newState
+    }
+    
+    private func requestFetchWorkspace() -> Observable<Mutation> {
+        return LoginCompletedManager.shared.workSpaceTransition()
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let data):
+                    return Mutation.fetchWorkspace(data: data)
+                case .failure(let failure):
+                    return Mutation.msg(msg: failure.localizedDescription)
+                    
+                }
+                
+            }
     }
     
     private func reqeustLogin(data: EmailLoginRequestDTO) -> Observable<Mutation> {
