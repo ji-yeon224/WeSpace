@@ -6,6 +6,11 @@
 //
 
 import Foundation
+
+
 struct WorkspaceItem: Hashable {
-    var type: WorkspaceType
+    let id = UUID()
+    var title: String
+    var subItems: [WorkspaceItem] // channel, dm, newfriend
+    var item: Channel?
 }

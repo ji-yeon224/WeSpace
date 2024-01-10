@@ -12,9 +12,9 @@
 		CE4904CE2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */; };
 		CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */; };
 		CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */; };
-		CE4904D62B4D0F1D003B0204 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D52B4D0F1D003B0204 /* ReusableProtocol.swift */; };
 		CE4904D82B4D1137003B0204 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D72B4D1137003B0204 /* Channel.swift */; };
 		CE4904DA2B4D11C9003B0204 /* DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* DM.swift */; };
+		CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904DD2B4D2E41003B0204 /* Item.swift */; };
 		CE57E4182B452A02009BD53A /* splashImg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57E4172B452A02009BD53A /* splashImg.png */; };
 		CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E41A2B452FE9009BD53A /* LoginViewController.swift */; };
 		CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E41C2B452FF2009BD53A /* LoginView.swift */; };
@@ -139,9 +139,9 @@
 		CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceType.swift; sourceTree = "<group>"; };
 		CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceItem.swift; sourceTree = "<group>"; };
-		CE4904D52B4D0F1D003B0204 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		CE4904D72B4D1137003B0204 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		CE4904D92B4D11C9003B0204 /* DM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DM.swift; sourceTree = "<group>"; };
+		CE4904DD2B4D2E41003B0204 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CE57E4172B452A02009BD53A /* splashImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashImg.png; sourceTree = "<group>"; };
 		CE57E41A2B452FE9009BD53A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE57E41C2B452FF2009BD53A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -280,6 +280,7 @@
 				CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */,
 				CE4904D72B4D1137003B0204 /* Channel.swift */,
 				CE4904D92B4D11C9003B0204 /* DM.swift */,
+				CE4904DD2B4D2E41003B0204 /* Item.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -373,7 +374,6 @@
 				CEEE4EC22B4702750059D1AF /* Service */,
 				CEB7F84B2B44618700B9A035 /* Extension */,
 				CE6C1FF52B43E98E00AA7F9C /* Constants */,
-				CE4904D52B4D0F1D003B0204 /* ReusableProtocol.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -871,7 +871,7 @@
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
-				CE4904D62B4D0F1D003B0204 /* ReusableProtocol.swift in Sources */,
+				CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
 				CEE989A72B4AA36900590A19 /* HomeEmptyViewModel.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,

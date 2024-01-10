@@ -10,9 +10,11 @@ import UIKit
 final class HomeView: BaseView {
     
     let topView = HomeTopView()
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-//    var cellRegistration: UICollectionView.CellRegistration<UICollectionViewListCell, MyPageContent>!
-    var dataSource: UICollectionViewDiffableDataSource<WorkspaceType, AnyHashable>!
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout()).then {
+        $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+    }
+    var dataSource: UICollectionViewDiffableDataSource<WorkspaceType, WorkspaceItem>!
     
     override func configure() {
         backgroundColor = .white
@@ -37,24 +39,31 @@ final class HomeView: BaseView {
 }
 
 extension HomeView {
-    private func collectionViewLayout() -> UICollectionViewLayout {
+    private func collectionViewLayout() -> UICollectionViewFlowLayout {
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
-        
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 3, bottom: 0, trailing: 3)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        
+         let layout = UICollectionViewFlowLayout()
+         layout.minimumLineSpacing = 8
+         layout.minimumInteritemSpacing = 8
+         let size = UIScreen.main.bounds.width - 10 //self.frame.width - 40
+         layout.itemSize = CGSize(width: size, height: 50)
+         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+         
         
         return layout
     }
     
     private func configureDataSource() {
+        
+        let titleCell = UICollectionView.CellRegistration<UICollectionViewListCell, WorkspaceItem> { cell, indexPath, itemIdentifier in
+            var contentConfiguration = cell.defaultContentConfiguration()
+            contentConfiguration.text = itemIdentifier.title
+            contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
+            cell.contentConfiguration = contentConfiguration
+            
+            let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header)
+            cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
+            
+        }
         
         let channelCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, Channel> { cell, indexPath, itemIdentifier in
             cell.titleLabel.text = itemIdentifier.name
@@ -71,20 +80,33 @@ extension HomeView {
         
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            if itemIdentifier.subItems.count == 0 {
+                let cell = collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: itemIdentifier.item)
+                return cell
+            } else {
+                let cell = collectionView.dequeueConfiguredReusableCell(using: titleCell, for: indexPath, item: itemIdentifier)
+                return cell
+            }
             
-            if let channel = itemIdentifier as? Channel {
-                let cell = collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: channel)
-                return cell
-            }
-            else if let dm = itemIdentifier as? DM {
-                let cell = collectionView.dequeueConfiguredReusableCell(using: dmCell, for: indexPath, item: dm)
-                return cell
-            }
-            else if let newFriend = itemIdentifier as? NewFriend {
-                let cell = collectionView.dequeueConfiguredReusableCell(using: newFriendCell, for: indexPath, item: newFriend)
-                return cell
-            }
-            return UICollectionViewCell()
+//            guard let cell = collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: itemIdentifier.item) as? WorkspaceCollectionViewCell else {
+//                return UICollectionViewCell()
+//            }
+//            print(itemIdentifier.item?.name)
+//            
+//            return cell
+//            if let channel = itemIdentifier.item as? Channel {
+//                let cell = collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: channel)
+//                return cell
+//            }
+//            else if let dm = itemIdentifier.item as? DM {
+//                let cell = collectionView.dequeueConfiguredReusableCell(using: dmCell, for: indexPath, item: dm)
+//                return cell
+//            }
+//            else if let newFriend = itemIdentifier.item as? NewFriend {
+//                let cell = collectionView.dequeueConfiguredReusableCell(using: newFriendCell, for: indexPath, item: newFriend)
+//                return cell
+//            }
+//            return UICollectionViewCell()
             
         })
     }

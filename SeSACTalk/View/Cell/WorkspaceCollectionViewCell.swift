@@ -8,6 +8,9 @@
 import UIKit
 
 final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
+    
+    static let identifier = "WorkspaceCollectionViewCell"
+    
     var imageView = UIImageView().then {
         $0.image = .hashTagThin
     }
@@ -34,7 +37,7 @@ final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
             make.centerY.equalTo(self)
             make.height.equalTo(28)
             make.leading.equalTo(imageView.snp.trailing).offset(10)
-            make.trailing.equalTo(unreadView.snp.leading)
+            make.trailing.lessThanOrEqualTo(unreadView.snp.leading)
         }
         
         unreadView.snp.makeConstraints { make in

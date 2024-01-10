@@ -8,9 +8,7 @@
 import Foundation
 
 enum WorkspaceType {
-    case channel
-    case dm
-    case newFriend
+    case main
 }
 
 
