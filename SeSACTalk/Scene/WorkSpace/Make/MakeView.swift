@@ -47,4 +47,10 @@ final class MakeView: BaseView {
             make.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-24)
         }
     }
+    
+    func setEnableButton(isEnable: Bool) {
+        completeButton.isEnabled = isEnable
+        let color = isEnable ? Constants.Color.mainColor : Constants.Color.inActive
+        completeButton.backgroundColor = color
+    }
 }

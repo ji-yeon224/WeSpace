@@ -29,6 +29,9 @@
 		CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */; };
 		CE5D06652B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06642B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift */; };
 		CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */; };
+		CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06682B4E910400C067A3 /* MakeViewReactor.swift */; };
+		CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D066A2B4E924300C067A3 /* PhPickerManager.swift */; };
+		CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D066C2B4EDA0400C067A3 /* UIImage+Extension.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -159,6 +162,9 @@
 		CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesAPIManager.swift; sourceTree = "<group>"; };
 		CE5D06642B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceResponseDTO.swift; sourceTree = "<group>"; };
 		CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpace.swift; sourceTree = "<group>"; };
+		CE5D06682B4E910400C067A3 /* MakeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeViewReactor.swift; sourceTree = "<group>"; };
+		CE5D066A2B4E924300C067A3 /* PhPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhPickerManager.swift; sourceTree = "<group>"; };
+		CE5D066C2B4EDA0400C067A3 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -589,6 +595,7 @@
 				CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */,
 				CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */,
 				CEA8F9BD2B49608B0062B45C /* UINavigationController+Extension.swift */,
+				CE5D066C2B4EDA0400C067A3 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -659,6 +666,7 @@
 			children = (
 				CEE989A92B4AAB8300590A19 /* MakeViewController.swift */,
 				CEE989AB2B4AAB8800590A19 /* MakeView.swift */,
+				CE5D06682B4E910400C067A3 /* MakeViewReactor.swift */,
 			);
 			path = Make;
 			sourceTree = "<group>";
@@ -690,6 +698,7 @@
 				CEA8F9B22B492D370062B45C /* UserDefaultsManager.swift */,
 				CEA8F9C22B4970570062B45C /* KakaoLoginManager.swift */,
 				CEE989A42B4A9FDA00590A19 /* LoginCompletedManager.swift */,
+				CE5D066A2B4E924300C067A3 /* PhPickerManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -890,6 +899,7 @@
 				CE4904DA2B4D11C9003B0204 /* DM.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
+				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
@@ -910,6 +920,7 @@
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
 				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
+				CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */,
 				CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */,
 				CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
@@ -944,6 +955,7 @@
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
+				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,
 				CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */,
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
