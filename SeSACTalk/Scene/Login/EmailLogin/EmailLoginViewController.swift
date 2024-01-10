@@ -137,9 +137,7 @@ final class EmailLoginViewController: BaseViewController, View {
     }
     
     private func transitionHomeView(vc: UIViewController) {
-//        let vc = HomeEmptyViewController()
         let nav = UINavigationController(rootViewController: vc)
-//                nav.setupLargeTitleBar()
         view.window?.rootViewController = nav
         view.window?.makeKeyAndVisible()
     }

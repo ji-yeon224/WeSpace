@@ -123,7 +123,7 @@ final class EmailLoginReactor: Reactor {
                     var errorMsg: String = ""
                     if let error = LoginError(rawValue: error.errorCode) {
                         errorMsg = error.localizedDescription
-                    } else if let error = CommonError(rawValue: error.errorCode) {
+                    } else if let _ = CommonError(rawValue: error.errorCode) {
                         errorMsg = LoginToastMessage.other.message
                     } else {
                         errorMsg = LoginToastMessage.other.message
