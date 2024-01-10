@@ -57,11 +57,13 @@ extension HomeView {
         let titleCell = UICollectionView.CellRegistration<UICollectionViewListCell, WorkspaceItem> { cell, indexPath, itemIdentifier in
             var contentConfiguration = cell.defaultContentConfiguration()
             contentConfiguration.text = itemIdentifier.title
-            contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
+            contentConfiguration.textProperties.font = Font.title2.fontStyle
             cell.contentConfiguration = contentConfiguration
             
-            let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header)
+            let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header, tintColor: Constants.Color.black)
+            
             cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
+            
             
         }
         
@@ -80,33 +82,25 @@ extension HomeView {
         
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            
+            
             if itemIdentifier.subItems.count == 0 {
-                let cell = collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: itemIdentifier.item)
-                return cell
+                if let channel = itemIdentifier.item as? Channel {
+                    return collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: channel)
+                }
+                else if let dm = itemIdentifier.item as? DM {
+                    return collectionView.dequeueConfiguredReusableCell(using: dmCell, for: indexPath, item: dm)
+                }
+                else if let newFirend = itemIdentifier.item as? NewFriend {
+                    return collectionView.dequeueConfiguredReusableCell(using: newFriendCell, for: indexPath, item: newFirend)
+                }
+                else {
+                    return UICollectionViewCell()
+                }
             } else {
                 let cell = collectionView.dequeueConfiguredReusableCell(using: titleCell, for: indexPath, item: itemIdentifier)
                 return cell
             }
-            
-//            guard let cell = collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: itemIdentifier.item) as? WorkspaceCollectionViewCell else {
-//                return UICollectionViewCell()
-//            }
-//            print(itemIdentifier.item?.name)
-//            
-//            return cell
-//            if let channel = itemIdentifier.item as? Channel {
-//                let cell = collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: channel)
-//                return cell
-//            }
-//            else if let dm = itemIdentifier.item as? DM {
-//                let cell = collectionView.dequeueConfiguredReusableCell(using: dmCell, for: indexPath, item: dm)
-//                return cell
-//            }
-//            else if let newFriend = itemIdentifier.item as? NewFriend {
-//                let cell = collectionView.dequeueConfiguredReusableCell(using: newFriendCell, for: indexPath, item: newFriend)
-//                return cell
-//            }
-//            return UICollectionViewCell()
             
         })
     }

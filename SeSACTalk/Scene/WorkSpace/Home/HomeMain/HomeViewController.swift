@@ -13,36 +13,6 @@ final class HomeViewController: BaseViewController {
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
     
-    private var channelData: [Channel] = [Channel(name: "일반")]
-    private var dmData: [DM] = [DM(name: "jiyeon"), DM(name: "nailer")]
-    private let newFriendDummy = [NewFriend(title: "팀원 추가")]
-    
-    
-//    var channelSection = [WorkspaceItem(title: "", subItems: [], item: Channel(name: "일반"))]
-//    var dmSection = [WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon"))]
-    
-//    lazy var item = [
-//        WorkspaceItem(title: "채널", subItems: channelSection, item: nil),
-//        WorkspaceItem(title: "다이렉트 메세지", subItems: dmSection, item: nil),
-//        WorkspaceItem(title: "팀원 추가", subItems: [], item: nil)
-//    ]
-    
-    
-    
-//    lazy var menuItem: [WorkspaceItem] = {
-//        return [
-//            WorkspaceItem(title: "채널", subItems: [
-//                WorkspaceItem(title: "", subItems: [], item: Channel(name: "일반")),
-//                WorkspaceItem(title: "", subItems: [], item: Channel(name: "일반"))
-//            ], item: nil),
-//            WorkspaceItem(title: "다이렉트 메세지", subItems: [
-//                WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon")),
-//                WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon"))
-//            ], item: nil),
-//            WorkspaceItem(title: "팀원 추가", subItems: [], item: nil)
-//        ]
-//    }()
-    
     override func loadView() {
         self.view = mainView
     }
@@ -50,7 +20,27 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateSnapShot()
+        
+        // vm [ channelItem ] -> channelSection 담기 -> snapshot .channel
+        let channelItem = [
+            WorkspaceItem(title: "a", subItems: [], item: Channel(name: "일반")),
+            WorkspaceItem(title: "b", subItems: [], item: Channel(name: "일반"))
+        ]
+        let dmItem = [
+            WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon12")),
+            WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon23"))
+        ]
+        let newFriend = [
+            WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가"))
+        ]
+        
+        let channelSection = WorkspaceItem(title: "채널", subItems: channelItem)
+        let dmSection = WorkspaceItem(title: "다이렉트 메세지", subItems: dmItem)
+        
+        
+        updateSnapShot(section: .channel, item: [channelSection])
+        updateSnapShot(section: .dm, item: [dmSection])
+        updateSnapShot(section: .newFriend, item: newFriend)
     }
     
     
@@ -58,47 +48,33 @@ final class HomeViewController: BaseViewController {
         view.backgroundColor = .white
     }
     
-    private func updateSnapShot() {
-//        var snapshot = NSDiffableDataSourceSnapshot<WorkspaceType, WorkspaceItem>()
-//        snapshot.appendSections([.channel, .dm, .newFriend])
-//        let channel = item[0]
-//        let sub = item[0].subItems
+    private func updateSnapShot(section: WorkspaceType, item: [WorkspaceItem]) {
+        let snapshot = initialSnapshot(items: item)
         
-//        snapshot.append
-//        snapshot.appendItems(item[0].subItems, toSection: item[0])
-//        snapshot.appendItems(channelData, toSection: .channel)
-//        snapshot.appendItems(dmData, toSection: .dm)
-//        snapshot.appendItems(newFriendDummy, toSection: .newFriend)
-//        snapshot.appendItems(account, toSection: "계정")
-//        mainView.dataSource.apply(snapshot)
-        let snapshot = initialSnapshot()
-//        print(snapshot.items)
-        mainView.dataSource.apply(snapshot, to: .main, animatingDifferences: false)
+        switch section {
+        case .channel:
+            mainView.dataSource.apply(snapshot, to: .channel, animatingDifferences: false)
+        case .dm:
+            mainView.dataSource.apply(snapshot, to: .dm, animatingDifferences: false)
+        case .newFriend:
+            mainView.dataSource.apply(snapshot, to: .newFriend, animatingDifferences: false)
+        }
+        
+        
     }
     
-    func initialSnapshot() -> NSDiffableDataSourceSectionSnapshot<WorkspaceItem> {
+    
+    func initialSnapshot(items: [WorkspaceItem]) -> NSDiffableDataSourceSectionSnapshot<WorkspaceItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<WorkspaceItem>()
-        
-        
-         var menuItem: [WorkspaceItem] = {
-            return [
-                WorkspaceItem(title: "채널", subItems: [
-                    WorkspaceItem(title: "a", subItems: [], item: Channel(name: "일반")),
-                    WorkspaceItem(title: "b", subItems: [], item: Channel(name: "일반"))
-                ], item: nil)
-            ]
-        }()
-        
         
         func addItems(_ menuItems: [WorkspaceItem], to parent: WorkspaceItem?) {
             snapshot.append(menuItems, to: parent)
             for menuItem in menuItems where !menuItem.subItems.isEmpty {
-//                print(menuItem,"!!")
                 addItems(menuItem.subItems, to: menuItem)
             }
         }
         
-        addItems(menuItem, to: nil)
+        addItems(items, to: nil)
         return snapshot
     }
 }

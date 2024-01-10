@@ -16,7 +16,9 @@ final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
     }
     
     let titleLabel = CustomBasicLabel(text: "", fontType: .body, color: .secondaryText, line: 1)
-    let unreadView = UnreadCntView()
+    let unreadView = UnreadCntView().then {
+        $0.isHidden = true
+    }
     
     override func configure() {
         

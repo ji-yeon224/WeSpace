@@ -12,5 +12,5 @@ struct WorkspaceItem: Hashable {
     let id = UUID()
     var title: String
     var subItems: [WorkspaceItem] // channel, dm, newfriend
-    var item: Channel?
+    var item: AnyHashable?
 }
