@@ -9,6 +9,8 @@ import Foundation
 import Moya
 
 final class MultipartFormDataManager {
+    static let shared = MultipartFormDataManager()
+    private init() { }
     func convertToMultipart(data: [String: Data], files: [Data]) -> [MultipartFormData] {
         
         var multipart: [MultipartFormData] = []
@@ -19,7 +21,8 @@ final class MultipartFormDataManager {
 
         }
         files.forEach {
-            multipart.append(MultipartFormData(provider: .data($0), name: "file", fileName: "image.jpeg", mimeType: "image/jpg"))
+            print($0.convertToMb)
+            multipart.append(MultipartFormData(provider: .data($0), name: "image", fileName: "image.jpeg", mimeType: "image/jpg"))
             
         }
         

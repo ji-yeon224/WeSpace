@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum WorkspacesAPI {
-    case create
+    case create(data: WsCreateReqDTO)
     case fetchAll
     
 }
@@ -37,8 +37,9 @@ extension WorkspacesAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .create:
-            return .requestPlain
+        case .create(let data):
+            let multipart = MultipartFormDataManager.shared.convertToMultipart(data: data.convertToMap(), files: [data.image])
+            return .uploadMultipart(multipart)
         case .fetchAll:
             return .requestPlain
         }

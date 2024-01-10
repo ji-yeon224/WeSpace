@@ -88,9 +88,9 @@ final class MakeViewController: BaseViewController, View {
         
         reactor.state
             .map { $0.completeCreate }
-            .distinctUntilChanged()
+            .filter { $0.1 == true }
             .bind(with: self) { owner, value in
-                print("create", value)
+                print("create", value.0?.name)
             }
             .disposed(by: disposeBag)
     }

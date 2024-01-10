@@ -38,6 +38,8 @@
 		CE5D06772B4EF00300C067A3 /* WorkspaceToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06762B4EF00300C067A3 /* WorkspaceToastMessage.swift */; };
 		CE5D06792B4EF88800C067A3 /* MakeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06782B4EF88800C067A3 /* MakeViewModel.swift */; };
 		CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */; };
+		CE5D06802B4F028400C067A3 /* WSCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067F2B4F028400C067A3 /* WSCreateError.swift */; };
+		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -177,6 +179,8 @@
 		CE5D06762B4EF00300C067A3 /* WorkspaceToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceToastMessage.swift; sourceTree = "<group>"; };
 		CE5D06782B4EF88800C067A3 /* MakeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeViewModel.swift; sourceTree = "<group>"; };
 		CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataManager.swift; sourceTree = "<group>"; };
+		CE5D067F2B4F028400C067A3 /* WSCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSCreateError.swift; sourceTree = "<group>"; };
+		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -348,6 +352,14 @@
 				CE5D066E2B4EE69600C067A3 /* WsCreateReqDTO.swift */,
 			);
 			path = Workspaces;
+			sourceTree = "<group>";
+		};
+		CE5D067E2B4F027500C067A3 /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				CE5D067F2B4F028400C067A3 /* WSCreateError.swift */,
+			);
+			path = Workspace;
 			sourceTree = "<group>";
 		};
 		CE6C1FB52B43E8BA00AA7F9C = {
@@ -609,6 +621,7 @@
 				CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */,
 				CEA8F9BD2B49608B0062B45C /* UINavigationController+Extension.swift */,
 				CE5D066C2B4EDA0400C067A3 /* UIImage+Extension.swift */,
+				CE5D06812B4F057F00C067A3 /* Data+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -628,6 +641,7 @@
 		CED65F8B2B45B6EE00CFD04C /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				CE5D067E2B4F027500C067A3 /* Workspace */,
 				CED65F8E2B45B77900CFD04C /* Auth */,
 				CED65F8C2B45B6F800CFD04C /* CommonError.swift */,
 			);
@@ -900,6 +914,7 @@
 			files = (
 				CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */,
 				CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */,
+				CE5D06802B4F028400C067A3 /* WSCreateError.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE5D06792B4EF88800C067A3 /* MakeViewModel.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
@@ -932,6 +947,7 @@
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
 				CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
+				CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */,
 				CEE989A72B4AA36900590A19 /* HomeEmptyViewModel.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,

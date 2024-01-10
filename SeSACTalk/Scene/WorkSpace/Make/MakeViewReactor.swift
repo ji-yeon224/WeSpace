@@ -12,7 +12,7 @@ final class MakeViewReactor: Reactor {
     var initialState: State = State(
         buttonEnable: false,
         msg: "",
-        completeCreate: false
+        completeCreate: (nil, false)
     )
     
     
@@ -24,13 +24,13 @@ final class MakeViewReactor: Reactor {
     enum Mutation {
         case buttonEnable(enable: Bool)
         case msg(msg: String)
-        case requestCreate(req: Bool)
+        case successCreate(data: WorkspaceDto)
     }
     
     struct State {
         var buttonEnable: Bool
         var msg: String
-        var completeCreate: Bool
+        var completeCreate: (WorkspaceDto?, Bool)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -49,14 +49,55 @@ final class MakeViewReactor: Reactor {
         if img.img == nil {
             return Observable.of(.msg(msg: WorkspaceToastMessage.makeNoImage.message))
         }
-        if name.count >= 1 && name.count <= 30 {
+        if name.count < 1 || name.count > 30 {
             return Observable.of(.msg(msg: WorkspaceToastMessage.makeNameInvalid.message))
         }
-        return Observable.of(.requestCreate(req: true))
+        return requestCreateWS(name: name, des: des, img: img)
         
     }
     
-   
+    private func requestCreateWS(name: String, des: String?, img: SelectImage) -> Observable<Mutation> {
+        if let img = img.img {
+            if let imgData = img.imageToData() {
+                let data = WsCreateReqDTO(name: name, description: des, image: imgData)
+                return WorkspacesAPIManager.shared.request(api: .create(data: data), resonseType: WorkspaceDto.self)
+                    .asObservable()
+                    .map { result -> Mutation in
+                        switch result {
+                        case .success(let response):
+                            if let response = response {
+                                return .successCreate(data: response)
+                            }
+                            else {
+                                return .msg(msg: CommonError.E99.rawValue)
+                            }
+                            
+                        case .failure(let error):
+                            if let error = WSCreateError(rawValue: error.errorCode) {
+                                return .msg(msg: error.localizedDescription)
+                            } else if let error = CommonError(rawValue: error.errorCode) {
+                                return .msg(msg: error.localizedDescription)
+                            } else {
+                                return .msg(msg: CommonError.E99.rawValue)
+                            }
+                        }
+                        
+                    }
+                    
+            }
+            else {
+                return Observable.of(.msg(msg: "이미지 용량을 확인해주세요."))
+            }
+            
+        }
+        else {
+            return Observable.of(.msg(msg: WorkspaceToastMessage.makeNoImage.message))
+        }
+        
+        
+    }
+    
+    
     
     
     func reduce(state: State, mutation: Mutation) -> State {
@@ -66,8 +107,8 @@ final class MakeViewReactor: Reactor {
             newState.buttonEnable = enable
         case .msg(let msg):
             newState.msg = msg
-        case .requestCreate(req: let req):
-            newState.completeCreate = req
+        case .successCreate(data: let data):
+            newState.completeCreate = (data, true)
         }
         return newState
     }
