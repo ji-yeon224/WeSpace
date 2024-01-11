@@ -68,6 +68,10 @@ final class LoginViewController: BaseViewController, View {
         reactor.state
             .map { $0.kakaoLoginSuccess }
             .distinctUntilChanged()
+            .skip(while: { value in
+                if value.isEmpty { return true }
+                else { return false }
+            })
             .map { Reactor.Action.requestKakaoComplete(oauth: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -75,14 +79,18 @@ final class LoginViewController: BaseViewController, View {
         reactor.state
             .map { $0.loginSuccess }
             .distinctUntilChanged()
-            .bind(with: self) { owner, _ in
-                owner.presentInitialView()
+            .observe(on: MainScheduler.asyncInstance)
+            .filter {
+                $0 == true
             }
+            .map { _ in Reactor.Action.fetchWorkspace}
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         reactor.state
             .map { $0.msg }
             .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
             .bind(with: self, onNext: { owner, value in
                 if let value = value {
                     owner.showToastMessage(message: value, position: .top)
@@ -93,17 +101,38 @@ final class LoginViewController: BaseViewController, View {
         reactor.state
             .map { $0.indicator }
             .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 owner.showIndicator(show: value, position: .top)
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.workspace }
+            .filter {
+                $0.1 == true
+            }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, data in
+                if let data = data.0 {
+                    owner.transitionHomeView(vc: HomeViewController())
+                } else {
+                    owner.transitionHomeView(vc: HomeEmptyViewController())
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     private func presentInitialView() {
         let vc = InitialViewController()
         let nav = UINavigationController(rootViewController: vc)
         nav.setupBarAppearance()
+        view.window?.rootViewController = nav
+        view.window?.makeKeyAndVisible()
+    }
+    
+    private func transitionHomeView(vc: UIViewController) {
+        let nav = UINavigationController(rootViewController: vc)
         view.window?.rootViewController = nav
         view.window?.makeKeyAndVisible()
     }

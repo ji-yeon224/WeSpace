@@ -16,6 +16,9 @@ final class MakeView: BaseView {
     let completeButton =  CustomButton(bgColor: .inactive, title: "완료").then {
         $0.isEnabled = false
     }
+    
+    lazy var wsImage = self.imageView.image
+    
     override func configure() {
         super.configure()
         [imageView, workSpaceName, workSpaceDesc, completeButton].forEach {
@@ -46,5 +49,11 @@ final class MakeView: BaseView {
             make.height.equalTo(Constants.Design.buttonHeight)
             make.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-24)
         }
+    }
+    
+    func setEnableButton(isEnable: Bool) {
+        completeButton.isEnabled = isEnable
+        let color = isEnable ? Constants.Color.mainColor : Constants.Color.inActive
+        completeButton.backgroundColor = color
     }
 }

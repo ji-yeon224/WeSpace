@@ -9,13 +9,16 @@ import UIKit
 
 final class EditImageView: BaseView {
     
+    var image: UIImage?
+    
     private let backView = UIView().then {
         $0.backgroundColor = .clear
     }
     
-    let imageView = UIImageView().then {
+    private let imageView = UIImageView().then {
         $0.image = .workspace
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
         $0.backgroundColor = .brand
         $0.layer.cornerRadius = 8
     }
@@ -50,6 +53,12 @@ final class EditImageView: BaseView {
         super.layoutSubviews()
         cameraView.layer.cornerRadius = cameraView.frame.height/2
         cameraView.clipsToBounds = true
+    }
+    
+    func setImage(img: UIImage) {
+        image = img.resize(width: 70)
+        imageView.image = image
+        
     }
     
 }

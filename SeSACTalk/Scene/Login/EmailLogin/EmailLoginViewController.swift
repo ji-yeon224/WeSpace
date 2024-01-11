@@ -99,13 +99,16 @@ final class EmailLoginViewController: BaseViewController, View {
         
         reactor.state
             .map { $0.loginSuccess }
+            .filter {
+                $0 == true
+            }
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
-            .bind(with: self, onNext: { owner, value in
-                if value {
-                    owner.transitionHomeView()
-                }
-            })
+            .map { _ in
+                print(UserDefaultsManager.accessToken)
+            }
+            .map { _ in Reactor.Action.fetchWorkspace }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         reactor.state
@@ -116,13 +119,26 @@ final class EmailLoginViewController: BaseViewController, View {
                 owner.showIndicator(show: value)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.workSpace }
+            .filter {
+                $0.1 == true
+            }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, data in
+                if let data = data.0 {
+                    owner.transitionHomeView(vc: HomeViewController())
+                } else {
+                    owner.transitionHomeView(vc: HomeEmptyViewController())
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
-    private func transitionHomeView() {
-        let vc = HomeEmptyViewController()
-        let nav = UINavigationController(rootViewController: vc)
-//                nav.setupLargeTitleBar()
-        view.window?.rootViewController = nav
+    private func transitionHomeView(vc: UIViewController) {
+//        let nav = UINavigationController(rootViewController: vc)
+        view.window?.rootViewController = vc
         view.window?.makeKeyAndVisible()
     }
     
