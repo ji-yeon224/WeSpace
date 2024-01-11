@@ -13,11 +13,20 @@ final class UsersAPIManager {
     static let shared = UsersAPIManager()
     private init() { }
     
+    
+    private let intercepterProvider = MoyaProvider<UsersAPI>(session: Session(interceptor: AuthIntercepter.shared))
     private let provider = MoyaProvider<UsersAPI>()
     
     func request<T: Decodable>(api: UsersAPI, responseType: T.Type) -> Single<Result<T?, ErrorResponse>> {
+        
+        var provider = provider
+        switch api {
+        case .my:
+            provider = intercepterProvider
+        default: break
+        }
         return Single.create { single in
-            self.provider.request(api) { result in
+            provider.request(api) { result in
                 switch result {
                 case .success(let response):
                     let code = response.statusCode

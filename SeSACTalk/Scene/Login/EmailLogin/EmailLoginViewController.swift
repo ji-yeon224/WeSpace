@@ -106,6 +106,7 @@ final class EmailLoginViewController: BaseViewController, View {
             .observe(on: MainScheduler.asyncInstance)
             .map { _ in
                 print(UserDefaultsManager.accessToken)
+                print(UserDefaultsManager.refreshToken)
             }
             .map { _ in Reactor.Action.fetchWorkspace }
             .bind(to: reactor.action)

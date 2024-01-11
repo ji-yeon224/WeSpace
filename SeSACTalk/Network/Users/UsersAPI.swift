@@ -74,3 +74,9 @@ extension UsersAPI: TargetType {
     }
     
 }
+
+extension UsersAPI {
+    var validationType: ValidationType {
+        return .successCodes
+    }
+}

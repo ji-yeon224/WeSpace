@@ -189,7 +189,7 @@ final class JoinViewModel {
                     if let email = email, let pw = password, let nick = nickName {
                        
                         if let phone = phone, phone.count > 0 {
-                            print(phone)
+//                            print(phone)
                             let request = JoinRequest(email: email, password: pw, nickname: nick, phone: phone, deviceToken: UserDefaultsManager.deviceToken)
                             joinRequest.accept(request)
                         } else {
