@@ -36,7 +36,6 @@
 		CE5D06732B4EE91F00C067A3 /* ImageCompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06722B4EE91F00C067A3 /* ImageCompression.swift */; };
 		CE5D06752B4EEC4100C067A3 /* SelectImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06742B4EEC4100C067A3 /* SelectImage.swift */; };
 		CE5D06772B4EF00300C067A3 /* WorkspaceToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06762B4EF00300C067A3 /* WorkspaceToastMessage.swift */; };
-		CE5D06792B4EF88800C067A3 /* MakeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06782B4EF88800C067A3 /* MakeViewModel.swift */; };
 		CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */; };
 		CE5D06802B4F028400C067A3 /* WSCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067F2B4F028400C067A3 /* WSCreateError.swift */; };
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
@@ -177,7 +176,6 @@
 		CE5D06722B4EE91F00C067A3 /* ImageCompression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompression.swift; sourceTree = "<group>"; };
 		CE5D06742B4EEC4100C067A3 /* SelectImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImage.swift; sourceTree = "<group>"; };
 		CE5D06762B4EF00300C067A3 /* WorkspaceToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceToastMessage.swift; sourceTree = "<group>"; };
-		CE5D06782B4EF88800C067A3 /* MakeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeViewModel.swift; sourceTree = "<group>"; };
 		CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataManager.swift; sourceTree = "<group>"; };
 		CE5D067F2B4F028400C067A3 /* WSCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSCreateError.swift; sourceTree = "<group>"; };
 		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
@@ -694,7 +692,6 @@
 				CEE989A92B4AAB8300590A19 /* MakeViewController.swift */,
 				CEE989AB2B4AAB8800590A19 /* MakeView.swift */,
 				CE5D06682B4E910400C067A3 /* MakeViewReactor.swift */,
-				CE5D06782B4EF88800C067A3 /* MakeViewModel.swift */,
 			);
 			path = Make;
 			sourceTree = "<group>";
@@ -916,7 +913,6 @@
 				CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */,
 				CE5D06802B4F028400C067A3 /* WSCreateError.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
-				CE5D06792B4EF88800C067A3 /* MakeViewModel.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
 				CE4904CA2B4CD001003B0204 /* HomeViewModel.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,

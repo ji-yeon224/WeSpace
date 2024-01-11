@@ -42,9 +42,28 @@ final class MakeViewReactor: Reactor {
             return validCheck(name: name, des: des, img: img)
             
         }
-        // 유효성 체크,
+        
     }
     
+   
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var newState = state
+        switch mutation {
+        case .buttonEnable(let enable):
+            newState.buttonEnable = enable
+        case .msg(let msg):
+            newState.msg = msg
+        case .successCreate(data: let data):
+            newState.completeCreate = (data, true)
+        }
+        return newState
+    }
+    
+    
+}
+
+extension MakeViewReactor {
     private func validCheck(name: String, des: String?, img: SelectImage) -> Observable<Mutation> {
         if img.img == nil {
             return Observable.of(.msg(msg: WorkspaceToastMessage.makeNoImage.message))
@@ -97,21 +116,6 @@ final class MakeViewReactor: Reactor {
         
     }
     
-    
-    
-    
-    func reduce(state: State, mutation: Mutation) -> State {
-        var newState = state
-        switch mutation {
-        case .buttonEnable(let enable):
-            newState.buttonEnable = enable
-        case .msg(let msg):
-            newState.msg = msg
-        case .successCreate(data: let data):
-            newState.completeCreate = (data, true)
-        }
-        return newState
-    }
     
     
 }

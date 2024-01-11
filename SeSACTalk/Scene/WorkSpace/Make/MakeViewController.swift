@@ -28,6 +28,7 @@ final class MakeViewController: BaseViewController, View {
     override func configure() {
         super.configure()
         title = "워크스페이스 생성"
+        configNav()
     }
     
     func bind(reactor: MakeViewReactor) {
@@ -81,6 +82,9 @@ final class MakeViewController: BaseViewController, View {
         reactor.state
             .map { $0.msg }
             .distinctUntilChanged()
+            .filter({ value in
+                value.count > 0
+            })
             .bind(with: self) { owner, value in
                 owner.showToastMessage(message: value, position: .top)
             }
@@ -96,5 +100,15 @@ final class MakeViewController: BaseViewController, View {
     }
     
     
+}
+
+extension MakeViewController {
+    func configNav() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(xButtonTapped))
+        navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black
+    }
+    @objc private func xButtonTapped() {
+        dismiss(animated: true)
+    }
 }
 

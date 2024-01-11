@@ -137,8 +137,8 @@ final class EmailLoginViewController: BaseViewController, View {
     }
     
     private func transitionHomeView(vc: UIViewController) {
-        let nav = UINavigationController(rootViewController: vc)
-        view.window?.rootViewController = nav
+//        let nav = UINavigationController(rootViewController: vc)
+        view.window?.rootViewController = vc
         view.window?.makeKeyAndVisible()
     }
     
