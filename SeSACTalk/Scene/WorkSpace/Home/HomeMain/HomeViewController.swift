@@ -8,10 +8,11 @@
 import UIKit
 import ReactorKit
 
-final class HomeViewController: BaseViewController {
+final class HomeViewController: BaseViewController, View {
     
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
+    
     private var workspace: WorkSpace?
     
     override func loadView() {
@@ -31,7 +32,8 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("homevc, \(workspace)")
+        
+        self.reactor = HomeReactor()
         
         // vm [ channelItem ] -> channelSection 담기 -> snapshot .channel
         let channelItem = [
@@ -55,6 +57,20 @@ final class HomeViewController: BaseViewController {
         updateSnapShot(section: .newFriend, item: newFriend)
     }
     
+    func bind(reactor: HomeReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+    }
+    
+    private func bindAction(reactor: HomeReactor) {
+        
+        
+        
+    }
+    
+    private func bindState(reactor: HomeReactor) {
+        
+    }
     
     override func configure() {
         view.backgroundColor = .white

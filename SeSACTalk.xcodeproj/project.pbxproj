@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE4904CA2B4CD001003B0204 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904C92B4CD001003B0204 /* HomeViewModel.swift */; };
 		CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */; };
 		CE4904CE2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */; };
 		CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */; };
@@ -96,6 +95,11 @@
 		CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84E2B44622C00B9A035 /* Font.swift */; };
 		CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */; };
 		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
+		CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764282B5122E7000578E9 /* HomeReactor.swift */; };
+		CEC7642C2B5123F1000578E9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEC7642B2B5123F1000578E9 /* Kingfisher */; };
+		CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */; };
+		CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642F2B512471000578E9 /* ImageLoadManager.swift */; };
+		CEC764322B51257F000578E9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764312B51257F000578E9 /* InfoViewController.swift */; };
 		CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */; };
 		CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */; };
 		CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */; };
@@ -131,7 +135,6 @@
 		CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */; };
 		CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */; };
 		CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */; };
-		CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */; };
 		CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */; };
 		CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */; };
 		CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC72B470B250059D1AF /* JoinInputValue.swift */; };
@@ -155,7 +158,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE4904C92B4CD001003B0204 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceType.swift; sourceTree = "<group>"; };
@@ -240,6 +242,10 @@
 		CEB7F84E2B44622C00B9A035 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBasicLabel.swift; sourceTree = "<group>"; };
 		CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewControllerMananger.swift; sourceTree = "<group>"; };
+		CEC764282B5122E7000578E9 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
+		CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		CEC7642F2B512471000578E9 /* ImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadManager.swift; sourceTree = "<group>"; };
+		CEC764312B51257F000578E9 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIManager.swift; sourceTree = "<group>"; };
 		CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseDTO.swift; sourceTree = "<group>"; };
@@ -273,7 +279,6 @@
 		CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationRequest.swift; sourceTree = "<group>"; };
 		CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIManager.swift; sourceTree = "<group>"; };
-		CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinToastMessage.swift; sourceTree = "<group>"; };
 		CEEE4EC72B470B250059D1AF /* JoinInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinInputValue.swift; sourceTree = "<group>"; };
@@ -284,6 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC7642C2B5123F1000578E9 /* Kingfisher in Frameworks */,
 				CEA8F9A52B48425C0062B45C /* Toast in Frameworks */,
 				CE57E42E2B455A61009BD53A /* IQKeyboardManagerSwift in Frameworks */,
 				CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */,
@@ -465,7 +471,6 @@
 				CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */,
 				CEEE4EB92B46DE900059D1AF /* Users */,
 				CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */,
-				CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */,
 				CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */,
 			);
 			path = Model;
@@ -515,7 +520,7 @@
 			children = (
 				CE8574992B4BFE9B0025ED1B /* HomeViewController.swift */,
 				CE85749B2B4BFEA50025ED1B /* HomeView.swift */,
-				CE4904C92B4CD001003B0204 /* HomeViewModel.swift */,
+				CEC764282B5122E7000578E9 /* HomeReactor.swift */,
 			);
 			path = HomeMain;
 			sourceTree = "<group>";
@@ -635,6 +640,7 @@
 				CEA8F9BD2B49608B0062B45C /* UINavigationController+Extension.swift */,
 				CE5D066C2B4EDA0400C067A3 /* UIImage+Extension.swift */,
 				CE5D06812B4F057F00C067A3 /* Data+Extension.swift */,
+				CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				CE8574982B4BFE8D0025ED1B /* HomeMain */,
 				CE8574972B4BFE840025ED1B /* Empty */,
 				CE85749D2B4BFF7F0025ED1B /* HomeTabBarController.swift */,
+				CEC764312B51257F000578E9 /* InfoViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -753,6 +760,7 @@
 				CE5D066A2B4E924300C067A3 /* PhPickerManager.swift */,
 				CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */,
 				CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */,
+				CEC7642F2B512471000578E9 /* ImageLoadManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -807,6 +815,7 @@
 				CEA8F9C02B496EB80062B45C /* KakaoSDK */,
 				CEA8F9D52B4993A20062B45C /* Then */,
 				CE85748E2B4AFD810025ED1B /* ReactorKit */,
+				CEC7642B2B5123F1000578E9 /* Kingfisher */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -891,6 +900,7 @@
 				CEA8F9BF2B496EB80062B45C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */,
 				CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -944,7 +954,6 @@
 				CECFCDF12B4FCAB800EB0DB7 /* AuthIntercepter.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
-				CE4904CA2B4CD001003B0204 /* HomeViewModel.swift in Sources */,
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
@@ -968,10 +977,12 @@
 				CE4904CE2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */,
+				CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */,
 				CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */,
 				CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
+				CEC764322B51257F000578E9 /* InfoViewController.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
 				CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
@@ -1016,6 +1027,7 @@
 				CE85749E2B4BFF7F0025ED1B /* HomeTabBarController.swift in Sources */,
 				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
+				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CE4904D82B4D1137003B0204 /* Channel.swift in Sources */,
 				CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */,
@@ -1036,11 +1048,11 @@
 				CE5D06652B4E6A8A00C067A3 /* WorkspaceResponseDTO.swift in Sources */,
 				CE85749C2B4BFEA50025ED1B /* HomeView.swift in Sources */,
 				CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */,
-				CEEE4EBF2B46DFFC0059D1AF /* NetworkError.swift in Sources */,
 				CE5D066F2B4EE69700C067A3 /* WsCreateReqDTO.swift in Sources */,
 				CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */,
 				CE5D06772B4EF00300C067A3 /* WorkspaceToastMessage.swift in Sources */,
 				CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */,
+				CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */,
 				CE5D06732B4EE91F00C067A3 /* ImageCompression.swift in Sources */,
 				CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */,
 				CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */,
@@ -1460,6 +1472,14 @@
 				minimumVersion = 4.0.4;
 			};
 		};
+		CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
 		CEEE4EAE2B46A1340059D1AF /* XCRemoteSwiftPackageReference "AnyFormatKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/luximetr/AnyFormatKit.git";
@@ -1523,6 +1543,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEB7F8332B444B2A00B9A035 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		CEC7642B2B5123F1000578E9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		CEEE4EAF2B46A1340059D1AF /* AnyFormatKit */ = {
 			isa = XCSwiftPackageProductDependency;

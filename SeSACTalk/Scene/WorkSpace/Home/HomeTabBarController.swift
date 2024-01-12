@@ -35,7 +35,10 @@ final class HomeTabBarController: UITabBarController {
         home.tabBarItem.selectedImage = .homeActive
         let homeNav = UINavigationController(rootViewController: home)
         
-        viewControllers = [home]
+        let info = InfoViewController()
+        info.tabBarItem.title = "info"
+        
+        viewControllers = [home, info]
         
     }
 }
