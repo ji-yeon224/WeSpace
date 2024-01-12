@@ -13,9 +13,7 @@ struct ChannelSection: Hashable, Identifiable {
     let items: [Channel]
 }
 
-struct Channel: Hashable {
-    let name: String
-}
+
 
 /*
  "workspace_id": "1",

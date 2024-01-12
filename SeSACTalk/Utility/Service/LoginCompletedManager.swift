@@ -42,12 +42,12 @@ final class LoginCompletedManager {
         
         return Observable.create { result in
             
-            WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: WorkspaceResponseDTO.self)
+            WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: AllWorkspaceReDTO.self)
                 .asObservable()
                 .subscribe(with: self) { owner, value in
                     switch value {
                     case .success(let response):
-                        var value: WorkspaceResponseDTO = []
+                        var value: AllWorkspaceReDTO = []
                         if let data = response {
                             value = data
                             if !value.isEmpty {

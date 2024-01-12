@@ -12,6 +12,7 @@ final class HomeViewController: BaseViewController, View {
     
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
+    private let requestWSInfo = PublishSubject<Bool>()
     
     private var workspace: WorkSpace?
     
@@ -34,12 +35,12 @@ final class HomeViewController: BaseViewController, View {
         super.viewDidLoad()
         
         self.reactor = HomeReactor()
-        
+        requestWSInfo.onNext(true)
         // vm [ channelItem ] -> channelSection 담기 -> snapshot .channel
-        let channelItem = [
-            WorkspaceItem(title: "a", subItems: [], item: Channel(name: "일반")),
-            WorkspaceItem(title: "b", subItems: [], item: Channel(name: "일반"))
-        ]
+//        let channelItem = [
+//            WorkspaceItem(title: "a", subItems: [], item: Channel(name: "일반")),
+//            WorkspaceItem(title: "b", subItems: [], item: Channel(name: "일반"))
+//        ]
         let dmItem = [
             WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon12")),
             WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon23"))
@@ -48,13 +49,13 @@ final class HomeViewController: BaseViewController, View {
             WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가"))
         ]
         
-        let channelSection = WorkspaceItem(title: "채널", subItems: channelItem)
+//        let channelSection = WorkspaceItem(title: "채널", subItems: channelItem)
         let dmSection = WorkspaceItem(title: "다이렉트 메세지", subItems: dmItem)
         
         
-        updateSnapShot(section: .channel, item: [channelSection])
-        updateSnapShot(section: .dm, item: [dmSection])
-        updateSnapShot(section: .newFriend, item: newFriend)
+//        updateSnapShot(section: .channel, item: [channelSection])
+//        updateSnapShot(section: .dm, item: [dmSection])
+//        updateSnapShot(section: .newFriend, item: newFriend)
     }
     
     func bind(reactor: HomeReactor) {
@@ -64,12 +65,27 @@ final class HomeViewController: BaseViewController, View {
     
     private func bindAction(reactor: HomeReactor) {
         
-        
+        guard let workspace = workspace else { return }
+        print("hh")
+        requestWSInfo
+            .map{ _ in Reactor.Action.requestInfo(id: workspace.workspaceId)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
     }
     
     private func bindState(reactor: HomeReactor) {
-        
+        reactor.state
+            .map { $0.channelItems }
+            .filter{
+                !$0.isEmpty
+            }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                let channelSection = WorkspaceItem(title: "채널", subItems: value)
+                owner.updateSnapShot(section: .channel, item: [channelSection])
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configure() {
