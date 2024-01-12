@@ -95,6 +95,7 @@
 		CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */; };
 		CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84E2B44622C00B9A035 /* Font.swift */; };
 		CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */; };
+		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
 		CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */; };
 		CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */; };
 		CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */; };
@@ -238,6 +239,7 @@
 		CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		CEB7F84E2B44622C00B9A035 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBasicLabel.swift; sourceTree = "<group>"; };
+		CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewControllerMananger.swift; sourceTree = "<group>"; };
 		CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIManager.swift; sourceTree = "<group>"; };
 		CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseDTO.swift; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 				CEE989A42B4A9FDA00590A19 /* LoginCompletedManager.swift */,
 				CE5D066A2B4E924300C067A3 /* PhPickerManager.swift */,
 				CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */,
+				CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
 				CE4904CA2B4CD001003B0204 /* HomeViewModel.swift in Sources */,
+				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,

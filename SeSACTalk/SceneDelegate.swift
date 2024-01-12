@@ -7,11 +7,12 @@
 
 import UIKit
 import KakaoSDKAuth
+import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    var disposeBag = DisposeBag()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,9 +20,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let vc = OnBoardingViewController()
-        window?.rootViewController = vc//UINavigationController(rootViewController: vc)
-        window?.makeKeyAndVisible()
+        
+        if UserDefaultsManager.isLogin {
+            EnterViewControllerMananger.shared.fetchWorkspace()
+                .asObservable()
+                .bind(with: self, onNext: { owner, vc in
+                    print(vc)
+                    owner.window?.rootViewController = vc
+                    owner.window?.makeKeyAndVisible()
+                })
+                .disposed(by: EnterViewControllerMananger.shared.disposeBag)
+        } else {
+            window?.rootViewController = OnBoardingViewController()
+            window?.makeKeyAndVisible()
+        }
+        
+       
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

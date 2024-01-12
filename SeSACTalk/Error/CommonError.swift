@@ -9,8 +9,6 @@ import Foundation
 
 enum CommonError: String, Error {
     case E01
-    case E03
-    case E05
     case E97
     case E98
     case E99
@@ -21,10 +19,6 @@ extension CommonError: LocalizedError {
         switch self {
         case .E01:
             return "접근 권한이 없습니다."
-        case .E03:
-            return "계정 조회에 실패하였습니다. "
-        case .E05:
-            return "엑세스 토큰이 만료되었습니다."
         case .E97:
             return "경로가 잘못되었습니다."
         case .E98:

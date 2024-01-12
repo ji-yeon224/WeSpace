@@ -5,7 +5,7 @@
 //  Created by 김지연 on 1/7/24.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 
 final class LoginCompletedManager {
@@ -13,7 +13,9 @@ final class LoginCompletedManager {
     private init() { }
     private let disposeBag = DisposeBag()
     
-    func requestMyProfile() -> Observable<Result<MyProfile, CommonError>> {
+    
+    
+    func requestMyProfile() -> Observable<Result<MyProfile, ErrorResponse>> {
         
         return Observable.create { result in
             UsersAPIManager.shared.request(api: .my, responseType: MyProfileRequestDto.self)
@@ -27,8 +29,7 @@ final class LoginCompletedManager {
                         }
                         
                     case .failure(let error):
-                        let error = CommonError(rawValue: error.errorCode)
-                        result.onNext(.failure(error ?? CommonError.E99))
+                        result.onNext(.failure(error))
                     }
                 }
                 .disposed(by: self.disposeBag)
@@ -37,7 +38,7 @@ final class LoginCompletedManager {
         
     }
     
-    func workSpaceTransition() -> Observable<Result<WorkSpace?, CommonError>> {
+    func workSpaceTransition() -> Observable<Result<WorkSpace?, ErrorResponse>> {
         
         return Observable.create { result in
             
@@ -59,11 +60,7 @@ final class LoginCompletedManager {
                             result.onNext(.success(nil))
                         }
                     case .failure(let error):
-                        if let error = CommonError(rawValue: error.errorCode) {
-                            result.onNext(.failure(error))
-                        } else {
-                            result.onNext(.failure(CommonError.E99))
-                        }
+                        result.onNext(.failure(error))
                         
                     }
                 }
