@@ -121,20 +121,19 @@ extension HomeViewController {
             mainView.dataSource.apply(snapshot, to: .newFriend, animatingDifferences: false)
         }
         
-        
     }
 
     func initialSnapshot(items: [WorkspaceItem]) -> NSDiffableDataSourceSectionSnapshot<WorkspaceItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<WorkspaceItem>()
         
-        func addItems(_ menuItems: [WorkspaceItem], to parent: WorkspaceItem?) {
-            snapshot.append(menuItems, to: parent)
-            for menuItem in menuItems where !menuItem.subItems.isEmpty {
-                addItems(menuItem.subItems, to: menuItem)
+        snapshot.append(items, to: nil)
+        for item in items where !item.subItems.isEmpty{
+            snapshot.append(item.subItems, to: item)
+            if !item.subItems.isEmpty {
+                snapshot.expand(items)
             }
         }
-        
-        addItems(items, to: nil)
+       
         return snapshot
     }
 }

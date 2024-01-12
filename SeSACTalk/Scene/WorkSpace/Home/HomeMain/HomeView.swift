@@ -55,7 +55,6 @@ extension HomeView {
     private func configureDataSource() {
         
         let titleCell = UICollectionView.CellRegistration<UICollectionViewListCell, WorkspaceItem> { cell, indexPath, itemIdentifier in
-            print(itemIdentifier.title)
             var contentConfiguration = cell.defaultContentConfiguration()
             contentConfiguration.text = itemIdentifier.title
             contentConfiguration.textProperties.font = Font.title2.fontStyle
