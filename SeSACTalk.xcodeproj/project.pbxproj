@@ -12,7 +12,7 @@
 		CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */; };
 		CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */; };
 		CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D72B4D1137003B0204 /* ChannelSection.swift */; };
-		CE4904DA2B4D11C9003B0204 /* DM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* DM.swift */; };
+		CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* DMSection.swift */; };
 		CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904DD2B4D2E41003B0204 /* Item.swift */; };
 		CE57E4182B452A02009BD53A /* splashImg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57E4172B452A02009BD53A /* splashImg.png */; };
 		CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E41A2B452FE9009BD53A /* LoginViewController.swift */; };
@@ -100,11 +100,16 @@
 		CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */; };
 		CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642F2B512471000578E9 /* ImageLoadManager.swift */; };
 		CEC764322B51257F000578E9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764312B51257F000578E9 /* InfoViewController.swift */; };
-		CEC764342B512C67000578E9 /* WorkspaceFetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764332B512C67000578E9 /* WorkspaceFetchError.swift */; };
+		CEC764342B512C67000578E9 /* WorkspaceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764332B512C67000578E9 /* WorkspaceError.swift */; };
 		CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764352B512CCB000578E9 /* ChannelResDTO.swift */; };
 		CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764372B512E20000578E9 /* UserResDTO.swift */; };
 		CEC7643A2B512EEB000578E9 /* OneWorkspaceResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764392B512EEB000578E9 /* OneWorkspaceResDTO.swift */; };
 		CEC7643E2B516306000578E9 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7643D2B516306000578E9 /* Channel.swift */; };
+		CEC764452B516C04000578E9 /* DMsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764442B516C04000578E9 /* DMsAPI.swift */; };
+		CEC7644B2B5173AE000578E9 /* DMsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7644A2B5173AE000578E9 /* DMsAPIManager.swift */; };
+		CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7644E2B517434000578E9 /* DMsRoomResDTO.swift */; };
+		CEC764512B5176C2000578E9 /* DMsRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764502B5176C2000578E9 /* DMsRoom.swift */; };
+		CEC764532B5176DA000578E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764522B5176DA000578E9 /* User.swift */; };
 		CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */; };
 		CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */; };
 		CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */; };
@@ -168,7 +173,7 @@
 		CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceType.swift; sourceTree = "<group>"; };
 		CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceItem.swift; sourceTree = "<group>"; };
 		CE4904D72B4D1137003B0204 /* ChannelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSection.swift; sourceTree = "<group>"; };
-		CE4904D92B4D11C9003B0204 /* DM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DM.swift; sourceTree = "<group>"; };
+		CE4904D92B4D11C9003B0204 /* DMSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSection.swift; sourceTree = "<group>"; };
 		CE4904DD2B4D2E41003B0204 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CE57E4172B452A02009BD53A /* splashImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashImg.png; sourceTree = "<group>"; };
 		CE57E41A2B452FE9009BD53A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -251,11 +256,16 @@
 		CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		CEC7642F2B512471000578E9 /* ImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadManager.swift; sourceTree = "<group>"; };
 		CEC764312B51257F000578E9 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		CEC764332B512C67000578E9 /* WorkspaceFetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceFetchError.swift; sourceTree = "<group>"; };
+		CEC764332B512C67000578E9 /* WorkspaceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceError.swift; sourceTree = "<group>"; };
 		CEC764352B512CCB000578E9 /* ChannelResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelResDTO.swift; sourceTree = "<group>"; };
 		CEC764372B512E20000578E9 /* UserResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResDTO.swift; sourceTree = "<group>"; };
 		CEC764392B512EEB000578E9 /* OneWorkspaceResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWorkspaceResDTO.swift; sourceTree = "<group>"; };
 		CEC7643D2B516306000578E9 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		CEC764442B516C04000578E9 /* DMsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsAPI.swift; sourceTree = "<group>"; };
+		CEC7644A2B5173AE000578E9 /* DMsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsAPIManager.swift; sourceTree = "<group>"; };
+		CEC7644E2B517434000578E9 /* DMsRoomResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsRoomResDTO.swift; sourceTree = "<group>"; };
+		CEC764502B5176C2000578E9 /* DMsRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMsRoom.swift; sourceTree = "<group>"; };
+		CEC764522B5176DA000578E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIManager.swift; sourceTree = "<group>"; };
 		CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseDTO.swift; sourceTree = "<group>"; };
@@ -337,7 +347,7 @@
 				CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */,
 				CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */,
 				CE4904D72B4D1137003B0204 /* ChannelSection.swift */,
-				CE4904D92B4D11C9003B0204 /* DM.swift */,
+				CE4904D92B4D11C9003B0204 /* DMSection.swift */,
 				CE4904DD2B4D2E41003B0204 /* Item.swift */,
 			);
 			path = Data;
@@ -366,6 +376,7 @@
 		CE5D065E2B4E67E800C067A3 /* WorkSpaces */ = {
 			isa = PBXGroup;
 			children = (
+				CEC764412B516BBE000578E9 /* DMs */,
 				CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */,
 				CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */,
 			);
@@ -375,6 +386,7 @@
 		CE5D06632B4E6A7400C067A3 /* Workspaces */ = {
 			isa = PBXGroup;
 			children = (
+				CEC7644D2B517427000578E9 /* DMs */,
 				CEC7643C2B5162F0000578E9 /* Channel */,
 				CE5D06642B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift */,
 				CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */,
@@ -388,7 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5D067F2B4F028400C067A3 /* WSCreateError.swift */,
-				CEC764332B512C67000578E9 /* WorkspaceFetchError.swift */,
+				CEC764332B512C67000578E9 /* WorkspaceError.swift */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -667,6 +679,24 @@
 			path = Channel;
 			sourceTree = "<group>";
 		};
+		CEC764412B516BBE000578E9 /* DMs */ = {
+			isa = PBXGroup;
+			children = (
+				CEC764442B516C04000578E9 /* DMsAPI.swift */,
+				CEC7644A2B5173AE000578E9 /* DMsAPIManager.swift */,
+			);
+			path = DMs;
+			sourceTree = "<group>";
+		};
+		CEC7644D2B517427000578E9 /* DMs */ = {
+			isa = PBXGroup;
+			children = (
+				CEC7644E2B517434000578E9 /* DMsRoomResDTO.swift */,
+				CEC764502B5176C2000578E9 /* DMsRoom.swift */,
+			);
+			path = DMs;
+			sourceTree = "<group>";
+		};
 		CECFCDE52B4FBBDC00EB0DB7 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +747,7 @@
 				CEE989942B4A52C600590A19 /* MyProfile.swift */,
 				CEE989972B4A52EE00590A19 /* MyProfileRequestDto.swift */,
 				CEC764372B512E20000578E9 /* UserResDTO.swift */,
+				CEC764522B5176DA000578E9 /* User.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -991,7 +1022,7 @@
 				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
 				CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
-				CE4904DA2B4D11C9003B0204 /* DM.swift in Sources */,
+				CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
@@ -1027,6 +1058,7 @@
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
 				CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */,
+				CEC764452B516C04000578E9 /* DMsAPI.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
 				CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */,
@@ -1038,6 +1070,7 @@
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
+				CEC764532B5176DA000578E9 /* User.swift in Sources */,
 				CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
 				CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */,
@@ -1048,6 +1081,7 @@
 				CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
 				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
+				CEC764512B5176C2000578E9 /* DMsRoom.swift in Sources */,
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,
 				CE85749E2B4BFF7F0025ED1B /* HomeTabBarController.swift in Sources */,
 				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
@@ -1056,14 +1090,16 @@
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */,
 				CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */,
+				CEC7644B2B5173AE000578E9 /* DMsAPIManager.swift in Sources */,
 				CE5D06752B4EEC4100C067A3 /* SelectImage.swift in Sources */,
-				CEC764342B512C67000578E9 /* WorkspaceFetchError.swift in Sources */,
+				CEC764342B512C67000578E9 /* WorkspaceError.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
+				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,
 				CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */,
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,

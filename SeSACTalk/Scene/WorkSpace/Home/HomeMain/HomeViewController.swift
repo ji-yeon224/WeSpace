@@ -13,6 +13,7 @@ final class HomeViewController: BaseViewController, View {
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
     private let requestWSInfo = PublishSubject<Bool>()
+    private let requestDMsInfo = PublishSubject<Bool>()
     
     private var workspace: WorkSpace?
     
@@ -36,28 +37,21 @@ final class HomeViewController: BaseViewController, View {
         
         self.reactor = HomeReactor()
         requestWSInfo.onNext(true)
-        // vm [ channelItem ] -> channelSection 담기 -> snapshot .channel
-//        let channelItem = [
-//            WorkspaceItem(title: "a", subItems: [], item: Channel(name: "일반")),
-//            WorkspaceItem(title: "b", subItems: [], item: Channel(name: "일반"))
-//        ]
-        let dmItem = [
-            WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon12")),
-            WorkspaceItem(title: "", subItems: [], item: DM(name: "jiyeon23"))
-        ]
-        let newFriend = [
-            WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가"))
-        ]
+        requestDMsInfo.onNext(true)
         
-//        let channelSection = WorkspaceItem(title: "채널", subItems: channelItem)
-        let dmSection = WorkspaceItem(title: "다이렉트 메세지", subItems: dmItem)
-        
-        
-//        updateSnapShot(section: .channel, item: [channelSection])
-//        updateSnapShot(section: .dm, item: [dmSection])
-//        updateSnapShot(section: .newFriend, item: newFriend)
     }
     
+    override func configure() {
+        view.backgroundColor = .white
+        sectionSnapShot()
+        let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
+        updateSnapShot(section: .newFriend, item: newFriend)
+    }
+    
+    
+}
+
+extension HomeViewController {
     func bind(reactor: HomeReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
@@ -66,9 +60,14 @@ final class HomeViewController: BaseViewController, View {
     private func bindAction(reactor: HomeReactor) {
         
         guard let workspace = workspace else { return }
-        print("hh")
+        
         requestWSInfo
             .map{ _ in Reactor.Action.requestInfo(id: workspace.workspaceId)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        requestDMsInfo
+            .map { _ in Reactor.Action.requestDMsInfo(id: workspace.workspaceId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -80,16 +79,34 @@ final class HomeViewController: BaseViewController, View {
             .filter{
                 !$0.isEmpty
             }
+            .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 let channelSection = WorkspaceItem(title: "채널", subItems: value)
                 owner.updateSnapShot(section: .channel, item: [channelSection])
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.dmRoomItems }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                let dmSection = WorkspaceItem(title: "다이렉트 메세지", subItems: value)
+                owner.updateSnapShot(section: .dm, item: [dmSection])
+                
+            }
+            .disposed(by: disposeBag)
     }
     
-    override func configure() {
-        view.backgroundColor = .white
+}
+
+extension HomeViewController {
+    private func sectionSnapShot() {
+        var snapshot = NSDiffableDataSourceSnapshot<WorkspaceType, WorkspaceItem>()
+        snapshot.appendSections([.channel, .dm, .newFriend])
+        mainView.dataSource.apply(snapshot)
+        
     }
     
     private func updateSnapShot(section: WorkspaceType, item: [WorkspaceItem]) {
@@ -106,8 +123,7 @@ final class HomeViewController: BaseViewController, View {
         
         
     }
-    
-    
+
     func initialSnapshot(items: [WorkspaceItem]) -> NSDiffableDataSourceSectionSnapshot<WorkspaceItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<WorkspaceItem>()
         

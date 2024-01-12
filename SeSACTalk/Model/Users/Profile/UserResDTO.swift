@@ -12,4 +12,8 @@ struct UserResDTO: Decodable {
     let email: String
     let nickname: String
     let profileImage: String?
+    
+    func toDomain() -> User {
+        return .init(userId: user_id, email: email, nickname: nickname, profileImage: profileImage)
+    }
 }

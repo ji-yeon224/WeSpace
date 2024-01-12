@@ -55,6 +55,7 @@ extension HomeView {
     private func configureDataSource() {
         
         let titleCell = UICollectionView.CellRegistration<UICollectionViewListCell, WorkspaceItem> { cell, indexPath, itemIdentifier in
+            print(itemIdentifier.title)
             var contentConfiguration = cell.defaultContentConfiguration()
             contentConfiguration.text = itemIdentifier.title
             contentConfiguration.textProperties.font = Font.title2.fontStyle
@@ -71,8 +72,8 @@ extension HomeView {
             cell.titleLabel.text = itemIdentifier.name
             cell.imageView.image = .hashTagThin
         }
-        let dmCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, DM> { cell, indexPath, itemIdentifier in
-            cell.titleLabel.text = itemIdentifier.name
+        let dmCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, DMsRoom> { cell, indexPath, itemIdentifier in
+            cell.titleLabel.text = itemIdentifier.user.nickname
             cell.imageView.image = .seSACBot
         }
         let newFriendCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, NewFriend> { cell, indexPath, itemIdentifier in
@@ -84,11 +85,11 @@ extension HomeView {
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             
             
-            if itemIdentifier.subItems.count == 0 {
+            if itemIdentifier.item != nil {
                 if let channel = itemIdentifier.item as? Channel {
                     return collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: channel)
                 }
-                else if let dm = itemIdentifier.item as? DM {
+                else if let dm = itemIdentifier.item as? DMsRoom {
                     return collectionView.dequeueConfiguredReusableCell(using: dmCell, for: indexPath, item: dm)
                 }
                 else if let newFirend = itemIdentifier.item as? NewFriend {

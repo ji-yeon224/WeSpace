@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum WorkspaceFetchError: String, Error {
+enum WorkspaceError: String, Error {
     case E13
     
 }
 
-extension WorkspaceFetchError: LocalizedError {
+extension WorkspaceError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .E13:
