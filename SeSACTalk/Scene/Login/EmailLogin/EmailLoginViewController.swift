@@ -106,6 +106,7 @@ final class EmailLoginViewController: BaseViewController, View {
             .observe(on: MainScheduler.asyncInstance)
             .map { _ in
                 print(UserDefaultsManager.accessToken)
+                print(UserDefaultsManager.refreshToken)
             }
             .map { _ in Reactor.Action.fetchWorkspace }
             .bind(to: reactor.action)
@@ -128,7 +129,7 @@ final class EmailLoginViewController: BaseViewController, View {
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, data in
                 if let data = data.0 {
-                    owner.transitionHomeView(vc: HomeViewController())
+                    owner.transitionHomeView(vc: HomeTabBarController(workspace: data))
                 } else {
                     owner.transitionHomeView(vc: HomeEmptyViewController())
                 }

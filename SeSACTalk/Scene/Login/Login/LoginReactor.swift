@@ -47,7 +47,7 @@ final class LoginReactor: Reactor {
                 .map { (result) -> Mutation in
                     switch result {
                     case.success(let oauth):
-                        print("kakao success", oauth)
+                        print("kakao success")
                         return Mutation.kakaoSuccess(oauth: oauth)
                     case .failure(let error):
                         print("kakao fail")

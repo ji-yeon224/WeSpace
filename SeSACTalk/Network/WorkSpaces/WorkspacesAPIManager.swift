@@ -13,7 +13,7 @@ final class WorkspacesAPIManager {
     static let shared = WorkspacesAPIManager()
     private init() { }
     
-    private let provider = MoyaProvider<WorkspacesAPI>()
+    private let provider = MoyaProvider<WorkspacesAPI>(session: Session(interceptor: AuthIntercepter.shared))
     
     func request<T: Decodable>(api: WorkspacesAPI, resonseType: T.Type) -> Single<Result<T?, ErrorResponse>> {
         return Single.create { single in
@@ -37,7 +37,7 @@ final class WorkspacesAPIManager {
                     } else {
                         do {
                             let e = try JSONDecoder().decode(ErrorResponse.self, from: response.data)
-                            print(e.errorCode)
+                            print("workspacemanager ", e.errorCode)
                             single(.success(.failure(e)))
                         } catch {
                             print("error decoded Error")

@@ -12,14 +12,26 @@ final class HomeViewController: BaseViewController {
     
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
+    private var workspace: WorkSpace?
     
     override func loadView() {
         self.view = mainView
     }
     
+    init(workspace: WorkSpace) {
+        super.init(nibName: nil, bundle: nil)
+        self.workspace = workspace
+        print(workspace)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("homevc, \(workspace)")
         
         // vm [ channelItem ] -> channelSection 담기 -> snapshot .channel
         let channelItem = [

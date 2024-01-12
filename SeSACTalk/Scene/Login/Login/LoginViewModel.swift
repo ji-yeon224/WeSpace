@@ -39,7 +39,7 @@ final class LoginViewModel {
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let oauth):
-                    print(oauth)
+//                    print(oauth)
                     requestKakao.accept(KakaoLoginRequestDTO(oauthToken: oauth, deviceToken: nil))
                 case .failure(let error):
                     print(error)

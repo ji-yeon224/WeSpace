@@ -95,6 +95,13 @@
 		CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */; };
 		CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F84E2B44622C00B9A035 /* Font.swift */; };
 		CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */; };
+		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
+		CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */; };
+		CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */; };
+		CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */; };
+		CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDEC2B4FC8C300EB0DB7 /* RefreshResultType.swift */; };
+		CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDEE2B4FC91400EB0DB7 /* RefreshError.swift */; };
+		CECFCDF12B4FCAB800EB0DB7 /* AuthIntercepter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFCDF02B4FCAB800EB0DB7 /* AuthIntercepter.swift */; };
 		CED65F852B45B5FA00CFD04C /* .gitIgnore in Resources */ = {isa = PBXBuildFile; fileRef = CED65F842B45B5FA00CFD04C /* .gitIgnore */; };
 		CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F872B45B67C00CFD04C /* APIKey.swift */; };
 		CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F892B45B68300CFD04C /* BaseURL.swift */; };
@@ -232,6 +239,13 @@
 		CEB7F84C2B44618E00B9A035 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		CEB7F84E2B44622C00B9A035 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBasicLabel.swift; sourceTree = "<group>"; };
+		CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewControllerMananger.swift; sourceTree = "<group>"; };
+		CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIManager.swift; sourceTree = "<group>"; };
+		CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseDTO.swift; sourceTree = "<group>"; };
+		CECFCDEC2B4FC8C300EB0DB7 /* RefreshResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshResultType.swift; sourceTree = "<group>"; };
+		CECFCDEE2B4FC91400EB0DB7 /* RefreshError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshError.swift; sourceTree = "<group>"; };
+		CECFCDF02B4FCAB800EB0DB7 /* AuthIntercepter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthIntercepter.swift; sourceTree = "<group>"; };
 		CED65F842B45B5FA00CFD04C /* .gitIgnore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitIgnore; sourceTree = "<group>"; };
 		CED65F872B45B67C00CFD04C /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		CED65F892B45B68300CFD04C /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
@@ -452,6 +466,7 @@
 				CEEE4EB92B46DE900059D1AF /* Users */,
 				CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */,
 				CEEE4EBE2B46DFFC0059D1AF /* NetworkError.swift */,
+				CECFCDEA2B4FC85D00EB0DB7 /* AuthResponseDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -624,9 +639,20 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		CECFCDE52B4FBBDC00EB0DB7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CECFCDE62B4FBC2600EB0DB7 /* AuthAPIManager.swift */,
+				CECFCDE82B4FC78F00EB0DB7 /* AuthAPI.swift */,
+				CECFCDF02B4FCAB800EB0DB7 /* AuthIntercepter.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		CED65F862B45B67100CFD04C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CECFCDE52B4FBBDC00EB0DB7 /* Auth */,
 				CE5D065E2B4E67E800C067A3 /* WorkSpaces */,
 				CEEE4EB12B46DBB50059D1AF /* Users */,
 				CED65F872B45B67C00CFD04C /* APIKey.swift */,
@@ -652,6 +678,7 @@
 				CED65F8F2B45B78600CFD04C /* EmailError.swift */,
 				CEA8F9AF2B4926DA0062B45C /* JoinError.swift */,
 				CEA8F9CA2B49891E0062B45C /* LoginError.swift */,
+				CECFCDEE2B4FC91400EB0DB7 /* RefreshError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -725,6 +752,7 @@
 				CEE989A42B4A9FDA00590A19 /* LoginCompletedManager.swift */,
 				CE5D066A2B4E924300C067A3 /* PhPickerManager.swift */,
 				CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */,
+				CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -746,6 +774,7 @@
 				CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */,
 				CE5D06722B4EE91F00C067A3 /* ImageCompression.swift */,
 				CE5D06742B4EEC4100C067A3 /* SelectImage.swift */,
+				CECFCDEC2B4FC8C300EB0DB7 /* RefreshResultType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -912,10 +941,13 @@
 				CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */,
 				CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */,
 				CE5D06802B4F028400C067A3 /* WSCreateError.swift in Sources */,
+				CECFCDF12B4FCAB800EB0DB7 /* AuthIntercepter.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
 				CE4904CA2B4CD001003B0204 /* HomeViewModel.swift in Sources */,
+				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
+				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
 				CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */,
@@ -948,14 +980,17 @@
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
+				CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */,
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
 				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
+				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
 				CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */,
 				CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */,
 				CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
+				CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
 				CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */,
@@ -974,6 +1009,7 @@
 				CEA8F9B32B492D370062B45C /* UserDefaultsManager.swift in Sources */,
 				CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
+				CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
 				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,

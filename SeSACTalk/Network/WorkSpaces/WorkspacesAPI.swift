@@ -56,3 +56,8 @@ extension WorkspacesAPI: TargetType {
     
     
 }
+extension WorkspacesAPI {
+    var validationType: ValidationType {
+        return .successCodes
+    }
+}
