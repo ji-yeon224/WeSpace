@@ -7,13 +7,17 @@
 
 import UIKit
 import ReactorKit
+import SideMenu
 
 final class HomeViewController: BaseViewController, View {
+    
     
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
     private let requestWSInfo = PublishSubject<Bool>()
     private let requestDMsInfo = PublishSubject<Bool>()
+    private let wslistVc = WorkspaceListViewController()
+    private lazy var menu = SideMenuNavigationController(rootViewController: wslistVc)
     
     private var workspace: WorkSpace?
     
@@ -34,11 +38,15 @@ final class HomeViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.isHidden = true
         self.reactor = HomeReactor()
         requestWSInfo.onNext(true)
         requestDMsInfo.onNext(true)
-        
+        wslistVc.delegate = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("appear")
     }
     
     override func configure() {
@@ -46,15 +54,34 @@ final class HomeViewController: BaseViewController, View {
         sectionSnapShot()
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
+        setupSideMenu()
     }
     
+    private func setupSideMenu() {
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view, forMenu: .left)
+        menu.statusBarEndAlpha = 0
+        menu.presentationStyle = .menuSlideIn
+        menu.enableSwipeToDismissGesture = true
+        menu.menuWidth = Constants.Design.deviceWidth / 1.3
+        menu.pushStyle = .default
+        menu.presentationStyle.menuStartAlpha = 1
+        menu.presentationStyle.backgroundColor = .alpha
+        
+        
+        
+    }
     
 }
+
+
 
 extension HomeViewController {
     func bind(reactor: HomeReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
+        
     }
     
     private func bindAction(reactor: HomeReactor) {
@@ -69,6 +96,21 @@ extension HomeViewController {
         requestDMsInfo
             .map { _ in Reactor.Action.requestDMsInfo(id: workspace.workspaceId)}
             .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        
+        mainView.topView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                owner.present(owner.menu, animated: true, completion: nil)
+                
+            }
+            .disposed(by: disposeBag)
+        view.rx.swipeGesture(.right)
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                owner.present(owner.menu, animated: true, completion: nil)
+            }
             .disposed(by: disposeBag)
         
     }
@@ -135,5 +177,14 @@ extension HomeViewController {
         }
        
         return snapshot
+    }
+}
+
+extension HomeViewController: WorkSpaceListDelegate {
+    func viewDisappear() {
+        mainView.alphaView.isHidden = true
+    }
+    func viewAppear() {
+        mainView.alphaView.isHidden = false
     }
 }

@@ -14,11 +14,15 @@ final class HomeView: BaseView {
         $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
     }
+    let alphaView = UIView().then {
+        $0.backgroundColor = .alpha
+        $0.isHidden = true
+    }
     var dataSource: UICollectionViewDiffableDataSource<WorkspaceType, WorkspaceItem>!
     
     override func configure() {
         backgroundColor = .white
-        [topView, collectionView].forEach {
+        [topView, collectionView, alphaView].forEach {
             addSubview($0)
         }
         configureDataSource()
@@ -34,6 +38,10 @@ final class HomeView: BaseView {
             make.top.equalTo(topView.snp.bottom)
             make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
+        alphaView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
     }
     
 }

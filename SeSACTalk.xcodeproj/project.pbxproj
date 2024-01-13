@@ -121,6 +121,10 @@
 		CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F892B45B68300CFD04C /* BaseURL.swift */; };
 		CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F8C2B45B6F800CFD04C /* CommonError.swift */; };
 		CED65F902B45B78600CFD04C /* EmailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F8F2B45B78600CFD04C /* EmailError.swift */; };
+		CED7C2C22B5230D40069EA0A /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = CED7C2C12B5230D40069EA0A /* SideMenu */; };
+		CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */; };
+		CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */; };
+		CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -277,6 +281,9 @@
 		CED65F892B45B68300CFD04C /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 		CED65F8C2B45B6F800CFD04C /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		CED65F8F2B45B78600CFD04C /* EmailError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailError.swift; sourceTree = "<group>"; };
+		CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewController.swift; sourceTree = "<group>"; };
+		CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListView.swift; sourceTree = "<group>"; };
+		CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceListDelegate.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -315,6 +322,7 @@
 				CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */,
 				CEEE4EB02B46A1340059D1AF /* AnyFormatKit in Frameworks */,
 				CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */,
+				CED7C2C22B5230D40069EA0A /* SideMenu in Frameworks */,
 				CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */,
 				CEA8F9D62B4993A20062B45C /* Then in Frameworks */,
 				CEB7F8352B444B2A00B9A035 /* RxGesture in Frameworks */,
@@ -543,6 +551,7 @@
 		CE8574982B4BFE8D0025ED1B /* HomeMain */ = {
 			isa = PBXGroup;
 			children = (
+				CED7C2C32B52348E0069EA0A /* WSList */,
 				CE8574992B4BFE9B0025ED1B /* HomeViewController.swift */,
 				CE85749B2B4BFEA50025ED1B /* HomeView.swift */,
 				CEC764282B5122E7000578E9 /* HomeReactor.swift */,
@@ -741,6 +750,16 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		CED7C2C32B52348E0069EA0A /* WSList */ = {
+			isa = PBXGroup;
+			children = (
+				CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */,
+				CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */,
+				CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */,
+			);
+			path = WSList;
+			sourceTree = "<group>";
+		};
 		CEE989962B4A52E100590A19 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +889,7 @@
 				CEA8F9D52B4993A20062B45C /* Then */,
 				CE85748E2B4AFD810025ED1B /* ReactorKit */,
 				CEC7642B2B5123F1000578E9 /* Kingfisher */,
+				CED7C2C12B5230D40069EA0A /* SideMenu */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -955,6 +975,7 @@
 				CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */,
 				CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -1008,6 +1029,7 @@
 				CECFCDF12B4FCAB800EB0DB7 /* AuthIntercepter.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
+				CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */,
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
@@ -1049,6 +1071,7 @@
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
 				CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */,
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
+				CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */,
 				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
@@ -1101,6 +1124,7 @@
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,
+				CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */,
 				CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */,
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CE85749A2B4BFE9B0025ED1B /* HomeViewController.swift in Sources */,
@@ -1546,6 +1570,14 @@
 				minimumVersion = 7.10.2;
 			};
 		};
+		CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 		CEEE4EAE2B46A1340059D1AF /* XCRemoteSwiftPackageReference "AnyFormatKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/luximetr/AnyFormatKit.git";
@@ -1614,6 +1646,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		CED7C2C12B5230D40069EA0A /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
 		};
 		CEEE4EAF2B46A1340059D1AF /* AnyFormatKit */ = {
 			isa = XCSwiftPackageProductDependency;

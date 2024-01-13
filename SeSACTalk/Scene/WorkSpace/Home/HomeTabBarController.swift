@@ -38,7 +38,7 @@ final class HomeTabBarController: UITabBarController {
         let info = InfoViewController()
         info.tabBarItem.title = "info"
         
-        viewControllers = [home, info]
+        viewControllers = [homeNav, info]
         
     }
 }
