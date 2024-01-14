@@ -21,6 +21,7 @@ final class WorkspaceListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {

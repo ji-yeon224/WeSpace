@@ -70,7 +70,7 @@ extension UIImageView {
     
     // 서버에서 받을 이미지 full url
     private func getPhotoURL(_ url: String) -> String {
-        return BaseURL.baseURL + url
+        return BaseURL.baseURL + "/v1" + url
     }
     
 }

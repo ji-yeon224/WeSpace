@@ -55,6 +55,8 @@ final class HomeViewController: BaseViewController, View {
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
         setupSideMenu()
+        
+        configData()
     }
     
     private func setupSideMenu() {
@@ -71,6 +73,11 @@ final class HomeViewController: BaseViewController, View {
         
         
         
+    }
+    
+    private func configData() {
+        guard let workspace = workspace else { return }
+        mainView.topView.wsImageView.setImage(with: workspace.thumbnail)
     }
     
 }
