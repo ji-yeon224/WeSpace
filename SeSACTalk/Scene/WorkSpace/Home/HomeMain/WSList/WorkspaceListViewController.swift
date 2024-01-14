@@ -21,12 +21,14 @@ final class WorkspaceListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-        
+        navigationController?.navigationBar.isHidden = true
     }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         delegate?.viewDisappear()
+        print(#function)
     }
    
     

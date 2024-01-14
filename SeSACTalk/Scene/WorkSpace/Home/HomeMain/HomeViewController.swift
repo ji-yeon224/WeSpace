@@ -20,6 +20,7 @@ final class HomeViewController: BaseViewController, View {
     private lazy var menu = SideMenuNavigationController(rootViewController: wslistVc)
     
     private var workspace: WorkSpace?
+    private var isOpenSideVC: Bool = false
     
     override func loadView() {
         self.view = mainView
@@ -109,14 +110,9 @@ extension HomeViewController {
         mainView.topView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
-                owner.present(owner.menu, animated: true, completion: nil)
-                
-            }
-            .disposed(by: disposeBag)
-        view.rx.swipeGesture(.right)
-            .when(.recognized)
-            .bind(with: self) { owner, _ in
-                owner.present(owner.menu, animated: true, completion: nil)
+                owner.present(owner.menu, animated: true) {
+                    owner.isOpenSideVC = true
+                }
             }
             .disposed(by: disposeBag)
         
@@ -190,6 +186,7 @@ extension HomeViewController {
 extension HomeViewController: WorkSpaceListDelegate {
     func viewDisappear() {
         mainView.alphaView.isHidden = true
+        isOpenSideVC = false
     }
     func viewAppear() {
         mainView.alphaView.isHidden = false
