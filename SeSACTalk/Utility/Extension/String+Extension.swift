@@ -41,4 +41,22 @@ extension String {
         return pred.evaluate(with: self)
     }
     
+    static func convertToDate(format: String, date: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+        formatter.dateFormat = format
+        return formatter.date(from: date)
+    }
+    
+    // 서버에서 받은 데이터 포멧 변경하기
+    func convertDateFormat() -> String {
+        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", date: self) {
+            return DateFormatter.convertToString(format: "yy. MM. dd", date: dateType)
+            
+        }
+        
+        return ""
+    }
+    
 }

@@ -142,6 +142,8 @@
 		CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989AD2B4AAC2F00590A19 /* CommonFormView.swift */; };
 		CEEAA1D52B53FB9800EA1C58 /* WorkspaceEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEAA1D42B53FB9800EA1C58 /* WorkspaceEmptyView.swift */; };
 		CEEAA1D72B54085400EA1C58 /* WorkspaceListSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEAA1D62B54085400EA1C58 /* WorkspaceListSettingView.swift */; };
+		CEEAA1D92B540E2500EA1C58 /* WorkspaceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEAA1D82B540E2500EA1C58 /* WorkspaceListCell.swift */; };
+		CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEAA1DA2B54278700EA1C58 /* DateFormatter+Extension.swift */; };
 		CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */; };
 		CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAA2B4697650059D1AF /* Regex.swift */; };
 		CEEE4EAD2B46987F0059D1AF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */; };
@@ -303,6 +305,8 @@
 		CEE989AD2B4AAC2F00590A19 /* CommonFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonFormView.swift; sourceTree = "<group>"; };
 		CEEAA1D42B53FB9800EA1C58 /* WorkspaceEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceEmptyView.swift; sourceTree = "<group>"; };
 		CEEAA1D62B54085400EA1C58 /* WorkspaceListSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListSettingView.swift; sourceTree = "<group>"; };
+		CEEAA1D82B540E2500EA1C58 /* WorkspaceListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListCell.swift; sourceTree = "<group>"; };
+		CEEAA1DA2B54278700EA1C58 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
 		CEEE4EAA2B4697650059D1AF /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -568,6 +572,7 @@
 			children = (
 				CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */,
 				CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */,
+				CEEAA1D82B540E2500EA1C58 /* WorkspaceListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -679,6 +684,7 @@
 				CE5D066C2B4EDA0400C067A3 /* UIImage+Extension.swift */,
 				CE5D06812B4F057F00C067A3 /* Data+Extension.swift */,
 				CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */,
+				CEEAA1DA2B54278700EA1C58 /* DateFormatter+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1106,6 +1112,7 @@
 				CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
 				CEA8F9B32B492D370062B45C /* UserDefaultsManager.swift in Sources */,
+				CEEAA1D92B540E2500EA1C58 /* WorkspaceListCell.swift in Sources */,
 				CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */,
@@ -1127,6 +1134,7 @@
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
+				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
