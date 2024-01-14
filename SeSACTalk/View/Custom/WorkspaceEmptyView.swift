@@ -44,7 +44,7 @@ final class WorkspaceEmptyView: BaseView {
         
         makeButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self).inset(24)
-            make.top.equalTo(emptyMessage.snp.bottom).offset(10)
+            make.top.equalTo(emptyMessage.snp.bottom).offset(14)
             make.height.equalTo(Constants.Design.buttonHeight)
         }
     }

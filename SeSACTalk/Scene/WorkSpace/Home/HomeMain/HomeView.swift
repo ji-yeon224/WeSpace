@@ -30,9 +30,9 @@ final class HomeView: BaseView {
     
     override func setConstraints() {
         topView.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.horizontalEdges.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(120)
+            make.top.horizontalEdges.equalToSuperview()
+//            make.top.equalTo(safeAreaLayoutGuide)
         }
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)

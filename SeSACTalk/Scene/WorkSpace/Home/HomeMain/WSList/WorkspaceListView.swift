@@ -10,7 +10,7 @@ import UIKit
 final class WorkspaceListView: BaseView {
     
     private let backView = UIView().then {
-        $0.backgroundColor = Constants.Color.background
+        $0.backgroundColor = Constants.Color.secondaryBG
         $0.layer.cornerRadius = 25
     }
     private let divider = UIView().then {
@@ -49,11 +49,17 @@ final class WorkspaceListView: BaseView {
         }
         
         topView.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.horizontalEdges.equalTo(backView)
-            make.top.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(120)
+            make.top.horizontalEdges.equalTo(backView)
+//            make.top.equalTo(safeAreaLayoutGuide)
         }
         setTopViewConstraints()
+        
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(divider.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(helpView.snp.top)
+        }
         
         helpView.snp.makeConstraints { make in
             make.bottom.equalTo(safeAreaLayoutGuide)
@@ -79,10 +85,7 @@ final class WorkspaceListView: BaseView {
             make.bottom.equalTo(topView).inset(16)
             make.leading.equalTo(topView).inset(18)
         }
-        emptyView.snp.makeConstraints { make in
-            make.top.equalTo(divider.snp.bottom)
-            make.horizontalEdges.bottom.equalToSuperview()
-        }
+       
     }
     
 }
