@@ -16,11 +16,10 @@ final class HomeViewController: BaseViewController, View {
     var disposeBag = DisposeBag()
     private let requestWSInfo = PublishSubject<Bool>()
     private let requestDMsInfo = PublishSubject<Bool>()
-    private let wslistVc = WorkspaceListViewController()
-    private lazy var menu = SideMenuNavigationController(rootViewController: wslistVc)
+    private let requestAllChannelInfo = PublishSubject<Bool>()
     
     private var workspace: WorkSpace?
-    private var isOpenSideVC: Bool = false
+    private var allWorkspace: [WorkSpace]?
     
     override func loadView() {
         self.view = mainView
@@ -43,14 +42,12 @@ final class HomeViewController: BaseViewController, View {
         self.reactor = HomeReactor()
         requestWSInfo.onNext(true)
         requestDMsInfo.onNext(true)
-//        wslistVc.delegate = self
-        
-        
+        requestAllChannelInfo.onNext(true)
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("appear")
+//        print("appear")
     }
     
     override func configure() {
@@ -58,26 +55,10 @@ final class HomeViewController: BaseViewController, View {
         sectionSnapShot()
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
-//        setupSideMenu()
         
         configData()
     }
     
-    private func setupSideMenu() {
-        SideMenuManager.default.leftMenuNavigationController = menu
-        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view, forMenu: .left)
-        menu.statusBarEndAlpha = 0
-        menu.presentationStyle = .menuSlideIn
-        menu.enableSwipeToDismissGesture = true
-        menu.menuWidth = Constants.Design.deviceWidth / 1.3
-        menu.pushStyle = .default
-        menu.presentationStyle.menuStartAlpha = 1
-        menu.presentationStyle.backgroundColor = .alpha
-        
-        
-        
-    }
     
     private func configData() {
         guard let workspace = workspace else { return }
@@ -108,14 +89,23 @@ extension HomeViewController {
             .map { _ in Reactor.Action.requestDMsInfo(id: workspace.workspaceId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+        requestAllChannelInfo
+            .map { _ in Reactor.Action.requestAllChannel }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         mainView.topView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
-                SideMenuVCManager.shared.presentSideMenu(workspace: [], vc: owner)
+                SideMenuVCManager.shared.presentSideMenu()
             }
             .disposed(by: disposeBag)
+        
+//        view.rx.swipeGesture(.right)
+//            .when(.recognized)
+//            .bind(with: self) { owner, _ in
+//                SideMenuVCManager.shared.presentSideMenu(workspace: [], vc: owner)
+//            }
         
         NotificationCenter.default.rx.notification(.isSideVCAppear)
             .bind(with: self) { owner, noti in
@@ -149,6 +139,15 @@ extension HomeViewController {
                 let dmSection = WorkspaceItem(title: "다이렉트 메세지", subItems: value)
                 owner.updateSnapShot(section: .dm, item: [dmSection])
                 
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.allWorkspace }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                owner.allWorkspace = value
+                SideMenuVCManager.shared.initSideMenu(vc: owner, workspace: value)
             }
             .disposed(by: disposeBag)
     }
@@ -192,12 +191,3 @@ extension HomeViewController {
     }
 }
 
-//extension HomeViewController: WorkSpaceListDelegate {
-//    func viewDisappear() {
-//        mainView.alphaView.isHidden = true
-//        isOpenSideVC = false
-//    }
-//    func viewAppear() {
-//        mainView.alphaView.isHidden = false
-//    }
-//}

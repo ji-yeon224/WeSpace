@@ -13,7 +13,8 @@ final class HomeReactor: Reactor {
         channelItems: [],
         loginRequest: false,
         message: "",
-        dmRoomItems: []
+        dmRoomItems: [],
+        allWorkspace: []
     )
     
     
@@ -21,6 +22,7 @@ final class HomeReactor: Reactor {
     enum Action {
         case requestInfo(id: Int)
         case requestDMsInfo(id: Int)
+        case requestAllChannel
     }
     
     enum Mutation {
@@ -28,6 +30,7 @@ final class HomeReactor: Reactor {
         case msg(msg: String)
         case loginRequest
         case dmsInfo(dms: DMsRoomResDTO)
+        case fetchAllWorkspace(data: [WorkspaceDto])
     }
     
     struct State {
@@ -35,6 +38,7 @@ final class HomeReactor: Reactor {
         var loginRequest: Bool
         var message: String
         var dmRoomItems: [WorkspaceItem]
+        var allWorkspace: [WorkSpace]
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -43,6 +47,8 @@ final class HomeReactor: Reactor {
             return requestOneChannelInfo(id: id)
         case .requestDMsInfo(id: let id):
             return reqeustDMRoomInfo(id: id)
+        case .requestAllChannel:
+            return requestAllWorkspace()
         }
     }
     
@@ -61,6 +67,11 @@ final class HomeReactor: Reactor {
             newState.dmRoomItems = dms.map {
                 return WorkspaceItem(title: "'", subItems: [], item: $0.toDomain())
             }
+        case .fetchAllWorkspace(data: let data):
+            newState.allWorkspace = data.map{
+                $0.toDomain()
+            }
+        
         }
         
         return newState
@@ -69,6 +80,20 @@ final class HomeReactor: Reactor {
 }
 
 extension HomeReactor {
+    
+    private func requestAllWorkspace() -> Observable<Mutation> {
+        return WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: AllWorkspaceReDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let value):
+                    return Mutation.fetchAllWorkspace(data: value ?? [])
+                case .failure(let error):
+                    return Mutation.msg(msg: error.localizedDescription)
+                }
+                
+            }
+    }
     
     private func reqeustDMRoomInfo(id: Int) -> Observable<Mutation> {
         

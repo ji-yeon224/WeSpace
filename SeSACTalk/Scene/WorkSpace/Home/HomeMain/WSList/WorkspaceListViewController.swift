@@ -11,10 +11,8 @@ import RxGesture
 
 final class WorkspaceListViewController: BaseViewController {
     
-    let data = [
-        WorkSpace(workspaceId: 1, name: "2222", description: "sssss", thumbnail: "/static/workspaceThumbnail/1704906408551.jpeg", ownerId: 1, createdAt: "2024-01-11T02:06:48.570Z"),
-        WorkSpace(workspaceId: 1, name: "2222", description: "sssss", thumbnail: "/static/workspaceThumbnail/1704906408551.jpeg", ownerId: 1, createdAt: "2024-01-11T02:06:48.570Z")
-    ]
+    var workspaceData: [WorkSpace] = []
+    
     
     private let mainView = WorkspaceListView()
     weak var delegate: WorkSpaceListDelegate?
@@ -46,8 +44,7 @@ final class WorkspaceListViewController: BaseViewController {
     private func updateSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<String, WorkSpace>()
         snapshot.appendSections([""])
-        snapshot.appendItems(data)
-//        snapshot.appendItems(account, toSection: "계정")
+        snapshot.appendItems(workspaceData)
         mainView.dataSource.apply(snapshot)
     }
     

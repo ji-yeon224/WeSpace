@@ -7,7 +7,6 @@
 
 import UIKit
 import SideMenu
-import RxSwift
 
 final class SideMenuVCManager {
     
@@ -18,14 +17,15 @@ final class SideMenuVCManager {
     private var listVC = WorkspaceListViewController()
     private lazy var menuVC: SideMenuNavigationController =  SideMenuNavigationController(rootViewController: listVC)
     
-    let isViewAppear = PublishSubject<Bool>()
     
-    
-    func presentSideMenu(workspace: [WorkSpace]?, vc: UIViewController){
+    func initSideMenu(vc: UIViewController, workspace: [WorkSpace]) {
         self.vc = vc
-        menuVC =  SideMenuNavigationController(rootViewController: WorkspaceListViewController())
         setupSideMenu()
-        vc.present(menuVC, animated: true)
+        listVC.workspaceData = workspace
+    }
+    
+    func presentSideMenu(){
+        vc?.present(menuVC, animated: true)
     }
     
     private func setupSideMenu() {
