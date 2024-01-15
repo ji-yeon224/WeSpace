@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         IQKeyboardManager.shared.enableAutoToolbar = false
         UIApplication.shared.registerForRemoteNotifications()
         KakaoSDK.initSDK(appKey: APIKey.kakaokey)
+        
         return true
     }
 

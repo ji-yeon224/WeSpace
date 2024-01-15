@@ -8,7 +8,8 @@
 import Foundation
 
 
-struct WorkSpace {
+struct WorkSpace: Hashable {
+    let id = UUID()
     let workspaceId: Int
     let name: String
     let description: String?

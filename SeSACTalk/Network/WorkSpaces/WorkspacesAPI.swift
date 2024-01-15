@@ -11,6 +11,7 @@ import Moya
 enum WorkspacesAPI {
     case create(data: WsCreateReqDTO)
     case fetchAll
+    case fetchOne(id: Int)
     
 }
 
@@ -23,6 +24,8 @@ extension WorkspacesAPI: TargetType {
         switch self {
         case .create, .fetchAll:
             return Endpoint.workspaces.rawValue
+        case .fetchOne(id: let id):
+            return Endpoint.workspaces.rawValue + "/\(id)"
         }
     }
     
@@ -30,7 +33,7 @@ extension WorkspacesAPI: TargetType {
         switch self {
         case .create:
             return .post
-        case .fetchAll:
+        case .fetchAll, .fetchOne:
             return .get
         }
     }
@@ -40,7 +43,7 @@ extension WorkspacesAPI: TargetType {
         case .create(let data):
             let multipart = MultipartFormDataManager.shared.convertToMultipart(data: data.convertToMap(), files: [data.image])
             return .uploadMultipart(multipart)
-        case .fetchAll:
+        case .fetchAll, .fetchOne:
             return .requestPlain
         }
     }
@@ -49,7 +52,7 @@ extension WorkspacesAPI: TargetType {
         switch self {
         case .create:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
-        case .fetchAll:
+        case .fetchAll, .fetchOne:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         }
     }

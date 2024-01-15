@@ -22,6 +22,6 @@ struct WorkspaceDto: Decodable {
    
     
 }
-typealias WorkspaceResponseDTO = [WorkspaceDto]
+typealias AllWorkspaceReDTO = [WorkspaceDto]
 
 

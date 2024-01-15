@@ -14,11 +14,15 @@ final class HomeView: BaseView {
         $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
     }
+    let alphaView = UIView().then {
+        $0.backgroundColor = .alpha
+        $0.isHidden = true
+    }
     var dataSource: UICollectionViewDiffableDataSource<WorkspaceType, WorkspaceItem>!
     
     override func configure() {
         backgroundColor = .white
-        [topView, collectionView].forEach {
+        [topView, collectionView, alphaView].forEach {
             addSubview($0)
         }
         configureDataSource()
@@ -26,14 +30,18 @@ final class HomeView: BaseView {
     
     override func setConstraints() {
         topView.snp.makeConstraints { make in
-            make.height.equalTo(60)
-            make.horizontalEdges.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(120)
+            make.top.horizontalEdges.equalToSuperview()
+//            make.top.equalTo(safeAreaLayoutGuide)
         }
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)
             make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
+        alphaView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
     }
     
 }
@@ -71,8 +79,8 @@ extension HomeView {
             cell.titleLabel.text = itemIdentifier.name
             cell.imageView.image = .hashTagThin
         }
-        let dmCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, DM> { cell, indexPath, itemIdentifier in
-            cell.titleLabel.text = itemIdentifier.name
+        let dmCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, DMsRoom> { cell, indexPath, itemIdentifier in
+            cell.titleLabel.text = itemIdentifier.user.nickname
             cell.imageView.image = .seSACBot
         }
         let newFriendCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, NewFriend> { cell, indexPath, itemIdentifier in
@@ -84,11 +92,11 @@ extension HomeView {
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             
             
-            if itemIdentifier.subItems.count == 0 {
+            if itemIdentifier.item != nil {
                 if let channel = itemIdentifier.item as? Channel {
                     return collectionView.dequeueConfiguredReusableCell(using: channelCell, for: indexPath, item: channel)
                 }
-                else if let dm = itemIdentifier.item as? DM {
+                else if let dm = itemIdentifier.item as? DMsRoom {
                     return collectionView.dequeueConfiguredReusableCell(using: dmCell, for: indexPath, item: dm)
                 }
                 else if let newFirend = itemIdentifier.item as? NewFriend {

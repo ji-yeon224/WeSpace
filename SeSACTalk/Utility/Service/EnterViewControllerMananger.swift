@@ -17,7 +17,7 @@ final class EnterViewControllerMananger {
     private init() { }
     
     func fetchWorkspace() -> Observable<UIViewController> {
-        return WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: WorkspaceResponseDTO.self)
+        return WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: AllWorkspaceReDTO.self)
             .asObservable()
             .map { value -> UIViewController in
                 switch value {
