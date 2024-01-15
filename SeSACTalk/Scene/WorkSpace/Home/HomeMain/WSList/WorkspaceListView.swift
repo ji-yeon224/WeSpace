@@ -9,6 +9,8 @@ import UIKit
 
 final class WorkspaceListView: BaseView {
     
+    weak var delegate: WorkSpaceListDelegate?
+    
     var workspaceId = -1
     
     private let backView = UIView().then {
@@ -126,7 +128,14 @@ final class WorkspaceListView: BaseView {
             cell.dateLabel.text = itemIdentifier.createdAt.convertDateFormat()
             if itemIdentifier.workspaceId == self.workspaceId {
                 cell.backView.backgroundColor = .customGray
+                cell.menuButton.isHidden = false
+                cell.menuButton.rx.tap
+                    .bind(with: self) { owner, _ in
+                        owner.delegate?.workspaceSettingTapped()
+                    }
+                    .disposed(by: cell.disposeBag)
             }
+            
         }
         
         
@@ -137,3 +146,4 @@ final class WorkspaceListView: BaseView {
         })
     }
 }
+

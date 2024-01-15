@@ -29,6 +29,7 @@ final class UserDefaultsManager {
         case accessToken
         case refreshToken
         case nickName
+        case userId
     }
     
     @Defaults(key: Key.isLogin.rawValue, defaultValue: false) static var isLogin
@@ -36,6 +37,7 @@ final class UserDefaultsManager {
     @Defaults(key: Key.accessToken.rawValue, defaultValue: "") static var accessToken
     @Defaults(key: Key.refreshToken.rawValue, defaultValue: "") static var refreshToken
     @Defaults(key: Key.nickName.rawValue, defaultValue: "") static var nickName
+    @Defaults(key: Key.userId.rawValue, defaultValue: -1) static var userId
     
     
     static func setToken(token: Token) {
@@ -48,6 +50,11 @@ final class UserDefaultsManager {
         UserDefaultsManager.isLogin = false
         UserDefaultsManager.accessToken = ""
         UserDefaultsManager.refreshToken = ""
+    }
+    
+    static func setUserInfo(id: Int, nickName: String) {
+        UserDefaultsManager.userId = id
+        UserDefaultsManager.nickName = nickName
     }
     
 }

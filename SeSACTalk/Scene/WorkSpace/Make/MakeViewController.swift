@@ -94,7 +94,12 @@ final class MakeViewController: BaseViewController, View {
             .map { $0.completeCreate }
             .filter { $0.1 == true }
             .bind(with: self) { owner, value in
-                print("create", value.0?.name)
+                if let value = value.0 {
+                    let nav = UINavigationController(rootViewController: HomeTabBarController(workspace: value))
+                    owner.view.window?.rootViewController = nav
+                    owner.view.window?.makeKeyAndVisible()
+                }
+               
             }
             .disposed(by: disposeBag)
     }

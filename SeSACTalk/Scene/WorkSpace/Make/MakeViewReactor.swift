@@ -30,7 +30,7 @@ final class MakeViewReactor: Reactor {
     struct State {
         var buttonEnable: Bool
         var msg: String
-        var completeCreate: (WorkspaceDto?, Bool)
+        var completeCreate: (WorkSpace?, Bool)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -55,7 +55,7 @@ final class MakeViewReactor: Reactor {
         case .msg(let msg):
             newState.msg = msg
         case .successCreate(data: let data):
-            newState.completeCreate = (data, true)
+            newState.completeCreate = (data.toDomain(), true)
         }
         return newState
     }

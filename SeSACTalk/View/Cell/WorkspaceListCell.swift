@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 final class WorkspaceListCell: BaseCollectionViewCell {
     
     static let identifier = "WorkspaceListCell"
+    var disposeBag = DisposeBag()
     
     let backView = UIView().then {
         $0.layer.cornerRadius = 8
@@ -34,6 +36,13 @@ final class WorkspaceListCell: BaseCollectionViewCell {
     
     let menuButton = CustomButton(image: Constants.Image.dot).then {
         $0.tintColor = .basicText
+        $0.isHidden = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        
     }
     
     override func configure() {

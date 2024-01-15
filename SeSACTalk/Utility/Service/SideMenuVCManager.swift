@@ -18,11 +18,11 @@ final class SideMenuVCManager {
     private lazy var menuVC: SideMenuNavigationController =  SideMenuNavigationController(rootViewController: listVC)
     
     
-    func initSideMenu(vc: UIViewController, workspace: [WorkSpace], workspaceId: Int? = nil) {
+    func initSideMenu(vc: UIViewController, workspace: [WorkSpace], curWS: WorkSpace? = nil) {
         self.vc = vc
         setupSideMenu()
         listVC.workspaceData = workspace
-        listVC.workspaceId = workspaceId
+        listVC.workspace = curWS
     }
     
     func presentSideMenu(){

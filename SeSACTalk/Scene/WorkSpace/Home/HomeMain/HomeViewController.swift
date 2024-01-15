@@ -147,7 +147,7 @@ extension HomeViewController {
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
                 owner.allWorkspace = value
-                SideMenuVCManager.shared.initSideMenu(vc: owner, workspace: value, workspaceId: owner.workspace?.workspaceId)
+                SideMenuVCManager.shared.initSideMenu(vc: owner, workspace: value, curWS: owner.workspace)
             }
             .disposed(by: disposeBag)
     }

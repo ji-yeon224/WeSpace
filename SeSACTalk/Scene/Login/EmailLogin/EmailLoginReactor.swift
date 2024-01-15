@@ -112,10 +112,10 @@ final class EmailLoginReactor: Reactor {
             .map { result -> Mutation in
                 switch result {
                 case .success(let response):
-                    if let result = response {
-                        let token = Token(accessToken: result.accessToken, refreshToken: result.refreshToken)
+                    if let response = response {
+                        let token = Token(accessToken: response.accessToken, refreshToken: response.refreshToken)
                         UserDefaultsManager.setToken(token: token)
-                        UserDefaultsManager.nickName = result.nickname
+                        UserDefaultsManager.setUserInfo(id: response.user_id, nickName: response.nickname)
                         
                     }
                     return Mutation.loginSuccess

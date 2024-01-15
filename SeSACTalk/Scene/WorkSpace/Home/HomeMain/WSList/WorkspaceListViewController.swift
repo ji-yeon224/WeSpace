@@ -7,18 +7,27 @@
 
 import UIKit
 import SideMenu
+
 import RxSwift
+import RxCocoa
 import RxGesture
 
 final class WorkspaceListViewController: BaseViewController {
     
     var workspaceData: [WorkSpace] = []
-    var workspaceId: Int?
+    var workspace: WorkSpace?
     
     private let disposeBag = DisposeBag()
     
     private let mainView = WorkspaceListView()
-    weak var delegate: WorkSpaceListDelegate?
+//    weak var delegate: WorkSpaceListDelegate?
+    
+    private let workspaceEdit = PublishRelay<Bool>()
+    private let workspaceExit = PublishRelay<Bool>()
+    private let changeManager = PublishRelay<Bool>()
+    private let deleteWorkspaceList = PublishRelay<Bool>()
+
+    
     override func loadView() {
         self.view = mainView
         
@@ -26,7 +35,7 @@ final class WorkspaceListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mainView.delegate = self
         
     }
     
@@ -39,8 +48,8 @@ final class WorkspaceListViewController: BaseViewController {
             bindEmpty()
         } else {
             mainView.showWorkspaceList(show: true)
-            if let id = workspaceId {
-                mainView.workspaceId = id
+            if let ws = workspace {
+                mainView.workspaceId = ws.workspaceId
             }
             
             updateSnapShot()
@@ -59,6 +68,9 @@ final class WorkspaceListViewController: BaseViewController {
                 owner.present(nav, animated: true)
             }
             .disposed(by: disposeBag)
+        
+       
+        
         
     }
     
@@ -92,4 +104,53 @@ final class WorkspaceListViewController: BaseViewController {
         mainView.dataSource.apply(snapshot)
     }
     
+}
+
+extension WorkspaceListViewController: WorkSpaceListDelegate {
+    func workspaceSettingTapped() {
+        
+        if workspace?.ownerId == UserDefaultsManager.userId {
+            present(showManagerActionSheet(), animated: true)
+        } else {
+            present(showActionSheet(), animated: true)
+        }
+        
+    }
+    
+    private func showManagerActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let edit = UIAlertAction(title: "워크스페이스 편집", style: .default) { _ in
+            self.workspaceEdit.accept(true)
+        }
+        let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
+            self.workspaceExit.accept(true)
+        }
+        let changeManager = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) { _ in
+            self.changeManager.accept(true)
+        }
+        let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { _ in
+            self.deleteWorkspaceList.accept(true)
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        [edit, exit, changeManager, delete, cancel].forEach {
+            actionSheet.addAction($0)
+        }
+        return actionSheet
+    }
+    
+    private func showActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
+            self.workspaceExit.accept(true)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        [exit, cancel].forEach {
+            actionSheet.addAction($0)
+        }
+        
+        return actionSheet
+    }
 }
