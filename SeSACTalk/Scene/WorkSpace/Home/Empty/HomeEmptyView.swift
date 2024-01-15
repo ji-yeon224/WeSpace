@@ -24,10 +24,15 @@ final class HomeEmptyView: BaseView {
     }
     let makeButton = CustomButton(bgColor: .brand, title: Text.makeWorkspace)
     
+    let alphaView = UIView().then {
+        $0.backgroundColor = .alpha
+        $0.isHidden = true
+    }
+    
     override func configure() {
         super.configure()
         
-        [topView,noWorkSpaceLabel, message, noWorkSpaceImageView, makeButton].forEach {
+        [topView,noWorkSpaceLabel, message, noWorkSpaceImageView, makeButton, alphaView].forEach {
             addSubview($0)
         }
         
@@ -57,6 +62,9 @@ final class HomeEmptyView: BaseView {
         makeButton.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide).inset(24)
             make.height.equalTo(Constants.Design.buttonHeight)
+        }
+        alphaView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     

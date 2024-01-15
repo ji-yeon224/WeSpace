@@ -25,8 +25,15 @@ final class WorkspaceListViewController: BaseViewController {
         super.viewDidLoad()
         view.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = true
-        updateSnapShot()
-        mainView.showWorkspaceList(show: true)
+        
+        if workspaceData.isEmpty {
+            mainView.showWorkspaceList(show: false)
+        } else {
+            mainView.showWorkspaceList(show: true)
+            updateSnapShot()
+        }
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

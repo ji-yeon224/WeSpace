@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 final class HomeEmptyViewController: BaseViewController {
     
@@ -32,11 +33,10 @@ final class HomeEmptyViewController: BaseViewController {
     }
     override func configure() {
         view.backgroundColor = Constants.Color.secondaryBG
+        SideMenuVCManager.shared.initSideMenu(vc: self, workspace: [])
     }
     
     func bind() {
-        let input = HomeEmptyViewModel.Input(requestUserInfo: requestUserInfo)
-        let output = viewModel.transform(input: input)
         
         mainView.makeButton.rx.tap
             .bind(with: self) { owner, _ in
@@ -44,6 +44,21 @@ final class HomeEmptyViewController: BaseViewController {
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
                 nav.setupBarAppearance()
                 owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.topView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                SideMenuVCManager.shared.presentSideMenu()
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.isSideVCAppear)
+            .bind(with: self) { owner, noti in
+                if let show = noti.userInfo?["show"] as? Bool {
+                    owner.mainView.alphaView.isHidden = !show
+                }
             }
             .disposed(by: disposeBag)
         

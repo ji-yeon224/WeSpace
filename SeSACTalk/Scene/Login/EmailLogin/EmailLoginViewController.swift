@@ -131,7 +131,8 @@ final class EmailLoginViewController: BaseViewController, View {
                 if let data = data.0 {
                     owner.transitionHomeView(vc: HomeTabBarController(workspace: data))
                 } else {
-                    owner.transitionHomeView(vc: HomeEmptyViewController())
+                    let nav = UINavigationController(rootViewController: HomeEmptyViewController())
+                    owner.transitionHomeView(vc: nav)
                 }
             }
             .disposed(by: disposeBag)

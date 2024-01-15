@@ -27,7 +27,8 @@ final class EnterViewControllerMananger {
                         return HomeTabBarController(workspace: data[0].toDomain())
                         
                     } else {
-                        return HomeEmptyViewController()
+                        let nav = UINavigationController(rootViewController: HomeEmptyViewController())
+                        return nav
                     }
                 case .failure(_):
                     return OnBoardingViewController()
