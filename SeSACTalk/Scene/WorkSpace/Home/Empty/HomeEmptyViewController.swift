@@ -36,7 +36,7 @@ final class HomeEmptyViewController: BaseViewController {
         SideMenuVCManager.shared.initSideMenu(vc: self, workspace: [])
     }
     
-    func bind() {
+    private func bind() {
         
         mainView.makeButton.rx.tap
             .bind(with: self) { owner, _ in

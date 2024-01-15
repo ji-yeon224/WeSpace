@@ -7,12 +7,15 @@
 
 import UIKit
 import SideMenu
+import RxSwift
 import RxGesture
 
 final class WorkspaceListViewController: BaseViewController {
     
     var workspaceData: [WorkSpace] = []
     var workspaceId: Int?
+    
+    private let disposeBag = DisposeBag()
     
     private let mainView = WorkspaceListView()
     weak var delegate: WorkSpaceListDelegate?
@@ -23,11 +26,17 @@ final class WorkspaceListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+    }
+    
+    override func configure() {
         view.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = true
-        
+        bindAction()
         if workspaceData.isEmpty {
             mainView.showWorkspaceList(show: false)
+            bindEmpty()
         } else {
             mainView.showWorkspaceList(show: true)
             if let id = workspaceId {
@@ -38,6 +47,30 @@ final class WorkspaceListViewController: BaseViewController {
         }
         
         
+    }
+    
+    private func bindAction() {
+        mainView.addWorkspaceView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                let vc = MakeViewController()
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func bindEmpty() {
+        mainView.emptyView.makeButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = MakeViewController()
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
