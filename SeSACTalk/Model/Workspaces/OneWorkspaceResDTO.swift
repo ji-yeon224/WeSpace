@@ -18,4 +18,8 @@ struct OneWorkspaceResDTO: Decodable {
     let channels: [ChannelResDTO]
     let workspaceMembers: [UserResDTO]
     
+    func toDomain() -> WorkSpace {
+        return .init(workspaceId: workspace_id, name: name, description: description, thumbnail: thumbnail, ownerId: owner_id, createdAt: createdAt)
+    }
+    
 }

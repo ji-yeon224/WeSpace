@@ -16,7 +16,7 @@ final class HomeViewController: BaseViewController, View {
     var disposeBag = DisposeBag()
     private let requestWSInfo = PublishSubject<Bool>()
     private let requestDMsInfo = PublishSubject<Bool>()
-    private let requestAllChannelInfo = PublishSubject<Bool>()
+    private let requestAllWorkspaceInfo = PublishSubject<Bool>()
     
     private var workspace: WorkSpace?
     private var allWorkspace: [WorkSpace]?
@@ -42,7 +42,7 @@ final class HomeViewController: BaseViewController, View {
         self.reactor = HomeReactor()
         requestWSInfo.onNext(true)
         requestDMsInfo.onNext(true)
-        requestAllChannelInfo.onNext(true)
+        requestAllWorkspaceInfo.onNext(true)
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -56,14 +56,8 @@ final class HomeViewController: BaseViewController, View {
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
         
-        configData()
     }
     
-    
-    private func configData() {
-        guard let workspace = workspace else { return }
-        mainView.topView.wsImageView.setImage(with: workspace.thumbnail)
-    }
     
 }
 
@@ -89,8 +83,8 @@ extension HomeViewController {
             .map { _ in Reactor.Action.requestDMsInfo(id: workspace.workspaceId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        requestAllChannelInfo
-            .map { _ in Reactor.Action.requestAllChannel }
+        requestAllWorkspaceInfo
+            .map { _ in Reactor.Action.requestAllWorkspace }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -119,7 +113,7 @@ extension HomeViewController {
     
     private func bindState(reactor: HomeReactor) {
         reactor.state
-            .map { $0.channelItems }
+            .map { $0.channelItem }
             .filter{
                 !$0.isEmpty
             }
@@ -150,7 +144,25 @@ extension HomeViewController {
                 SideMenuVCManager.shared.initSideMenu(vc: owner, workspace: value, curWS: owner.workspace)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.workspaceItem }
+            .filter {
+                $0 != .none
+            }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                if let value = value {
+                    owner.configData(ws: value)
+                }
+            }
+            .disposed(by: disposeBag)
     }
+    private func configData(ws: WorkSpace) {
+        mainView.topView.wsImageView.setImage(with: ws.thumbnail)
+        mainView.topView.workSpaceName.text = ws.name
+    }
+    
     
 }
 

@@ -10,7 +10,8 @@ import ReactorKit
 
 final class HomeReactor: Reactor {
     var initialState: State = State(
-        channelItems: [],
+        channelItem: [],
+        workspaceItem: nil,
         loginRequest: false,
         message: "",
         dmRoomItems: [],
@@ -22,11 +23,12 @@ final class HomeReactor: Reactor {
     enum Action {
         case requestInfo(id: Int)
         case requestDMsInfo(id: Int)
-        case requestAllChannel
+        case requestAllWorkspace
     }
     
     enum Mutation {
-        case wsInfo(channels: [ChannelResDTO])
+        case channelInfo(channels: [ChannelResDTO])
+        case wsInfo(ws: OneWorkspaceResDTO)
         case msg(msg: String)
         case loginRequest
         case dmsInfo(dms: DMsRoomResDTO)
@@ -34,7 +36,8 @@ final class HomeReactor: Reactor {
     }
     
     struct State {
-        var channelItems: [WorkspaceItem]
+        var channelItem: [WorkspaceItem]
+        var workspaceItem: WorkSpace?
         var loginRequest: Bool
         var message: String
         var dmRoomItems: [WorkspaceItem]
@@ -47,7 +50,7 @@ final class HomeReactor: Reactor {
             return requestOneChannelInfo(id: id)
         case .requestDMsInfo(id: let id):
             return reqeustDMRoomInfo(id: id)
-        case .requestAllChannel:
+        case .requestAllWorkspace:
             return requestAllWorkspace()
         }
     }
@@ -55,10 +58,16 @@ final class HomeReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case .wsInfo(let channels):
-            newState.channelItems = channels.map {
+        case .channelInfo(let channels):
+            newState.channelItem = channels.map {
                 return WorkspaceItem(title: "", subItems: [], item: $0.toDomain())
             }
+            
+        case .wsInfo(ws: let ws):
+            newState.channelItem = ws.channels.map {
+                return WorkspaceItem(title: "", subItems: [], item: $0.toDomain())
+            }
+            newState.workspaceItem = ws.toDomain()
         case .msg(let msg):
             newState.message = msg
         case .loginRequest:
@@ -126,7 +135,7 @@ extension HomeReactor {
                 switch result {
                 case .success(let response):
                     if let response = response {
-                        return Mutation.wsInfo(channels: response.channels)
+                        return Mutation.wsInfo(ws: response)//Mutation.channelInfo(channels: response.channels)
                     } else {
                         return Mutation.msg(msg: "오류가 발생하였습니다.")
                     }

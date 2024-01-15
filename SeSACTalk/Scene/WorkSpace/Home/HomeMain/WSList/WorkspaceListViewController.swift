@@ -69,7 +69,11 @@ final class WorkspaceListViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-       
+        workspaceEdit
+            .asDriver(onErrorJustReturn: true)
+            .drive(with: self) { owner, _ in
+                 
+            }
         
         
     }
