@@ -12,8 +12,8 @@ import RxGesture
 final class WorkspaceListViewController: BaseViewController {
     
     let data = [
-        WorkSpace(workspaceId: 1, name: "2222", description: "sssss", thumbnail: "static/workspaceThumbnail/1704906408551.jpeg", ownerId: 1, createdAt: "2024-01-11T02:06:48.570Z"),
-        WorkSpace(workspaceId: 1, name: "2222", description: "sssss", thumbnail: "static/workspaceThumbnail/1704906408551.jpeg", ownerId: 1, createdAt: "2024-01-11T02:06:48.570Z")
+        WorkSpace(workspaceId: 1, name: "2222", description: "sssss", thumbnail: "/static/workspaceThumbnail/1704906408551.jpeg", ownerId: 1, createdAt: "2024-01-11T02:06:48.570Z"),
+        WorkSpace(workspaceId: 1, name: "2222", description: "sssss", thumbnail: "/static/workspaceThumbnail/1704906408551.jpeg", ownerId: 1, createdAt: "2024-01-11T02:06:48.570Z")
     ]
     
     private let mainView = WorkspaceListView()
@@ -31,17 +31,16 @@ final class WorkspaceListViewController: BaseViewController {
         mainView.showWorkspaceList(show: true)
     }
     
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        delegate?.viewDisappear()
-        print(#function)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": false])
     }
+    
    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delegate?.viewAppear()
+        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": true])
     }
     
     private func updateSnapShot() {

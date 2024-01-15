@@ -17,7 +17,7 @@ final class WorkspaceListCell: BaseCollectionViewCell {
     }
     
     let workspaceImageView = UIImageView().then {
-        $0.backgroundColor = .white
+//        $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFit
@@ -83,12 +83,5 @@ final class WorkspaceListCell: BaseCollectionViewCell {
         
     }
     
-    
-    func setInitValue(img: UIImage, name: String, date: String, select: Bool) {
-        workspaceImageView.image = img
-        workspaceName.text = name
-        dateLabel.text = date
-        backView.backgroundColor = select ? .gray : .white
-    }
     
 }

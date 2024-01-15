@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */; };
+		CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */; };
 		CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */; };
 		CE4904CE2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */; };
 		CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */; };
@@ -176,6 +178,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVCManager.swift; sourceTree = "<group>"; };
+		CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceType.swift; sourceTree = "<group>"; };
@@ -685,6 +689,7 @@
 				CE5D06812B4F057F00C067A3 /* Data+Extension.swift */,
 				CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */,
 				CEEAA1DA2B54278700EA1C58 /* DateFormatter+Extension.swift */,
+				CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -846,6 +851,7 @@
 				CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */,
 				CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */,
 				CEC7642F2B512471000578E9 /* ImageLoadManager.swift */,
+				CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1131,11 +1137,13 @@
 				CEC7644B2B5173AE000578E9 /* DMsAPIManager.swift in Sources */,
 				CE5D06752B4EEC4100C067A3 /* SelectImage.swift in Sources */,
 				CEC764342B512C67000578E9 /* WorkspaceError.swift in Sources */,
+				CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
+				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,

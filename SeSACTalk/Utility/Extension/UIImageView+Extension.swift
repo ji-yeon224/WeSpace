@@ -11,7 +11,6 @@ import Kingfisher
 extension UIImageView {
     
     func setImage(with urlString: String, resize width: CGFloat? = nil, cornerRadius: CGFloat = 15, completion: (() -> Void)? = nil) {
-        print("!!", urlString)
         let cornerImageProcessor = RoundCornerImageProcessor(cornerRadius: cornerRadius)
         
         ImageCache.default.retrieveImage(forKey: urlString, options: [

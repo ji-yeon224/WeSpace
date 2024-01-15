@@ -43,7 +43,10 @@ final class HomeViewController: BaseViewController, View {
         self.reactor = HomeReactor()
         requestWSInfo.onNext(true)
         requestDMsInfo.onNext(true)
-        wslistVc.delegate = self
+//        wslistVc.delegate = self
+        
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,7 +58,7 @@ final class HomeViewController: BaseViewController, View {
         sectionSnapShot()
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
-        setupSideMenu()
+//        setupSideMenu()
         
         configData()
     }
@@ -110,8 +113,14 @@ extension HomeViewController {
         mainView.topView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
-                owner.present(owner.menu, animated: true) {
-                    owner.isOpenSideVC = true
+                SideMenuVCManager.shared.presentSideMenu(workspace: [], vc: owner)
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.isSideVCAppear)
+            .bind(with: self) { owner, noti in
+                if let show = noti.userInfo?["show"] as? Bool {
+                    owner.mainView.alphaView.isHidden = !show
                 }
             }
             .disposed(by: disposeBag)
@@ -183,12 +192,12 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController: WorkSpaceListDelegate {
-    func viewDisappear() {
-        mainView.alphaView.isHidden = true
-        isOpenSideVC = false
-    }
-    func viewAppear() {
-        mainView.alphaView.isHidden = false
-    }
-}
+//extension HomeViewController: WorkSpaceListDelegate {
+//    func viewDisappear() {
+//        mainView.alphaView.isHidden = true
+//        isOpenSideVC = false
+//    }
+//    func viewAppear() {
+//        mainView.alphaView.isHidden = false
+//    }
+//}

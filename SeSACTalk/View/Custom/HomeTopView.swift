@@ -13,6 +13,7 @@ final class HomeTopView: BaseView {
         $0.contentMode = .scaleAspectFill
         $0.image = .seSACBot
         $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
     }
     
     let workSpaceName = CustomBasicLabel(text: "No Workspace", fontType: .title1, line: 1)
