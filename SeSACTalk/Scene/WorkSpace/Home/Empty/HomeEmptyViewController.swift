@@ -40,7 +40,7 @@ final class HomeEmptyViewController: BaseViewController {
         
         mainView.makeButton.rx.tap
             .bind(with: self) { owner, _ in
-                let vc = MakeViewController()
+                let vc = MakeViewController(mode: .create)
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
                 nav.setupBarAppearance()
                 owner.present(nav, animated: true)

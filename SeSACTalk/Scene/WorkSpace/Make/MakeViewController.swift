@@ -10,11 +10,27 @@ import RxGesture
 import ReactorKit
 import RxCocoa
 
+enum setWSType {
+    case create, edit
+}
+
 final class MakeViewController: BaseViewController, View {
     
     private let mainView = MakeView()
     var disposeBag: DisposeBag = DisposeBag()
     
+    private var mode: setWSType = .create
+    private var wsInfo: WorkSpace?
+    
+    init(mode: setWSType = .create, info: WorkSpace? = nil) {
+        super.init(nibName: nil, bundle: nil)
+        self.mode = mode
+        self.wsInfo = info
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.view = mainView
@@ -27,8 +43,25 @@ final class MakeViewController: BaseViewController, View {
     
     override func configure() {
         super.configure()
-        title = "워크스페이스 생성"
+        switch mode {
+        case .create:
+            title = "워크스페이스 생성"
+        case .edit:
+            title = "워크스페이스 편집"
+            configEditData()
+        }
+        
         configNav()
+    }
+    
+    private func configEditData() {
+        if let ws = wsInfo {
+            mainView.imageView.imageView.setImage(with: ws.thumbnail)
+            mainView.workSpaceName.textfield.text = ws.name
+            mainView.workSpaceDesc.textfield.text = ws.description
+        }
+        
+        
     }
     
     func bind(reactor: MakeViewReactor) {

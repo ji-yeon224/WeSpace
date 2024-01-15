@@ -72,8 +72,11 @@ final class WorkspaceListViewController: BaseViewController {
         workspaceEdit
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
-                 
+                let vc = MakeViewController(mode: .edit, info: owner.workspace)
+                let nv = PageSheetManager.sheetPresentation(vc, detent: .large())
+                owner.present(nv, animated: true)
             }
+            .disposed(by: disposeBag)
         
         
     }
