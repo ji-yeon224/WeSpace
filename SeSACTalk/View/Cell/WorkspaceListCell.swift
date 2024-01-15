@@ -11,9 +11,9 @@ final class WorkspaceListCell: BaseCollectionViewCell {
     
     static let identifier = "WorkspaceListCell"
     
-    private let backView = UIView().then {
+    let backView = UIView().then {
         $0.layer.cornerRadius = 8
-        $0.backgroundColor = .customGray
+        $0.backgroundColor = .secondaryBackground
     }
     
     let workspaceImageView = UIImageView().then {

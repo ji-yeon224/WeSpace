@@ -12,7 +12,7 @@ import RxGesture
 final class WorkspaceListViewController: BaseViewController {
     
     var workspaceData: [WorkSpace] = []
-    
+    var workspaceId: Int?
     
     private let mainView = WorkspaceListView()
     weak var delegate: WorkSpaceListDelegate?
@@ -30,6 +30,10 @@ final class WorkspaceListViewController: BaseViewController {
             mainView.showWorkspaceList(show: false)
         } else {
             mainView.showWorkspaceList(show: true)
+            if let id = workspaceId {
+                mainView.workspaceId = id
+            }
+            
             updateSnapShot()
         }
         

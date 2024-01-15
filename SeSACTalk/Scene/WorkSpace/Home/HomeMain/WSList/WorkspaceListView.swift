@@ -9,6 +9,8 @@ import UIKit
 
 final class WorkspaceListView: BaseView {
     
+    var workspaceId = -1
+    
     private let backView = UIView().then {
         $0.backgroundColor = Constants.Color.secondaryBG
         $0.layer.cornerRadius = 25
@@ -122,7 +124,9 @@ final class WorkspaceListView: BaseView {
             cell.workspaceName.text = itemIdentifier.name
             cell.workspaceImageView.setImage(with: itemIdentifier.thumbnail)
             cell.dateLabel.text = itemIdentifier.createdAt.convertDateFormat()
-            
+            if itemIdentifier.workspaceId == self.workspaceId {
+                cell.backView.backgroundColor = .customGray
+            }
         }
         
         
