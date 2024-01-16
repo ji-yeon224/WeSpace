@@ -109,6 +109,11 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.refreshWS)
+            .bind(with: self) { owner, _ in
+                owner.requestWSInfo.onNext(true)
+            }
+        
     }
     
     private func bindState(reactor: HomeReactor) {

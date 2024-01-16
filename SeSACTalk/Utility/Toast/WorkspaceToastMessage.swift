@@ -10,6 +10,7 @@ import Foundation
 enum WorkspaceToastMessage {
     case makeNameInvalid
     case makeNoImage
+    case editWorkspace
 }
 
 extension WorkspaceToastMessage {
@@ -19,6 +20,8 @@ extension WorkspaceToastMessage {
             return "워크스페이스 이름은 1~30자로 설정해주세요. "
         case .makeNoImage:
             return "워크스페이스 이미지를 등록해주세요. "
+        case .editWorkspace:
+            return "워크스페이스가 편집되었습니다."
         }
     }
 }

@@ -16,13 +16,12 @@ import ReactorKit
 final class WorkspaceListViewController: BaseViewController, View {
     
     
-//    var workspaceData: [WorkSpace] = []
     var workspace: WorkSpace?
     var items: [WorkSpace] = []
     var disposeBag = DisposeBag()
     
     private let mainView = WorkspaceListView()
-//    weak var delegate: WorkSpaceListDelegate?
+
     private let requestAllWorkspace = PublishRelay<Bool>()
     private let workspaceEdit = PublishRelay<Bool>()
     private let workspaceExit = PublishRelay<Bool>()
@@ -158,6 +157,8 @@ extension WorkspaceListViewController: MakeWSDelegate {
     func editComplete(data: WorkSpace) {
         self.workspace = data
         requestAllWorkspace.accept(true)
+        showToastMessage(message: WorkspaceToastMessage.editWorkspace.message, position: .bottom)
+        NotificationCenter.default.post(name: .refreshWS, object: nil)
     }
     
 }

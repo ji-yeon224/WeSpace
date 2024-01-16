@@ -22,7 +22,7 @@ final class WorkspaceListCell: BaseCollectionViewCell {
 //        $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         
     }
     
