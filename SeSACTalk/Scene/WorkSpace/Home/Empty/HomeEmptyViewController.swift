@@ -42,7 +42,7 @@ final class HomeEmptyViewController: BaseViewController {
             .bind(with: self) { owner, _ in
                 let vc = MakeViewController(mode: .create)
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
-                nav.setupBarAppearance()
+//                nav.setupBarAppearance()
                 owner.present(nav, animated: true)
             }
             .disposed(by: disposeBag)

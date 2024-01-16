@@ -126,6 +126,7 @@ final class WorkspaceListView: BaseView {
             cell.workspaceName.text = itemIdentifier.name
             cell.workspaceImageView.setImage(with: itemIdentifier.thumbnail)
             cell.dateLabel.text = itemIdentifier.createdAt.convertDateFormat()
+            print(itemIdentifier.workspaceId, self.workspaceId)
             if itemIdentifier.workspaceId == self.workspaceId {
                 cell.backView.backgroundColor = .customGray
                 cell.menuButton.isHidden = false

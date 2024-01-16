@@ -21,7 +21,7 @@ final class SideMenuVCManager {
     func initSideMenu(vc: UIViewController, workspace: [WorkSpace], curWS: WorkSpace? = nil) {
         self.vc = vc
         setupSideMenu()
-        listVC.workspaceData = workspace
+//        listVC.workspaceData = workspace
         listVC.workspace = curWS
     }
     

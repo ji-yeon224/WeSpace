@@ -62,6 +62,8 @@
 		CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */; };
 		CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */; };
 		CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */; };
+		CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB532B56855900413500 /* MakeWSDelegate.swift */; };
+		CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */; };
 		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
 		CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A62B4849E80062B45C /* JoinRequest.swift */; };
 		CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */; };
@@ -235,6 +237,8 @@
 		CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadCntView.swift; sourceTree = "<group>"; };
+		CEA4EB532B56855900413500 /* MakeWSDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeWSDelegate.swift; sourceTree = "<group>"; };
+		CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactor.swift; sourceTree = "<group>"; };
 		CEA8F9A62B4849E80062B45C /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
 		CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponseDTO.swift; sourceTree = "<group>"; };
@@ -771,6 +775,7 @@
 				CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */,
 				CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */,
 				CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */,
+				CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */,
 			);
 			path = WSList;
 			sourceTree = "<group>";
@@ -816,6 +821,7 @@
 				CEE989A92B4AAB8300590A19 /* MakeViewController.swift */,
 				CEE989AB2B4AAB8800590A19 /* MakeView.swift */,
 				CE5D06682B4E910400C067A3 /* MakeViewReactor.swift */,
+				CEA4EB532B56855900413500 /* MakeWSDelegate.swift */,
 			);
 			path = Make;
 			sourceTree = "<group>";
@@ -1062,6 +1068,7 @@
 				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
 				CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
+				CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */,
 				CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
@@ -1145,6 +1152,7 @@
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
+				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,

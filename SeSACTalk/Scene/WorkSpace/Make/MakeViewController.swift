@@ -18,9 +18,11 @@ final class MakeViewController: BaseViewController, View {
     
     private let mainView = MakeView()
     var disposeBag: DisposeBag = DisposeBag()
+    var delegate: MakeWSDelegate?
     
     private var mode: setWSType = .create
     private var wsInfo: WorkSpace?
+    private var img: UIImage?
     
     init(mode: setWSType = .create, info: WorkSpace? = nil) {
         super.init(nibName: nil, bundle: nil)
@@ -43,6 +45,7 @@ final class MakeViewController: BaseViewController, View {
     
     override func configure() {
         super.configure()
+        configNav()
         switch mode {
         case .create:
             title = "워크스페이스 생성"
@@ -51,15 +54,17 @@ final class MakeViewController: BaseViewController, View {
             configEditData()
         }
         
-        configNav()
+        
     }
     
     private func configEditData() {
         if let ws = wsInfo {
             mainView.imageView.imageView.setImage(with: ws.thumbnail)
+            self.img = mainView.imageView.imageView.image
             mainView.workSpaceName.textfield.text = ws.name
             mainView.workSpaceDesc.textfield.text = ws.description
         }
+        mainView.completeButton.setTitle("저장", for: .normal)
         
         
     }
@@ -74,13 +79,14 @@ final class MakeViewController: BaseViewController, View {
         mainView.imageView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
-                PHPickerManager.shared.presentPicker(vc: self)
+                PHPickerManager.shared.presentPicker(vc: owner)
             }
             .disposed(by: disposeBag)
         PHPickerManager.shared.selectedImage
             .bind(with: self) { owner, image in
                 if !image.isEmpty {
                     owner.mainView.imageView.setImage(img: image[0])
+                    owner.img = owner.mainView.imageView.image
                 }
             }
             .disposed(by: disposeBag)
@@ -89,16 +95,25 @@ final class MakeViewController: BaseViewController, View {
             .map { Reactor.Action.nameInput(name: $0) }
             .bind(to: reactor.action )
             .disposed(by: disposeBag)
+        
+        let input = Observable.combineLatest(mainView.workSpaceName.textfield.rx.text.orEmpty, mainView.workSpaceDesc.textfield.rx.text.orEmpty)
+        
+        mainView.completeButton.rx.tap
+            .withLatestFrom(input) { _, value in
+                return value
+            }
+            .debug()
+            .map { value -> MakeViewReactor.Action in
+                print(self.mode)
+                if self.mode == .create {
+                    return Reactor.Action.createButtonTap(name: value.0, description: value.1, image: SelectImage(img: self.img))
+                }else {
+                    return Reactor.Action.editButtonTap(name: value.0, description: value.1, image: SelectImage(img: self.img), id: self.wsInfo?.workspaceId)
+                }
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
        
-        Observable.combineLatest(mainView.completeButton.rx.tap, mainView.workSpaceName.textfield.rx.text.orEmpty) { _, value in
-            value
-        }
-        .withLatestFrom(mainView.workSpaceDesc.textfield.rx.text.orEmpty) { name, desc in
-            return (name, desc)
-        }
-        .map { Reactor.Action.completeButtonTap(name: $0.0, description: $0.1, image: SelectImage(img: self.mainView.wsImage))}
-        .bind(to: reactor.action)
-        .disposed(by: disposeBag)
         
     }
     
@@ -133,6 +148,18 @@ final class MakeViewController: BaseViewController, View {
                     owner.view.window?.makeKeyAndVisible()
                 }
                
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.completeCreate }
+            .filter{ $0.1 == true }
+            .bind(with: self) { owner, value in
+                if let value = value.0 {
+                    print(value)
+                    owner.dismiss(animated: true)
+                    owner.delegate?.editComplete()
+                }
             }
             .disposed(by: disposeBag)
     }
