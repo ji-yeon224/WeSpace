@@ -37,7 +37,6 @@ final class WorkspaceListViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)
         mainView.delegate = self
     }
     
@@ -87,6 +86,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
                 let vc = MakeViewController(mode: .edit, info: owner.workspace)
+                vc.delegate = owner
                 let nv = PageSheetManager.sheetPresentation(vc, detent: .large())
                 owner.present(nv, animated: true)
             }
@@ -116,7 +116,6 @@ final class WorkspaceListViewController: BaseViewController, View {
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 owner.workspaceItem.accept(value)
-                print(value.isEmpty)
                 owner.configView(isEmpty: value.isEmpty)
             }
             .disposed(by: disposeBag)
@@ -156,10 +155,11 @@ final class WorkspaceListViewController: BaseViewController, View {
 }
 
 extension WorkspaceListViewController: MakeWSDelegate {
-    func editComplete() {
-        requestAllWorkspace
-            .accept(true)
+    func editComplete(data: WorkSpace) {
+        self.workspace = data
+        requestAllWorkspace.accept(true)
     }
+    
 }
 
 extension WorkspaceListViewController: WorkSpaceListDelegate {

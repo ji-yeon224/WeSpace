@@ -38,7 +38,6 @@ final class MakeViewReactor: Reactor {
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-        print("ACtion", action)
         switch action {
         case .nameInput(let name):
             let value = name.count >= 1 && name.count <= 30
@@ -75,7 +74,6 @@ final class MakeViewReactor: Reactor {
 extension MakeViewReactor {
     private func validCheck(name: String, des: String?, img: SelectImage, mode: setWSType, id: Int? = nil) -> Observable<Mutation> {
         if img.img == nil {
-            print("NO IMG")
             return Observable.of(.msg(msg: WorkspaceToastMessage.makeNoImage.message))
         }
         if name.count < 1 || name.count > 30 {
@@ -86,7 +84,6 @@ extension MakeViewReactor {
         case .create:
             return requestCreateWS(name: name, des: des, img: img)
         case .edit:
-            print("edit")
             return requestEditWS(name: name, des: des, img: img, id: id)
         }
         
@@ -94,7 +91,6 @@ extension MakeViewReactor {
     }
     
     private func requestEditWS(name: String, des: String?, img: SelectImage, id: Int?) -> Observable<Mutation> {
-        print("&&&&& EDIT &&&&&&&")
         if let img = img.img, let id = id {
             if let imgData = img.imageToData() {
                 let data = WsCreateReqDTO(name: name, description: des, image: imgData)
@@ -103,7 +99,6 @@ extension MakeViewReactor {
                     .map { result -> Mutation in
                         switch result {
                         case .success(let response):
-                            print("SUCCESS")
                             if let response = response {
                                 return .successEdit(data: response)
                             } else {

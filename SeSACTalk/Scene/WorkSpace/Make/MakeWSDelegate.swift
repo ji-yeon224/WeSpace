@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MakeWSDelegate: AnyObject {
-    func editComplete() 
+    func editComplete(data: WorkSpace) 
 }

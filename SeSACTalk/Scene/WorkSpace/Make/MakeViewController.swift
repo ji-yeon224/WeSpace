@@ -102,7 +102,6 @@ final class MakeViewController: BaseViewController, View {
             .withLatestFrom(input) { _, value in
                 return value
             }
-            .debug()
             .map { value -> MakeViewReactor.Action in
                 print(self.mode)
                 if self.mode == .create {
@@ -141,6 +140,7 @@ final class MakeViewController: BaseViewController, View {
         reactor.state
             .map { $0.completeCreate }
             .filter { $0.1 == true }
+            .observe(on:MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 if let value = value.0 {
                     let nav = UINavigationController(rootViewController: HomeTabBarController(workspace: value))
@@ -152,13 +152,13 @@ final class MakeViewController: BaseViewController, View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map { $0.completeCreate }
+            .map { $0.completeEdit }
             .filter{ $0.1 == true }
+            .observe(on:MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 if let value = value.0 {
-                    print(value)
                     owner.dismiss(animated: true)
-                    owner.delegate?.editComplete()
+                    owner.delegate?.editComplete(data: value)
                 }
             }
             .disposed(by: disposeBag)
