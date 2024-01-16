@@ -64,6 +64,10 @@
 		CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */; };
 		CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB532B56855900413500 /* MakeWSDelegate.swift */; };
 		CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */; };
+		CEA4EB582B56B35100413500 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB572B56B35100413500 /* AlertViewController.swift */; };
+		CEA4EB5B2B56B70200413500 /* AlertWithOKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB5A2B56B70200413500 /* AlertWithOKView.swift */; };
+		CEA4EB5D2B56B7B200413500 /* AlertWithCancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB5C2B56B7B100413500 /* AlertWithCancelView.swift */; };
+		CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */; };
 		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
 		CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A62B4849E80062B45C /* JoinRequest.swift */; };
 		CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */; };
@@ -239,6 +243,10 @@
 		CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadCntView.swift; sourceTree = "<group>"; };
 		CEA4EB532B56855900413500 /* MakeWSDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeWSDelegate.swift; sourceTree = "<group>"; };
 		CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactor.swift; sourceTree = "<group>"; };
+		CEA4EB572B56B35100413500 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		CEA4EB5A2B56B70200413500 /* AlertWithOKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWithOKView.swift; sourceTree = "<group>"; };
+		CEA4EB5C2B56B7B100413500 /* AlertWithCancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWithCancelView.swift; sourceTree = "<group>"; };
+		CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDelegate.swift; sourceTree = "<group>"; };
 		CEA8F9A62B4849E80062B45C /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
 		CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponseDTO.swift; sourceTree = "<group>"; };
@@ -585,6 +593,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		CEA4EB592B56B6EE00413500 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CEA4EB572B56B35100413500 /* AlertViewController.swift */,
+				CEA4EB5A2B56B70200413500 /* AlertWithOKView.swift */,
+				CEA4EB5C2B56B7B100413500 /* AlertWithCancelView.swift */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
 		CEA8F9AC2B4924640062B45C /* Join */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,6 +823,7 @@
 		CEE9899F2B4A85C700590A19 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CEA4EB592B56B6EE00413500 /* AlertView */,
 				CEE989A02B4A85E000590A19 /* HomeTopView.swift */,
 				CEE989AD2B4AAC2F00590A19 /* CommonFormView.swift */,
 				CE85748B2B4AE7A10025ED1B /* EditImageView.swift */,
@@ -858,6 +877,7 @@
 				CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */,
 				CEC7642F2B512471000578E9 /* ImageLoadManager.swift */,
 				CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */,
+				CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1054,6 +1074,7 @@
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
 				CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */,
+				CEA4EB582B56B35100413500 /* AlertViewController.swift in Sources */,
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
@@ -1119,6 +1140,7 @@
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
+				CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */,
 				CEC764532B5176DA000578E9 /* User.swift in Sources */,
 				CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
@@ -1149,6 +1171,7 @@
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
+				CEA4EB5D2B56B7B200413500 /* AlertWithCancelView.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
@@ -1161,6 +1184,7 @@
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CE85749A2B4BFE9B0025ED1B /* HomeViewController.swift in Sources */,
 				CEE989AA2B4AAB8300590A19 /* MakeViewController.swift in Sources */,
+				CEA4EB5B2B56B70200413500 /* AlertWithOKView.swift in Sources */,
 				CEE9899B2B4A7E8C00590A19 /* HomeEmptyViewController.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
 				CEA8F9D12B4992130062B45C /* EmailLoginView.swift in Sources */,

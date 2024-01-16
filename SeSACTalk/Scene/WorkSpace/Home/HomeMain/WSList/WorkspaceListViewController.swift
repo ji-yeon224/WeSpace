@@ -21,6 +21,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     var disposeBag = DisposeBag()
     
     private let mainView = WorkspaceListView()
+    private let alertView = AlertViewController()
 
     private let requestAllWorkspace = PublishRelay<Bool>()
     private let workspaceEdit = PublishRelay<Bool>()
@@ -37,6 +38,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
+        alertView.delegate = self
     }
     
     
@@ -49,6 +51,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         }
         self.reactor = WorkspaceListReactor()
         requestAllWorkspace.accept(true)
+        alertView.modalPresentationStyle = .overFullScreen
         
     }
     
@@ -88,6 +91,27 @@ final class WorkspaceListViewController: BaseViewController, View {
                 vc.delegate = owner
                 let nv = PageSheetManager.sheetPresentation(vc, detent: .large())
                 owner.present(nv, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        workspaceExit
+            .asDriver(onErrorJustReturn: true)
+            .drive(with: self) { owner, _ in
+                if owner.workspace?.ownerId == UserDefaultsManager.userId {
+                    owner.alertView.showAlertWithOK(title: "워크스페이스 나가기", message: Text.workspaceExitManager)
+                } else {
+                    owner.alertView.showAlertWithOK(title: "워크스페이스 나가기", message: Text.workspaceExit)
+                }
+                
+                owner.present(owner.alertView, animated: false)
+            }
+            .disposed(by: disposeBag)
+        
+        deleteWorkspaceList
+            .asDriver(onErrorJustReturn: true)
+            .drive(with: self) { owner, _ in
+                owner.alertView.showAlertWithCancel(title: "워크스페이스 삭제", message: Text.workspaceDelete, okText: "삭제")
+                owner.present(owner.alertView, animated: false)
             }
             .disposed(by: disposeBag)
         
@@ -151,6 +175,15 @@ final class WorkspaceListViewController: BaseViewController, View {
         mainView.dataSource.apply(snapshot)
     }
     
+}
+
+extension WorkspaceListViewController: AlertDelegate {
+    func cancelButtonTap() {
+        print("cancel")
+    }
+    func okButtonTap() {
+        print("ok")
+    }
 }
 
 extension WorkspaceListViewController: MakeWSDelegate {
