@@ -14,24 +14,30 @@ final class SideMenuVCManager {
     private init() { }
     
     private weak var vc: UIViewController?
-    private var listVC = WorkspaceListViewController()
-    private lazy var menuVC: SideMenuNavigationController =  SideMenuNavigationController(rootViewController: listVC)
+    private var listVC: WorkspaceListViewController?
+    private var menuVC: SideMenuNavigationController?
     
     
-    func initSideMenu(vc: UIViewController, workspace: [WorkSpace], curWS: WorkSpace? = nil) {
+    func initSideMenu(vc: UIViewController, curWS: WorkSpace? = nil) {
         self.vc = vc
+        self.listVC = WorkspaceListViewController()
+        if let listVC = listVC {
+            menuVC = SideMenuNavigationController(rootViewController: listVC)
+        }
+        
         setupSideMenu()
-//        listVC.workspaceData = workspace
-        listVC.workspace = curWS
+        listVC?.workspace = curWS
     }
     
     func presentSideMenu(){
+        guard let menuVC = menuVC else { return }
         vc?.present(menuVC, animated: true)
     }
     
     private func setupSideMenu() {
         
         guard let vc = vc else { return }
+        guard let menuVC = menuVC else { return }
         
         SideMenuManager.default.leftMenuNavigationController = menuVC
         SideMenuManager.default.addPanGestureToPresent(toView: vc.navigationController!.navigationBar)

@@ -41,7 +41,23 @@ final class WorkspaceListViewController: BaseViewController, View {
         alertView.delegate = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print(#function)
+        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": false])
+    }
     
+   
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(#function)
+        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": true])
+        if let ws = workspace {
+            mainView.workspaceId = ws.workspaceId
+        }
+        requestAllWorkspace.accept(true)
+    }
     
     override func configure() {
         view.backgroundColor = .clear
@@ -75,6 +91,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     private func bindAction(reactor: WorkspaceListReactor) {
         mainView.addWorkspaceView.rx.tapGesture()
             .when(.recognized)
+            .debug()
             .bind(with: self) { owner, _ in
                 let vc = MakeViewController()
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
@@ -125,8 +142,18 @@ final class WorkspaceListViewController: BaseViewController, View {
                 $0.isEmpty == false
             }
             .bind(with: self) { owner, value in
+                owner.items = value
                 owner.updateSnapShot(data: value)
                 owner.configView(isEmpty: value.isEmpty)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.collectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                
+                let nav = UINavigationController(rootViewController: HomeTabBarController(workspace: owner.items[indexPath.item]))
+                owner.view.window?.rootViewController = nav
+                owner.view.window?.makeKeyAndVisible()
             }
             .disposed(by: disposeBag)
     }
@@ -155,18 +182,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .disposed(by: disposeBag)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": false])
-    }
     
-   
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(#function)
-        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": true])
-    }
     
     private func updateSnapShot(data: [WorkSpace]) {
         var snapshot = NSDiffableDataSourceSnapshot<String, WorkSpace>()

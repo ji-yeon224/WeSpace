@@ -41,6 +41,8 @@ final class WorkspaceListCell: BaseCollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        backView.backgroundColor = .secondaryBackground
+        menuButton.isHidden = true
         disposeBag = DisposeBag()
         
     }

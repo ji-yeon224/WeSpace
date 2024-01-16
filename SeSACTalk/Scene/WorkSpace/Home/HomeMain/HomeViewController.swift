@@ -38,16 +38,18 @@ final class HomeViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(#function)
         navigationController?.navigationBar.isHidden = true
         self.reactor = HomeReactor()
         requestWSInfo.onNext(true)
         requestDMsInfo.onNext(true)
         requestAllWorkspaceInfo.onNext(true)
-        
+        SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        print("appear")
+        print("appear")
+        
     }
     
     override func configure() {
@@ -113,6 +115,7 @@ extension HomeViewController {
             .bind(with: self) { owner, _ in
                 owner.requestWSInfo.onNext(true)
             }
+            .disposed(by: disposeBag)
         
     }
     
@@ -146,7 +149,7 @@ extension HomeViewController {
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
                 owner.allWorkspace = value
-                SideMenuVCManager.shared.initSideMenu(vc: owner, workspace: value, curWS: owner.workspace)
+//                SideMenuVCManager.shared.initSideMenu(vc: owner, curWS: owner.workspace)
             }
             .disposed(by: disposeBag)
         
