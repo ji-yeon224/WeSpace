@@ -28,6 +28,9 @@ final class SideMenuVCManager {
         setupSideMenu()
         listVC?.workspace = curWS
     }
+    func setWorkspaceData(ws: WorkSpace? = nil) {
+        listVC?.workspace = ws
+    }
     
     func presentSideMenu(){
         guard let menuVC = menuVC else { return }

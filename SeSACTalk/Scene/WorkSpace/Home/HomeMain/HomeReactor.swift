@@ -21,8 +21,8 @@ final class HomeReactor: Reactor {
     
     
     enum Action {
-        case requestInfo(id: Int)
-        case requestDMsInfo(id: Int)
+        case requestInfo(id: Int?)
+        case requestDMsInfo(id: Int?)
         case requestAllWorkspace
     }
     
@@ -47,9 +47,19 @@ final class HomeReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .requestInfo(let id):
-            return requestOneChannelInfo(id: id)
+            if let id = id {
+                return requestOneChannelInfo(id: id)
+            } else {
+                return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
+            }
+            
         case .requestDMsInfo(id: let id):
-            return reqeustDMRoomInfo(id: id)
+            if let id = id {
+                return reqeustDMRoomInfo(id: id)
+            } else {
+                return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
+            }
+            
         case .requestAllWorkspace:
             return requestAllWorkspace()
         }
@@ -62,7 +72,6 @@ final class HomeReactor: Reactor {
             newState.channelItem = channels.map {
                 return WorkspaceItem(title: "", subItems: [], item: $0.toDomain())
             }
-            
         case .wsInfo(ws: let ws):
             newState.channelItem = ws.channels.map {
                 return WorkspaceItem(title: "", subItems: [], item: $0.toDomain())

@@ -13,7 +13,7 @@ final class WorkspaceListReactor: Reactor {
         allWorkspace: [],
         loginRequest: false,
         message: "",
-        successLeave: []
+        successLeave: nil
     )
     
     
@@ -31,7 +31,7 @@ final class WorkspaceListReactor: Reactor {
         var allWorkspace: [WorkSpace]
         var loginRequest: Bool
         var message: String
-        var successLeave: [WorkSpace]
+        var successLeave: [WorkSpace]?
     }
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {

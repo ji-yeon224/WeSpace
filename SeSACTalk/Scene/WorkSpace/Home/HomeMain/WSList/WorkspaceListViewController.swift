@@ -74,7 +74,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             mainView.workspaceId = ws.workspaceId
         }
         self.reactor = WorkspaceListReactor()
-        requestAllWorkspace.accept(true)
+//        requestAllWorkspace.accept(true)
         alertView.modalPresentationStyle = .overFullScreen
         
     }
@@ -155,10 +155,10 @@ final class WorkspaceListViewController: BaseViewController, View {
         
         mainView.collectionView.rx.itemSelected
             .bind(with: self) { owner, indexPath in
+                owner.dismiss(animated: false)
+                NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: ["workspace": owner.items[indexPath.item]])
+//                NotificationCenter.default.post(name: .refreshWS, object: nil)
                 
-                let nav = UINavigationController(rootViewController: HomeTabBarController(workspace: owner.items[indexPath.item]))
-                owner.view.window?.rootViewController = nav
-                owner.view.window?.makeKeyAndVisible()
             }
             .disposed(by: disposeBag)
         
@@ -178,7 +178,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         reactor.state
             .map { $0.allWorkspace }
             .distinctUntilChanged()
-            .filter { $0.isEmpty == false }
+//            .filter { $0.isEmpty == false }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 owner.workspaceItem.accept(value)
@@ -188,6 +188,9 @@ final class WorkspaceListViewController: BaseViewController, View {
         
         reactor.state
             .map { $0.message }
+            .filter {
+                !$0.isEmpty
+            }
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
@@ -198,14 +201,20 @@ final class WorkspaceListViewController: BaseViewController, View {
         
         reactor.state
             .map { $0.successLeave }
+            .filter {
+                $0 != .none
+            }
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                if value.isEmpty {
-                    owner.presentHomeEmptyView()
-                } else {
-                    owner.presentOtherWorkspace(workspace: value[0])
+                if let value = value {
+                    if value.isEmpty {
+                        owner.presentHomeEmptyView()
+                    } else {
+                        owner.presentOtherWorkspace(workspace: value[0])
+                    }
                 }
+               
             }
             .disposed(by: disposeBag)
     }
