@@ -96,39 +96,6 @@ extension HomeViewController {
         
     }
     
-    private func bindEvent() {
-        mainView.topView.rx.tapGesture()
-            .when(.recognized)
-            .debug()
-            .bind(with: self) { owner, _ in
-                SideMenuVCManager.shared.presentSideMenu()
-            }
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(.isSideVCAppear)
-            .bind(with: self) { owner, noti in
-                if let show = noti.userInfo?["show"] as? Bool {
-                    owner.mainView.alphaView.isHidden = !show
-                }
-            }
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(.refreshWS)
-            .bind(with: self) { owner, _ in
-                owner.requestWSInfo.onNext(true)
-            }
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(.resetWS)
-            .bind(with: self) { owner, noti in
-                if let ws = noti.userInfo?["workspace"] as? WorkSpace {
-                    owner.workspace = ws
-                    SideMenuVCManager.shared.setWorkspaceData(ws: ws)
-                    owner.initData()
-                }
-            }
-            .disposed(by: disposeBag)
-    }
     
     private func bindState(reactor: HomeReactor) {
         reactor.state
@@ -160,7 +127,6 @@ extension HomeViewController {
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
                 owner.allWorkspace = value
-//                SideMenuVCManager.shared.initSideMenu(vc: owner, curWS: owner.workspace)
             }
             .disposed(by: disposeBag)
         
@@ -174,6 +140,40 @@ extension HomeViewController {
                 if let value = value {
                     
                     owner.configData(ws: value)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    
+    private func bindEvent() {
+        mainView.topView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                SideMenuVCManager.shared.presentSideMenu()
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.isSideVCAppear)
+            .bind(with: self) { owner, noti in
+                if let show = noti.userInfo?["show"] as? Bool {
+                    owner.mainView.alphaView.isHidden = !show
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.refreshWS)
+            .bind(with: self) { owner, _ in
+                owner.requestWSInfo.onNext(true)
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.resetWS)
+            .bind(with: self) { owner, noti in
+                if let ws = noti.userInfo?["workspace"] as? WorkSpace {
+                    owner.workspace = ws
+                    SideMenuVCManager.shared.setWorkspaceData(ws: ws)
+                    owner.initData()
                 }
             }
             .disposed(by: disposeBag)

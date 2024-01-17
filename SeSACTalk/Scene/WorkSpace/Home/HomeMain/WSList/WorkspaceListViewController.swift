@@ -51,7 +51,6 @@ final class WorkspaceListViewController: BaseViewController, View {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print(#function)
         NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": false])
     }
     
@@ -59,7 +58,6 @@ final class WorkspaceListViewController: BaseViewController, View {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function)
         NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": true])
         if let ws = workspace {
             mainView.workspaceId = ws.workspaceId
@@ -162,6 +160,8 @@ final class WorkspaceListViewController: BaseViewController, View {
             }
             .disposed(by: disposeBag)
         
+        
+        
     }
     
     private func bindAction(reactor: WorkspaceListReactor) {
@@ -171,6 +171,10 @@ final class WorkspaceListViewController: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        requestExit
+            .map { _ in Reactor.Action.requestExit(id: self.workspace?.workspaceId)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
     }
     
@@ -217,13 +221,14 @@ final class WorkspaceListViewController: BaseViewController, View {
                
             }
             .disposed(by: disposeBag)
+        
+        
+            
     }
     
     private func presentOtherWorkspace(workspace: WorkSpace) {
-        let vc = HomeTabBarController(workspace: workspace)
-        let nav = UINavigationController(rootViewController: vc)
-        view.window?.rootViewController = nav
-        view.window?.makeKeyAndVisible()
+        NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: ["workspace": workspace])
+        dismiss(animated: false)
     }
     
     private func presentHomeEmptyView() {
@@ -326,6 +331,7 @@ extension WorkspaceListViewController: WorkSpaceListDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
             self.workspaceExit.accept(true)
+            self.setType = .exit
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         

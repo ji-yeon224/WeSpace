@@ -19,7 +19,7 @@ final class WorkspaceListReactor: Reactor {
     
     enum Action {
         case requestAllWorkspace
-        case requestExit(id: Int)
+        case requestExit(id: Int?)
     }
     enum Mutation {
         case msg(msg: String)
@@ -38,7 +38,12 @@ final class WorkspaceListReactor: Reactor {
         case .requestAllWorkspace:
             return requestAllWorkspace()
         case .requestExit(let id):
-            return requestExitWorkspace(id: id)
+            if let id = id {
+                return requestExitWorkspace(id: id)
+            } else {
+                return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
+            }
+            
         }
     }
     
