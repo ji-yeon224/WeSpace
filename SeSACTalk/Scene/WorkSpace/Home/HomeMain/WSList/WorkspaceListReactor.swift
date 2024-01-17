@@ -13,33 +13,44 @@ final class WorkspaceListReactor: Reactor {
         allWorkspace: [],
         loginRequest: false,
         message: "",
-        successLeave: nil
+        successLeave: nil,
+        successDelete: nil
     )
     
     
     enum Action {
         case requestAllWorkspace
         case requestExit(id: Int?)
+        case requestDelete(id: Int?)
     }
     enum Mutation {
         case msg(msg: String)
         case loginRequest
         case fetchAllWorkspace(data: [WorkspaceDto])
         case completLeave(data: [WorkspaceDto])
+        case successDelete(data: [WorkspaceDto])
     }
     struct State {
         var allWorkspace: [WorkSpace]
         var loginRequest: Bool
         var message: String
         var successLeave: [WorkSpace]?
+        var successDelete: [WorkSpace]?
+        
     }
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .requestAllWorkspace:
-            return requestAllWorkspace()
+            return requestAllWorkspace(type: .fetchAll)
         case .requestExit(let id):
             if let id = id {
                 return requestExitWorkspace(id: id)
+            } else {
+                return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
+            }
+        case .requestDelete(let id):
+            if let id = id {
+                return requestDeleteWorkspace(id: id)
             } else {
                 return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
             }
@@ -58,9 +69,53 @@ final class WorkspaceListReactor: Reactor {
             newState.allWorkspace = data.map{ $0.toDomain() }
         case .completLeave(let data):
             newState.successLeave = data.map { $0.toDomain() }
+        case .successDelete(let data):
+            if data.count > 0 {
+                newState.successDelete = [data[0].toDomain()]
+            } else {
+                newState.successDelete = []
+            }
+            
+            
         }
         return newState
     }
+    
+    
+    private func requestDeleteWorkspace(id: Int) -> Observable<Mutation> {
+        return WorkspacesAPIManager.shared.request(api: .delete(id: id), resonseType: EmptyResponse.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(_):
+                    return self.requestAllWS(type: .delete).asObservable()
+
+                case .failure(let error):
+                    var msg = CommonError.E99.localizedDescription
+                    if let error = WSCreateError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    }
+                    return .just(Mutation.msg(msg: msg))
+                }
+            }
+    }
+    
+    private func requestAllWS(type: requestType) -> Single<Mutation> {
+        return WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: AllWorkspaceReDTO.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(let value):
+                    return .just(Mutation.completLeave(data: value ?? []))
+                case .failure(let error):
+                    return .just(Mutation.msg(msg: error.localizedDescription))
+                }
+            }
+            .asSingle()
+    }
+
     
     private func requestExitWorkspace(id: Int) -> Observable<Mutation> {
         return WorkspacesAPIManager.shared.request(api: .leave(id: id), resonseType: AllWorkspaceReDTO.self)
@@ -82,18 +137,37 @@ final class WorkspaceListReactor: Reactor {
             }
     }
     
-    private func requestAllWorkspace() -> Observable<Mutation> {
+    
+    private func requestAllWorkspace(type: requestType) -> Observable<Mutation> {
         return WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: AllWorkspaceReDTO.self)
             .asObservable()
             .map { result -> Mutation in
                 switch result {
                 case .success(let value):
-                    return Mutation.fetchAllWorkspace(data: value ?? [])
+                    switch type {
+                    case .delete:
+                        if let value = value {
+                            let data = value.isEmpty ? nil : value[0]
+                            return Mutation.successDelete(data: value)
+                        } else {
+                            return Mutation.successDelete(data: [])
+                        }
+                        
+                    case .fetchAll:
+                        return Mutation.fetchAllWorkspace(data: value ?? [])
+                    }
+                    
+                    
                 case .failure(let error):
                     return Mutation.msg(msg: error.localizedDescription)
                 }
                 
             }
     }
+    
+    enum requestType {
+        case delete, fetchAll
+    }
+    
     
 }

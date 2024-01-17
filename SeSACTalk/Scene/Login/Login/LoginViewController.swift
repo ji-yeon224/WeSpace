@@ -93,6 +93,7 @@ final class LoginViewController: BaseViewController, View {
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self, onNext: { owner, value in
                 if let value = value {
+                    print(value)
                     owner.showToastMessage(message: value, position: .top)
                 }
             })

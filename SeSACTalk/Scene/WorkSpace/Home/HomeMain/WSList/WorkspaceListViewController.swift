@@ -37,6 +37,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     private let workspaceItem = PublishRelay<[WorkSpace]>()
     
     private let requestExit = PublishRelay<Void>()
+    private let requestDelete = PublishRelay<Void>()
     
     override func loadView() {
         self.view = mainView
@@ -176,6 +177,11 @@ final class WorkspaceListViewController: BaseViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        requestDelete
+            .map { _ in Reactor.Action.requestDelete(id: self.workspace?.workspaceId)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindState(reactor: WorkspaceListReactor) {
@@ -222,6 +228,25 @@ final class WorkspaceListViewController: BaseViewController, View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.successDelete }
+            .filter {
+                $0 != .none
+            }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .debug()
+            .bind(with: self) { owner, value in
+                if let value = value {
+                    print(value.count)
+                    if value.isEmpty {
+                        owner.presentHomeEmptyView()
+                    } else {
+                        owner.presentOtherWorkspace(workspace: value[0])
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
         
             
     }
@@ -235,6 +260,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         let nav = UINavigationController(rootViewController: HomeEmptyViewController())
         view.window?.rootViewController = nav
         view.window?.makeKeyAndVisible()
+        dismiss(animated: true)
     }
     
     private func bindEmpty() {
@@ -268,7 +294,7 @@ extension WorkspaceListViewController: AlertDelegate {
         case .change:
             print("change ok")
         case .delete:
-            print("delete ok")
+            requestDelete.accept(())
         case .exit:
             if workspace?.ownerId == UserDefaultsManager.userId { // 관리자가 누름
                 print("관리자임")

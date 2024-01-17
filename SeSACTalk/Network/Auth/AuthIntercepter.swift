@@ -31,7 +31,7 @@ final class AuthIntercepter: RequestInterceptor {
     
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        print("retry")
+        print("retry", error.localizedDescription)
         guard request.retryCount < self.retryLimit else {
             completion(.doNotRetry)
             return
@@ -43,6 +43,7 @@ final class AuthIntercepter: RequestInterceptor {
                 case .success(let token):
                     debugPrint("[SUCCESS REFRESH TOKEN] ", token)
                     UserDefaultsManager.accessToken = token
+                    print(UserDefaultsManager.refreshToken)
                     completion(.retryWithDelay(self.retryDelay))
                     
                 case .login(let error):
