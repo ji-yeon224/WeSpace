@@ -56,7 +56,7 @@ final class HomeEmptyViewController: BaseViewController {
         
         NotificationCenter.default.rx.notification(.isSideVCAppear)
             .bind(with: self) { owner, noti in
-                if let show = noti.userInfo?["show"] as? Bool {
+                if let show = noti.userInfo?[UserInfo.alphaShow] as? Bool {
                     owner.mainView.alphaView.isHidden = !show
                 }
             }

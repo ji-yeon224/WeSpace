@@ -156,7 +156,7 @@ extension HomeViewController {
         
         NotificationCenter.default.rx.notification(.isSideVCAppear)
             .bind(with: self) { owner, noti in
-                if let show = noti.userInfo?["show"] as? Bool {
+                if let show = noti.userInfo?[UserInfo.alphaShow] as? Bool {
                     owner.mainView.alphaView.isHidden = !show
                 }
             }
@@ -170,7 +170,7 @@ extension HomeViewController {
         
         NotificationCenter.default.rx.notification(.resetWS)
             .bind(with: self) { owner, noti in
-                if let ws = noti.userInfo?["workspace"] as? WorkSpace {
+                if let ws = noti.userInfo?[UserInfo.workspace] as? WorkSpace {
                     owner.workspace = ws
                     SideMenuVCManager.shared.setWorkspaceData(ws: ws)
                     owner.initData()

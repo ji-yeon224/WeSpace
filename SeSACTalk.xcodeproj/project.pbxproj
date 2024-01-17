@@ -40,6 +40,7 @@
 		CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */; };
 		CE5D06802B4F028400C067A3 /* WSCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067F2B4F028400C067A3 /* WSCreateError.swift */; };
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
+		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -216,6 +217,7 @@
 		CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataManager.swift; sourceTree = "<group>"; };
 		CE5D067F2B4F028400C067A3 /* WSCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSCreateError.swift; sourceTree = "<group>"; };
 		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -900,6 +902,7 @@
 				CE5D06722B4EE91F00C067A3 /* ImageCompression.swift */,
 				CE5D06742B4EEC4100C067A3 /* SelectImage.swift */,
 				CECFCDEC2B4FC8C300EB0DB7 /* RefreshResultType.swift */,
+				CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -1138,6 +1141,7 @@
 				CEA8F9BC2B494A620062B45C /* Text.swift in Sources */,
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
+				CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
 				CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */,

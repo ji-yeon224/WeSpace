@@ -51,14 +51,14 @@ final class WorkspaceListViewController: BaseViewController, View {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": false])
+        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: [UserInfo.alphaShow: false])
     }
     
    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: ["show": true])
+        NotificationCenter.default.post(name: .isSideVCAppear, object: nil, userInfo: [UserInfo.alphaShow: true])
         if let ws = workspace {
             mainView.workspaceId = ws.workspaceId
         }
@@ -154,7 +154,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         mainView.collectionView.rx.itemSelected
             .bind(with: self) { owner, indexPath in
                 owner.dismiss(animated: false)
-                NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: ["workspace": owner.items[indexPath.item]])
+                NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: [UserInfo.workspace: owner.items[indexPath.item]])
 //                NotificationCenter.default.post(name: .refreshWS, object: nil)
                 
             }
@@ -227,7 +227,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     }
     
     private func presentOtherWorkspace(workspace: WorkSpace) {
-        NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: ["workspace": workspace])
+        NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: [UserInfo.workspace: workspace])
         dismiss(animated: false)
     }
     
