@@ -41,7 +41,7 @@ final class WorkspaceListReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .requestAllWorkspace:
-            return requestAllWorkspace(type: .fetchAll)
+            return requestAllWS(type: .fetchAll).asObservable()
         case .requestExit(let id):
             if let id = id {
                 return requestExitWorkspace(id: id)
@@ -108,7 +108,13 @@ final class WorkspaceListReactor: Reactor {
             .flatMap { result -> Observable<Mutation> in
                 switch result {
                 case .success(let value):
-                    return .just(Mutation.completLeave(data: value ?? []))
+                    switch type {
+                    case .delete:
+                        return .just(Mutation.completLeave(data: value ?? []))
+                    case .fetchAll:
+                        return .just(Mutation.fetchAllWorkspace(data: value ?? []))
+                    }
+                    
                 case .failure(let error):
                     return .just(Mutation.msg(msg: error.localizedDescription))
                 }
@@ -138,32 +144,6 @@ final class WorkspaceListReactor: Reactor {
     }
     
     
-    private func requestAllWorkspace(type: requestType) -> Observable<Mutation> {
-        return WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: AllWorkspaceReDTO.self)
-            .asObservable()
-            .map { result -> Mutation in
-                switch result {
-                case .success(let value):
-                    switch type {
-                    case .delete:
-                        if let value = value {
-                            let data = value.isEmpty ? nil : value[0]
-                            return Mutation.successDelete(data: value)
-                        } else {
-                            return Mutation.successDelete(data: [])
-                        }
-                        
-                    case .fetchAll:
-                        return Mutation.fetchAllWorkspace(data: value ?? [])
-                    }
-                    
-                    
-                case .failure(let error):
-                    return Mutation.msg(msg: error.localizedDescription)
-                }
-                
-            }
-    }
     
     enum requestType {
         case delete, fetchAll

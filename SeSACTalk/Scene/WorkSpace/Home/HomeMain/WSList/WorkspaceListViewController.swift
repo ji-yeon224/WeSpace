@@ -188,7 +188,6 @@ final class WorkspaceListViewController: BaseViewController, View {
         reactor.state
             .map { $0.allWorkspace }
             .distinctUntilChanged()
-//            .filter { $0.isEmpty == false }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 owner.workspaceItem.accept(value)
