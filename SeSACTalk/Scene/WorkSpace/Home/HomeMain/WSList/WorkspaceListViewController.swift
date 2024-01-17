@@ -13,11 +13,17 @@ import RxCocoa
 import RxGesture
 import ReactorKit
 
+
+enum WSSettingType {
+    case exit, change, delete
+}
+
 final class WorkspaceListViewController: BaseViewController, View {
     
     
     var workspace: WorkSpace?
     var items: [WorkSpace] = []
+    private var setType: WSSettingType = .change
     var disposeBag = DisposeBag()
     
     private let mainView = WorkspaceListView()
@@ -29,6 +35,8 @@ final class WorkspaceListViewController: BaseViewController, View {
     private let changeManager = PublishRelay<Bool>()
     private let deleteWorkspaceList = PublishRelay<Bool>()
     private let workspaceItem = PublishRelay<[WorkSpace]>()
+    
+    private let requestExit = PublishRelay<Void>()
     
     override func loadView() {
         self.view = mainView
@@ -86,9 +94,10 @@ final class WorkspaceListViewController: BaseViewController, View {
     func bind(reactor: WorkspaceListReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
+        bindEvent()
     }
     
-    private func bindAction(reactor: WorkspaceListReactor) {
+    private func bindEvent() {
         mainView.addWorkspaceView.rx.tapGesture()
             .when(.recognized)
             .debug()
@@ -106,8 +115,9 @@ final class WorkspaceListViewController: BaseViewController, View {
             .drive(with: self) { owner, _ in
                 let vc = MakeViewController(mode: .edit, info: owner.workspace)
                 vc.delegate = owner
-                let nv = PageSheetManager.sheetPresentation(vc, detent: .large())
-                owner.present(nv, animated: true)
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -115,9 +125,9 @@ final class WorkspaceListViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
                 if owner.workspace?.ownerId == UserDefaultsManager.userId {
-                    owner.alertView.showAlertWithOK(title: "워크스페이스 나가기", message: Text.workspaceExitManager)
+                    owner.alertView.showAlertWithOK(title: Text.wsExitTitle, message: Text.workspaceExitManager)
                 } else {
-                    owner.alertView.showAlertWithOK(title: "워크스페이스 나가기", message: Text.workspaceExit)
+                    owner.alertView.showAlertWithCancel(title: Text.wsExitTitle, message: Text.workspaceExit, okText: "나가기")
                 }
                 
                 owner.present(owner.alertView, animated: false)
@@ -127,14 +137,9 @@ final class WorkspaceListViewController: BaseViewController, View {
         deleteWorkspaceList
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
-                owner.alertView.showAlertWithCancel(title: "워크스페이스 삭제", message: Text.workspaceDelete, okText: "삭제")
+                owner.alertView.showAlertWithCancel(title: Text.wsDeleteTitle, message: Text.workspaceDelete, okText: "삭제")
                 owner.present(owner.alertView, animated: false)
             }
-            .disposed(by: disposeBag)
-        
-        requestAllWorkspace
-            .map { _ in Reactor.Action.requestAllWorkspace }
-            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         workspaceItem
@@ -156,6 +161,17 @@ final class WorkspaceListViewController: BaseViewController, View {
                 owner.view.window?.makeKeyAndVisible()
             }
             .disposed(by: disposeBag)
+        
+    }
+    
+    private func bindAction(reactor: WorkspaceListReactor) {
+        
+        requestAllWorkspace
+            .map { _ in Reactor.Action.requestAllWorkspace }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        
     }
     
     private func bindState(reactor: WorkspaceListReactor) {
@@ -169,6 +185,42 @@ final class WorkspaceListViewController: BaseViewController, View {
                 owner.configView(isEmpty: value.isEmpty)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.message }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                debugPrint("ERROR - \(value)")
+                owner.showToastMessage(message: value, position: .bottom)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.successLeave }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                if value.isEmpty {
+                    owner.presentHomeEmptyView()
+                } else {
+                    owner.presentOtherWorkspace(workspace: value[0])
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func presentOtherWorkspace(workspace: WorkSpace) {
+        let vc = HomeTabBarController(workspace: workspace)
+        let nav = UINavigationController(rootViewController: vc)
+        view.window?.rootViewController = nav
+        view.window?.makeKeyAndVisible()
+    }
+    
+    private func presentHomeEmptyView() {
+        let nav = UINavigationController(rootViewController: HomeEmptyViewController())
+        view.window?.rootViewController = nav
+        view.window?.makeKeyAndVisible()
     }
     
     private func bindEmpty() {
@@ -198,6 +250,18 @@ extension WorkspaceListViewController: AlertDelegate {
         print("cancel")
     }
     func okButtonTap() {
+        switch setType {
+        case .change:
+            print("change ok")
+        case .delete:
+            print("delete ok")
+        case .exit:
+            if workspace?.ownerId == UserDefaultsManager.userId { // 관리자가 누름
+                print("관리자임")
+            } else {
+                requestExit.accept(())
+            }
+        }
         print("ok")
     }
 }
@@ -230,12 +294,15 @@ extension WorkspaceListViewController: WorkSpaceListDelegate {
         }
         let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
             self.workspaceExit.accept(true)
+            self.setType = .exit
         }
         let changeManager = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) { _ in
             self.changeManager.accept(true)
+            self.setType = .change
         }
         let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { _ in
             self.deleteWorkspaceList.accept(true)
+            self.setType = .delete
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel)
