@@ -136,6 +136,9 @@
 		CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */; };
 		CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */; };
 		CED829462B58C28900AD1828 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829452B58C28900AD1828 /* ReusableProtocol.swift */; };
+		CED829492B58C40A00AD1828 /* ChangeManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829482B58C40A00AD1828 /* ChangeManagerViewController.swift */; };
+		CED8294B2B58C41500AD1828 /* ChangeManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8294A2B58C41500AD1828 /* ChangeManagerView.swift */; };
+		CED8294D2B58C42900AD1828 /* ChangeManagerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8294C2B58C42900AD1828 /* ChangeManagerReactor.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -310,6 +313,9 @@
 		CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceListDelegate.swift; sourceTree = "<group>"; };
 		CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		CED829452B58C28900AD1828 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		CED829482B58C40A00AD1828 /* ChangeManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerViewController.swift; sourceTree = "<group>"; };
+		CED8294A2B58C41500AD1828 /* ChangeManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerView.swift; sourceTree = "<group>"; };
+		CED8294C2B58C42900AD1828 /* ChangeManagerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerReactor.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -797,12 +803,23 @@
 		CED7C2C32B52348E0069EA0A /* WSList */ = {
 			isa = PBXGroup;
 			children = (
+				CED829472B58C3E200AD1828 /* ChangeManager */,
 				CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */,
 				CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */,
 				CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */,
 				CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */,
 			);
 			path = WSList;
+			sourceTree = "<group>";
+		};
+		CED829472B58C3E200AD1828 /* ChangeManager */ = {
+			isa = PBXGroup;
+			children = (
+				CED829482B58C40A00AD1828 /* ChangeManagerViewController.swift */,
+				CED8294A2B58C41500AD1828 /* ChangeManagerView.swift */,
+				CED8294C2B58C42900AD1828 /* ChangeManagerReactor.swift */,
+			);
+			path = ChangeManager;
 			sourceTree = "<group>";
 		};
 		CEE989962B4A52E100590A19 /* Profile */ = {
@@ -1126,6 +1143,7 @@
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
+				CED8294B2B58C41500AD1828 /* ChangeManagerView.swift in Sources */,
 				CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */,
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
 				CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */,
@@ -1142,6 +1160,7 @@
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
 				CEEAA1D52B53FB9800EA1C58 /* WorkspaceEmptyView.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
+				CED8294D2B58C42900AD1828 /* ChangeManagerReactor.swift in Sources */,
 				CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
 				CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */,
@@ -1188,6 +1207,7 @@
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
+				CED829492B58C40A00AD1828 /* ChangeManagerViewController.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,

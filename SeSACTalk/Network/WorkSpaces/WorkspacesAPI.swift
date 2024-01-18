@@ -15,6 +15,7 @@ enum WorkspacesAPI {
     case editWS(data: WsCreateReqDTO, id: Int)
     case leave(id: Int)
     case delete(id: Int)
+    case member(id: Int)
     
 }
 
@@ -31,13 +32,15 @@ extension WorkspacesAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(id)"
         case .leave(let id):
             return Endpoint.workspaces.rawValue + "/\(id)" + "/leave"
+        case .member(let id):
+            return Endpoint.workspaces.rawValue + "\(id)" + "/memeber"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .create: return .post
-        case .fetchAll, .fetchOne, .leave: return .get
+        case .fetchAll, .fetchOne, .leave, .member: return .get
         case .editWS: return .put
         case .delete: return .delete
         }
@@ -48,7 +51,7 @@ extension WorkspacesAPI: TargetType {
         case .create(let data), .editWS(let data, id: _):
             let multipart = MultipartFormDataManager.shared.convertToMultipart(data: data.convertToMap(), files: [data.image])
             return .uploadMultipart(multipart)
-        case .fetchAll, .fetchOne, .leave, .delete:
+        case .fetchAll, .fetchOne, .leave, .delete, .member:
             return .requestPlain
         }
     }
@@ -57,7 +60,7 @@ extension WorkspacesAPI: TargetType {
         switch self {
         case .create, .editWS:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
-        case .fetchAll, .fetchOne, .leave, .delete:
+        case .fetchAll, .fetchOne, .leave, .delete, .member:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         }
     }
