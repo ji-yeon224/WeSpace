@@ -134,6 +134,8 @@
 		CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */; };
 		CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */; };
 		CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */; };
+		CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */; };
+		CED829462B58C28900AD1828 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829452B58C28900AD1828 /* ReusableProtocol.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -306,6 +308,8 @@
 		CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListViewController.swift; sourceTree = "<group>"; };
 		CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListView.swift; sourceTree = "<group>"; };
 		CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceListDelegate.swift; sourceTree = "<group>"; };
+		CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		CED829452B58C28900AD1828 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -591,6 +595,7 @@
 				CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */,
 				CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */,
 				CEEAA1D82B540E2500EA1C58 /* WorkspaceListCell.swift */,
+				CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -880,6 +885,7 @@
 				CEC7642F2B512471000578E9 /* ImageLoadManager.swift */,
 				CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */,
 				CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */,
+				CED829452B58C28900AD1828 /* ReusableProtocol.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1090,12 +1096,14 @@
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
+				CED829462B58C28900AD1828 /* ReusableProtocol.swift in Sources */,
 				CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
 				CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */,
 				CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
+				CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */,
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,

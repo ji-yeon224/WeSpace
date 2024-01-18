@@ -9,7 +9,7 @@ import UIKit
 
 final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
     
-    static let identifier = "WorkspaceCollectionViewCell"
+    
     
     var imageView = UIImageView().then {
         $0.image = .hashTagThin

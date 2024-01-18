@@ -301,7 +301,6 @@ extension WorkspaceListViewController: AlertDelegate {
                 requestExit.accept(())
             }
         }
-        print("ok")
     }
 }
 

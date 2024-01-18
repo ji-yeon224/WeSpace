@@ -1,17 +1,15 @@
 //
-//  WorkspaceListCell.swift
+//  MemberCollectionViewCell.swift
 //  SeSACTalk
 //
-//  Created by 김지연 on 1/14/24.
+//  Created by 김지연 on 1/18/24.
 //
 
 import UIKit
-import RxSwift
 
-final class WorkspaceListCell: BaseCollectionViewCell {
+final class MemberCollectionViewCell: BaseCollectionViewCell {
     
     
-    var disposeBag = DisposeBag()
     
     let backView = UIView().then {
         $0.layer.cornerRadius = 8
@@ -43,7 +41,6 @@ final class WorkspaceListCell: BaseCollectionViewCell {
         super.prepareForReuse()
         backView.backgroundColor = .secondaryBackground
         menuButton.isHidden = true
-        disposeBag = DisposeBag()
         
     }
     
@@ -94,5 +91,6 @@ final class WorkspaceListCell: BaseCollectionViewCell {
         
     }
     
-    
 }
+
+
