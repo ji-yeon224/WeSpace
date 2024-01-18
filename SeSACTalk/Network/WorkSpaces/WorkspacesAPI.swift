@@ -33,7 +33,7 @@ extension WorkspacesAPI: TargetType {
         case .leave(let id):
             return Endpoint.workspaces.rawValue + "/\(id)" + "/leave"
         case .member(let id):
-            return Endpoint.workspaces.rawValue + "\(id)" + "/memeber"
+            return Endpoint.workspaces.rawValue + "/\(id)" + "/members"
         }
     }
     

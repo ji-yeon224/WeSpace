@@ -39,6 +39,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     private let requestExit = PublishRelay<Void>()
     private let requestDelete = PublishRelay<Void>()
     
+    
     override func loadView() {
         self.view = mainView
 //        mainView.workspaceId = workspace!.workspaceId
@@ -161,7 +162,15 @@ final class WorkspaceListViewController: BaseViewController, View {
             }
             .disposed(by: disposeBag)
         
-        
+        changeManager
+            .bind(with: self) { owner, _ in
+                let vc = ChangeManagerViewController()
+                vc.workspace = owner.workspace
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
         
     }
     
@@ -292,6 +301,8 @@ extension WorkspaceListViewController: AlertDelegate {
         switch setType {
         case .change:
             print("change ok")
+            
+            
         case .delete:
             requestDelete.accept(())
         case .exit:

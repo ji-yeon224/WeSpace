@@ -15,6 +15,7 @@ final class ChangeManagerView: BaseView {
     override func configure() {
         super.configure()
         addSubview(collectionView)
+        configDataSource()
     }
     
     override func setConstraints() {
@@ -36,7 +37,8 @@ final class ChangeManagerView: BaseView {
             if let profileImg = itemIdentifier.profileImage {
                 cell.memberImageView.setImage(with: profileImg)
             } else {
-                cell.memberImageView.backgroundColor = .white
+                var img = Constants.Image.dummyProfile.shuffled()
+                cell.memberImageView.image = img.randomElement()
             }
             
             cell.memberNameLabel.text = itemIdentifier.nickname
