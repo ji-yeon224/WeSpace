@@ -14,16 +14,12 @@ import RxGesture
 import ReactorKit
 
 
-enum WSSettingType {
-    case exit, change, delete
-}
 
 final class WorkspaceListViewController: BaseViewController, View {
     
     
     var workspace: WorkSpace?
     var items: [WorkSpace] = []
-    private var setType: WSSettingType = .change
     var disposeBag = DisposeBag()
     
     private let mainView = WorkspaceListView()
@@ -48,7 +44,6 @@ final class WorkspaceListViewController: BaseViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
-        alertView.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -125,10 +120,10 @@ final class WorkspaceListViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
                 if owner.workspace?.ownerId == UserDefaultsManager.userId {
-                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExitManager, rightActionTitle: "나가기", rightActionCompletion: nil)
+                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExitManager, okTitle: "나가기", okCompletion: nil)
                     
                 } else {
-                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExit, align: .center, leftActionTitle: "취소", rightActionTitle: "나가기") { } rightActionCompletion: {
+                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExit, align: .center, cancelTitle: "취소", okTitle: "나가기") { } okCompletion: {
                         owner.requestExit.accept(())
                     }
 
@@ -140,7 +135,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         deleteWorkspaceList
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
-                owner.showPopUp(title: Text.wsDeleteTitle, message: Text.workspaceDelete, leftActionTitle: "취소", rightActionTitle: "삭제") { } rightActionCompletion: {
+                owner.showPopUp(title: Text.wsDeleteTitle, message: Text.workspaceDelete, cancelTitle: "취소", okTitle: "삭제") { } okCompletion: {
                     owner.requestDelete.accept(())
                 }
 
@@ -306,27 +301,6 @@ extension WorkspaceListViewController: ChangeManageDelegate {
     }
 }
 
-extension WorkspaceListViewController: AlertDelegate {
-    func cancelButtonTap() {
-        print("cancel")
-    }
-    func okButtonTap() {
-        switch setType {
-        case .change:
-            print("change ok")
-            
-            
-        case .delete:
-            requestDelete.accept(())
-        case .exit:
-            if workspace?.ownerId == UserDefaultsManager.userId { // 관리자가 누름
-                print("관리자임")
-            } else {
-                requestExit.accept(())
-            }
-        }
-    }
-}
 
 extension WorkspaceListViewController: MakeWSDelegate {
     func editComplete(data: WorkSpace) {
@@ -356,16 +330,12 @@ extension WorkspaceListViewController: WorkSpaceListDelegate {
         }
         let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
             self.workspaceExit.accept(true)
-            self.setType = .exit
         }
         let changeManager = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) { _ in
             self.changeManager.accept(true)
-            self.setType = .change
         }
         let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { _ in
-            
             self.deleteWorkspaceList.accept(true)
-            self.setType = .delete
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -380,7 +350,6 @@ extension WorkspaceListViewController: WorkSpaceListDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
             self.workspaceExit.accept(true)
-            self.setType = .exit
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         

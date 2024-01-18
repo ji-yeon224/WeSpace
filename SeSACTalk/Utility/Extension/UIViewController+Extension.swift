@@ -11,39 +11,40 @@ extension UIViewController {
     func showPopUp(title: String,
                    message: String,
                    align: NSTextAlignment? = .center,
-                   leftActionTitle: String? = nil,
-                   rightActionTitle: String = "확인",
-                   leftActionCompletion: (() -> Void)? = nil,
-                   rightActionCompletion: (() -> Void)? = nil) {
-        let alertViewController1 = AlertViewController1(titleText: title,
+                   cancelTitle: String? = nil,
+                   okTitle: String = "확인",
+                   cancelCompletion: (() -> Void)? = nil,
+                   okCompletion: (() -> Void)? = nil) {
+        let alertViewController = AlertViewController(titleText: title,
                                                       messageText: message,
                                                         textAligment: align
         )
-        showPopUp(alertViewController1: alertViewController1,
-                  leftActionTitle: leftActionTitle,
-                  rightActionTitle: rightActionTitle,
-                  rightActionCompletion: rightActionCompletion)
+        showPopUp(alertViewController: alertViewController,
+                  cancelTitle: cancelTitle,
+                  okTitle: okTitle,
+                  cancelCompletion: cancelCompletion,
+                  okCompletion: okCompletion)
     }
 
 
-    private func showPopUp(alertViewController1: AlertViewController1,
-                           leftActionTitle: String?,
-                           rightActionTitle: String,
-                           leftActionCompletion: (() -> Void)? = nil,
-                           rightActionCompletion: (() -> Void)?) {
+    private func showPopUp(alertViewController: AlertViewController,
+                           cancelTitle: String?,
+                           okTitle: String,
+                           cancelCompletion: (() -> Void)? = nil,
+                           okCompletion: (() -> Void)?) {
         
-        if let leftActionTitle = leftActionTitle {
-            alertViewController1.addActionToButton(title: leftActionTitle,
+        if let cancelTitle = cancelTitle {
+            alertViewController.addActionToButton(title: cancelTitle,
                                                   backgroundColor: .inactive) {
-                alertViewController1.dismiss(animated: false, completion: leftActionCompletion)
+                alertViewController.dismiss(animated: false, completion: cancelCompletion)
             }
         }
         
 
-        alertViewController1.addActionToButton(title: rightActionTitle,
+        alertViewController.addActionToButton(title: okTitle,
                                               backgroundColor: .brand) {
-            alertViewController1.dismiss(animated: false, completion: rightActionCompletion)
+            alertViewController.dismiss(animated: false, completion: okCompletion)
         }
-        present(alertViewController1, animated: false, completion: nil)
+        present(alertViewController, animated: false, completion: nil)
     }
 }
