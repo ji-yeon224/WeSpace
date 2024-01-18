@@ -30,6 +30,8 @@ final class UserDefaultsManager {
         case refreshToken
         case nickName
         case userId
+        case accessTokenExpire
+        case refreshTokenExpire
     }
     
     @Defaults(key: Key.isLogin.rawValue, defaultValue: false) static var isLogin
@@ -38,12 +40,17 @@ final class UserDefaultsManager {
     @Defaults(key: Key.refreshToken.rawValue, defaultValue: "") static var refreshToken
     @Defaults(key: Key.nickName.rawValue, defaultValue: "") static var nickName
     @Defaults(key: Key.userId.rawValue, defaultValue: -1) static var userId
+    @Defaults(key: Key.accessTokenExpire.rawValue, defaultValue: Date()) static var accessTokenExpire
+    @Defaults(key: Key.refreshTokenExpire.rawValue, defaultValue: Date()) static var refreshTokenExpire
     
     
     static func setToken(token: Token) {
         UserDefaultsManager.isLogin = true
         UserDefaultsManager.accessToken = token.accessToken
         UserDefaultsManager.refreshToken = token.refreshToken
+        UserDefaultsManager.accessTokenExpire = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? Date()
+        UserDefaultsManager.refreshTokenExpire = Calendar.current.date(byAdding: .hour, value: 12, to: Date()) ?? Date()
+        print(UserDefaultsManager.accessTokenExpire)
     }
     
     static func initToken() {
