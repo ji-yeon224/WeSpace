@@ -13,6 +13,7 @@ import RxSwift
 final class AlertViewController1: UIViewController {
     private var titleText: String?
     private var messageText: String?
+    private var textAligment: NSTextAlignment = .center
     private var contentView: UIView?
     private let disposeBag = DisposeBag()
     
@@ -34,13 +35,16 @@ final class AlertViewController1: UIViewController {
     private lazy var titleLabel = CustomBasicLabel(text: titleText ?? "asdfasdf", fontType: .title2, line: 0).then {
         $0.textAlignment = .center
     }
-    private lazy var messageLabel = CustomBasicLabel(text: messageText ?? "asdfsdf", fontType: .body, color: Constants.Color.secondaryText, line: 0)
+    private lazy var messageLabel = CustomBasicLabel(text: messageText ?? "asdfsdf", fontType: .body, color: Constants.Color.secondaryText, line: 0).then {
+        $0.textAlignment = textAligment
+    }
     
     convenience init(titleText: String? = nil,
-                     messageText: String? = nil
+                     messageText: String? = nil,
+                     textAligment: NSTextAlignment? = .center
     ) {
         self.init()
-
+        self.textAligment = textAligment ?? .center
         self.titleText = titleText
         self.messageText = messageText
         modalPresentationStyle = .overFullScreen
@@ -57,6 +61,7 @@ final class AlertViewController1: UIViewController {
         super.viewDidLoad()
         configure()
         setConstraints()
+        
     }
     
     

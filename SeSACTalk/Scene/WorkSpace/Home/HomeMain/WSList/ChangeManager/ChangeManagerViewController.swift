@@ -62,7 +62,7 @@ final class ChangeManagerViewController: BaseViewController, View {
                     owner.items = value
                     
                 } else {
-                    owner.showPopUp(title: Text.noMemberTitle, message: Text.noMemberMessage, rightActionTitle: "확인", rightActionCompletion:  {
+                    owner.showPopUp(title: Text.noMemberTitle, message: Text.noMemberMessage,rightActionTitle: "확인", rightActionCompletion:  {
                         owner.dismiss(animated: true)
                     })
                 }
@@ -122,7 +122,7 @@ final class ChangeManagerViewController: BaseViewController, View {
                 if let user = user {
                     let title = Text.changeManagerTitle.replacingOccurrences(of: "{name}", with: user.nickname)
                     
-                    owner.showPopUp(title: title, message: Text.changeManagerMessage, leftActionTitle: "취소", rightActionTitle: "확인") {
+                    owner.showPopUp(title: title, message: Text.changeManagerMessage, align: .left, leftActionTitle: "취소", rightActionTitle: "확인") {
                         
                     } rightActionCompletion: {
                         

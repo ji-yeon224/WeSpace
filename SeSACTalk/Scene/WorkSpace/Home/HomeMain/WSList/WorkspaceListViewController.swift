@@ -125,20 +125,25 @@ final class WorkspaceListViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
                 if owner.workspace?.ownerId == UserDefaultsManager.userId {
-                    owner.alertView.showAlertWithOK(title: Text.wsExitTitle, message: Text.workspaceExitManager)
+                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExitManager, rightActionTitle: "나가기", rightActionCompletion: nil)
+                    
                 } else {
-                    owner.alertView.showAlertWithCancel(title: Text.wsExitTitle, message: Text.workspaceExit, okText: "나가기")
+                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExit, align: .center, leftActionTitle: "취소", rightActionTitle: "나가기") { } rightActionCompletion: {
+                        owner.requestExit.accept(())
+                    }
+
                 }
                 
-                owner.present(owner.alertView, animated: false)
             }
             .disposed(by: disposeBag)
         
         deleteWorkspaceList
             .asDriver(onErrorJustReturn: true)
             .drive(with: self) { owner, _ in
-                owner.alertView.showAlertWithCancel(title: Text.wsDeleteTitle, message: Text.workspaceDelete, okText: "삭제")
-                owner.present(owner.alertView, animated: false)
+                owner.showPopUp(title: Text.wsDeleteTitle, message: Text.workspaceDelete, leftActionTitle: "취소", rightActionTitle: "삭제") { } rightActionCompletion: {
+                    owner.requestDelete.accept(())
+                }
+
             }
             .disposed(by: disposeBag)
         
@@ -358,6 +363,7 @@ extension WorkspaceListViewController: WorkSpaceListDelegate {
             self.setType = .change
         }
         let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { _ in
+            
             self.deleteWorkspaceList.accept(true)
             self.setType = .delete
         }

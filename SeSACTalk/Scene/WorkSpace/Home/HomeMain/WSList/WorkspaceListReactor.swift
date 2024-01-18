@@ -43,6 +43,7 @@ final class WorkspaceListReactor: Reactor {
         case .requestAllWorkspace:
             return requestAllWS(type: .fetchAll).asObservable()
         case .requestExit(let id):
+            print("workspace id ", id)
             if let id = id {
                 return requestExitWorkspace(id: id)
             } else {

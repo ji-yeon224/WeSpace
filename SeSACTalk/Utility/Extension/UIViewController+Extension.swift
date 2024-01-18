@@ -10,12 +10,15 @@ import UIKit
 extension UIViewController {
     func showPopUp(title: String,
                    message: String,
+                   align: NSTextAlignment? = .center,
                    leftActionTitle: String? = nil,
                    rightActionTitle: String = "확인",
                    leftActionCompletion: (() -> Void)? = nil,
                    rightActionCompletion: (() -> Void)? = nil) {
         let alertViewController1 = AlertViewController1(titleText: title,
-                                                      messageText: message)
+                                                      messageText: message,
+                                                        textAligment: align
+        )
         showPopUp(alertViewController1: alertViewController1,
                   leftActionTitle: leftActionTitle,
                   rightActionTitle: rightActionTitle,
