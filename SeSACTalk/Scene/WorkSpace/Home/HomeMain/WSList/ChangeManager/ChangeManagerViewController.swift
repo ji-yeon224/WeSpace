@@ -14,8 +14,10 @@ final class ChangeManagerViewController: BaseViewController, View {
     var workspace: WorkSpace?
     private var items: [User]?
     
+    
     private let mainView = ChangeManagerView()
     private let requestMember = PublishSubject<Void>()
+    private let noMemberAlert = PublishSubject<Void>()
     
     override func loadView() {
         self.view = mainView
@@ -26,11 +28,14 @@ final class ChangeManagerViewController: BaseViewController, View {
         title = "워크스페이스 관리자 변경"
         self.reactor = ChangeManagerReactor()
         requestMember.onNext(())
+        
+
     }
     
     func bind(reactor: ChangeManagerReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
+        bindEvent()
     }
     
     private func bindAction(reactor: ChangeManagerReactor) {
@@ -46,9 +51,13 @@ final class ChangeManagerViewController: BaseViewController, View {
             .filter{ $0 != .none }
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
-                if let value = value {
+                if let value = value, !value.isEmpty {
                     owner.items = value
                     
+                } else {
+                    owner.showPopUp(title: Text.noMemberTitle, message: Text.noMemberMessage, rightActionTitle: "확인", rightActionCompletion:  {
+                        owner.dismiss(animated: true)
+                    })
                 }
                 owner.updateSnapShot(data: owner.items ?? [])
             }
@@ -81,6 +90,25 @@ final class ChangeManagerViewController: BaseViewController, View {
         snapshot.appendSections([""])
         snapshot.appendItems(data)
         mainView.dataSource.apply(snapshot)
+    }
+    
+    private func bindEvent() {
+        
+        mainView.collectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                let user = owner.items?[indexPath.item]
+                
+                let title = Text.changeManagerTitle.replacingOccurrences(of: "{name}", with: user?.nickname ?? "user")
+                
+                owner.showPopUp(title: title, message: Text.changeManagerMessage, leftActionTitle: "확인", rightActionTitle: "취소") {
+                    
+                } rightActionCompletion: {
+                    
+                }
+
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     

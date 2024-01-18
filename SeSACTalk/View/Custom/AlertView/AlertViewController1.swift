@@ -31,13 +31,10 @@ final class AlertViewController1: UIViewController {
         $0.spacing = 8
     }
     
-    private lazy var titleLabel = CustomBasicLabel(text: titleText ?? "asdfasdf", fontType: .title2).then {
+    private lazy var titleLabel = CustomBasicLabel(text: titleText ?? "asdfasdf", fontType: .title2, line: 0).then {
         $0.textAlignment = .center
     }
-    private lazy var messageLabel = CustomBasicLabel(text: messageText ?? "asdfsdf", fontType: .body, color: Constants.Color.secondaryText, line: 0).then {
-        $0.textAlignment = .center
-    }
-   
+    private lazy var messageLabel = CustomBasicLabel(text: messageText ?? "asdfsdf", fontType: .body, color: Constants.Color.secondaryText, line: 0)
     
     convenience init(titleText: String? = nil,
                      messageText: String? = nil
@@ -114,15 +111,14 @@ final class AlertViewController1: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(24)
         }
         contentStackView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(alertView).inset(16)
+            make.centerX.equalTo(alertView)
+            make.horizontalEdges.lessThanOrEqualTo(alertView).inset(16)
+            make.top.equalTo(alertView).inset(16)
         }
         stackView.snp.makeConstraints { make in
             make.height.equalTo(Constants.Design.buttonHeight)
             make.top.equalTo(contentStackView.snp.bottom).offset(16)
             make.bottom.horizontalEdges.equalTo(alertView).inset(16)
-        }
-        titleLabel.snp.makeConstraints { make in
-            make.height.equalTo(20)
         }
         
         

@@ -21,7 +21,7 @@ final class ChangeManagerReactor: Reactor {
     }
     
     enum Mutation {
-        case responseMember(data: [UserResDTO])
+        case responseMember(data: [User])
         case msg(msg: String)
         case loginRequest
     }
@@ -46,8 +46,8 @@ final class ChangeManagerReactor: Reactor {
         
         switch mutation {
         case .responseMember(let data):
-            print(data)
-            newState.memberInfo = data.map { $0.toDomain() }
+            newState.memberInfo = data
+            
         case .msg(let msg):
             newState.msg = msg
         case .loginRequest:
@@ -68,7 +68,19 @@ extension ChangeManagerReactor {
                 
                 switch result {
                 case .success(let response):
-                    return Mutation.responseMember(data: response ?? [])
+                    if let response = response {
+                        var items: [User] = []
+                        response.forEach {
+                            if $0.user_id != UserDefaultsManager.userId {
+                                items.append($0.toDomain())
+                            }
+                            
+                        }
+                        return Mutation.responseMember(data: items)
+                    } else {
+                        return Mutation.responseMember(data: [])
+                    }
+                    
                 case .failure(let error):
                     var msg = CommonError.E99.localizedDescription
                     if let error = WorkspaceError(rawValue: error.errorCode) {

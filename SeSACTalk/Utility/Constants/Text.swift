@@ -28,5 +28,17 @@ enum Text {
     static let wsDeleteTitle = "워크스페이스 삭제"
     static let workspaceDelete = "정말 이 워크스페이스를 삭제하시겠습니까? 삭제 시 채널/멤버/채팅 등 워크스페이스 내의 모든 정보가 삭제되며 복구할 수 없습니다."
     
+    // ChangeMemberViewController
+    static let noMemberTitle = "워크스페이스 관리자 변경 불가"
+    static let noMemberMessage = "워크스페이스 멤버가 없어 관리자 변경을 할 수 없습니다.\n 새로운 멤버를 워크스페이스에 초대해보세요."
+    
+    static let changeManagerTitle = "{name} 님을 관리자로 지정하시겠습니까?"
+    static let changeManagerMessage = """
+    워크스페이스 관리자는 다음과 같은 권한이 있습니다. \n
+    ・ 워크스페이스 이름 또는 설명 변경
+    ・ 워크스페이스 삭제
+    ・ 워크스페이스 멤버 초대
+    """
+    
     
 }

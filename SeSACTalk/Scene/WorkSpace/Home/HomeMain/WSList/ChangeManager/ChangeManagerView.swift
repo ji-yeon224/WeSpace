@@ -34,10 +34,11 @@ final class ChangeManagerView: BaseView {
     func configDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<MemberCollectionViewCell, User> { cell, indexPath, itemIdentifier in
             
+            
             if let profileImg = itemIdentifier.profileImage {
                 cell.memberImageView.setImage(with: profileImg)
             } else {
-                var img = Constants.Image.dummyProfile.shuffled()
+                let img = Constants.Image.dummyProfile.shuffled()
                 cell.memberImageView.image = img.randomElement()
             }
             
