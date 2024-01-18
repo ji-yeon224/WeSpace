@@ -13,6 +13,7 @@ final class AlertWithOKView: BaseView {
         $0.backgroundColor = Constants.Color.secondaryBG
         $0.layer.cornerRadius = 16
         $0.clipsToBounds = true
+        $0.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
     }
     
     private let stackView = CustomStackView().then {
