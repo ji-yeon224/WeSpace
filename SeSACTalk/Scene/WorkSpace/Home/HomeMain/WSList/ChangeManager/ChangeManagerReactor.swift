@@ -12,24 +12,28 @@ final class ChangeManagerReactor: Reactor {
     var initialState: State = State(
         memberInfo: nil,
         msg: "",
-        loginRequest: false
+        loginRequest: false,
+        successChange: nil
     )
     
     
     enum Action {
         case requestMember(id: Int?)
+        case requestChange(wsId: Int?, userId: Int?)
     }
     
     enum Mutation {
         case responseMember(data: [User])
         case msg(msg: String)
         case loginRequest
+        case successChange(data: WorkSpace?)
     }
     
     struct State {
         var memberInfo: [User]?
         var msg: String
         var loginRequest: Bool
+        var successChange: WorkSpace?
     }
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
@@ -37,7 +41,13 @@ final class ChangeManagerReactor: Reactor {
             if let id = id {
                 return requestMember(id: id)
             } else { return Observable.of(Mutation.msg(msg: "Error"))}
-            
+        case .requestChange(let wsId, let userId):
+            if let wsId = wsId, let userId = userId {
+                return requestChangeManager(wsId: wsId, userId: userId)
+            } else {
+                return Observable.of(Mutation.msg(msg: "Error"))
+            }
+           
         }
     }
     
@@ -52,6 +62,10 @@ final class ChangeManagerReactor: Reactor {
             newState.msg = msg
         case .loginRequest:
             newState.loginRequest = true
+        case .successChange(let data):
+            if let data = data {
+                newState.successChange = data
+            }
         }
         return newState
     }
@@ -59,6 +73,33 @@ final class ChangeManagerReactor: Reactor {
 }
 
 extension ChangeManagerReactor {
+    
+    private func requestChangeManager(wsId: Int, userId: Int) -> Observable<Mutation> {
+        
+        return WorkspacesAPIManager.shared.request(api: .changeManager(wsId: wsId, userId: userId), resonseType: WorkspaceDto.self)
+            .asObservable()
+            .map { result -> Mutation in
+                
+                switch result {
+                case .success(let response):
+                    return Mutation.successChange(data: response?.toDomain())
+                    
+                case .failure(let error):
+                    var msg = CommonError.E99.localizedDescription
+                    if let error = WSCreateError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else {
+                        return Mutation.loginRequest
+                    }
+                    
+                    return Mutation.msg(msg: msg)
+                }
+                
+            }
+        
+    }
     
     private func requestMember(id: Int) -> Observable<Mutation> {
         

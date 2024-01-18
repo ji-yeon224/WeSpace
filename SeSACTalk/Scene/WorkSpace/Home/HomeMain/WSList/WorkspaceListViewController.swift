@@ -166,6 +166,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .bind(with: self) { owner, _ in
                 let vc = ChangeManagerViewController()
                 vc.workspace = owner.workspace
+                vc.delegate = self
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
                 nav.setupBarAppearance()
                 owner.present(nav, animated: true)
@@ -291,6 +292,13 @@ final class WorkspaceListViewController: BaseViewController, View {
         mainView.dataSource.apply(snapshot)
     }
     
+}
+
+extension WorkspaceListViewController: ChangeManageDelegate {
+    func completeChanageManager(data: WorkSpace) {
+        self.workspace = data
+        
+    }
 }
 
 extension WorkspaceListViewController: AlertDelegate {

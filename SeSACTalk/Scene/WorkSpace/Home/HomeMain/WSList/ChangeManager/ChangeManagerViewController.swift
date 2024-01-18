@@ -14,10 +14,12 @@ final class ChangeManagerViewController: BaseViewController, View {
     var workspace: WorkSpace?
     private var items: [User]?
     
+    weak var delegate: ChangeManageDelegate?
     
     private let mainView = ChangeManagerView()
     private let requestMember = PublishSubject<Void>()
     private let noMemberAlert = PublishSubject<Void>()
+    private let requestChange = PublishSubject<Int>()
     
     override func loadView() {
         self.view = mainView
@@ -41,6 +43,11 @@ final class ChangeManagerViewController: BaseViewController, View {
     private func bindAction(reactor: ChangeManagerReactor) {
         requestMember
             .map { Reactor.Action.requestMember(id: self.workspace?.workspaceId) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        requestChange
+            .map { Reactor.Action.requestChange(wsId: self.workspace?.workspaceId, userId: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -83,6 +90,20 @@ final class ChangeManagerViewController: BaseViewController, View {
                 owner.showToastMessage(message: value, position: .bottom)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.successChange }
+            .filter { $0 != .none }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                if let value = value {
+                    NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: [UserInfo.workspace: value])
+                    owner.delegate?.completeChanageManager(data: value)
+                    owner.dismiss(animated: true)
+                }
+                
+            }
+            .disposed(by: disposeBag)
     }
     
     private func updateSnapShot(data: [User]) {
@@ -98,13 +119,18 @@ final class ChangeManagerViewController: BaseViewController, View {
             .bind(with: self) { owner, indexPath in
                 let user = owner.items?[indexPath.item]
                 
-                let title = Text.changeManagerTitle.replacingOccurrences(of: "{name}", with: user?.nickname ?? "user")
-                
-                owner.showPopUp(title: title, message: Text.changeManagerMessage, leftActionTitle: "확인", rightActionTitle: "취소") {
+                if let user = user {
+                    let title = Text.changeManagerTitle.replacingOccurrences(of: "{name}", with: user.nickname)
                     
-                } rightActionCompletion: {
-                    
+                    owner.showPopUp(title: title, message: Text.changeManagerMessage, leftActionTitle: "취소", rightActionTitle: "확인") {
+                        
+                    } rightActionCompletion: {
+                        
+                        owner.requestChange.onNext(user.userId)
+                    }
                 }
+                
+                
 
             }
             .disposed(by: disposeBag)

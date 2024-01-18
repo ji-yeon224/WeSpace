@@ -141,6 +141,7 @@
 		CED8294D2B58C42900AD1828 /* ChangeManagerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8294C2B58C42900AD1828 /* ChangeManagerReactor.swift */; };
 		CED829512B590D7D00AD1828 /* AlertViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829502B590D7D00AD1828 /* AlertViewController1.swift */; };
 		CED829532B590FFC00AD1828 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829522B590FFC00AD1828 /* UIViewController+Extension.swift */; };
+		CED829552B59331800AD1828 /* ChangeManageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829542B59331800AD1828 /* ChangeManageDelegate.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -320,6 +321,7 @@
 		CED8294C2B58C42900AD1828 /* ChangeManagerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerReactor.swift; sourceTree = "<group>"; };
 		CED829502B590D7D00AD1828 /* AlertViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController1.swift; sourceTree = "<group>"; };
 		CED829522B590FFC00AD1828 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		CED829542B59331800AD1828 /* ChangeManageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManageDelegate.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 				CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */,
 				CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */,
 				CED829452B58C28900AD1828 /* ReusableProtocol.swift */,
+				CED829542B59331800AD1828 /* ChangeManageDelegate.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1178,6 +1181,7 @@
 				CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
+				CED829552B59331800AD1828 /* ChangeManageDelegate.swift in Sources */,
 				CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */,
 				CEC764532B5176DA000578E9 /* User.swift in Sources */,
 				CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */,
