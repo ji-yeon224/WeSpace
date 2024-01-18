@@ -25,11 +25,11 @@ final class WorkspaceListViewController: BaseViewController, View {
     private let mainView = WorkspaceListView()
     private let alertView = AlertViewController()
 
-    private let requestAllWorkspace = PublishRelay<Bool>()
-    private let workspaceEdit = PublishRelay<Bool>()
-    private let workspaceExit = PublishRelay<Bool>()
-    private let changeManager = PublishRelay<Bool>()
-    private let deleteWorkspaceList = PublishRelay<Bool>()
+    private let requestAllWorkspace = PublishRelay<Void>()
+    private let workspaceEdit = PublishRelay<Void>()
+    private let workspaceExit = PublishRelay<Void>()
+    private let changeManager = PublishRelay<Void>()
+    private let deleteWorkspaceList = PublishRelay<Void>()
     private let workspaceItem = PublishRelay<[WorkSpace]>()
     
     private let requestExit = PublishRelay<Void>()
@@ -59,7 +59,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         if let ws = workspace {
             mainView.workspaceId = ws.workspaceId
         }
-        requestAllWorkspace.accept(true)
+        requestAllWorkspace.accept(())
     }
     
     override func configure() {
@@ -106,7 +106,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .disposed(by: disposeBag)
         
         workspaceEdit
-            .asDriver(onErrorJustReturn: true)
+            .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
                 let vc = MakeViewController(mode: .edit, info: owner.workspace)
                 vc.delegate = owner
@@ -117,7 +117,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .disposed(by: disposeBag)
         
         workspaceExit
-            .asDriver(onErrorJustReturn: true)
+            .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
                 if owner.workspace?.ownerId == UserDefaultsManager.userId {
                     owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExitManager, okTitle: "나가기", okCompletion: nil)
@@ -133,7 +133,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .disposed(by: disposeBag)
         
         deleteWorkspaceList
-            .asDriver(onErrorJustReturn: true)
+            .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
                 owner.showPopUp(title: Text.wsDeleteTitle, message: Text.workspaceDelete, cancelTitle: "취소", okTitle: "삭제") { } okCompletion: {
                     owner.requestDelete.accept(())
@@ -305,7 +305,7 @@ extension WorkspaceListViewController: ChangeManageDelegate {
 extension WorkspaceListViewController: MakeWSDelegate {
     func editComplete(data: WorkSpace) {
         self.workspace = data
-        requestAllWorkspace.accept(true)
+        requestAllWorkspace.accept(())
         showToastMessage(message: WorkspaceToastMessage.editWorkspace.message, position: .bottom)
         NotificationCenter.default.post(name: .refreshWS, object: nil)
     }
@@ -326,16 +326,16 @@ extension WorkspaceListViewController: WorkSpaceListDelegate {
     private func showManagerActionSheet() -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "워크스페이스 편집", style: .default) { _ in
-            self.workspaceEdit.accept(true)
+            self.workspaceEdit.accept(())
         }
         let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
-            self.workspaceExit.accept(true)
+            self.workspaceExit.accept(())
         }
         let changeManager = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) { _ in
-            self.changeManager.accept(true)
+            self.changeManager.accept(())
         }
         let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { _ in
-            self.deleteWorkspaceList.accept(true)
+            self.deleteWorkspaceList.accept(())
         }
         
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -349,7 +349,7 @@ extension WorkspaceListViewController: WorkSpaceListDelegate {
     private func showActionSheet() -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let exit = UIAlertAction(title: "워크스페이스 나가기", style: .default) { _ in
-            self.workspaceExit.accept(true)
+            self.workspaceExit.accept(())
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         
