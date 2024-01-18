@@ -17,6 +17,7 @@ extension Constants {
         static let appleLogin = UIImage(named: "AppleLogin")
         static let email = UIImage(named: "Email")
         static let dot = UIImage(systemName: "ellipsis")
+        static let dummyProfile: [UIImage] = [.noPhotoA, .noPhotoB, .noPhotoC]
     }
     
 }

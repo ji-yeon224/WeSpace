@@ -11,6 +11,7 @@ final class PageSheetManager {
     static func sheetPresentation(_ vc: UIViewController, detent: UISheetPresentationController.Detent) -> UINavigationController {
         
         let nav = UINavigationController(rootViewController: vc)
+//        nav.setupBarAppearance()
         if let sheet = nav.sheetPresentationController {
             sheet.detents = [detent]
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false

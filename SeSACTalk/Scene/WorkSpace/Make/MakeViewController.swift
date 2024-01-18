@@ -10,11 +10,30 @@ import RxGesture
 import ReactorKit
 import RxCocoa
 
+enum setWSType {
+    case create, edit
+}
+
 final class MakeViewController: BaseViewController, View {
     
     private let mainView = MakeView()
     var disposeBag: DisposeBag = DisposeBag()
+    var delegate: MakeWSDelegate?
     
+    private var mode: setWSType = .create
+    private var wsInfo: WorkSpace?
+    private var img: UIImage?
+    
+    init(mode: setWSType = .create, info: WorkSpace? = nil) {
+        super.init(nibName: nil, bundle: nil)
+        self.mode = mode
+        self.wsInfo = info
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         self.view = mainView
@@ -27,8 +46,28 @@ final class MakeViewController: BaseViewController, View {
     
     override func configure() {
         super.configure()
-        title = "워크스페이스 생성"
         configNav()
+        switch mode {
+        case .create:
+            title = "워크스페이스 생성"
+        case .edit:
+            title = "워크스페이스 편집"
+            configEditData()
+        }
+        
+        
+    }
+    
+    private func configEditData() {
+        if let ws = wsInfo {
+            mainView.imageView.imageView.setImage(with: ws.thumbnail)
+            self.img = mainView.imageView.imageView.image
+            mainView.workSpaceName.textfield.text = ws.name
+            mainView.workSpaceDesc.textfield.text = ws.description
+        }
+        mainView.completeButton.setTitle("저장", for: .normal)
+        
+        
     }
     
     func bind(reactor: MakeViewReactor) {
@@ -41,13 +80,14 @@ final class MakeViewController: BaseViewController, View {
         mainView.imageView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
-                PHPickerManager.shared.presentPicker(vc: self)
+                PHPickerManager.shared.presentPicker(vc: owner)
             }
             .disposed(by: disposeBag)
         PHPickerManager.shared.selectedImage
             .bind(with: self) { owner, image in
                 if !image.isEmpty {
                     owner.mainView.imageView.setImage(img: image[0])
+                    owner.img = owner.mainView.imageView.image
                 }
             }
             .disposed(by: disposeBag)
@@ -56,16 +96,24 @@ final class MakeViewController: BaseViewController, View {
             .map { Reactor.Action.nameInput(name: $0) }
             .bind(to: reactor.action )
             .disposed(by: disposeBag)
+        
+        let input = Observable.combineLatest(mainView.workSpaceName.textfield.rx.text.orEmpty, mainView.workSpaceDesc.textfield.rx.text.orEmpty)
+        
+        mainView.completeButton.rx.tap
+            .withLatestFrom(input) { _, value in
+                return value
+            }
+            .map { value -> MakeViewReactor.Action in
+                print(self.mode)
+                if self.mode == .create {
+                    return Reactor.Action.createButtonTap(name: value.0, description: value.1, image: SelectImage(img: self.img))
+                }else {
+                    return Reactor.Action.editButtonTap(name: value.0, description: value.1, image: SelectImage(img: self.img), id: self.wsInfo?.workspaceId)
+                }
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
        
-        Observable.combineLatest(mainView.completeButton.rx.tap, mainView.workSpaceName.textfield.rx.text.orEmpty) { _, value in
-            value
-        }
-        .withLatestFrom(mainView.workSpaceDesc.textfield.rx.text.orEmpty) { name, desc in
-            return (name, desc)
-        }
-        .map { Reactor.Action.completeButtonTap(name: $0.0, description: $0.1, image: SelectImage(img: self.mainView.wsImage))}
-        .bind(to: reactor.action)
-        .disposed(by: disposeBag)
         
     }
     
@@ -93,8 +141,26 @@ final class MakeViewController: BaseViewController, View {
         reactor.state
             .map { $0.completeCreate }
             .filter { $0.1 == true }
+            .observe(on:MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                print("create", value.0?.name)
+                if let value = value.0 {
+                    let nav = UINavigationController(rootViewController: HomeTabBarController(workspace: value))
+                    owner.view.window?.rootViewController = nav
+                    owner.view.window?.makeKeyAndVisible()
+                }
+               
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.completeEdit }
+            .filter{ $0.1 == true }
+            .observe(on:MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                if let value = value.0 {
+                    owner.dismiss(animated: true)
+                    owner.delegate?.editComplete(data: value)
+                }
             }
             .disposed(by: disposeBag)
     }

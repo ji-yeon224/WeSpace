@@ -36,6 +36,7 @@ final class AuthAPIManager {
                         do {
                             let result = try JSONDecoder().decode(ErrorResponse.self, from: data.data)
                             if let error = RefreshError(rawValue: result.errorCode) {
+                                print(error.localizedDescription)
                                 switch error {
                                 case .E02, .E03, .E06:
                                     value.onNext(RefreshResultType.login(error: result))

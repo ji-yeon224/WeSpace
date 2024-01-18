@@ -31,9 +31,17 @@ final class AuthIntercepter: RequestInterceptor {
     
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        print("retry")
+        
+        
+        guard Date() > UserDefaultsManager.accessTokenExpire else {
+            completion(.doNotRetryWithError(error))
+            return
+        }
+        
+        print("retry", error.localizedDescription)
+        
         guard request.retryCount < self.retryLimit else {
-            completion(.doNotRetry)
+            completion(.doNotRetryWithError(error))
             return
         }
         
@@ -43,6 +51,8 @@ final class AuthIntercepter: RequestInterceptor {
                 case .success(let token):
                     debugPrint("[SUCCESS REFRESH TOKEN] ", token)
                     UserDefaultsManager.accessToken = token
+                    UserDefaultsManager.accessTokenExpire = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? Date()
+                    print(UserDefaultsManager.refreshToken)
                     completion(.retryWithDelay(self.retryDelay))
                     
                 case .login(let error):

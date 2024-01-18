@@ -45,6 +45,7 @@ extension OnBoardingViewController: LoginViewControllerDelegate {
     func presentJoinView() {
         let vc = JoinViewController()
         let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+        nav.setupBarAppearance()
         present(nav, animated: true)
     }
     

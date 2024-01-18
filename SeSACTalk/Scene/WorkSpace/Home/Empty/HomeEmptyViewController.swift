@@ -33,14 +33,14 @@ final class HomeEmptyViewController: BaseViewController {
     }
     override func configure() {
         view.backgroundColor = Constants.Color.secondaryBG
-        SideMenuVCManager.shared.initSideMenu(vc: self, workspace: [])
+        SideMenuVCManager.shared.initSideMenu(vc: self)
     }
     
-    func bind() {
+    private func bind() {
         
         mainView.makeButton.rx.tap
             .bind(with: self) { owner, _ in
-                let vc = MakeViewController()
+                let vc = MakeViewController(mode: .create)
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
                 nav.setupBarAppearance()
                 owner.present(nav, animated: true)
@@ -56,7 +56,7 @@ final class HomeEmptyViewController: BaseViewController {
         
         NotificationCenter.default.rx.notification(.isSideVCAppear)
             .bind(with: self) { owner, noti in
-                if let show = noti.userInfo?["show"] as? Bool {
+                if let show = noti.userInfo?[UserInfo.alphaShow] as? Bool {
                     owner.mainView.alphaView.isHidden = !show
                 }
             }

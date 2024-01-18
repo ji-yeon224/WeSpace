@@ -17,3 +17,5 @@ struct UserResDTO: Decodable {
         return .init(userId: user_id, email: email, nickname: nickname, profileImage: profileImage)
     }
 }
+
+typealias MemberResDTO = [UserResDTO]

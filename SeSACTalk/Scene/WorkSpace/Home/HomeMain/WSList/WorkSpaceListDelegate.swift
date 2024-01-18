@@ -8,6 +8,5 @@
 import Foundation
 
 protocol WorkSpaceListDelegate: AnyObject {
-    func viewDisappear() 
-    func viewAppear()
+    func workspaceSettingTapped()
 }

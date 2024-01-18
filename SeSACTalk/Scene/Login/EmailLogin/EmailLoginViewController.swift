@@ -82,6 +82,7 @@ final class EmailLoginViewController: BaseViewController, View {
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 if let value = value, !value.isEmpty {
+                    print(value)
                     owner.showToastMessage(message: value, position: .top)
                 }
                 
@@ -104,10 +105,6 @@ final class EmailLoginViewController: BaseViewController, View {
             }
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
-            .map { _ in
-                print(UserDefaultsManager.accessToken)
-                print(UserDefaultsManager.refreshToken)
-            }
             .map { _ in Reactor.Action.fetchWorkspace }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)

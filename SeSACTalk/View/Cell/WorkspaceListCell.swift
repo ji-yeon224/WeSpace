@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 final class WorkspaceListCell: BaseCollectionViewCell {
     
-    static let identifier = "WorkspaceListCell"
+    
+    var disposeBag = DisposeBag()
     
     let backView = UIView().then {
         $0.layer.cornerRadius = 8
@@ -20,7 +22,7 @@ final class WorkspaceListCell: BaseCollectionViewCell {
 //        $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         
     }
     
@@ -34,6 +36,15 @@ final class WorkspaceListCell: BaseCollectionViewCell {
     
     let menuButton = CustomButton(image: Constants.Image.dot).then {
         $0.tintColor = .basicText
+        $0.isHidden = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        backView.backgroundColor = .secondaryBackground
+        menuButton.isHidden = true
+        disposeBag = DisposeBag()
+        
     }
     
     override func configure() {

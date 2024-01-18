@@ -15,7 +15,7 @@ final class EditImageView: BaseView {
         $0.backgroundColor = .clear
     }
     
-    private let imageView = UIImageView().then {
+    let imageView = UIImageView().then {
         $0.image = .workspace
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true

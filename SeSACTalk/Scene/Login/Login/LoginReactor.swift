@@ -97,6 +97,7 @@ extension LoginReactor {
                     if let response = response {
                         UserDefaultsManager.setToken(token: response.token)
                         UserDefaultsManager.nickName = response.nickname
+                        UserDefaultsManager.setUserInfo(id: response.user_id, nickName: response.nickname)
                     }
                     return Mutation.kakaoRequestComplete
                 case .failure(let error):

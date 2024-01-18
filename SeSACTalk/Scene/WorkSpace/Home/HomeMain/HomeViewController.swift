@@ -16,7 +16,7 @@ final class HomeViewController: BaseViewController, View {
     var disposeBag = DisposeBag()
     private let requestWSInfo = PublishSubject<Bool>()
     private let requestDMsInfo = PublishSubject<Bool>()
-    private let requestAllChannelInfo = PublishSubject<Bool>()
+    private let requestAllWorkspaceInfo = PublishSubject<Bool>()
     
     private var workspace: WorkSpace?
     private var allWorkspace: [WorkSpace]?
@@ -28,7 +28,7 @@ final class HomeViewController: BaseViewController, View {
     init(workspace: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.workspace = workspace
-        print(workspace)
+
     }
     
     @available(*, unavailable)
@@ -40,29 +40,27 @@ final class HomeViewController: BaseViewController, View {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         self.reactor = HomeReactor()
-        requestWSInfo.onNext(true)
-        requestDMsInfo.onNext(true)
-        requestAllChannelInfo.onNext(true)
-        
+        initData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        print("appear")
+        
+        
     }
-    
     override func configure() {
         view.backgroundColor = .white
         sectionSnapShot()
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
-        
-        configData()
+        SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
+
     }
     
-    
-    private func configData() {
-        guard let workspace = workspace else { return }
-        mainView.topView.wsImageView.setImage(with: workspace.thumbnail)
+    private func initData() {
+        requestWSInfo.onNext(true)
+        requestDMsInfo.onNext(true)
+        requestAllWorkspaceInfo.onNext(true)
+        
     }
     
 }
@@ -73,53 +71,35 @@ extension HomeViewController {
     func bind(reactor: HomeReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
-        
+        bindEvent()
     }
     
     private func bindAction(reactor: HomeReactor) {
         
-        guard let workspace = workspace else { return }
-        
         requestWSInfo
-            .map{ _ in Reactor.Action.requestInfo(id: workspace.workspaceId)}
+            .map{ _ in
+                Reactor.Action.requestInfo(id: self.workspace?.workspaceId)
+            }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         requestDMsInfo
-            .map { _ in Reactor.Action.requestDMsInfo(id: workspace.workspaceId)}
+            .map { _ in Reactor.Action.requestDMsInfo(id: self.workspace?.workspaceId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        requestAllChannelInfo
-            .map { _ in Reactor.Action.requestAllChannel }
+        requestAllWorkspaceInfo
+            .map { _ in Reactor.Action.requestAllWorkspace }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        mainView.topView.rx.tapGesture()
-            .when(.recognized)
-            .bind(with: self) { owner, _ in
-                SideMenuVCManager.shared.presentSideMenu()
-            }
-            .disposed(by: disposeBag)
         
-//        view.rx.swipeGesture(.right)
-//            .when(.recognized)
-//            .bind(with: self) { owner, _ in
-//                SideMenuVCManager.shared.presentSideMenu(workspace: [], vc: owner)
-//            }
-        
-        NotificationCenter.default.rx.notification(.isSideVCAppear)
-            .bind(with: self) { owner, noti in
-                if let show = noti.userInfo?["show"] as? Bool {
-                    owner.mainView.alphaView.isHidden = !show
-                }
-            }
-            .disposed(by: disposeBag)
         
     }
     
+    
     private func bindState(reactor: HomeReactor) {
         reactor.state
-            .map { $0.channelItems }
+            .map { $0.channelItem }
             .filter{
                 !$0.isEmpty
             }
@@ -147,10 +127,63 @@ extension HomeViewController {
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
                 owner.allWorkspace = value
-                SideMenuVCManager.shared.initSideMenu(vc: owner, workspace: value, workspaceId: owner.workspace?.workspaceId)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.workspaceItem }
+            .filter {
+                $0 != .none
+            }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                if let value = value {
+                    
+                    owner.configData(ws: value)
+                }
             }
             .disposed(by: disposeBag)
     }
+    
+    
+    private func bindEvent() {
+        mainView.topView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                SideMenuVCManager.shared.presentSideMenu()
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.isSideVCAppear)
+            .bind(with: self) { owner, noti in
+                if let show = noti.userInfo?[UserInfo.alphaShow] as? Bool {
+                    owner.mainView.alphaView.isHidden = !show
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.refreshWS)
+            .bind(with: self) { owner, _ in
+                owner.requestWSInfo.onNext(true)
+            }
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.resetWS)
+            .bind(with: self) { owner, noti in
+                if let ws = noti.userInfo?[UserInfo.workspace] as? WorkSpace {
+                    owner.workspace = ws
+                    SideMenuVCManager.shared.setWorkspaceData(ws: ws)
+                    owner.initData()
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func configData(ws: WorkSpace) {
+        mainView.topView.wsImageView.setImage(with: ws.thumbnail)
+        mainView.topView.workSpaceName.text = ws.name
+    }
+    
     
 }
 
