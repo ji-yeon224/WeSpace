@@ -59,9 +59,10 @@ extension HomeView {
     
     private func createLayout() -> UICollectionViewLayout {
         let section = UICollectionViewCompositionalLayout { indexPath, layoutEnvironment in
-            var config = UICollectionLayoutListConfiguration(appearance: .plain)
+            var config = UICollectionLayoutListConfiguration(appearance: .grouped)
             
             
+            config.backgroundColor = .white
             
             config.itemSeparatorHandler = { indexPath, sectionSeparatorConfiguration in
                 var configuration = sectionSeparatorConfiguration
@@ -78,12 +79,12 @@ extension HomeView {
             
             let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
             
-            section.interGroupSpacing = 5
+            
             
             var contentInsets = section.contentInsets
             
             contentInsets.top = 0
-            contentInsets.bottom = 5
+            contentInsets.bottom = 10
             section.contentInsets = contentInsets
             
             return section
@@ -96,8 +97,9 @@ extension HomeView {
             var contentConfiguration = UIListContentConfiguration.valueCell()
             contentConfiguration.text = itemIdentifier.title
             contentConfiguration.textProperties.font = Font.title2.fontStyle
-            
+            contentConfiguration.directionalLayoutMargins = .init(top: 20, leading: 0, bottom: 10, trailing: 0)
             cell.contentConfiguration = contentConfiguration
+            
             let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header, tintColor: Constants.Color.black)
             
             cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
