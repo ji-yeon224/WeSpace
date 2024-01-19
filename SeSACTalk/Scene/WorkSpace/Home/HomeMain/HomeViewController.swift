@@ -106,7 +106,9 @@ extension HomeViewController {
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                let channelSection = WorkspaceItem(title: "채널", subItems: value)
+                var sub = value
+                sub.append(WorkspaceItem(title: "", subItems: [], plus: "채널 추가"))
+                let channelSection = WorkspaceItem(title: "채널", subItems: sub)
                 owner.updateSnapShot(section: .channel, item: [channelSection])
             }
             .disposed(by: disposeBag)
@@ -116,7 +118,9 @@ extension HomeViewController {
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                let dmSection = WorkspaceItem(title: "다이렉트 메세지", subItems: value)
+                var sub = value
+                sub.append(WorkspaceItem(title: "", subItems: [], plus: "새 메세지 시작"))
+                let dmSection = WorkspaceItem(title: "다이렉트 메세지", subItems: sub)
                 owner.updateSnapShot(section: .dm, item: [dmSection])
                 
             }
@@ -215,7 +219,7 @@ extension HomeViewController {
         snapshot.append(items, to: nil)
         for item in items where !item.subItems.isEmpty{
             snapshot.append(item.subItems, to: item)
-            if !item.subItems.isEmpty {
+            if item.subItems.count > 1 {
                 snapshot.expand(items)
             }
         }

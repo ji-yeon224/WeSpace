@@ -10,29 +10,35 @@ import UIKit
 final class HomeView: BaseView {
     
     let topView = HomeTopView()
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout()).then {
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
         $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        
+        $0.backgroundColor = .white
     }
+    
+    
     let alphaView = UIView().then {
         $0.backgroundColor = .alpha
         $0.isHidden = true
     }
     var dataSource: UICollectionViewDiffableDataSource<WorkspaceType, WorkspaceItem>!
     
+    
+    var newMsgButton = CustomButton(image: .newMessage)
+    
     override func configure() {
         backgroundColor = .white
-        [topView, collectionView, alphaView].forEach {
+        [topView, collectionView, alphaView, newMsgButton].forEach {
             addSubview($0)
         }
         configureDataSource()
+        
     }
     
     override func setConstraints() {
         topView.snp.makeConstraints { make in
             make.height.equalTo(120)
             make.top.horizontalEdges.equalToSuperview()
-//            make.top.equalTo(safeAreaLayoutGuide)
+            //            make.top.equalTo(safeAreaLayoutGuide)
         }
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)
@@ -41,33 +47,57 @@ final class HomeView: BaseView {
         alphaView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
+        newMsgButton.snp.makeConstraints { make in
+            make.bottom.trailing.equalTo(safeAreaLayoutGuide).inset(16)
+            make.size.equalTo(52)
+        }
     }
     
 }
 
 extension HomeView {
-    private func collectionViewLayout() -> UICollectionViewFlowLayout {
-        
-         let layout = UICollectionViewFlowLayout()
-         layout.minimumLineSpacing = 8
-         layout.minimumInteritemSpacing = 8
-         let size = UIScreen.main.bounds.width - 10 //self.frame.width - 40
-         layout.itemSize = CGSize(width: size, height: 50)
-         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        
-        
-        return layout
-    }
     
+    private func createLayout() -> UICollectionViewLayout {
+        let section = UICollectionViewCompositionalLayout { indexPath, layoutEnvironment in
+            var config = UICollectionLayoutListConfiguration(appearance: .plain)
+            
+            
+            
+            config.itemSeparatorHandler = { indexPath, sectionSeparatorConfiguration in
+                var configuration = sectionSeparatorConfiguration
+                if indexPath.row == 0 && indexPath.section != 0 {
+                    configuration.topSeparatorVisibility = .visible
+                } else {
+                    configuration.topSeparatorVisibility = .hidden
+                }
+                configuration.bottomSeparatorVisibility = .hidden
+                
+                return configuration
+            }
+            
+            
+            let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+            
+            section.interGroupSpacing = 5
+            
+            var contentInsets = section.contentInsets
+            
+            contentInsets.top = 0
+            contentInsets.bottom = 5
+            section.contentInsets = contentInsets
+            
+            return section
+        }
+        return section
+    }
     private func configureDataSource() {
         
         let titleCell = UICollectionView.CellRegistration<UICollectionViewListCell, WorkspaceItem> { cell, indexPath, itemIdentifier in
-            var contentConfiguration = cell.defaultContentConfiguration()
+            var contentConfiguration = UIListContentConfiguration.valueCell()
             contentConfiguration.text = itemIdentifier.title
             contentConfiguration.textProperties.font = Font.title2.fontStyle
-            cell.contentConfiguration = contentConfiguration
             
+            cell.contentConfiguration = contentConfiguration
             let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header, tintColor: Constants.Color.black)
             
             cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
@@ -87,6 +117,11 @@ extension HomeView {
             cell.titleLabel.text = "팀원 추가"
             cell.imageView.image = .plus
         }
+        let bottomCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, String> { cell, indexPath, itemIdentifier in
+            cell.titleLabel.text = itemIdentifier
+            cell.imageView.image = .plus
+            
+        }
         
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
@@ -105,7 +140,10 @@ extension HomeView {
                 else {
                     return UICollectionViewCell()
                 }
-            } else {
+            } else if itemIdentifier.plus != nil {
+                return collectionView.dequeueConfiguredReusableCell(using: bottomCell, for: indexPath, item: itemIdentifier.plus)
+            }
+            else {
                 let cell = collectionView.dequeueConfiguredReusableCell(using: titleCell, for: indexPath, item: itemIdentifier)
                 return cell
             }

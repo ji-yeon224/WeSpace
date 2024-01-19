@@ -13,4 +13,5 @@ struct WorkspaceItem: Hashable {
     var title: String
     var subItems: [WorkspaceItem] // channel, dm, newfriend
     var item: AnyHashable?
+    var plus: String?
 }

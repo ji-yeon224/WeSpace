@@ -32,7 +32,7 @@ final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.centerY.equalTo(self)
             make.size.equalTo(18)
-            make.leading.equalTo(self).offset(16)
+            make.leading.equalTo(self).offset(18)
         }
         
         titleLabel.snp.makeConstraints { make in
