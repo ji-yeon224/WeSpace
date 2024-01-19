@@ -30,7 +30,7 @@ final class ChangeManagerViewController: BaseViewController, View {
         title = "워크스페이스 관리자 변경"
         self.reactor = ChangeManagerReactor()
         requestMember.onNext(())
-        
+        configNav()
 
     }
     
@@ -135,4 +135,14 @@ final class ChangeManagerViewController: BaseViewController, View {
     
     
     
+}
+
+extension ChangeManagerViewController {
+    func configNav() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(xButtonTapped))
+        navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black
+    }
+    @objc private func xButtonTapped() {
+        dismiss(animated: true)
+    }
 }

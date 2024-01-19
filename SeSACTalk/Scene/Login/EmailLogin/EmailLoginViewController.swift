@@ -27,7 +27,7 @@ final class EmailLoginViewController: BaseViewController, View {
     
     override func configure() {
         super.configure()
-        
+        configNav()
     }
     
     func bind(reactor: EmailLoginReactor) {
@@ -141,4 +141,14 @@ final class EmailLoginViewController: BaseViewController, View {
         view.window?.makeKeyAndVisible()
     }
     
+}
+
+extension EmailLoginViewController {
+    func configNav() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(xButtonTapped))
+        navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black
+    }
+    @objc private func xButtonTapped() {
+        dismiss(animated: true)
+    }
 }
