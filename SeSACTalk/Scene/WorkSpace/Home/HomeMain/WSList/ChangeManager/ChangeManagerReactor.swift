@@ -86,7 +86,7 @@ extension ChangeManagerReactor {
                     
                 case .failure(let error):
                     var msg = CommonError.E99.localizedDescription
-                    if let error = WSCreateError(rawValue: error.errorCode) {
+                    if let error = WorkspaceError(rawValue: error.errorCode) {
                         msg = error.localizedDescription
                     } else if let error = CommonError(rawValue: error.errorCode) {
                         msg = error.localizedDescription

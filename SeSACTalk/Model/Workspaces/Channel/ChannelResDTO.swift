@@ -30,3 +30,4 @@ struct ChannelResDTO: Codable {
     
 }
 
+typealias ChannelsItemResDTO = [ChannelResDTO]

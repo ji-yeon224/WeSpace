@@ -28,7 +28,6 @@ final class HomeReactor: Reactor {
     
     enum Mutation {
         case channelInfo(channels: [ChannelResDTO])
-        case wsInfo(ws: OneWorkspaceResDTO)
         case msg(msg: String)
         case loginRequest
         case dmsInfo(dms: DMsRoomResDTO)
@@ -48,7 +47,7 @@ final class HomeReactor: Reactor {
         switch action {
         case .requestInfo(let id):
             if let id = id {
-                return requestOneChannelInfo(id: id)
+                return requestMyChannels(id: id)
             } else {
                 return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
             }
@@ -72,11 +71,6 @@ final class HomeReactor: Reactor {
             newState.channelItem = channels.map {
                 return WorkspaceItem(title: "", subItems: [], item: $0.toDomain())
             }
-        case .wsInfo(ws: let ws):
-            newState.channelItem = ws.channels.map {
-                return WorkspaceItem(title: "", subItems: [], item: $0.toDomain())
-            }
-            newState.workspaceItem = ws.toDomain()
         case .msg(let msg):
             newState.message = msg
         case .loginRequest:
@@ -137,18 +131,17 @@ extension HomeReactor {
         
     }
     
-    private func requestOneChannelInfo(id: Int) -> Observable<Mutation> {
-        return WorkspacesAPIManager.shared.request(api: .fetchOne(id: id), resonseType: OneWorkspaceResDTO.self)
+    private func requestMyChannels(id: Int) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .myChannel(id: id), responseType: ChannelsItemResDTO.self)
             .asObservable()
             .map { result -> Mutation in
                 switch result {
                 case .success(let response):
                     if let response = response {
-                        return Mutation.wsInfo(ws: response)//Mutation.channelInfo(channels: response.channels)
+                        return Mutation.channelInfo(channels: response)
                     } else {
                         return Mutation.msg(msg: "오류가 발생하였습니다.")
                     }
-                    
                 case .failure(let error):
                     if let error = WorkspaceError(rawValue: error.errorCode) {
                         return Mutation.msg(msg: error.localizedDescription)
@@ -157,9 +150,8 @@ extension HomeReactor {
                     } else {
                         return Mutation.loginRequest
                     }
-                    
                 }
+                
             }
-        
     }
 }

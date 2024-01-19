@@ -105,7 +105,7 @@ extension MakeViewReactor {
                                 return .msg(msg: CommonError.E99.localizedDescription)
                             }
                         case .failure(let error):
-                            if let error = WSCreateError(rawValue: error.errorCode) {
+                            if let error = WorkspaceError(rawValue: error.errorCode) {
                                 return .msg(msg: error.localizedDescription)
                             } else if let error = CommonError(rawValue: error.errorCode) {
                                 return .msg(msg: error.localizedDescription)
@@ -142,7 +142,7 @@ extension MakeViewReactor {
                             }
                             
                         case .failure(let error):
-                            if let error = WSCreateError(rawValue: error.errorCode) {
+                            if let error = WorkspaceError(rawValue: error.errorCode) {
                                 return .msg(msg: error.localizedDescription)
                             } else if let error = CommonError(rawValue: error.errorCode) {
                                 return .msg(msg: error.localizedDescription)
