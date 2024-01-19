@@ -22,9 +22,10 @@ final class HomeTabBarController: UITabBarController {
         super.viewDidLoad()
         
         tabBar.barTintColor = Constants.Color.background
-        tabBar.tintColor = Constants.Color.mainColor
+        tabBar.tintColor = Constants.Color.basicText
         tabBar.unselectedItemTintColor = Constants.Color.basicText
-        
+        tabBar.layer.borderWidth = 1
+        tabBar.layer.borderColor = Constants.Color.seperator?.cgColor
         
     }
     

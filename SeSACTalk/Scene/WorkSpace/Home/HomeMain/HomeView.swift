@@ -49,7 +49,7 @@ final class HomeView: BaseView {
         }
         newMsgButton.snp.makeConstraints { make in
             make.bottom.trailing.equalTo(safeAreaLayoutGuide).inset(16)
-            make.size.equalTo(52)
+            make.size.equalTo(54)
         }
     }
     
