@@ -181,6 +181,33 @@ extension HomeViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        mainView.collectionView.rx.itemSelected
+            .asDriver()
+            .drive(with: self) { owner, indexPath in
+//                if owner.mainView.collectionView.cellForItem(at: indexPath) as?
+                owner.itemSelected(indexPath: indexPath)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func itemSelected(indexPath: IndexPath) {
+        let item = mainView.dataSource.itemIdentifier(for: indexPath)
+        
+        guard let item = item else { return }
+        
+        if let channelItem = item.item as? Channel {
+            print(channelItem.name)
+        } else if let dmItem = item.item as? DMsRoom {
+            print(dmItem.user)
+        } else if let invite = item.item as? NewFriend {
+            print("팀원 추가")
+        } else if let plus = item.plus {
+            print(plus)
+        }
+        
+        
     }
     
     private func configData(ws: WorkSpace) {
