@@ -63,6 +63,11 @@ final class HomeViewController: BaseViewController, View {
         
     }
     
+    private func configData(ws: WorkSpace) {
+        mainView.topView.wsImageView.setImage(with: ws.thumbnail)
+        mainView.topView.workSpaceName.text = ws.name
+    }
+    
 }
 
 
@@ -185,10 +190,21 @@ extension HomeViewController {
         mainView.collectionView.rx.itemSelected
             .asDriver()
             .drive(with: self) { owner, indexPath in
-//                if owner.mainView.collectionView.cellForItem(at: indexPath) as?
                 owner.itemSelected(indexPath: indexPath)
             }
             .disposed(by: disposeBag)
+        
+    }
+    
+    
+    
+    
+    
+    
+}
+
+extension HomeViewController {
+    private func homeItemEvent() {
         
     }
     
@@ -202,7 +218,7 @@ extension HomeViewController {
         } else if let dmItem = item.item as? DMsRoom {
             print(dmItem.user)
         } else if let invite = item.item as? NewFriend {
-            print("팀원 추가")
+            presentPageSheet(vc: InviteViewController())
         } else if let plus = item.plus {
             print(plus)
         }
@@ -210,12 +226,11 @@ extension HomeViewController {
         
     }
     
-    private func configData(ws: WorkSpace) {
-        mainView.topView.wsImageView.setImage(with: ws.thumbnail)
-        mainView.topView.workSpaceName.text = ws.name
+    private func presentPageSheet(vc: UIViewController) {
+        let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+        nav.setupBarAppearance()
+        present(nav, animated: true)
     }
-    
-    
 }
 
 extension HomeViewController {
