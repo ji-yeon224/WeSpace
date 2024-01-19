@@ -11,6 +11,9 @@
 		CE15528E2B5A55040011D106 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15528D2B5A55040011D106 /* SearchViewController.swift */; };
 		CE211F312B5AC09000C43028 /* ChannelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F302B5AC09000C43028 /* ChannelsAPI.swift */; };
 		CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */; };
+		CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F362B5AC99A00C43028 /* InviteViewController.swift */; };
+		CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F382B5AC9A000C43028 /* InviteView.swift */; };
+		CE211F3D2B5AC9B700C43028 /* InviteReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F3C2B5AC9B700C43028 /* InviteReactor.swift */; };
 		CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */; };
 		CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */; };
 		CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */; };
@@ -197,6 +200,9 @@
 		CE15528D2B5A55040011D106 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE211F302B5AC09000C43028 /* ChannelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPI.swift; sourceTree = "<group>"; };
 		CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPIManager.swift; sourceTree = "<group>"; };
+		CE211F362B5AC99A00C43028 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		CE211F382B5AC9A000C43028 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
+		CE211F3C2B5AC9B700C43028 /* InviteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteReactor.swift; sourceTree = "<group>"; };
 		CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVCManager.swift; sourceTree = "<group>"; };
 		CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -416,6 +422,23 @@
 			path = Channels;
 			sourceTree = "<group>";
 		};
+		CE211F342B5AC97A00C43028 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		CE211F352B5AC99100C43028 /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+				CE211F362B5AC99A00C43028 /* InviteViewController.swift */,
+				CE211F382B5AC9A000C43028 /* InviteView.swift */,
+				CE211F3C2B5AC9B700C43028 /* InviteReactor.swift */,
+			);
+			path = Invite;
+			sourceTree = "<group>";
+		};
 		CE4904D22B4D0EA9003B0204 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +643,8 @@
 		CE8574982B4BFE8D0025ED1B /* HomeMain */ = {
 			isa = PBXGroup;
 			children = (
+				CE211F352B5AC99100C43028 /* Invite */,
+				CE211F342B5AC97A00C43028 /* Channels */,
 				CED7C2C32B52348E0069EA0A /* WSList */,
 				CE8574992B4BFE9B0025ED1B /* HomeViewController.swift */,
 				CE85749B2B4BFEA50025ED1B /* HomeView.swift */,
@@ -1122,6 +1147,7 @@
 				CED829532B590FFC00AD1828 /* UIViewController+Extension.swift in Sources */,
 				CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */,
 				CE5D06802B4F028400C067A3 /* WorkspaceError.swift in Sources */,
+				CE211F3D2B5AC9B700C43028 /* InviteReactor.swift in Sources */,
 				CECFCDF12B4FCAB800EB0DB7 /* AuthIntercepter.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
@@ -1142,6 +1168,7 @@
 				CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */,
 				CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
+				CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */,
 				CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */,
 				CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
@@ -1222,6 +1249,7 @@
 				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
 				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,
+				CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */,
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */,
 				CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */,

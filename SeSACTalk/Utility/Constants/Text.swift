@@ -40,5 +40,7 @@ enum Text {
     ・ 워크스페이스 멤버 초대
     """
     
+    // InviteView
+    static let inviteEmailPlaceholder = "초대하려는 팀원의 이메일을 입력하세요."
     
 }
