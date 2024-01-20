@@ -17,6 +17,7 @@ enum WorkspacesAPI {
     case delete(id: Int)
     case member(id: Int)
     case changeManager(wsId: Int, userId: Int)
+    case invite(id: Int, email: EmailReqDTO)
 }
 
 extension WorkspacesAPI: TargetType {
@@ -32,7 +33,7 @@ extension WorkspacesAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(id)"
         case .leave(let id):
             return Endpoint.workspaces.rawValue + "/\(id)" + "/leave"
-        case .member(let id):
+        case .member(let id), .invite(let id, _):
             return Endpoint.workspaces.rawValue + "/\(id)" + "/members"
         case .changeManager(let ws, let user):
             return Endpoint.workspaces.rawValue + "/\(ws)" + "/change/admin"+"/\(user)"
@@ -41,7 +42,7 @@ extension WorkspacesAPI: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .create: return .post
+        case .create, .invite: return .post
         case .fetchAll, .fetchOne, .leave, .member: return .get
         case .editWS, .changeManager: return .put
         case .delete: return .delete
@@ -55,12 +56,14 @@ extension WorkspacesAPI: TargetType {
             return .uploadMultipart(multipart)
         case .fetchAll, .fetchOne, .leave, .delete, .member, .changeManager:
             return .requestPlain
+        case .invite(_, let email):
+            return .requestJSONEncodable(email)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .create, .editWS:
+        case .create, .editWS, .invite:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .fetchAll, .fetchOne, .leave, .delete, .member, .changeManager:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]

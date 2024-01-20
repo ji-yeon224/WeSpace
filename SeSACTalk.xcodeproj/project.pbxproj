@@ -47,6 +47,8 @@
 		CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */; };
 		CE5D06802B4F028400C067A3 /* WorkspaceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */; };
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
+		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
+		CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF72B5B629F0091B03D /* InviteError.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
@@ -235,6 +237,8 @@
 		CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataManager.swift; sourceTree = "<group>"; };
 		CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceError.swift; sourceTree = "<group>"; };
 		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
+		CE61ADF72B5B629F0091B03D /* InviteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteError.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -491,6 +495,7 @@
 				CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */,
 				CE5D066E2B4EE69600C067A3 /* WsCreateReqDTO.swift */,
 				CEC764392B512EEB000578E9 /* OneWorkspaceResDTO.swift */,
+				CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */,
 			);
 			path = Workspaces;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */,
+				CE61ADF72B5B629F0091B03D /* InviteError.swift */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -1225,6 +1231,7 @@
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
 				CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */,
+				CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
 				CED829552B59331800AD1828 /* ChangeManageDelegate.swift in Sources */,
@@ -1234,6 +1241,7 @@
 				CED829512B590D7D00AD1828 /* AlertViewController.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
 				CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */,
+				CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
 				CEA8F9B32B492D370062B45C /* UserDefaultsManager.swift in Sources */,
 				CEEAA1D92B540E2500EA1C58 /* WorkspaceListCell.swift in Sources */,
