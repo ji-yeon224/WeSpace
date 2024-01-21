@@ -55,6 +55,8 @@
 		CE61AE012B5CF2E00091B03D /* CreateChannelReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */; };
 		CE61AE032B5CF46F0091B03D /* ChannelCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */; };
 		CE61AE052B5D006F0091B03D /* ChannelToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */; };
+		CE61AE082B5D52500091B03D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE072B5D52500091B03D /* ChatViewController.swift */; };
+		CE61AE0A2B5D525F0091B03D /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE092B5D525F0091B03D /* ChatView.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
@@ -251,6 +253,8 @@
 		CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelReqDTO.swift; sourceTree = "<group>"; };
 		CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreateError.swift; sourceTree = "<group>"; };
 		CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToastMessage.swift; sourceTree = "<group>"; };
+		CE61AE072B5D52500091B03D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		CE61AE092B5D525F0091B03D /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -441,6 +445,7 @@
 		CE211F342B5AC97A00C43028 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				CE61AE062B5D51730091B03D /* Chatting */,
 				CE61ADF92B5CEB070091B03D /* Create */,
 			);
 			path = Channels;
@@ -531,6 +536,15 @@
 				CE61ADFE2B5CEB290091B03D /* CreateChannelReactor.swift */,
 			);
 			path = Create;
+			sourceTree = "<group>";
+		};
+		CE61AE062B5D51730091B03D /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AE072B5D52500091B03D /* ChatViewController.swift */,
+				CE61AE092B5D525F0091B03D /* ChatView.swift */,
+			);
+			path = Chatting;
 			sourceTree = "<group>";
 		};
 		CE6C1FB52B43E8BA00AA7F9C = {
@@ -1197,6 +1211,7 @@
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
 				CED829462B58C28900AD1828 /* ReusableProtocol.swift in Sources */,
+				CE61AE082B5D52500091B03D /* ChatViewController.swift in Sources */,
 				CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */,
 				CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
@@ -1244,6 +1259,7 @@
 				CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */,
 				CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
+				CE61AE0A2B5D525F0091B03D /* ChatView.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
 				CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */,
 				CEC764452B516C04000578E9 /* DMsAPI.swift in Sources */,

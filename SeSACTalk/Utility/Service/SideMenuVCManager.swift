@@ -16,7 +16,8 @@ final class SideMenuVCManager {
     private weak var vc: UIViewController?
     private var listVC: WorkspaceListViewController?
     private var menuVC: SideMenuNavigationController?
-    
+    private var panGesture  = UIPanGestureRecognizer()
+    private var edgeGesture = UIScreenEdgePanGestureRecognizer()
     
     func initSideMenu(vc: UIViewController, curWS: WorkSpace? = nil) {
         self.vc = vc
@@ -43,8 +44,12 @@ final class SideMenuVCManager {
         guard let menuVC = menuVC else { return }
         
         SideMenuManager.default.leftMenuNavigationController = menuVC
-        SideMenuManager.default.addPanGestureToPresent(toView: vc.navigationController!.navigationBar)
-        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: vc.navigationController!.view, forMenu: .left)
+        
+        panGesture = SideMenuManager.default.addPanGestureToPresent(toView: vc.navigationController!.navigationBar)
+        edgeGesture = SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: vc.navigationController!.view, forMenu: .left)
+        
+//        panGesture = SideMenuManager.default.addPanGestureToPresent(toView: vc.navigationController!.navigationBar)
+//        edgeGesture = SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: vc.navigationController!.view, forMenu: .left)
         menuVC.statusBarEndAlpha = 0
         menuVC.presentationStyle = .menuSlideIn
         menuVC.enableSwipeToDismissGesture = true
@@ -52,12 +57,25 @@ final class SideMenuVCManager {
         menuVC.pushStyle = .default
         menuVC.presentationStyle.menuStartAlpha = 1
         menuVC.presentationStyle.backgroundColor = .alpha
-        
-        
+        enableSideMenu()
         
     }
     
+    func setSlideAnimation(slideOn: Bool) {
+        menuVC?.presentingViewControllerUserInteractionEnabled = slideOn
+    }
     
     
+    // disable side menu
+    func disableSideMenu() {
+        panGesture.isEnabled = false
+        edgeGesture.isEnabled = false
+    }
+    
+    // enable side menu
+    func enableSideMenu() {
+        panGesture.isEnabled = true
+        edgeGesture.isEnabled = true
+    }
 }
 

@@ -45,11 +45,16 @@ final class HomeViewController: BaseViewController, View {
         navigationController?.navigationBar.isHidden = true
         self.reactor = HomeReactor()
         initData()
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        SideMenuVCManager.shared.enableSideMenu()
         
-        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SideMenuVCManager.shared.disableSideMenu()
     }
     override func configure() {
         view.backgroundColor = .white
@@ -231,6 +236,9 @@ extension HomeViewController {
         
         if let channelItem = item.item as? Channel {
             print(channelItem.name)
+            let vc = ChatViewController(info: channelItem)
+//            vc.modalPresentationStyle = .ful
+            navigationController?.pushViewController(vc, animated: true)
         } else if let dmItem = item.item as? DMsRoom {
             print(dmItem.user)
         } else if let _ = item.item as? NewFriend {
