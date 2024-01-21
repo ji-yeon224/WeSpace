@@ -52,6 +52,9 @@
 		CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */; };
 		CE61ADFD2B5CEB210091B03D /* CreateChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFC2B5CEB210091B03D /* CreateChannelView.swift */; };
 		CE61ADFF2B5CEB290091B03D /* CreateChannelReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFE2B5CEB290091B03D /* CreateChannelReactor.swift */; };
+		CE61AE012B5CF2E00091B03D /* CreateChannelReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */; };
+		CE61AE032B5CF46F0091B03D /* ChannelCreateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */; };
+		CE61AE052B5D006F0091B03D /* ChannelToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
@@ -245,6 +248,9 @@
 		CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
 		CE61ADFC2B5CEB210091B03D /* CreateChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelView.swift; sourceTree = "<group>"; };
 		CE61ADFE2B5CEB290091B03D /* CreateChannelReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelReactor.swift; sourceTree = "<group>"; };
+		CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelReqDTO.swift; sourceTree = "<group>"; };
+		CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreateError.swift; sourceTree = "<group>"; };
+		CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToastMessage.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -512,6 +518,7 @@
 			children = (
 				CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */,
 				CE61ADF72B5B629F0091B03D /* InviteError.swift */,
+				CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -806,6 +813,7 @@
 			children = (
 				CEC764352B512CCB000578E9 /* ChannelResDTO.swift */,
 				CEC7643D2B516306000578E9 /* Channel.swift */,
+				CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -986,6 +994,7 @@
 				CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */,
 				CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */,
 				CE5D06762B4EF00300C067A3 /* WorkspaceToastMessage.swift */,
+				CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -1218,6 +1227,7 @@
 				CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
 				CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */,
+				CE61AE012B5CF2E00091B03D /* CreateChannelReqDTO.swift in Sources */,
 				CEE989A72B4AA36900590A19 /* HomeEmptyViewModel.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
@@ -1227,6 +1237,7 @@
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
 				CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */,
 				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
+				CE61AE032B5CF46F0091B03D /* ChannelCreateError.swift in Sources */,
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
 				CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */,
@@ -1269,6 +1280,7 @@
 				CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
 				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
+				CE61AE052B5D006F0091B03D /* ChannelToastMessage.swift in Sources */,
 				CEC764512B5176C2000578E9 /* DMsRoom.swift in Sources */,
 				CEEAA1D72B54085400EA1C58 /* WorkspaceListSettingView.swift in Sources */,
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,

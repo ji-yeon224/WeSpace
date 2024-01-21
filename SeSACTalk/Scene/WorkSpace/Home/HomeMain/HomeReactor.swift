@@ -21,7 +21,7 @@ final class HomeReactor: Reactor {
     
     
     enum Action {
-        case requestInfo(id: Int?)
+        case requestChannelInfo(id: Int?)
         case requestDMsInfo(id: Int?)
         case requestAllWorkspace
     }
@@ -45,7 +45,7 @@ final class HomeReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .requestInfo(let id):
+        case .requestChannelInfo(let id):
             if let id = id {
                 return requestMyChannels(id: id)
             } else {

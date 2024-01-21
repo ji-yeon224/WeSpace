@@ -12,7 +12,9 @@ final class CreateChannelView: BaseView {
     let nameForm = CommonFormView(title: "채널 이름", placeholder: Text.createChannelNamePlaceholder)
     let descriptionForm = CommonFormView(title: "채널 설명", placeholder: Text.createChannelDescrptionPlaceholder)
     
-    let createButton = CustomButton(bgColor: .inactive, title: "생성")
+    let createButton = CustomButton(bgColor: .inactive, title: "생성").then {
+        $0.isEnabled = false
+    }
     
     override func configure() {
         super.configure()
@@ -34,6 +36,7 @@ final class CreateChannelView: BaseView {
         
         createButton.snp.makeConstraints { make in
             make.bottom.equalTo(keyboardLayoutGuide.snp.top).offset(-12)
+            make.height.equalTo(Constants.Design.buttonHeight)
             make.horizontalEdges.equalTo(self).inset(24)
         }
     }

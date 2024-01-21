@@ -15,7 +15,7 @@ final class HomeViewController: BaseViewController, View {
     
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
-    private let requestWSInfo = PublishSubject<Bool>()
+    private let requestChannelInfo = PublishSubject<Bool>()
     private let requestDMsInfo = PublishSubject<Bool>()
     private let requestAllWorkspaceInfo = PublishSubject<Bool>()
     
@@ -61,7 +61,7 @@ final class HomeViewController: BaseViewController, View {
     }
     
     private func initData() {
-        requestWSInfo.onNext(true)
+        requestChannelInfo.onNext(true)
         requestDMsInfo.onNext(true)
         requestAllWorkspaceInfo.onNext(true)
         if let workspace = workspace {
@@ -78,7 +78,7 @@ final class HomeViewController: BaseViewController, View {
 }
 
 
-
+// ReactorKit
 extension HomeViewController {
     func bind(reactor: HomeReactor) {
         bindAction(reactor: reactor)
@@ -89,9 +89,9 @@ extension HomeViewController {
     
     private func bindAction(reactor: HomeReactor) {
         
-        requestWSInfo
+        requestChannelInfo
             .map{ _ in
-                Reactor.Action.requestInfo(id: self.workspace?.workspaceId)
+                Reactor.Action.requestChannelInfo(id: self.workspace?.workspaceId)
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -179,7 +179,7 @@ extension HomeViewController {
         
         NotificationCenter.default.rx.notification(.refreshWS)
             .bind(with: self) { owner, _ in
-                owner.requestWSInfo.onNext(true)
+                owner.requestChannelInfo.onNext(true)
             }
             .disposed(by: disposeBag)
         
@@ -206,12 +206,18 @@ extension HomeViewController {
     
 }
 
+// collectionview select
 extension HomeViewController {
     private func homeItemEvent() {
         
         createChannel
             .bind(with: self) { owner, _ in
                 let vc = CreateChannelViewController(workspace: owner.workspace)
+                vc.createComplete = {
+                    owner.showToastMessage(message: ChannelToastMessage.successCreate.message, position: .bottom)
+                    owner.requestChannelInfo.onNext(true)
+                    
+                }
                 owner.presentPageSheet(vc: vc)
             }
             .disposed(by: disposeBag)
