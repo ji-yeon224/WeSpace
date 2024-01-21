@@ -11,6 +11,8 @@ enum WorkspaceToastMessage {
     case makeNameInvalid
     case makeNoImage
     case editWorkspace
+    case invalidEmail
+    case successInvite
 }
 
 extension WorkspaceToastMessage {
@@ -22,6 +24,10 @@ extension WorkspaceToastMessage {
             return "워크스페이스 이미지를 등록해주세요. "
         case .editWorkspace:
             return "워크스페이스가 편집되었습니다."
+        case .invalidEmail:
+            return "올바른 이메일을 입력해주세요."
+        case .successInvite:
+            return "멤버를 성공적으로 초대했습니다."
         }
     }
 }

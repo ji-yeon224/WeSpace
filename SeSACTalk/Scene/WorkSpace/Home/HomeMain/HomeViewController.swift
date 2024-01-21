@@ -217,8 +217,13 @@ extension HomeViewController {
             print(channelItem.name)
         } else if let dmItem = item.item as? DMsRoom {
             print(dmItem.user)
-        } else if let invite = item.item as? NewFriend {
-            presentPageSheet(vc: InviteViewController())
+        } else if let _ = item.item as? NewFriend {
+            let vc = InviteViewController()
+            vc.workspace = workspace
+            vc.complete = {
+                self.showToastMessage(message: WorkspaceToastMessage.successInvite.message, position: .bottom)
+            }
+            presentPageSheet(vc: vc)
         } else if let plus = item.plus {
             print(plus)
         }

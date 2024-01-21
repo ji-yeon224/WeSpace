@@ -18,13 +18,13 @@ extension InviteError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .E03:
-            return "존재하지 않는 계정입니다."
+            return "회원 정보를 찾을 수 없습니다."
         case .E11:
             return "요청에 문제가 발생하였습니다."
         case .E12:
-            return "이미 워크스페이스 멤버입니다."
+            return "이미 워크스페이스에 소속된 팀원이에요."
         case .E13:
-            return "존재하지 않는 계정입니다."
+            return "회원 정보를 찾을 수 없습니다."
         case .E14:
             return "관리자 권한이 없습니다."
         }
