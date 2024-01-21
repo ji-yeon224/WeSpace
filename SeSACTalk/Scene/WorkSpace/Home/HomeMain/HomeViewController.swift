@@ -7,6 +7,7 @@
 
 import UIKit
 import ReactorKit
+import RxCocoa
 import SideMenu
 
 final class HomeViewController: BaseViewController, View {
@@ -17,6 +18,9 @@ final class HomeViewController: BaseViewController, View {
     private let requestWSInfo = PublishSubject<Bool>()
     private let requestDMsInfo = PublishSubject<Bool>()
     private let requestAllWorkspaceInfo = PublishSubject<Bool>()
+    
+    private let createChannel = PublishRelay<Void>()
+    private let searchChannel = PublishRelay<Void>()
     
     private var workspace: WorkSpace?
     private var allWorkspace: [WorkSpace]?
@@ -231,6 +235,9 @@ extension HomeViewController {
             }
             
         } else if let plus = item.plus {
+            if indexPath.section == 0 {
+                present(showChannelActionSheet(), animated: true)
+            }
             print(plus)
         }
         
@@ -242,8 +249,27 @@ extension HomeViewController {
         nav.setupBarAppearance()
         present(nav, animated: true)
     }
+    
+    private func showChannelActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let create = UIAlertAction(title: "채널 생성", style: .default) { _ in
+            self.createChannel.accept(())
+        }
+        let search = UIAlertAction(title: "채널 탐색", style: .default) { _ in
+            self.searchChannel.accept(())
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        [create, search, cancel].forEach {
+            actionSheet.addAction($0)
+        }
+        
+        return actionSheet
+    }
+    
 }
 
+
+// snapshot
 extension HomeViewController {
     private func sectionSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<WorkspaceType, WorkspaceItem>()
