@@ -28,7 +28,7 @@ final class HomeViewController: BaseViewController, View {
     init(workspace: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.workspace = workspace
-
+        
     }
     
     @available(*, unavailable)
@@ -60,6 +60,9 @@ final class HomeViewController: BaseViewController, View {
         requestWSInfo.onNext(true)
         requestDMsInfo.onNext(true)
         requestAllWorkspaceInfo.onNext(true)
+        if let workspace = workspace {
+            configData(ws: workspace)
+        }
         
     }
     
@@ -147,7 +150,6 @@ extension HomeViewController {
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
                 if let value = value {
-                    
                     owner.configData(ws: value)
                 }
             }

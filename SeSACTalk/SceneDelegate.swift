@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             EnterViewControllerMananger.shared.fetchWorkspace()
                 .asObservable()
                 .bind(with: self, onNext: { owner, vc in
-                    print(vc)
+//                    print(vc)
                     owner.window?.rootViewController = vc
                     owner.window?.makeKeyAndVisible()
                 })
