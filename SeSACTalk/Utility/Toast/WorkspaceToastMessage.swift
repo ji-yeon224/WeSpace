@@ -13,6 +13,7 @@ enum WorkspaceToastMessage {
     case editWorkspace
     case invalidEmail
     case successInvite
+    case invalidInvite
 }
 
 extension WorkspaceToastMessage {
@@ -28,6 +29,8 @@ extension WorkspaceToastMessage {
             return "올바른 이메일을 입력해주세요."
         case .successInvite:
             return "멤버를 성공적으로 초대했습니다."
+        case .invalidInvite:
+            return "워크스페이스 관리자만 팀원을 초대할 수 있어요. \n관리자에게 요청을 해보세요."
         }
     }
 }

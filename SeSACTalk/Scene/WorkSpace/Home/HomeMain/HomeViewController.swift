@@ -111,7 +111,6 @@ extension HomeViewController {
             .filter{
                 !$0.isEmpty
             }
-            .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 var sub = value
@@ -220,12 +219,17 @@ extension HomeViewController {
         } else if let dmItem = item.item as? DMsRoom {
             print(dmItem.user)
         } else if let _ = item.item as? NewFriend {
-            let vc = InviteViewController()
-            vc.workspace = workspace
-            vc.complete = {
-                self.showToastMessage(message: WorkspaceToastMessage.successInvite.message, position: .bottom)
+            if UserDefaultsManager.userId == workspace?.ownerId {
+                let vc = InviteViewController()
+                vc.workspace = workspace
+                vc.complete = {
+                    self.showToastMessage(message: WorkspaceToastMessage.successInvite.message, position: .bottom)
+                }
+                presentPageSheet(vc: vc)
+            } else { // 관리자 아님
+                self.showToastMessage(message: WorkspaceToastMessage.invalidInvite.message, position: .bottom)
             }
-            presentPageSheet(vc: vc)
+            
         } else if let plus = item.plus {
             print(plus)
         }
