@@ -49,6 +49,9 @@
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
 		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
 		CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF72B5B629F0091B03D /* InviteError.swift */; };
+		CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */; };
+		CE61ADFD2B5CEB210091B03D /* CreateChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFC2B5CEB210091B03D /* CreateChannelView.swift */; };
+		CE61ADFF2B5CEB290091B03D /* CreateChannelReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFE2B5CEB290091B03D /* CreateChannelReactor.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
@@ -239,6 +242,9 @@
 		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
 		CE61ADF72B5B629F0091B03D /* InviteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteError.swift; sourceTree = "<group>"; };
+		CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
+		CE61ADFC2B5CEB210091B03D /* CreateChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelView.swift; sourceTree = "<group>"; };
+		CE61ADFE2B5CEB290091B03D /* CreateChannelReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelReactor.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -429,6 +435,7 @@
 		CE211F342B5AC97A00C43028 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				CE61ADF92B5CEB070091B03D /* Create */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -507,6 +514,16 @@
 				CE61ADF72B5B629F0091B03D /* InviteError.swift */,
 			);
 			path = Workspace;
+			sourceTree = "<group>";
+		};
+		CE61ADF92B5CEB070091B03D /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */,
+				CE61ADFC2B5CEB210091B03D /* CreateChannelView.swift */,
+				CE61ADFE2B5CEB290091B03D /* CreateChannelReactor.swift */,
+			);
+			path = Create;
 			sourceTree = "<group>";
 		};
 		CE6C1FB52B43E8BA00AA7F9C = {
@@ -1231,6 +1248,7 @@
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
 				CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */,
+				CE61ADFF2B5CEB290091B03D /* CreateChannelReactor.swift in Sources */,
 				CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
@@ -1244,6 +1262,7 @@
 				CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
 				CEA8F9B32B492D370062B45C /* UserDefaultsManager.swift in Sources */,
+				CE61ADFD2B5CEB210091B03D /* CreateChannelView.swift in Sources */,
 				CEEAA1D92B540E2500EA1C58 /* WorkspaceListCell.swift in Sources */,
 				CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
@@ -1255,6 +1274,7 @@
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,
 				CE85749E2B4BFF7F0025ED1B /* HomeTabBarController.swift in Sources */,
 				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
+				CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */,
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
 				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,
 				CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */,

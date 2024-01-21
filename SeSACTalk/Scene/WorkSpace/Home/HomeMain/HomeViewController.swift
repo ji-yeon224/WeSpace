@@ -57,7 +57,7 @@ final class HomeViewController: BaseViewController, View {
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
         SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
-
+        
     }
     
     private func initData() {
@@ -84,6 +84,7 @@ extension HomeViewController {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
         bindEvent()
+        homeItemEvent()
     }
     
     private func bindAction(reactor: HomeReactor) {
@@ -198,11 +199,8 @@ extension HomeViewController {
                 owner.itemSelected(indexPath: indexPath)
             }
             .disposed(by: disposeBag)
-        
+                
     }
-    
-    
-    
     
     
     
@@ -210,6 +208,13 @@ extension HomeViewController {
 
 extension HomeViewController {
     private func homeItemEvent() {
+        
+        createChannel
+            .bind(with: self) { owner, _ in
+                let vc = CreateChannelViewController(workspace: owner.workspace)
+                owner.presentPageSheet(vc: vc)
+            }
+            .disposed(by: disposeBag)
         
     }
     

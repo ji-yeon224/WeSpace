@@ -43,4 +43,8 @@ enum Text {
     // InviteView
     static let inviteEmailPlaceholder = "초대하려는 팀원의 이메일을 입력하세요."
     
+    // CreateChannel
+    static let createChannelNamePlaceholder = "채널 이름을 입력하세요.(필수)"
+    static let createChannelDescrptionPlaceholder = "채널을 설명하세요.(옵션)"
+    
 }
