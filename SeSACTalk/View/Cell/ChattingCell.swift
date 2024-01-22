@@ -9,7 +9,7 @@ import UIKit
 
 final class ChattingCell: BaseCollectionViewCell {
     
-    let profileImageView = UserProfileImageView(frame: .zero)
+    let profileImageView = SquareFillImageView(frame: .zero)
     private let contentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.distribution = .fill

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class UserProfileImageView: UIImageView {
+final class SquareFillImageView: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         image = .dummy

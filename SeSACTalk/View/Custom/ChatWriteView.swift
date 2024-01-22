@@ -30,16 +30,23 @@ final class ChatWriteView: BaseView {
     let sendButton = CustomButton(image: .sendInactive).then {
         $0.backgroundColor = .clear
     }
+    
+    lazy var imgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout()).then {
+        $0.isScrollEnabled = false
+        $0.backgroundColor = .clear
+    }
+    var dataSource: UICollectionViewDiffableDataSource<String, SelectImage>!
+    
     override func configure() {
         layer.cornerRadius = 8
         
         backgroundColor = Constants.Color.background
-        [imageButton, textView, sendButton].forEach {
+        [imageButton, textView, sendButton, imgCollectionView].forEach {
             addSubview($0)
         }
         textView.addSubview(placeholder)
         
-        
+        configureDataSource()
     }
     
     override func setConstraints() {
@@ -59,16 +66,61 @@ final class ChatWriteView: BaseView {
         textView.snp.makeConstraints { make in
             make.leading.equalTo(imageButton.snp.trailing).offset(8)
             make.trailing.equalTo(sendButton.snp.leading).offset(-8)
-            make.verticalEdges.equalTo(self).inset(10)
+            make.top.equalTo(self).inset(10)
             make.height.lessThanOrEqualTo(54)
             make.height.greaterThanOrEqualTo(16)
         }
+        
         placeholder.snp.makeConstraints { make in
             make.leading.equalTo(textView).offset(5)
             make.centerY.equalTo(textView)
         }
         
+        imgCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(textView.snp.bottom).offset(5)
+            make.leading.equalTo(imageButton.snp.trailing).offset(8)
+            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
+            make.bottom.equalTo(self).inset(10)
+            make.height.equalTo((Constants.Design.deviceWidth - 60) / 7 )
+        }
+        
     }
     
+    private func collectionViewLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        let size = Constants.Design.deviceWidth - 60 //self.frame.width - 40
+        layout.itemSize = CGSize(width: size / 7, height: size / 7)
+        
+        return layout
+    }
     
+    private func configureDataSource() {
+        let cell = UICollectionView.CellRegistration<ChatImageCell, SelectImage> { cell, indexPath, itemIdentifier in
+            cell.imageView.image = itemIdentifier.img
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<String, SelectImage>(collectionView: imgCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            let cell = collectionView.dequeueConfiguredReusableCell(using: cell, for: indexPath, item: itemIdentifier)
+            return cell
+        })
+    }
+    
+    private func compostionalViewLayout() -> UICollectionViewLayout {
+        let size = (Constants.Design.deviceWidth - 60) / 5
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(size))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(size))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.orthogonalScrollingBehavior = .continuous
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        
+        return layout
+    }
 }

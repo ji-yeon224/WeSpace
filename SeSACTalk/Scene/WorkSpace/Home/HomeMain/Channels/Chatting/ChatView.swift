@@ -54,7 +54,7 @@ final class ChatView: BaseView {
     }
     
     private func compostionalViewLayout() -> UICollectionViewLayout {
-        let size = Constants.Design.deviceWidth - 32
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -82,7 +82,7 @@ final class ChatView: BaseView {
                 cell.profileImageView.image = img.randomElement()
             }
             cell.chatTextLabel.text = itemIdentifier.content
-            cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString            
+            cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
         }
         dataSource = UICollectionViewDiffableDataSource<String, ChannelMessage>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cell, for: indexPath, item: itemIdentifier)

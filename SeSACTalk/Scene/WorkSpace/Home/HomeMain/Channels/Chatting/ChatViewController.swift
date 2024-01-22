@@ -36,6 +36,7 @@ final class ChatViewController: BaseViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
         updateSnapShot(data: dummy)
+        updateSelectImgSnapShot(data: imgdummy)
     }
     
     
@@ -79,6 +80,13 @@ final class ChatViewController: BaseViewController {
         mainView.dataSource.apply(snapshot)
     }
     
+    private func updateSelectImgSnapShot(data: [SelectImage]) {
+        var snapshot = NSDiffableDataSourceSnapshot<String, SelectImage>()
+        snapshot.appendSections([""])
+        snapshot.appendItems(data)
+        mainView.chatWriteView.dataSource.apply(snapshot)
+    }
+    
 }
 
 extension ChatViewController {
@@ -99,7 +107,12 @@ ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕", cr
 ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕dddsdkfjlsdkjflsdjfljsdlfjlsdjflsdjflkjslfjlsdk", createdAt: "2023-12-21T22:47:30.236Z", files: [], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil)),
 ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: [], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil))
 
+]
 
-
-
+let imgdummy: [SelectImage] = [
+    SelectImage(img: .dummy),
+    SelectImage(img: .seSACBot),
+    SelectImage(img: .dummy),
+    SelectImage(img: .seSACBot),
+    SelectImage(img: .dummy)
 ]

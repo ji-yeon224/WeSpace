@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct SelectImage {
+struct SelectImage: Hashable {
+    let id = UUID()
     var img: UIImage?
 }
 
