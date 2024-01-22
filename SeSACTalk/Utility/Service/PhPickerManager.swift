@@ -51,8 +51,6 @@ extension PHPickerManager: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
         guard let viewController else {return}
-        print("finisih ", results.count)
-        
         var newSelections = [String: PHPickerResult]()
                     
         results.forEach {
@@ -99,7 +97,6 @@ extension PHPickerManager: PHPickerViewControllerDelegate {
                 guard let img = imageDict[$0] else { return }
                 imageList.append(img)
             }
-            print(prevSelectId)
             selectedImage.onNext((prevSelectId, imageList))
         }
 

@@ -9,6 +9,7 @@ import UIKit
 
 final class ChatWriteView: BaseView {
     
+    private let stackView = CustomStackView()
     
     let imageButton = CustomButton(image: .plus).then{
         $0.backgroundColor = .clear
@@ -39,9 +40,10 @@ final class ChatWriteView: BaseView {
     
     override func configure() {
         layer.cornerRadius = 8
-        
+        stackView.addArrangedSubview(textView)
+        stackView.addArrangedSubview(imgCollectionView)
         backgroundColor = Constants.Color.background
-        [imageButton, textView, sendButton, imgCollectionView].forEach {
+        [imageButton, stackView, sendButton].forEach {
             addSubview($0)
         }
         textView.addSubview(placeholder)
@@ -63,10 +65,18 @@ final class ChatWriteView: BaseView {
             make.top.greaterThanOrEqualTo(self).inset(10)
         }
         
-        textView.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(self).inset(10)
+            make.bottom.equalTo(self).inset(10)
             make.leading.equalTo(imageButton.snp.trailing).offset(8)
             make.trailing.equalTo(sendButton.snp.leading).offset(-8)
             make.top.equalTo(self).inset(10)
+        }
+        
+        textView.snp.makeConstraints { make in
+//            make.leading.equalTo(imageButton.snp.trailing).offset(8)
+//            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
+//            make.top.equalTo(self).inset(10)
             make.height.lessThanOrEqualTo(54)
             make.height.greaterThanOrEqualTo(16)
         }
@@ -77,10 +87,10 @@ final class ChatWriteView: BaseView {
         }
         
         imgCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(textView.snp.bottom).offset(5)
-            make.leading.equalTo(imageButton.snp.trailing).offset(8)
-            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
-            make.bottom.equalTo(self).inset(10)
+//            make.top.equalTo(textView.snp.bottom).offset(5)
+//            make.leading.equalTo(imageButton.snp.trailing).offset(8)
+//            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
+//            make.bottom.equalTo(self).inset(10)
             make.height.equalTo((Constants.Design.deviceWidth - 60) / 7 )
         }
         

@@ -16,7 +16,7 @@ final class ChatViewController: BaseViewController {
     private var selectedImage: [SelectImage] = []
     private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
-    
+    private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
     init(info: Channel) {
@@ -40,7 +40,6 @@ final class ChatViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = false
         updateSnapShot(data: dummy)
 //        updateSelectImgSnapShot(data: imgdummy)
-        mainView.chatWriteView.imgCollectionView.isHidden = true
     }
     
     
@@ -83,6 +82,16 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        selectImgCount
+            .asDriver()
+            .map { count in
+                return count == 0
+            }
+            .distinctUntilChanged()
+            .drive(with: self) { owner, value in
+                owner.mainView.chatWriteView.imgCollectionView.isHidden = value
+            }
+            .disposed(by: disposeBag)
         
     }
     private func configSelectImage() {
@@ -92,6 +101,7 @@ final class ChatViewController: BaseViewController {
                 let imgList = image.1.map { return SelectImage(img: $0)}
                 owner.selectedAssetIdentifiers = image.0
                 owner.selectedImage = imgList
+                owner.selectImgCount.accept(imgList.count)
                 owner.updateSelectImgSnapShot(data: owner.selectedImage)
             }
             .disposed(by: PHPickerManager.shared.disposeBag)
@@ -102,14 +112,15 @@ final class ChatViewController: BaseViewController {
         snapshot.appendSections([""])
         snapshot.appendItems(data)
         mainView.dataSource.apply(snapshot)
+        
     }
     
-    private func updateSelectImgSnapShot(data: [SelectImage]) {
-        mainView.chatWriteView.imgCollectionView.isHidden = false
+    private func updateSelectImgSnapShot(data: [SelectImage]) {        
         var snapshot = NSDiffableDataSourceSnapshot<String, SelectImage>()
         snapshot.appendSections([""])
         snapshot.appendItems(data)
         mainView.chatWriteView.dataSource.apply(snapshot)
+
     }
     
 }
