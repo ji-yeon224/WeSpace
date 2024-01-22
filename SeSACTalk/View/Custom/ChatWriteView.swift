@@ -23,6 +23,8 @@ final class ChatWriteView: BaseView {
     
         
     }
+    
+    let placeholder = CustomBasicLabel(text: "메세지를 입력하세요.", fontType: .body, color: .secondaryText, line: 1)
    
     
     let sendButton = CustomButton(image: .message).then {
@@ -35,6 +37,7 @@ final class ChatWriteView: BaseView {
         [imageButton, textView, sendButton].forEach {
             addSubview($0)
         }
+        textView.addSubview(placeholder)
         
         
     }
@@ -59,6 +62,10 @@ final class ChatWriteView: BaseView {
             make.verticalEdges.equalTo(self).inset(10)
             make.height.lessThanOrEqualTo(54)
             make.height.greaterThanOrEqualTo(16)
+        }
+        placeholder.snp.makeConstraints { make in
+            make.leading.equalTo(textView).offset(5)
+            make.centerY.equalTo(textView)
         }
         
     }

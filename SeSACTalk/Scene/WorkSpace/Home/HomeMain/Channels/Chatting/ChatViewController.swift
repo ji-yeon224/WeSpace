@@ -61,9 +61,9 @@ final class ChatViewController: BaseViewController {
                 } else { chatWriteView.textView.isScrollEnabled = false }
                 
                 if chatWriteView.textView.text.count > 0 {
-//                    chatWriteView.placeholderLabel.isHidden = true
+                    chatWriteView.placeholder.isHidden = true
                 } else {
-//                    chatWriteView.placeholderLabel.isHidden = false
+                    chatWriteView.placeholder.isHidden = false
                 }
                 
             }
