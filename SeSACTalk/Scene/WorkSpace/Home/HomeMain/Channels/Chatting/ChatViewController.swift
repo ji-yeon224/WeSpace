@@ -35,6 +35,7 @@ final class ChatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
+        updateSnapShot(data: dummy)
     }
     
     
@@ -45,6 +46,7 @@ final class ChatViewController: BaseViewController {
         
         title = "# " + channel.name
         bindEvent()
+        
     }
     
     private func bindEvent() {
@@ -70,6 +72,13 @@ final class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    private func updateSnapShot(data: [ChannelMessage]) {
+        var snapshot = NSDiffableDataSourceSnapshot<String, ChannelMessage>()
+        snapshot.appendSections([""])
+        snapshot.appendItems(data)
+        mainView.dataSource.apply(snapshot)
+    }
+    
 }
 
 extension ChatViewController {
@@ -85,3 +94,12 @@ extension ChatViewController {
     }
 }
  
+let dummy: [ChannelMessage] = [
+ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕", createdAt: "2023-12-21T22:47:30.236Z", files: [], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil)),
+ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕dddsdkfjlsdkjflsdjfljsdlfjlsdjflsdjflkjslfjlsdk", createdAt: "2023-12-21T22:47:30.236Z", files: [], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil)),
+ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: [], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil))
+
+
+
+
+]

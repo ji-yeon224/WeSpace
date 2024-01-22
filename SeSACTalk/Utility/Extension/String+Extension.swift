@@ -50,10 +50,18 @@ extension String {
     }
     
     // 서버에서 받은 데이터 포멧 변경하기
-    func convertDateFormat() -> String {
+    var convertToDateFormat: String {
         if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", date: self) {
             return DateFormatter.convertToString(format: "yy. MM. dd", date: dateType)
             
+        }
+        
+        return ""
+    }
+    
+    var convertToTimeString: String {
+        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", date: self) {
+            return DateFormatter.convertToString(format: "hh:mm a", date: dateType)
         }
         
         return ""

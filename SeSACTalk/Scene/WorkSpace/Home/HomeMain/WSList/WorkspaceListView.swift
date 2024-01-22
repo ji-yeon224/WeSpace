@@ -125,8 +125,7 @@ final class WorkspaceListView: BaseView {
         let cellRegistration = UICollectionView.CellRegistration<WorkspaceListCell, WorkSpace> { cell, indexPath, itemIdentifier in
             cell.workspaceName.text = itemIdentifier.name
             cell.workspaceImageView.setImage(with: itemIdentifier.thumbnail)
-            cell.dateLabel.text = itemIdentifier.createdAt.convertDateFormat()
-            
+            cell.dateLabel.text = itemIdentifier.createdAt.convertToDateFormat            
             if itemIdentifier.workspaceId == self.workspaceId {
                 cell.backView.backgroundColor = .customGray
                 cell.menuButton.isHidden = false

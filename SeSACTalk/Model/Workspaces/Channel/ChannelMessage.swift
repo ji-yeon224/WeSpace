@@ -8,6 +8,7 @@
 import Foundation
 
 struct ChannelMessage: Hashable {
+    let id = UUID()
     let channelID: Int
     let channelName: String
     let chatID: Int
