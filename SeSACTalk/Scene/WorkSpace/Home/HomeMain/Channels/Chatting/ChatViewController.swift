@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import ReactorKit
+import RxCocoa
 
 final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
     private var channel: Channel?
+    
+    var disposeBag = DisposeBag()
     
     init(info: Channel) {
         super.init(nibName: nil, bundle: nil)
@@ -40,7 +44,30 @@ final class ChatViewController: BaseViewController {
         guard let channel = channel else { return }
         
         title = channel.name
-        
+        bindEvent()
+    }
+    
+    private func bindEvent() {
+        mainView.chatWriteView.textView.rx.didChange
+            .bind(with: self) { owner, _ in
+                
+                let chatWriteView = owner.mainView.chatWriteView
+                let size = CGSize(width: chatWriteView.frame.width, height: .infinity)
+                let estimatedSize = chatWriteView.textView.sizeThatFits(size)
+                let isMaxHeight = estimatedSize.height >= 54
+                
+                if isMaxHeight {
+                    chatWriteView.textView.isScrollEnabled = true
+                } else { chatWriteView.textView.isScrollEnabled = false }
+                
+                if chatWriteView.textView.text.count > 0 {
+//                    chatWriteView.placeholderLabel.isHidden = true
+                } else {
+//                    chatWriteView.placeholderLabel.isHidden = false
+                }
+                
+            }
+            .disposed(by: disposeBag)
     }
     
 }

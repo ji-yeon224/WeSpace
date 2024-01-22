@@ -237,7 +237,7 @@ extension HomeViewController {
         if let channelItem = item.item as? Channel {
             print(channelItem.name)
             let vc = ChatViewController(info: channelItem)
-//            vc.modalPresentationStyle = .ful
+            vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         } else if let dmItem = item.item as? DMsRoom {
             print(dmItem.user)
