@@ -43,7 +43,7 @@ final class ChatViewController: BaseViewController {
         
         guard let channel = channel else { return }
         
-        title = channel.name
+        title = "# " + channel.name
         bindEvent()
     }
     

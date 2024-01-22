@@ -27,7 +27,7 @@ final class ChatWriteView: BaseView {
     let placeholder = CustomBasicLabel(text: "메세지를 입력하세요.", fontType: .body, color: .secondaryText, line: 1)
    
     
-    let sendButton = CustomButton(image: .message).then {
+    let sendButton = CustomButton(image: .sendInactive).then {
         $0.backgroundColor = .clear
     }
     override func configure() {
