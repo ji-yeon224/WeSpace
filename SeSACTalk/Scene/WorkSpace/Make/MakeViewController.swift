@@ -80,13 +80,13 @@ final class MakeViewController: BaseViewController, View {
         mainView.imageView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
-                PHPickerManager.shared.presentPicker(vc: owner)
+                PHPickerManager.shared.presentPicker(vc: owner, selectedId: [])
             }
             .disposed(by: disposeBag)
         PHPickerManager.shared.selectedImage
             .bind(with: self) { owner, image in
-                if !image.isEmpty {
-                    owner.mainView.imageView.setImage(img: image[0])
+                if !image.1.isEmpty {
+                    owner.mainView.imageView.setImage(img: image.1[0])
                     owner.img = owner.mainView.imageView.image
                 }
             }

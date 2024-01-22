@@ -16,11 +16,12 @@ final class PHPickerManager {
     private weak var viewController: UIViewController?
     
     private let group = DispatchGroup()
-    
-    let selectedImage = PublishSubject<[UIImage]>()
+    var prevSelectId: [String] = []
+    private var selections = [String : PHPickerResult]()
+    let selectedImage = PublishSubject<([String], [UIImage])>()
     var disposeBag = DisposeBag()
     
-    func presentPicker(vc: UIViewController, selectLimit: Int = 1) {
+    func presentPicker(vc: UIViewController, selectLimit: Int = 1, selectedId: [String]? = nil) {
         self.viewController = vc
         self.disposeBag = DisposeBag()
         let filter = PHPickerFilter.images
@@ -30,6 +31,15 @@ final class PHPickerManager {
         configuration.selection = .ordered
         configuration.selectionLimit = selectLimit
         
+        if let id = selectedId {
+            configuration.preselectedAssetIdentifiers = id
+            
+            prevSelectId = id
+        } else {
+            selections.removeAll()
+            prevSelectId.removeAll()
+        }
+        
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         viewController?.present(picker, animated: true)
@@ -37,32 +47,63 @@ final class PHPickerManager {
 }
 
 extension PHPickerManager: PHPickerViewControllerDelegate {
-    
+  
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         
-        var imgList: [UIImage] = []
         guard let viewController else {return}
-        if results.isEmpty {
-            viewController.dismiss(animated: true)
+        print("finisih ", results.count)
+        
+        var newSelections = [String: PHPickerResult]()
+                    
+        results.forEach {
+            guard let id = $0.assetIdentifier else { return }
+            newSelections[id] = selections[id] ?? $0
+        }
+        
+        selections = newSelections
+        prevSelectId = results.compactMap { $0.assetIdentifier }
+        if selections.isEmpty {
+            selectedImage.onNext(([], []))
         } else {
-            results.forEach {
-                self.group.enter()
-                let item = $0.itemProvider
-                item.loadObject(ofClass: UIImage.self) { image, error in
-                    DispatchQueue.main.async {
-                        guard let img = image as? UIImage else { return }
-                        imgList.append(img)
-                        self.group.leave()
+            setImage()
+            
+        }
+        picker.dismiss(animated: true)
+    }
+    
+    private func setImage() {
+        var imageDict: [String: UIImage] = [:]
+        var imageList: [UIImage] = []
+        
+        
+        for (id, result) in selections {
+            self.group.enter()
+            let provider = result.itemProvider
+            if provider.canLoadObject(ofClass: UIImage.self) {
+                provider.loadObject(ofClass: UIImage.self) { item, error in
+                    guard let img = item as? UIImage else {
+                        return
                     }
+                    
+                    imageDict[id] = img
+                    self.group.leave()
                 }
             }
             
-            group.notify(queue: DispatchQueue.main) {
-                self.selectedImage.onNext(imgList)
-                self.viewController?.dismiss(animated: true)
-            }
-
+            
         }
+        
+        group.notify(queue: DispatchQueue.main) { [weak self] in
+            guard let self = self else { return }
+            self.prevSelectId.forEach {
+                guard let img = imageDict[$0] else { return }
+                imageList.append(img)
+            }
+            print(prevSelectId)
+            selectedImage.onNext((prevSelectId, imageList))
+        }
+
+        
         
     }
 }

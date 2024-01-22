@@ -13,6 +13,9 @@ final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
     private var channel: Channel?
+    private var selectedImage: [SelectImage] = []
+    private var selectLimit = 5
+    private var selectedAssetIdentifiers = [String]()
     
     var disposeBag = DisposeBag()
     
@@ -36,7 +39,8 @@ final class ChatViewController: BaseViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
         updateSnapShot(data: dummy)
-        updateSelectImgSnapShot(data: imgdummy)
+//        updateSelectImgSnapShot(data: imgdummy)
+        mainView.chatWriteView.imgCollectionView.isHidden = true
     }
     
     
@@ -71,6 +75,26 @@ final class ChatViewController: BaseViewController {
                 
             }
             .disposed(by: disposeBag)
+        
+        mainView.chatWriteView.imageButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                owner.configSelectImage()
+            }
+            .disposed(by: disposeBag)
+        
+        
+    }
+    private func configSelectImage() {
+        PHPickerManager.shared.presentPicker(vc: self, selectLimit: selectLimit, selectedId: selectedAssetIdentifiers)
+        PHPickerManager.shared.selectedImage
+            .bind(with: self) { owner, image in
+                let imgList = image.1.map { return SelectImage(img: $0)}
+                owner.selectedAssetIdentifiers = image.0
+                owner.selectedImage = imgList
+                owner.updateSelectImgSnapShot(data: owner.selectedImage)
+            }
+            .disposed(by: PHPickerManager.shared.disposeBag)
     }
     
     private func updateSnapShot(data: [ChannelMessage]) {
@@ -81,6 +105,7 @@ final class ChatViewController: BaseViewController {
     }
     
     private func updateSelectImgSnapShot(data: [SelectImage]) {
+        mainView.chatWriteView.imgCollectionView.isHidden = false
         var snapshot = NSDiffableDataSourceSnapshot<String, SelectImage>()
         snapshot.appendSections([""])
         snapshot.appendItems(data)
