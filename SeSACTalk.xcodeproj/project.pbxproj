@@ -59,6 +59,10 @@
 		CE61AE0A2B5D525F0091B03D /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE092B5D525F0091B03D /* ChatView.swift */; };
 		CE61AE0C2B5D5FAF0091B03D /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE0B2B5D5FAF0091B03D /* ChatTableViewCell.swift */; };
 		CE61AE0E2B5D64EA0091B03D /* ChatWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE0D2B5D64EA0091B03D /* ChatWriteView.swift */; };
+		CE61AE102B5E40DC0091B03D /* ChattingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE0F2B5E40DC0091B03D /* ChattingCell.swift */; };
+		CE61AE122B5E41670091B03D /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE112B5E41670091B03D /* UserProfileImageView.swift */; };
+		CE61AE142B5E48590091B03D /* ChannelChatResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE132B5E48590091B03D /* ChannelChatResDTO.swift */; };
+		CE61AE162B5E48DB0091B03D /* ChannelMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
@@ -259,6 +263,10 @@
 		CE61AE092B5D525F0091B03D /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		CE61AE0B2B5D5FAF0091B03D /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		CE61AE0D2B5D64EA0091B03D /* ChatWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWriteView.swift; sourceTree = "<group>"; };
+		CE61AE0F2B5E40DC0091B03D /* ChattingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCell.swift; sourceTree = "<group>"; };
+		CE61AE112B5E41670091B03D /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
+		CE61AE132B5E48590091B03D /* ChannelChatResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatResDTO.swift; sourceTree = "<group>"; };
+		CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMessage.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -660,6 +668,7 @@
 				CE57E4282B454E52009BD53A /* CustomTextField.swift */,
 				CE57E42A2B4557CE009BD53A /* CustomStackView.swift */,
 				CEE989A22B4A874300590A19 /* ProfileImageView.swift */,
+				CE61AE112B5E41670091B03D /* UserProfileImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -709,6 +718,7 @@
 				CEEAA1D82B540E2500EA1C58 /* WorkspaceListCell.swift */,
 				CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */,
 				CE61AE0B2B5D5FAF0091B03D /* ChatTableViewCell.swift */,
+				CE61AE0F2B5E40DC0091B03D /* ChattingCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -833,6 +843,8 @@
 				CEC764352B512CCB000578E9 /* ChannelResDTO.swift */,
 				CEC7643D2B516306000578E9 /* Channel.swift */,
 				CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */,
+				CE61AE132B5E48590091B03D /* ChannelChatResDTO.swift */,
+				CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -1209,6 +1221,7 @@
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
+				CE61AE122B5E41670091B03D /* UserProfileImageView.swift in Sources */,
 				CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */,
 				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
@@ -1290,6 +1303,7 @@
 				CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */,
 				CEC764532B5176DA000578E9 /* User.swift in Sources */,
 				CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */,
+				CE61AE102B5E40DC0091B03D /* ChattingCell.swift in Sources */,
 				CED829512B590D7D00AD1828 /* AlertViewController.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
 				CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */,
@@ -1299,6 +1313,7 @@
 				CE61ADFD2B5CEB210091B03D /* CreateChannelView.swift in Sources */,
 				CEEAA1D92B540E2500EA1C58 /* WorkspaceListCell.swift in Sources */,
 				CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */,
+				CE61AE142B5E48590091B03D /* ChannelChatResDTO.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
@@ -1309,6 +1324,7 @@
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,
 				CE85749E2B4BFF7F0025ED1B /* HomeTabBarController.swift in Sources */,
 				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
+				CE61AE162B5E48DB0091B03D /* ChannelMessage.swift in Sources */,
 				CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */,
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
 				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,

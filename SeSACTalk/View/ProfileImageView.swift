@@ -11,7 +11,7 @@ final class ProfileImageView: UIImageView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        image = .seSACBot
+        image = .dummy
         
         contentMode = .scaleAspectFill
     }

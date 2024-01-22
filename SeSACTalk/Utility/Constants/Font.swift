@@ -14,6 +14,7 @@ enum Font {
     case bodyBold
     case body
     case caption
+    case caption2
     
     var fontStyle: UIFont {
         switch self {
@@ -27,6 +28,8 @@ enum Font {
             return Constants.Design.body
         case .caption:
             return Constants.Design.caption
+        case .caption2:
+            return Constants.Design.caption2
         }
     }
     var lineHeight: CGFloat {
@@ -35,7 +38,7 @@ enum Font {
             return 30
         case .title2:
             return 20
-        case .bodyBold, .body, .caption:
+        case .bodyBold, .body, .caption, .caption2:
             return 18
         }
     }

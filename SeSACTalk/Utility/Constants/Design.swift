@@ -18,5 +18,6 @@ extension Constants {
         static let bodyBold: UIFont = UIFont(name: "SFPro-Bold", size: 13) ?? .systemFont(ofSize: 13, weight: .bold)
         static let body: UIFont = UIFont(name: "SFPro-Regular", size: 13) ?? .systemFont(ofSize: 13)
         static let caption: UIFont = UIFont(name: "SFPro-Regular", size: 12) ?? .systemFont(ofSize: 12)
+        static let caption2: UIFont = UIFont(name: "SFPro-Regular", size: 11) ?? .systemFont(ofSize: 11)
     }
 }
