@@ -78,9 +78,6 @@ final class ChatWriteView: BaseView {
         }
         
         textView.snp.makeConstraints { make in
-//            make.leading.equalTo(imageButton.snp.trailing).offset(8)
-//            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
-//            make.top.equalTo(self).inset(10)
             make.height.lessThanOrEqualTo(54)
             make.height.greaterThanOrEqualTo(16)
         }
@@ -91,10 +88,6 @@ final class ChatWriteView: BaseView {
         }
         
         imgCollectionView.snp.makeConstraints { make in
-//            make.top.equalTo(textView.snp.bottom).offset(5)
-//            make.leading.equalTo(imageButton.snp.trailing).offset(8)
-//            make.trailing.equalTo(sendButton.snp.leading).offset(-8)
-//            make.bottom.equalTo(self).inset(10)
             make.height.equalTo((Constants.Design.deviceWidth - 60) / 7 )
         }
         
@@ -120,6 +113,19 @@ final class ChatWriteView: BaseView {
                 }
                 .disposed(by: cell.disposeBag)
         }
+        
+        rxDataSource = RxCollectionViewSectionedReloadDataSource<SelectImageModel> { dataSource, collectionView, indexPath, item in
+           guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatImageCell.identifier, for: indexPath) as? ChatImageCell else { return UICollectionViewCell() }
+           
+            cell.imageView.image = item.img
+            cell.xButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    owner.delegate?.deleteImage(indexPath: indexPath)
+                }
+                .disposed(by: cell.disposeBag)
+           
+           return cell
+       }
         
         
     }

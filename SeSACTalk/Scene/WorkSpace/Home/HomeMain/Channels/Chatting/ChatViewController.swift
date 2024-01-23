@@ -14,10 +14,10 @@ final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
     private var channel: Channel?
-    private var selectedImage: [SelectImage] = []
+    
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
-    private var selectLimit = 5
+//    private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
@@ -42,7 +42,6 @@ final class ChatViewController: BaseViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
         updateSnapShot(data: dummy)
-//        updateSelectImgSnapShot(data: imgdummy)
     }
     
     
@@ -104,39 +103,24 @@ final class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         
-        
-        let rxDataSource = RxCollectionViewSectionedReloadDataSource<SelectImageModel> { dataSource, collectionView, indexPath, item in
-           guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatImageCell.identifier, for: indexPath) as? ChatImageCell else { return UICollectionViewCell() }
-           
-            cell.imageView.image = item.img//item.image.resize(multiplier: 30)
-            cell.xButton.rx.tap
-                .bind(with: self) { owner, _ in
-                    print(indexPath)
-                    owner.selectImageModel.items.remove(at: indexPath.item)
-                    owner.selectImgCount.accept(owner.selectImageModel.items.count)
-                    owner.imgData.accept([owner.selectImageModel])
-//                    owner.delegate?.deleteImage(indexPath: indexPath)
-                }
-                .disposed(by: cell.disposeBag)
-           
-           return cell
-       }
-        
-        
         imgData
-            .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: rxDataSource))
+            .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: mainView.chatWriteView.rxDataSource))
             .disposed(by: disposeBag)
         
     }
+    
+    
+    
+}
+
+extension ChatViewController {
     private func configSelectImage() {
-        PHPickerManager.shared.presentPicker(vc: self, selectLimit: selectLimit, selectedId: selectedAssetIdentifiers)
+        PHPickerManager.shared.presentPicker(vc: self, selectLimit: 5, selectedId: selectedAssetIdentifiers)
         PHPickerManager.shared.selectedImage
             .bind(with: self) { owner, image in
                 let imgList = image.1.map { return SelectImage(img: $0)}
                 owner.selectedAssetIdentifiers = image.0
-                owner.selectedImage = imgList
                 owner.selectImgCount.accept(imgList.count)
-//                owner.updateSelectImgSnapShot(data: owner.selectedImage)
                 owner.selectImageModel = SelectImageModel(section: "", items: imgList)
                 owner.imgData.accept([owner.selectImageModel])
             }
@@ -150,25 +134,14 @@ final class ChatViewController: BaseViewController {
         mainView.dataSource.apply(snapshot)
         
     }
-    
-//    private func updateSelectImgSnapShot(data: [SelectImage]) {        
-//        var snapshot = NSDiffableDataSourceSnapshot<String, SelectImage>()
-//        snapshot.appendSections([""])
-//        snapshot.appendItems(data)
-//        mainView.chatWriteView.dataSource.apply(snapshot)
-//
-//    }
-    
 }
 
 extension ChatViewController: ChatImageSelectDelegate {
     func deleteImage(indexPath: IndexPath) {
-        print(indexPath)
-        selectedImage.remove(at: indexPath.item)
         selectedAssetIdentifiers.remove(at: indexPath.item)
-        selectImgCount.accept(selectedImage.count)
-//        updateSelectImgSnapShot(data: selectedImage)
-        mainView.chatWriteView.imgCollectionView.layoutIfNeeded()
+        selectImageModel.items.remove(at: indexPath.item)
+        selectImgCount.accept(selectImageModel.items.count)
+        imgData.accept([selectImageModel])
     }
 }
 
@@ -190,12 +163,4 @@ ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕", cr
 ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕dddsdkfjlsdkjflsdjfljsdlfjlsdjflsdjflkjslfjlsdk", createdAt: "2023-12-21T22:47:30.236Z", files: [], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil)),
 ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: [], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil))
 
-]
-
-let imgdummy: [SelectImage] = [
-    SelectImage(img: .dummy),
-    SelectImage(img: .seSACBot),
-    SelectImage(img: .dummy),
-    SelectImage(img: .seSACBot),
-    SelectImage(img: .dummy)
 ]
