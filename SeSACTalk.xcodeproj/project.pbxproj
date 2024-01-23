@@ -65,6 +65,9 @@
 		CE61AE162B5E48DB0091B03D /* ChannelMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */; };
 		CE61AE182B5E5BE40091B03D /* ChatImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE172B5E5BE40091B03D /* ChatImageCell.swift */; };
 		CE61AE1A2B5E5D170091B03D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE192B5E5D170091B03D /* CircleButton.swift */; };
+		CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */; };
+		CE61AE222B5EC47C0091B03D /* SelectImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */; };
+		CE61AE252B5EC4BA0091B03D /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CE61AE242B5EC4BA0091B03D /* RxDataSources */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
@@ -271,6 +274,8 @@
 		CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMessage.swift; sourceTree = "<group>"; };
 		CE61AE172B5E5BE40091B03D /* ChatImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatImageCell.swift; sourceTree = "<group>"; };
 		CE61AE192B5E5D170091B03D /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatImageSelectDelegate.swift; sourceTree = "<group>"; };
+		CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageModel.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -411,6 +416,7 @@
 				CEA8F9D62B4993A20062B45C /* Then in Frameworks */,
 				CEB7F8352B444B2A00B9A035 /* RxGesture in Frameworks */,
 				CEEE4EB62B46DC220059D1AF /* Moya in Frameworks */,
+				CE61AE252B5EC4BA0091B03D /* RxDataSources in Frameworks */,
 				CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */,
 				CEA8F9C12B496EB80062B45C /* KakaoSDK in Frameworks */,
 			);
@@ -485,6 +491,7 @@
 				CE4904D72B4D1137003B0204 /* ChannelSection.swift */,
 				CE4904D92B4D11C9003B0204 /* DMSection.swift */,
 				CE4904DD2B4D2E41003B0204 /* Item.swift */,
+				CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -563,6 +570,14 @@
 			path = Chatting;
 			sourceTree = "<group>";
 		};
+		CE61AE1E2B5EBAD00091B03D /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		CE6C1FB52B43E8BA00AA7F9C = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +642,7 @@
 		CE6C1FF12B43E96600AA7F9C /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CE61AE1E2B5EBAD00091B03D /* Delegate */,
 				CEEE4EC62B470B190059D1AF /* Type */,
 				CEEE4EC32B4702830059D1AF /* Toast */,
 				CEEE4EC22B4702750059D1AF /* Service */,
@@ -1080,6 +1096,7 @@
 				CE85748E2B4AFD810025ED1B /* ReactorKit */,
 				CEC7642B2B5123F1000578E9 /* Kingfisher */,
 				CED7C2C12B5230D40069EA0A /* SideMenu */,
+				CE61AE242B5EC4BA0091B03D /* RxDataSources */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -1166,6 +1183,7 @@
 				CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */,
+				CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -1284,6 +1302,7 @@
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
 				CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */,
 				CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */,
+				CE61AE222B5EC47C0091B03D /* SelectImageModel.swift in Sources */,
 				CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
 				CE61AE0A2B5D525F0091B03D /* ChatView.swift in Sources */,
@@ -1351,6 +1370,7 @@
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
+				CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */,
 				CED829492B58C40A00AD1828 /* ChangeManagerViewController.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
@@ -1738,6 +1758,14 @@
 				minimumVersion = 6.5.16;
 			};
 		};
+		CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 		CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactorKit/ReactorKit.git";
@@ -1833,6 +1861,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		CE61AE242B5EC4BA0091B03D /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		CE85748E2B4AFD810025ED1B /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;

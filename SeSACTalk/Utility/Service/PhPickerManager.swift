@@ -53,6 +53,7 @@ extension PHPickerManager: PHPickerViewControllerDelegate {
         guard let viewController else {return}
         var newSelections = [String: PHPickerResult]()
                     
+        
         results.forEach {
             guard let id = $0.assetIdentifier else { return }
             newSelections[id] = selections[id] ?? $0
@@ -83,7 +84,7 @@ extension PHPickerManager: PHPickerViewControllerDelegate {
                         return
                     }
                     
-                    imageDict[id] = img
+                    imageDict[id] = img.resize(width: 120)
                     self.group.leave()
                 }
             }

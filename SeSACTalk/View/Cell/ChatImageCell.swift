@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
 
 final class ChatImageCell: BaseCollectionViewCell {
+    
+    var disposeBag = DisposeBag()
     
     let imageView = SquareFillImageView(frame: .zero).then {
         $0.layer.cornerRadius =  8
@@ -19,6 +22,10 @@ final class ChatImageCell: BaseCollectionViewCell {
         $0.layer.borderWidth = 1
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
     
     override func configure() {
         contentView.backgroundColor = .clear

@@ -8,12 +8,15 @@
 import UIKit
 import ReactorKit
 import RxCocoa
+import RxDataSources
 
 final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
     private var channel: Channel?
     private var selectedImage: [SelectImage] = []
+    private var selectImageModel = SelectImageModel(section: "", items: [])
+    private var imgData = PublishRelay<[SelectImageModel]>()
     private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
@@ -50,6 +53,7 @@ final class ChatViewController: BaseViewController {
         
         title = "# " + channel.name
         bindEvent()
+        mainView.chatWriteView.delegate = self
         
     }
     
@@ -93,6 +97,36 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        mainView.chatWriteView.imgCollectionView.rx.itemSelected
+            .bind(with: self) { owner, index in
+                print(index)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        
+        let rxDataSource = RxCollectionViewSectionedReloadDataSource<SelectImageModel> { dataSource, collectionView, indexPath, item in
+           guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChatImageCell.identifier, for: indexPath) as? ChatImageCell else { return UICollectionViewCell() }
+           
+            cell.imageView.image = item.img//item.image.resize(multiplier: 30)
+            cell.xButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    print(indexPath)
+                    owner.selectImageModel.items.remove(at: indexPath.item)
+                    owner.selectImgCount.accept(owner.selectImageModel.items.count)
+                    owner.imgData.accept([owner.selectImageModel])
+//                    owner.delegate?.deleteImage(indexPath: indexPath)
+                }
+                .disposed(by: cell.disposeBag)
+           
+           return cell
+       }
+        
+        
+        imgData
+            .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: rxDataSource))
+            .disposed(by: disposeBag)
+        
     }
     private func configSelectImage() {
         PHPickerManager.shared.presentPicker(vc: self, selectLimit: selectLimit, selectedId: selectedAssetIdentifiers)
@@ -102,7 +136,9 @@ final class ChatViewController: BaseViewController {
                 owner.selectedAssetIdentifiers = image.0
                 owner.selectedImage = imgList
                 owner.selectImgCount.accept(imgList.count)
-                owner.updateSelectImgSnapShot(data: owner.selectedImage)
+//                owner.updateSelectImgSnapShot(data: owner.selectedImage)
+                owner.selectImageModel = SelectImageModel(section: "", items: imgList)
+                owner.imgData.accept([owner.selectImageModel])
             }
             .disposed(by: PHPickerManager.shared.disposeBag)
     }
@@ -115,14 +151,25 @@ final class ChatViewController: BaseViewController {
         
     }
     
-    private func updateSelectImgSnapShot(data: [SelectImage]) {        
-        var snapshot = NSDiffableDataSourceSnapshot<String, SelectImage>()
-        snapshot.appendSections([""])
-        snapshot.appendItems(data)
-        mainView.chatWriteView.dataSource.apply(snapshot)
-
-    }
+//    private func updateSelectImgSnapShot(data: [SelectImage]) {        
+//        var snapshot = NSDiffableDataSourceSnapshot<String, SelectImage>()
+//        snapshot.appendSections([""])
+//        snapshot.appendItems(data)
+//        mainView.chatWriteView.dataSource.apply(snapshot)
+//
+//    }
     
+}
+
+extension ChatViewController: ChatImageSelectDelegate {
+    func deleteImage(indexPath: IndexPath) {
+        print(indexPath)
+        selectedImage.remove(at: indexPath.item)
+        selectedAssetIdentifiers.remove(at: indexPath.item)
+        selectImgCount.accept(selectedImage.count)
+//        updateSelectImgSnapShot(data: selectedImage)
+        mainView.chatWriteView.imgCollectionView.layoutIfNeeded()
+    }
 }
 
 extension ChatViewController {

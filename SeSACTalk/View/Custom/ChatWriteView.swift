@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RxCocoa
+import RxDataSources
 
 final class ChatWriteView: BaseView {
     
     private let stackView = CustomStackView()
-    
+    var delegate: ChatImageSelectDelegate?
     let imageButton = CustomButton(image: .plus).then{
         $0.backgroundColor = .clear
     }
@@ -33,10 +35,12 @@ final class ChatWriteView: BaseView {
     }
     
     lazy var imgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout()).then {
+        $0.register(ChatImageCell.self, forCellWithReuseIdentifier: ChatImageCell.identifier)
         $0.isScrollEnabled = false
         $0.backgroundColor = .clear
     }
-    var dataSource: UICollectionViewDiffableDataSource<String, SelectImage>!
+
+    var rxDataSource: RxCollectionViewSectionedReloadDataSource<SelectImageModel>!
     
     override func configure() {
         layer.cornerRadius = 8
@@ -109,12 +113,15 @@ final class ChatWriteView: BaseView {
     private func configureDataSource() {
         let cell = UICollectionView.CellRegistration<ChatImageCell, SelectImage> { cell, indexPath, itemIdentifier in
             cell.imageView.image = itemIdentifier.img
+            cell.xButton.rx.tap
+                .asDriver()
+                .drive(with: self) { owner, _ in
+                    owner.delegate?.deleteImage(indexPath: indexPath)
+                }
+                .disposed(by: cell.disposeBag)
         }
         
-        dataSource = UICollectionViewDiffableDataSource<String, SelectImage>(collectionView: imgCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            let cell = collectionView.dequeueConfiguredReusableCell(using: cell, for: indexPath, item: itemIdentifier)
-            return cell
-        })
+        
     }
     
     private func compostionalViewLayout() -> UICollectionViewLayout {
