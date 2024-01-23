@@ -84,16 +84,13 @@ final class ChatView: BaseView {
             cell.chatTextLabel.text = itemIdentifier.content
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
             if !itemIdentifier.files.isEmpty {
-//                cell.configImage(files: itemIdentifier.files)
-//                cell.imgStackView.isHidden = false
+                cell.configImage(files: itemIdentifier.files)
                 cell.chatImgView.isHidden = false
                 cell.stackView.isHidden = false
                 
             } else {
                 cell.chatImgView.isHidden = true
-//                cell.chatImgView.snp.updateConstraints { make in
-//                    make.width.equalTo(cell.chatTextLabel.snp.width)
-//                }
+                cell.stackView.isHidden = true
             }
             cell.layoutSubviews()
         }

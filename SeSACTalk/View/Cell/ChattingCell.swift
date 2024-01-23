@@ -11,8 +11,6 @@ final class ChattingCell: BaseCollectionViewCell {
     
     let profileImageView = SquareFillImageView(frame: .zero)
     
-    
-    
     private let contentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.distribution = .fill
@@ -36,7 +34,7 @@ final class ChattingCell: BaseCollectionViewCell {
         $0.isHidden = true
     }
     
-    var chatImgView = ImageMessageView(files: nil).then {
+    var chatImgView = ImageMessageView().then {
         $0.isHidden = true
     }
     
@@ -91,8 +89,8 @@ final class ChattingCell: BaseCollectionViewCell {
         
     }
     
-//    func configImage(files: [String]) {
-//        chatImageView = ImageMessageView(files: files)
-//    }
+    func configImage(files: [String]) {
+        chatImgView.configImage(files: files)
+    }
     
 }
