@@ -10,13 +10,20 @@ import UIKit
 final class ChattingCell: BaseCollectionViewCell {
     
     let profileImageView = SquareFillImageView(frame: .zero)
+    
+    
+    
     private let contentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.distribution = .fill
         $0.spacing = 5
+        $0.alignment = .leading
     }
     let nickNameLabel = CustomBasicLabel(text: "", fontType: .caption, line: 1)
     
+    private let chatMsgView = UIView().then {
+        $0.backgroundColor = .clear
+    }
     private let chatTextView = UIView().then {
         $0.layer.cornerRadius = 12
         $0.layer.borderWidth = 1
@@ -25,6 +32,9 @@ final class ChattingCell: BaseCollectionViewCell {
     }
     let chatTextLabel = CustomBasicLabel(text: "", fontType: .body, line: 0)
     
+    var chatImgView = ImageMessageView(files: nil).then {
+        $0.isHidden = true
+    }
     
     let timeLabel = CustomBasicLabel(text: "", fontType: .caption2, color: .secondaryText)
     
@@ -33,9 +43,10 @@ final class ChattingCell: BaseCollectionViewCell {
             contentView.addSubview($0)
         }
         
-        [nickNameLabel, chatTextView].forEach {
+        [nickNameLabel, chatMsgView, chatImgView].forEach {
             contentStackView.addArrangedSubview($0)
         }
+        chatMsgView.addSubview(chatTextView)
         chatTextView.addSubview(chatTextLabel)
     }
     
@@ -58,11 +69,21 @@ final class ChattingCell: BaseCollectionViewCell {
             make.bottom.equalTo(contentView).inset(6)
             make.trailing.greaterThanOrEqualTo(contentView).inset(14)
         }
+        chatTextView.snp.makeConstraints { make in
+            make.verticalEdges.leading.equalTo(chatMsgView)
+            make.trailing.lessThanOrEqualTo(chatMsgView.snp.trailing)
+        }
         chatTextLabel.snp.makeConstraints { make in
             make.edges.equalTo(chatTextView).inset(8)
+        }
+        chatImgView.snp.makeConstraints { make in
+            make.width.equalTo(maxWidth)
         }
         
     }
     
+//    func configImage(files: [String]) {
+//        chatImageView = ImageMessageView(files: files)
+//    }
     
 }

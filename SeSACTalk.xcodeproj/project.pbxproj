@@ -68,6 +68,7 @@
 		CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */; };
 		CE61AE222B5EC47C0091B03D /* SelectImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */; };
 		CE61AE252B5EC4BA0091B03D /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CE61AE242B5EC4BA0091B03D /* RxDataSources */; };
+		CE61AE272B5F7AB90091B03D /* ImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
@@ -276,6 +277,7 @@
 		CE61AE192B5E5D170091B03D /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatImageSelectDelegate.swift; sourceTree = "<group>"; };
 		CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageModel.swift; sourceTree = "<group>"; };
+		CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageView.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -988,6 +990,7 @@
 				CEEAA1D42B53FB9800EA1C58 /* WorkspaceEmptyView.swift */,
 				CEEAA1D62B54085400EA1C58 /* WorkspaceListSettingView.swift */,
 				CE61AE0D2B5D64EA0091B03D /* ChatWriteView.swift */,
+				CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -1235,6 +1238,7 @@
 				CED829532B590FFC00AD1828 /* UIViewController+Extension.swift in Sources */,
 				CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */,
 				CE5D06802B4F028400C067A3 /* WorkspaceError.swift in Sources */,
+				CE61AE272B5F7AB90091B03D /* ImageMessageView.swift in Sources */,
 				CE211F3D2B5AC9B700C43028 /* InviteReactor.swift in Sources */,
 				CECFCDF12B4FCAB800EB0DB7 /* AuthIntercepter.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,

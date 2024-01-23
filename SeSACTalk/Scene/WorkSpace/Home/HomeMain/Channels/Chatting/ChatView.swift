@@ -55,10 +55,10 @@ final class ChatView: BaseView {
     
     private func compostionalViewLayout() -> UICollectionViewLayout {
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(150))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -83,6 +83,17 @@ final class ChatView: BaseView {
             }
             cell.chatTextLabel.text = itemIdentifier.content
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
+            if !itemIdentifier.files.isEmpty {
+//                cell.configImage(files: itemIdentifier.files)
+                cell.chatImgView.isHidden = false
+                
+            } else {
+                cell.chatImgView.isHidden = true
+//                cell.chatImgView.snp.updateConstraints { make in
+//                    make.width.equalTo(cell.chatTextLabel.snp.width)
+//                }
+            }
+            cell.layoutSubviews()
         }
         dataSource = UICollectionViewDiffableDataSource<String, ChannelMessage>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cell, for: indexPath, item: itemIdentifier)
