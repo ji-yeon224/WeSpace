@@ -11,6 +11,7 @@ final class ChatView: BaseView {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: compostionalViewLayout()).then {
         $0.contentInset = .init(top: 5, left: 0, bottom: 0, right: 0)
+        $0.keyboardDismissMode = .interactive
     }
     var dataSource: UICollectionViewDiffableDataSource<String, ChannelMessage>!
     
@@ -33,7 +34,8 @@ final class ChatView: BaseView {
     override func setConstraints() {
         
         collectionView.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
+            make.leading.equalTo(safeAreaLayoutGuide).inset(16)
+            make.trailing.equalTo(safeAreaLayoutGuide)
             make.top.equalTo(safeAreaLayoutGuide)
             make.bottom.equalTo(bottomView.snp.top).offset(-5)
         }
