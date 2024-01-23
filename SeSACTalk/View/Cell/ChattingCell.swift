@@ -17,7 +17,6 @@ final class ChattingCell: BaseCollectionViewCell {
         $0.axis = .vertical
         $0.distribution = .fill
         $0.spacing = 5
-        $0.alignment = .leading
     }
     let nickNameLabel = CustomBasicLabel(text: "", fontType: .caption, line: 1)
     
@@ -32,6 +31,11 @@ final class ChattingCell: BaseCollectionViewCell {
     }
     let chatTextLabel = CustomBasicLabel(text: "", fontType: .body, line: 0)
     
+    let stackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.isHidden = true
+    }
+    
     var chatImgView = ImageMessageView(files: nil).then {
         $0.isHidden = true
     }
@@ -43,9 +47,10 @@ final class ChattingCell: BaseCollectionViewCell {
             contentView.addSubview($0)
         }
         
-        [nickNameLabel, chatMsgView, chatImgView].forEach {
+        [nickNameLabel, chatMsgView, stackView].forEach {
             contentStackView.addArrangedSubview($0)
         }
+        stackView.addArrangedSubview(chatImgView)
         chatMsgView.addSubview(chatTextView)
         chatTextView.addSubview(chatTextLabel)
     }
@@ -64,6 +69,9 @@ final class ChattingCell: BaseCollectionViewCell {
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.width.lessThanOrEqualTo(maxWidth)
         }
+        nickNameLabel.snp.makeConstraints { make in
+            make.height.equalTo(18)
+        }
         timeLabel.snp.makeConstraints { make in
             make.leading.equalTo(contentStackView.snp.trailing).offset(8)
             make.bottom.equalTo(contentView).inset(6)
@@ -76,6 +84,7 @@ final class ChattingCell: BaseCollectionViewCell {
         chatTextLabel.snp.makeConstraints { make in
             make.edges.equalTo(chatTextView).inset(8)
         }
+        
         chatImgView.snp.makeConstraints { make in
             make.width.equalTo(maxWidth)
         }

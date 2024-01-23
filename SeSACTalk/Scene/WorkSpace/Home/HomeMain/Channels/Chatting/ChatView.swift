@@ -85,7 +85,9 @@ final class ChatView: BaseView {
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
             if !itemIdentifier.files.isEmpty {
 //                cell.configImage(files: itemIdentifier.files)
+//                cell.imgStackView.isHidden = false
                 cell.chatImgView.isHidden = false
+                cell.stackView.isHidden = false
                 
             } else {
                 cell.chatImgView.isHidden = true
