@@ -80,8 +80,8 @@ final class ChatView: BaseView {
             if let profileImg = itemIdentifier.user.profileImage {
                 cell.profileImageView.setImage(with: profileImg)
             } else {
-                let img = Constants.Image.dummyProfile.shuffled()
-                cell.profileImageView.image = img.randomElement()
+                let img = Constants.Image.dummyProfile
+                cell.profileImageView.image = img[itemIdentifier.user.userId%3]
             }
             cell.chatTextLabel.text = itemIdentifier.content
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
