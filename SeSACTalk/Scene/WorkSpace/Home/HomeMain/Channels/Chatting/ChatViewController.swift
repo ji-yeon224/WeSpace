@@ -42,6 +42,7 @@ final class ChatViewController: BaseViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
         updateSnapShot(data: dummy)
+        
     }
     
     
@@ -51,8 +52,31 @@ final class ChatViewController: BaseViewController {
         guard let channel = channel else { return }
         
         title = "# " + channel.name
-        bindEvent()
+        
         mainView.chatWriteView.delegate = self
+        self.reactor = ChatReactor()
+    }
+    
+    
+    
+}
+
+// reactor
+extension ChatViewController: View {
+    
+    func bind(reactor: ChatReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+        bindEvent()
+    }
+    
+    
+    private func bindAction(reactor: ChatReactor) {
+//        mainView.chatWriteView.sendButton.rx.tap
+            
+    }
+    
+    private func bindState(reactor: ChatReactor) {
         
     }
     
@@ -107,11 +131,24 @@ final class ChatViewController: BaseViewController {
             .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: mainView.chatWriteView.rxDataSource))
             .disposed(by: disposeBag)
         
+        let buttonEnable = Observable.combineLatest(selectImgCount, mainView.chatWriteView.textView.rx.text.orEmpty) { imgCnt, text in
+            return imgCnt > 0 || !text.isEmpty
+        }
+        
+        buttonEnable
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, value in
+                let img: UIImage = value ? .sendActive : .sendInactive
+                owner.mainView.chatWriteView.sendButton.setImage(img, for: .normal)
+                owner.mainView.chatWriteView.sendButton.isEnabled = value
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     
-    
 }
+
 
 extension ChatViewController {
     private func configSelectImage() {

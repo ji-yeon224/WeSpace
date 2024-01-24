@@ -47,6 +47,9 @@
 		CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */; };
 		CE5D06802B4F028400C067A3 /* WorkspaceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */; };
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
+		CE5EA4BC2B60DAEF00999704 /* ChatReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4BB2B60DAEF00999704 /* ChatReactor.swift */; };
+		CE5EA4BF2B60E24E00999704 /* ChannelChatReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4BE2B60E24E00999704 /* ChannelChatReqDTO.swift */; };
+		CE5EA4C12B60EA9300999704 /* ChannelChatError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4C02B60EA9300999704 /* ChannelChatError.swift */; };
 		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
 		CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF72B5B629F0091B03D /* InviteError.swift */; };
 		CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */; };
@@ -257,6 +260,9 @@
 		CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataManager.swift; sourceTree = "<group>"; };
 		CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceError.swift; sourceTree = "<group>"; };
 		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		CE5EA4BB2B60DAEF00999704 /* ChatReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReactor.swift; sourceTree = "<group>"; };
+		CE5EA4BE2B60E24E00999704 /* ChannelChatReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatReqDTO.swift; sourceTree = "<group>"; };
+		CE5EA4C02B60EA9300999704 /* ChannelChatError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatError.swift; sourceTree = "<group>"; };
 		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
 		CE61ADF72B5B629F0091B03D /* InviteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteError.swift; sourceTree = "<group>"; };
 		CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
@@ -549,8 +555,19 @@
 				CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */,
 				CE61ADF72B5B629F0091B03D /* InviteError.swift */,
 				CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */,
+				CE5EA4C02B60EA9300999704 /* ChannelChatError.swift */,
 			);
 			path = Workspace;
+			sourceTree = "<group>";
+		};
+		CE5EA4BD2B60E23100999704 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AE132B5E48590091B03D /* ChannelChatResDTO.swift */,
+				CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */,
+				CE5EA4BE2B60E24E00999704 /* ChannelChatReqDTO.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		CE61ADF92B5CEB070091B03D /* Create */ = {
@@ -568,6 +585,7 @@
 			children = (
 				CE61AE072B5D52500091B03D /* ChatViewController.swift */,
 				CE61AE092B5D525F0091B03D /* ChatView.swift */,
+				CE5EA4BB2B60DAEF00999704 /* ChatReactor.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -864,11 +882,10 @@
 		CEC7643C2B5162F0000578E9 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				CE5EA4BD2B60E23100999704 /* Chat */,
 				CEC764352B512CCB000578E9 /* ChannelResDTO.swift */,
 				CEC7643D2B516306000578E9 /* Channel.swift */,
 				CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */,
-				CE61AE132B5E48590091B03D /* ChannelChatResDTO.swift */,
-				CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -1245,6 +1262,7 @@
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
 				CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */,
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
+				CE5EA4C12B60EA9300999704 /* ChannelChatError.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
@@ -1328,6 +1346,7 @@
 				CE61ADFF2B5CEB290091B03D /* CreateChannelReactor.swift in Sources */,
 				CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
+				CE5EA4BF2B60E24E00999704 /* ChannelChatReqDTO.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
 				CED829552B59331800AD1828 /* ChangeManageDelegate.swift in Sources */,
 				CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */,
@@ -1393,6 +1412,7 @@
 				CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */,
 				CE5D066F2B4EE69700C067A3 /* WsCreateReqDTO.swift in Sources */,
 				CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */,
+				CE5EA4BC2B60DAEF00999704 /* ChatReactor.swift in Sources */,
 				CE5D06772B4EF00300C067A3 /* WorkspaceToastMessage.swift in Sources */,
 				CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */,
 				CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */,

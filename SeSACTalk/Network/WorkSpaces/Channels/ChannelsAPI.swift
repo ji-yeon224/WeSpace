@@ -11,6 +11,8 @@ import Moya
 enum ChannelsAPI {
     case myChannel(id: Int)
     case create(id: Int, data: CreateChannelReqDTO)
+    case sendMsg(name: String, id: Int, data: ChannelChatReqDTO)
+    
 }
 
 extension ChannelsAPI: TargetType {
@@ -24,6 +26,8 @@ extension ChannelsAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(id)/channels/my"
         case .create(let id, _):
             return Endpoint.workspaces.rawValue + "/\(id)/channels"
+        case .sendMsg(let name, let id, _):
+            return Endpoint.workspaces.rawValue + "\(id)/channels/\(name)/chats"
         }
     }
     
@@ -31,7 +35,7 @@ extension ChannelsAPI: TargetType {
         switch self {
         case .myChannel:
             return .get
-        case .create:
+        case .create, .sendMsg:
             return .post
         }
     }
@@ -42,6 +46,8 @@ extension ChannelsAPI: TargetType {
             return .requestPlain
         case .create(_, data: let data):
             return .requestJSONEncodable(data)
+        case .sendMsg(_, _, let data):
+            return .uploadMultipart(data.multipartData())
         }
     }
     
@@ -51,6 +57,8 @@ extension ChannelsAPI: TargetType {
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .create:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
+        case .sendMsg:
+            return ["Content-Type": "multipart/form-data", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         }
     }
     
