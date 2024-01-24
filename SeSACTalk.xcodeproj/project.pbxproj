@@ -50,6 +50,11 @@
 		CE5EA4BC2B60DAEF00999704 /* ChatReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4BB2B60DAEF00999704 /* ChatReactor.swift */; };
 		CE5EA4BF2B60E24E00999704 /* ChannelChatReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4BE2B60E24E00999704 /* ChannelChatReqDTO.swift */; };
 		CE5EA4C12B60EA9300999704 /* ChannelChatError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4C02B60EA9300999704 /* ChannelChatError.swift */; };
+		CE5EA4B02B60AB1200999704 /* ChannelMsgTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4AF2B60AB1200999704 /* ChannelMsgTable.swift */; };
+		CE5EA4B32B60ACAA00999704 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CE5EA4B22B60ACAA00999704 /* Realm */; };
+		CE5EA4B52B60ACAA00999704 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE5EA4B42B60ACAA00999704 /* RealmSwift */; };
+		CE5EA4B82B60B33400999704 /* ChannelMsgRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */; };
+		CE5EA4BA2B60B45E00999704 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4B92B60B45E00999704 /* RealmManager.swift */; };
 		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
 		CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF72B5B629F0091B03D /* InviteError.swift */; };
 		CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */; };
@@ -263,6 +268,9 @@
 		CE5EA4BB2B60DAEF00999704 /* ChatReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReactor.swift; sourceTree = "<group>"; };
 		CE5EA4BE2B60E24E00999704 /* ChannelChatReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatReqDTO.swift; sourceTree = "<group>"; };
 		CE5EA4C02B60EA9300999704 /* ChannelChatError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatError.swift; sourceTree = "<group>"; };
+		CE5EA4AF2B60AB1200999704 /* ChannelMsgTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMsgTable.swift; sourceTree = "<group>"; };
+		CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMsgRepository.swift; sourceTree = "<group>"; };
+		CE5EA4B92B60B45E00999704 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
 		CE61ADF72B5B629F0091B03D /* InviteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteError.swift; sourceTree = "<group>"; };
 		CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
@@ -421,7 +429,9 @@
 				CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */,
 				CED7C2C22B5230D40069EA0A /* SideMenu in Frameworks */,
 				CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */,
+				CE5EA4B52B60ACAA00999704 /* RealmSwift in Frameworks */,
 				CEA8F9D62B4993A20062B45C /* Then in Frameworks */,
+				CE5EA4B32B60ACAA00999704 /* Realm in Frameworks */,
 				CEB7F8352B444B2A00B9A035 /* RxGesture in Frameworks */,
 				CEEE4EB62B46DC220059D1AF /* Moya in Frameworks */,
 				CE61AE252B5EC4BA0091B03D /* RxDataSources in Frameworks */,
@@ -568,6 +578,14 @@
 				CE5EA4BE2B60E24E00999704 /* ChannelChatReqDTO.swift */,
 			);
 			path = Chat;
+		CE5EA4AE2B60AB0000999704 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				CE5EA4AF2B60AB1200999704 /* ChannelMsgTable.swift */,
+				CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */,
+				CE5EA4B92B60B45E00999704 /* RealmManager.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		CE61ADF92B5CEB070091B03D /* Create */ = {
@@ -687,6 +705,7 @@
 		CE6C1FF32B43E97900AA7F9C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CE5EA4AE2B60AB0000999704 /* Realm */,
 				CE5D06632B4E6A7400C067A3 /* Workspaces */,
 				CE4904D22B4D0EA9003B0204 /* Data */,
 				CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */,
@@ -1117,6 +1136,8 @@
 				CEC7642B2B5123F1000578E9 /* Kingfisher */,
 				CED7C2C12B5230D40069EA0A /* SideMenu */,
 				CE61AE242B5EC4BA0091B03D /* RxDataSources */,
+				CE5EA4B22B60ACAA00999704 /* Realm */,
+				CE5EA4B42B60ACAA00999704 /* RealmSwift */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -1204,6 +1225,7 @@
 				CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */,
 				CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -1263,6 +1285,7 @@
 				CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */,
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CE5EA4C12B60EA9300999704 /* ChannelChatError.swift in Sources */,
+				CE5EA4B82B60B33400999704 /* ChannelMsgRepository.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
@@ -1287,6 +1310,7 @@
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
 				CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */,
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
+				CE5EA4B02B60AB1200999704 /* ChannelMsgTable.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
@@ -1393,6 +1417,7 @@
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
+				CE5EA4BA2B60B45E00999704 /* RealmManager.swift in Sources */,
 				CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */,
 				CED829492B58C40A00AD1828 /* ChangeManagerViewController.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
@@ -1782,6 +1807,14 @@
 				minimumVersion = 6.5.16;
 			};
 		};
+		CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
@@ -1885,6 +1918,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		CE5EA4B22B60ACAA00999704 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		CE5EA4B42B60ACAA00999704 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		CE61AE242B5EC4BA0091B03D /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
