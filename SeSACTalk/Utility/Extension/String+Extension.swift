@@ -59,8 +59,10 @@ extension String {
         return ""
     }
     
+    
     var convertToTimeString: String {
         if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", date: self) {
+            print(dateType)
             return DateFormatter.convertToString(format: "hh:mm a", date: dateType)
         }
         

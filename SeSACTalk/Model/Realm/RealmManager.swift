@@ -12,7 +12,7 @@ import RealmSwift
 
 protocol RealmDB {
     func read<T: Object>(object: T.Type) -> Results<T>
-    func write<T: Object>(object: [T])
+    func write<T: Object>(object: [T]) throws
 }
 
 class RealmManager: RealmDB {
@@ -34,13 +34,13 @@ class RealmManager: RealmDB {
         return realm.objects(object)
     }
     
-    func write<T: Object>(object: [T])  {
+    func write<T: Object>(object: [T]) throws {
         do {
             try realm.write {
                 realm.add(object)
             }
         } catch {
-            print(error)
+            throw DBError.createError
         }
     }
     
