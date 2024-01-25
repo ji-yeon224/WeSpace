@@ -113,11 +113,8 @@ extension ChatReactor {
     private func saveImage(id: Int, channelId: Int, files:[String], chatId: Int) {
         files.forEach { url in
             ImageDownloadManager.shared.getUIImage(with: url) { img in
-                print(url)
-                let fileName = url.components(separatedBy: "/").last
-                if let fileName = fileName {
-                    ChannelMsgRepository().saveImageToDocument(fileName: "\(id)_\(channelId)_"+fileName, image: img)
-                }
+                let fileName = ImageFileService.getFileName(type: .channel(wsId: id, channelId: channelId), fileURL: url)
+                ChannelMsgRepository().saveImageToDocument(fileName: fileName, image: img)
                 
             }
         }

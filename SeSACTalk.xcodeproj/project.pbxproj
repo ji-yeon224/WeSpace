@@ -55,6 +55,8 @@
 		CE5EA4C42B60FFCC00999704 /* ChannelChatReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */; };
 		CE5F94CD2B620004006A4DA4 /* DBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CC2B620004006A4DA4 /* DBError.swift */; };
 		CE5F94CF2B623A36006A4DA4 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */; };
+		CE5F94D12B626EBE006A4DA4 /* DBImageFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */; };
+		CE5F94D32B626F3B006A4DA4 /* ImageFileNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */; };
 		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
 		CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF72B5B629F0091B03D /* InviteError.swift */; };
 		CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */; };
@@ -273,6 +275,8 @@
 		CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatReqDTO.swift; sourceTree = "<group>"; };
 		CE5F94CC2B620004006A4DA4 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
 		CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBImageFileName.swift; sourceTree = "<group>"; };
+		CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileNameManager.swift; sourceTree = "<group>"; };
 		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
 		CE61ADF72B5B629F0091B03D /* InviteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteError.swift; sourceTree = "<group>"; };
 		CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
@@ -1085,6 +1089,7 @@
 				CED829452B58C28900AD1828 /* ReusableProtocol.swift */,
 				CED829542B59331800AD1828 /* ChangeManageDelegate.swift */,
 				CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */,
+				CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1109,6 +1114,7 @@
 				CE5D06742B4EEC4100C067A3 /* SelectImage.swift */,
 				CECFCDEC2B4FC8C300EB0DB7 /* RefreshResultType.swift */,
 				CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */,
+				CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -1379,6 +1385,7 @@
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
 				CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */,
 				CE61ADFF2B5CEB290091B03D /* CreateChannelReactor.swift in Sources */,
+				CE5F94D12B626EBE006A4DA4 /* DBImageFileName.swift in Sources */,
 				CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
@@ -1412,6 +1419,7 @@
 				CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */,
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
 				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,
+				CE5F94D32B626F3B006A4DA4 /* ImageFileNameManager.swift in Sources */,
 				CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */,
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */,
