@@ -83,7 +83,12 @@ final class ChatView: BaseView {
                 let img = Constants.Image.dummyProfile
                 cell.profileImageView.image = img[itemIdentifier.user.userId%3]
             }
-            cell.chatTextLabel.text = itemIdentifier.content
+            if let text = itemIdentifier.content, text.count > 0 {
+                cell.chatTextLabel.text = itemIdentifier.content
+            } else {
+                cell.chatTextLabel.isHidden = true
+            }
+            
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
             if !itemIdentifier.files.isEmpty {
                 cell.configImage(files: itemIdentifier.files)

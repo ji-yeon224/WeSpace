@@ -168,6 +168,8 @@ extension ChatViewController: View {
                     print("[SUCCESS] ", value.createdAt)
                     owner.chatData.append(value)
                     owner.updateSnapShot()
+                    owner.initImageCell()
+                    owner.mainView.chatWriteView.textView.text = nil
                 }
             }
             .disposed(by: disposeBag)
@@ -181,13 +183,24 @@ extension ChatViewController {
         PHPickerManager.shared.presentPicker(vc: self, selectLimit: 5, selectedId: selectedAssetIdentifiers)
         PHPickerManager.shared.selectedImage
             .bind(with: self) { owner, image in
-                let imgList = image.1.map { return SelectImage(img: $0)}
-                owner.selectedAssetIdentifiers = image.0
-                owner.selectImgCount.accept(imgList.count)
-                owner.selectImageModel = SelectImageModel(section: "", items: imgList)
-                owner.imgData.accept([owner.selectImageModel])
+                owner.setImageCell(identifier: image.0, img: image.1)
             }
             .disposed(by: PHPickerManager.shared.disposeBag)
+    }
+    
+    private func setImageCell(identifier: [String], img: [UIImage]) {
+        let imgList = img.map { return SelectImage(img: $0)}
+        selectedAssetIdentifiers = identifier
+        selectImgCount.accept(imgList.count)
+        selectImageModel = SelectImageModel(section: "", items: imgList)
+        imgData.accept([selectImageModel])
+    }
+    
+    private func initImageCell() {
+        selectedAssetIdentifiers.removeAll()
+        selectImgCount.accept(0)
+        selectImageModel.items.removeAll()
+        imgData.accept([selectImageModel])
     }
     
     private func updateSnapShot() {
