@@ -23,8 +23,12 @@ final class ChannelMsgRepository {
         }
     }
     
-    func createData(data: [ChannelMsgTable]) {
-        realm.write(object: data)
+    func createData(data: [ChannelMsgTable]) throws {
+        do {
+            try realm.write(object: data)
+        } catch {
+            throw error
+        }
     }
     
     func getLocation() {

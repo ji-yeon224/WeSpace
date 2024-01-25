@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import RealmSwift
 struct ChannelMessage: Hashable {
     let id = UUID()
     let channelID: Int
@@ -16,4 +16,9 @@ struct ChannelMessage: Hashable {
     let createdAt: String
     let files: [String]
     let user: User
+    
+    func toRecord() -> ChannelMsgTable {
+        return ChannelMsgTable(channelId: channelID, channelName: channelName, chatId: chatID, content: content, createdAt: createdAt, files: files, userId: user.userId, email: user.email, nickname: user.nickname, profileImage: user.profileImage)
+    }
+    
 }

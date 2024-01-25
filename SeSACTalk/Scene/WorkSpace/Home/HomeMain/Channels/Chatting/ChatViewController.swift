@@ -42,6 +42,7 @@ final class ChatViewController: BaseViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
         updateSnapShot(data: dummy)
+        self.reactor = ChatReactor
     }
     
     
@@ -110,6 +111,22 @@ final class ChatViewController: BaseViewController {
     }
     
     
+    
+}
+
+extension ChatViewController: View {
+    func bind(reactor: ChatReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+    }
+    
+    private func bindAction(reactor: ChatReactor) {
+        
+    }
+    
+    private func bindState(reactor: ChatReactor) {
+        
+    }
     
 }
 
