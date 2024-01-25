@@ -234,9 +234,9 @@ extension HomeViewController {
         
         guard let item = item else { return }
         
-        if let channelItem = item.item as? Channel {
+        if let channelItem = item.item as? Channel, let ws = workspace {
             print(channelItem.name)
-            let vc = ChatViewController(info: channelItem)
+            let vc = ChatViewController(info: channelItem, workspace: ws)
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
         } else if let dmItem = item.item as? DMsRoom {

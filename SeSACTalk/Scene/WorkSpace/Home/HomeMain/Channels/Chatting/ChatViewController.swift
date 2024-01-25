@@ -14,18 +14,21 @@ final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
     private var channel: Channel?
+    private var workspace: WorkSpace?
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
+    private var chatData: [ChannelMessage] = []
 //    private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
-    init(info: Channel) {
+    init(info: Channel, workspace: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
-        
+        self.workspace = workspace
+        print(workspace.workspaceId)
     }
     
     @available(*, unavailable)
@@ -41,8 +44,9 @@ final class ChatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
-        updateSnapShot(data: dummy)
-        self.reactor = ChatReactor
+        updateSnapShot()
+        self.reactor = ChatReactor()
+        ChannelMsgRepository().getLocation()
     }
     
     
@@ -52,7 +56,7 @@ final class ChatViewController: BaseViewController {
         guard let channel = channel else { return }
         
         title = "# " + channel.name
-        bindEvent()
+        
         mainView.chatWriteView.delegate = self
         
     }
@@ -108,6 +112,19 @@ final class ChatViewController: BaseViewController {
             .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: mainView.chatWriteView.rxDataSource))
             .disposed(by: disposeBag)
         
+        let buttonEnable = Observable.combineLatest(selectImgCount, mainView.chatWriteView.textView.rx.text.orEmpty) { imgCnt, text in
+            return imgCnt > 0 || !text.isEmpty
+        }
+        
+        buttonEnable
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, value in
+                let img: UIImage = value ? .sendActive : .sendInactive
+                owner.mainView.chatWriteView.sendButton.setImage(img, for: .normal)
+                owner.mainView.chatWriteView.sendButton.isEnabled = value
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     
@@ -118,13 +135,42 @@ extension ChatViewController: View {
     func bind(reactor: ChatReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
+        bindEvent()
     }
     
     private func bindAction(reactor: ChatReactor) {
-        
+        mainView.chatWriteView.sendButton.rx.tap
+            .withLatestFrom(mainView.chatWriteView.textView.rx.text.orEmpty, resultSelector: { _, value in
+                return value
+            })
+            .map { Reactor.Action.sendRequest(name: self.channel?.name, id: self.workspace?.workspaceId, content: $0, files: self.selectImageModel.items)}
+            .bind(to: reactor.action )
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: ChatReactor) {
+        
+        reactor.state
+            .map { $0.msg }
+            .filter { !$0.isEmpty }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                owner.showToastMessage(message: value, position: .top)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.sendSuccess }
+            .filter { $0 != .none }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    print("[SUCCESS] ", value.createdAt)
+                    owner.chatData.append(value)
+                    owner.updateSnapShot()
+                }
+            }
+            .disposed(by: disposeBag)
         
     }
     
@@ -144,10 +190,10 @@ extension ChatViewController {
             .disposed(by: PHPickerManager.shared.disposeBag)
     }
     
-    private func updateSnapShot(data: [ChannelMessage]) {
+    private func updateSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<String, ChannelMessage>()
         snapshot.appendSections([""])
-        snapshot.appendItems(data)
+        snapshot.appendItems(chatData)
         mainView.dataSource.apply(snapshot)
         
     }

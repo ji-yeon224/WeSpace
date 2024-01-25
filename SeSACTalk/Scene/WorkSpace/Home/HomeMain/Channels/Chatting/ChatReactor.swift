@@ -17,7 +17,7 @@ final class ChatReactor: Reactor {
     
     
     enum Action {
-        case sendRequest(name: String, id: Int, data: ChannelChatReqDTO)
+        case sendRequest(name: String?, id: Int?, content: String?, files: [SelectImage])
     }
     
     enum Mutation {
@@ -34,8 +34,18 @@ final class ChatReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .sendRequest(let name, let id, let data):
-            return requestSendMsg(name: name, id: id, data: data)
+        case .sendRequest(let name, let id, let content, let files):
+            if let name = name, let id = id {
+                let imgs = files.map {
+                    return $0.img?.imageToData()
+                }
+                let data = ChannelChatReqDTO(content: content, files: imgs)
+                return requestSendMsg(name: name, id: id, data: data)
+            } else {
+                debugPrint("[data binding error]")
+                return .just(.msg(msg: "문제가 발생하였습니다."))
+            }
+            
         }
     }
     
@@ -67,6 +77,7 @@ extension ChatReactor {
                 switch result {
                 case .success(let response):
                     if let response = response {
+                        print("send success")
                         let data = response.toDomain()
                         do {
                             try ChannelMsgRepository().createData(data: [data.toRecord()])
@@ -80,6 +91,7 @@ extension ChatReactor {
                     
                     
                 case .failure(let error):
+                    print(error.localizedDescription)
                     var msg = CommonError.E99.localizedDescription
                     if let error = ChannelChatError(rawValue: error.errorCode) {
                         msg = error.localizedDescription
@@ -97,14 +109,5 @@ extension ChatReactor {
         
     }
     
-    
-    private func saveToDB(data: [ChannelMessage]) -> Bool {
-        let record = data.map { $0.toRecord() }
-        do {
-            try ChannelMsgRepository().createData(data: record)
-        } catch {
-            
-        }
-    }
 }
 

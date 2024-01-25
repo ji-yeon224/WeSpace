@@ -17,8 +17,8 @@ struct ChannelMessage: Hashable {
     let files: [String]
     let user: User
     
-    func toRecord() -> ChannelMsgTable {
-        return ChannelMsgTable(channelId: channelID, channelName: channelName, chatId: chatID, content: content, createdAt: createdAt, files: files, userId: user.userId, email: user.email, nickname: user.nickname, profileImage: user.profileImage)
+    func toRecord() -> ChannelChatDTO {
+        return ChannelChatDTO(channelId: channelID, channelName: channelName, chatId: chatID, content: content, createdAt: createdAt, files: files, userId: user.userId)
     }
     
 }

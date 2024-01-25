@@ -47,7 +47,7 @@
 		CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */; };
 		CE5D06802B4F028400C067A3 /* WorkspaceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */; };
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
-		CE5EA4B02B60AB1200999704 /* ChannelMsgTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4AF2B60AB1200999704 /* ChannelMsgTable.swift */; };
+		CE5EA4B02B60AB1200999704 /* ChannelChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4AF2B60AB1200999704 /* ChannelChatDTO.swift */; };
 		CE5EA4B32B60ACAA00999704 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CE5EA4B22B60ACAA00999704 /* Realm */; };
 		CE5EA4B52B60ACAA00999704 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE5EA4B42B60ACAA00999704 /* RealmSwift */; };
 		CE5EA4B82B60B33400999704 /* ChannelMsgRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */; };
@@ -266,7 +266,7 @@
 		CE5D067C2B4EFE4000C067A3 /* MultipartFormDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataManager.swift; sourceTree = "<group>"; };
 		CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceError.swift; sourceTree = "<group>"; };
 		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
-		CE5EA4AF2B60AB1200999704 /* ChannelMsgTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMsgTable.swift; sourceTree = "<group>"; };
+		CE5EA4AF2B60AB1200999704 /* ChannelChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatDTO.swift; sourceTree = "<group>"; };
 		CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMsgRepository.swift; sourceTree = "<group>"; };
 		CE5EA4B92B60B45E00999704 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatReqDTO.swift; sourceTree = "<group>"; };
@@ -575,7 +575,7 @@
 		CE5EA4AE2B60AB0000999704 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				CE5EA4AF2B60AB1200999704 /* ChannelMsgTable.swift */,
+				CE5EA4AF2B60AB1200999704 /* ChannelChatDTO.swift */,
 				CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */,
 				CE5EA4B92B60B45E00999704 /* RealmManager.swift */,
 			);
@@ -1317,7 +1317,7 @@
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
 				CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */,
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
-				CE5EA4B02B60AB1200999704 /* ChannelMsgTable.swift in Sources */,
+				CE5EA4B02B60AB1200999704 /* ChannelChatDTO.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,

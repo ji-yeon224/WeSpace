@@ -10,7 +10,7 @@ import Moya
 
 struct ChannelChatReqDTO: Encodable {
     let content: String?
-    let files: [Data]?
+    let files: [Data?]?
     
     private func convertToMap() -> [String: Data] {
         var param: [String: Data] = [:]
@@ -35,7 +35,10 @@ struct ChannelChatReqDTO: Encodable {
         
         if let img = files {
             img.forEach {
-                multipart.append(MultipartFormData(provider: .data($0), name: "files", fileName: "image.jpeg", mimeType: "image/jpg"))
+                if let data = $0 {
+                    multipart.append(MultipartFormData(provider: .data(data), name: "files", fileName: "image.jpeg", mimeType: "image/jpg"))
+                }
+                
             }
             
         }

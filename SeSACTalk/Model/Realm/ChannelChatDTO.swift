@@ -1,0 +1,51 @@
+//
+//  ChannelMsgTable.swift
+//  SeSACTalk
+//
+//  Created by 김지연 on 1/24/24.
+//
+
+import Foundation
+import RealmSwift
+
+final class ChannelChatDTO: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var channelId: Int
+    @Persisted var channelName: String
+    @Persisted var chatId: Int
+    @Persisted var content: String?
+    @Persisted var createdAt: String
+    @Persisted var files: List<String>
+    
+    @Persisted var userId: Int
+    
+    convenience init(channelId: Int, channelName: String, chatId: Int, content: String? = nil, createdAt: String, files: [String], userId: Int) {
+        self.init()
+        self._id = _id
+        self.channelId = channelId
+        self.channelName = channelName
+        self.chatId = chatId
+        self.content = content
+        self.createdAt = createdAt
+        self.files.append(objectsIn: files.map{$0})
+        
+        self.userId = userId
+    }
+    
+//    func toDomain() -> ChannelMessage {
+//        return .init(
+//            channelID: channelId,
+//            channelName: channelName,
+//            chatID: chatId,
+//            content: content,
+//            createdAt: createdAt,
+//            files: files.map{$0},
+//            user: <#T##User#>
+//        )
+//    }
+    
+    
+}
+
+
+

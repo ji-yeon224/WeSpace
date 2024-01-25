@@ -13,17 +13,17 @@ final class ChannelMsgRepository {
     private let realm = RealmManager.shared
     
     
-    func fetchAll() -> Results<ChannelMsgTable>{
-        return realm.read(object: ChannelMsgTable.self)
+    func fetchAll() -> Results<ChannelChatDTO>{
+        return realm.read(object: ChannelChatDTO.self)
     }
     
-    func fetchLastData() -> ChannelMsgTable? {
-        return realm.realm.objects(ChannelMsgTable.self).max {
+    func fetchLastData() -> ChannelChatDTO? {
+        return realm.realm.objects(ChannelChatDTO.self).max {
             $0._id < $1._id
         }
     }
     
-    func createData(data: [ChannelMsgTable]) throws {
+    func createData(data: [ChannelChatDTO]) throws {
         do {
             try realm.write(object: data)
         } catch {

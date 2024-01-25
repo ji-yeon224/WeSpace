@@ -27,7 +27,7 @@ extension ChannelsAPI: TargetType {
         case .create(let id, _):
             return Endpoint.workspaces.rawValue + "/\(id)/channels"
         case .sendMsg(let name, let id, _):
-            return Endpoint.workspaces.rawValue + "\(id)/channels/\(name)/chats"
+            return Endpoint.workspaces.rawValue + "/\(id)/channels/\(name)/chats"
         }
     }
     
