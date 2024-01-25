@@ -54,6 +54,7 @@
 		CE5EA4BA2B60B45E00999704 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4B92B60B45E00999704 /* RealmManager.swift */; };
 		CE5EA4C42B60FFCC00999704 /* ChannelChatReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */; };
 		CE5F94CD2B620004006A4DA4 /* DBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CC2B620004006A4DA4 /* DBError.swift */; };
+		CE5F94CF2B623A36006A4DA4 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */; };
 		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
 		CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF72B5B629F0091B03D /* InviteError.swift */; };
 		CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */; };
@@ -271,6 +272,7 @@
 		CE5EA4B92B60B45E00999704 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatReqDTO.swift; sourceTree = "<group>"; };
 		CE5F94CC2B620004006A4DA4 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
+		CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
 		CE61ADF72B5B629F0091B03D /* InviteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteError.swift; sourceTree = "<group>"; };
 		CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
@@ -1082,6 +1084,7 @@
 				CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */,
 				CED829452B58C28900AD1828 /* ReusableProtocol.swift */,
 				CED829542B59331800AD1828 /* ChangeManageDelegate.swift */,
+				CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1325,6 +1328,7 @@
 				CE4904CE2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift in Sources */,
 				CE211F312B5AC09000C43028 /* ChannelsAPI.swift in Sources */,
 				CE15528E2B5A55040011D106 /* SearchViewController.swift in Sources */,
+				CE5F94CF2B623A36006A4DA4 /* ImageDownloadManager.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */,
 				CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */,

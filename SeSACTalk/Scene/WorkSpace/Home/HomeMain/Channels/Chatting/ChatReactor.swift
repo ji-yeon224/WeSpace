@@ -81,6 +81,7 @@ extension ChatReactor {
                         let data = response.toDomain()
                         do {
                             try ChannelMsgRepository().createData(data: [data.toRecord()])
+                            self.saveImage(id: id, channelId: data.channelID, files: data.files, chatId: data.chatID)
                             return .just(.sendSuccess(data: data))
                         } catch {
                             print(error.localizedDescription)
@@ -107,6 +108,19 @@ extension ChatReactor {
             }
         
         
+    }
+    
+    private func saveImage(id: Int, channelId: Int, files:[String], chatId: Int) {
+        files.forEach { url in
+            ImageDownloadManager.shared.getUIImage(with: url) { img in
+                print(url)
+                let fileName = url.components(separatedBy: "/").last
+                if let fileName = fileName {
+                    ChannelMsgRepository().saveImageToDocument(fileName: "\(id)_\(channelId)_"+fileName, image: img)
+                }
+                
+            }
+        }
     }
     
 }
