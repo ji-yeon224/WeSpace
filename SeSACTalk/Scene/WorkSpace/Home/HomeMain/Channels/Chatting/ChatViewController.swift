@@ -24,11 +24,12 @@ final class ChatViewController: BaseViewController {
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
-    init(info: Channel, workspace: WorkSpace) {
+    init(info: Channel, workspace: WorkSpace, chatItems: [ChannelMessage]) {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
         self.workspace = workspace
         print(workspace.workspaceId)
+        print(chatItems)
     }
     
     @available(*, unavailable)
@@ -143,7 +144,7 @@ extension ChatViewController: View {
             .withLatestFrom(mainView.chatWriteView.textView.rx.text.orEmpty, resultSelector: { _, value in
                 return value
             })
-            .map { Reactor.Action.sendRequest(name: self.channel?.name, id: self.workspace?.workspaceId, content: $0, files: self.selectImageModel.items)}
+            .map { Reactor.Action.sendRequest(channel: self.channel, id: self.workspace?.workspaceId, content: $0, files: self.selectImageModel.items)}
             .bind(to: reactor.action )
             .disposed(by: disposeBag)
     }

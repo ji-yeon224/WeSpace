@@ -18,7 +18,7 @@ struct ChannelMessage: Hashable {
     let user: User
     
     func toRecord() -> ChannelChatDTO {
-        return ChannelChatDTO(channelId: channelID, channelName: channelName, chatId: chatID, content: content, createdAt: createdAt, files: files, userId: user.userId)
+        return ChannelChatDTO(channelId: channelID, channelName: channelName, chatId: chatID, content: content, createdAt: createdAt, files: files, userId: user.userId, userName: user.nickname, userEmail: user.email)
     }
     
 }

@@ -17,7 +17,7 @@ final class ChatReactor: Reactor {
     
     
     enum Action {
-        case sendRequest(name: String?, id: Int?, content: String?, files: [SelectImage])
+        case sendRequest(channel: Channel?, id: Int?, content: String?, files: [SelectImage])
     }
     
     enum Mutation {
@@ -34,13 +34,13 @@ final class ChatReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .sendRequest(let name, let id, let content, let files):
-            if let name = name, let id = id {
+        case .sendRequest(let channel, let id, let content, let files):
+            if let channel = channel, let id = id {
                 let imgs = files.map {
                     return $0.img?.imageToData()
                 }
                 let data = ChannelChatReqDTO(content: content, files: imgs)
-                return requestSendMsg(name: name, id: id, data: data)
+                return requestSendMsg(channel: channel, id: id, data: data)
             } else {
                 debugPrint("[data binding error]")
                 return .just(.msg(msg: "문제가 발생하였습니다."))
@@ -66,12 +66,12 @@ final class ChatReactor: Reactor {
 }
 
 extension ChatReactor {
-    func requestSendMsg(name: String, id: Int, data: ChannelChatReqDTO) -> Observable<Mutation> {
+    func requestSendMsg(channel: Channel, id: Int, data: ChannelChatReqDTO) -> Observable<Mutation> {
         if data.content == nil && data.files == nil {
             return .just(Mutation.msg(msg: "No Data"))
         }
         
-        return ChannelsAPIManager.shared.request(api: .sendMsg(name: name, id: id, data: data), responseType: ChannelMessageDTO.self)
+        return ChannelsAPIManager.shared.request(api: .sendMsg(name: channel.name, id: id, data: data), responseType: ChannelMessageDTO.self)
             .asObservable()
             .flatMap { result -> Observable<Mutation> in
                 switch result {
@@ -80,7 +80,8 @@ extension ChatReactor {
                         print("send success")
                         let data = response.toDomain()
                         do {
-                            try ChannelMsgRepository().createData(data: [data.toRecord()])
+                            try ChannelRepository().updateChatItems(data: channel.setRecord(), chat: data.toRecord())
+//                            try ChannelMsgRepository().createData(data: [data.toRecord()])
                             self.saveImage(id: id, channelId: data.channelID, files: data.files, chatId: data.chatID)
                             return .just(.sendSuccess(data: data))
                         } catch {

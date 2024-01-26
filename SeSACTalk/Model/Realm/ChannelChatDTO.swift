@@ -18,8 +18,11 @@ final class ChannelChatDTO: Object {
     @Persisted var files: List<String>
     
     @Persisted var userId: Int
+    @Persisted var userName: String
+    @Persisted var userEmail: String
+    @Persisted(originProperty: "chatItem") var channelInfo: LinkingObjects<ChannelDTO>
     
-    convenience init(channelId: Int, channelName: String, chatId: Int, content: String? = nil, createdAt: String, files: [String], userId: Int) {
+    convenience init(channelId: Int, channelName: String, chatId: Int, content: String? = nil, createdAt: String, files: [String], userId: Int, userName: String, userEmail: String) {
         self.init()
         self._id = _id
         self.channelId = channelId
@@ -30,19 +33,21 @@ final class ChannelChatDTO: Object {
         self.files.append(objectsIn: files.map{$0})
         
         self.userId = userId
+        self.userName = userName
+        self.userEmail = userEmail
     }
     
-//    func toDomain() -> ChannelMessage {
-//        return .init(
-//            channelID: channelId,
-//            channelName: channelName,
-//            chatID: chatId,
-//            content: content,
-//            createdAt: createdAt,
-//            files: files.map{$0},
-//            user: <#T##User#>
-//        )
-//    }
+    func toDomain() -> ChannelMessage {
+        return .init(
+            channelID: channelId,
+            channelName: channelName,
+            chatID: chatId,
+            content: content,
+            createdAt: createdAt,
+            files: files.map{$0},
+            user: User(userId: userId, email: userEmail, nickname: userName, profileImage: "")
+        )
+    }
     
     
 }

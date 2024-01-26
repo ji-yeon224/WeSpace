@@ -9,13 +9,17 @@ import Foundation
 import ReactorKit
 
 final class HomeReactor: Reactor {
+    
+    private let channelRepository = ChannelRepository()
+    
     var initialState: State = State(
         channelItem: [],
         workspaceItem: nil,
         loginRequest: false,
         message: "",
         dmRoomItems: [],
-        allWorkspace: []
+        allWorkspace: [],
+        chatInfo: (nil, [])
     )
     
     
@@ -24,6 +28,7 @@ final class HomeReactor: Reactor {
         case requestChannelInfo(id: Int?)
         case requestDMsInfo(id: Int?)
         case requestAllWorkspace
+        case searchChannelDB(wsId: Int?, chInfo: Channel?)
     }
     
     enum Mutation {
@@ -32,6 +37,7 @@ final class HomeReactor: Reactor {
         case loginRequest
         case dmsInfo(dms: DMsRoomResDTO)
         case fetchAllWorkspace(data: [WorkspaceDto])
+        case chatInfo(chInfo: Channel, chatItems: [ChannelMessage])
     }
     
     struct State {
@@ -41,6 +47,7 @@ final class HomeReactor: Reactor {
         var message: String
         var dmRoomItems: [WorkspaceItem]
         var allWorkspace: [WorkSpace]
+        var chatInfo: (Channel?, [ChannelMessage])
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -61,6 +68,14 @@ final class HomeReactor: Reactor {
             
         case .requestAllWorkspace:
             return requestAllWorkspace()
+        case .searchChannelDB(let wsId, let chInfo):
+            
+            if let wsId = wsId, let chInfo = chInfo {
+                return requestChannelInfo(wsId: wsId, chInfo: chInfo)
+            } else {
+                return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
+            }
+            
         }
     }
     
@@ -83,6 +98,8 @@ final class HomeReactor: Reactor {
             newState.allWorkspace = data.map{
                 $0.toDomain()
             }
+        case .chatInfo(let chInfo, let chatItems):
+            newState.chatInfo = (chInfo, chatItems)
         
         }
         
@@ -92,6 +109,45 @@ final class HomeReactor: Reactor {
 }
 
 extension HomeReactor {
+    
+    private func requestChannelInfo(wsId: Int, chInfo: Channel) -> Observable<Mutation> {
+        if let channelInfo = searchChannelDB(wsId: wsId, chId: chInfo.channelID, name: chInfo.name) {
+            print("채널 정보 가져옴...")
+            let item = getChatItems(channelData: channelInfo)
+            return .just(.chatInfo(chInfo: chInfo, chatItems: item))
+        } else {
+            return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
+        }
+    }
+    
+    private func searchChannelDB(wsId: Int, chId: Int, name: String) -> ChannelDTO? {
+        let data = channelRepository.searchChannel(wsId: wsId, chId: chId)
+        print(data)
+        if data.isEmpty {
+            let channelInfo = ChannelDTO(workspaceId: wsId, channelId: chId, name: name)
+            // 저장
+            print("저장")
+            do {
+                try channelRepository.create(object: channelInfo)
+                return channelInfo
+            } catch {
+                print("channel ", error.localizedDescription)
+                return nil
+            }
+        } else {
+            return data.first
+        }
+    }
+    
+    
+    private func getChatItems(channelData: ChannelDTO) -> [ChannelMessage] {
+        var data: [ChannelMessage] = []
+        channelData.chatItem.forEach {
+            data.append($0.toDomain())
+        }
+        
+        return data
+    }
     
     private func requestAllWorkspace() -> Observable<Mutation> {
         return WorkspacesAPIManager.shared.request(api: .fetchAll, resonseType: AllWorkspaceReDTO.self)

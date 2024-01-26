@@ -10,6 +10,9 @@ import Foundation
 enum DBError: String, Error {
     case createError
     case fetchError
+    case updateError
+    case deleteError
+    case searchError
 }
 
 extension DBError: LocalizedError {
@@ -19,6 +22,12 @@ extension DBError: LocalizedError {
             return "[DB CREATE ERROR]"
         case .fetchError:
             return "[DB FETCH ERROR]"
+        case .updateError:
+            return "[DB UPDATE ERROR]"
+        case .deleteError:
+            return "[DB DELETE ERROR]"
+        case .searchError:
+            return "[DB SEARCH ERROR]"
         }
     }
 }
