@@ -13,18 +13,19 @@ import RxDataSources
 final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
-    private var channel: Channel?
+    private var channel: ChannelDTO?
     private var workspace: WorkSpace?
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
     private var chatData: [ChannelMessage] = []
+    
 //    private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
-    init(info: Channel, workspace: WorkSpace, chatItems: [ChannelMessage]) {
+    init(info: ChannelDTO, workspace: WorkSpace, chatItems: [ChannelMessage]) {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
         self.workspace = workspace

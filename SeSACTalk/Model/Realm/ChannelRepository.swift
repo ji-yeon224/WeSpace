@@ -26,13 +26,17 @@ final class ChannelRepository {
             throw DBError.createError
         }
     }
+    
+    
     func updateChatItems(data: ChannelDTO, chat: ChannelChatDTO) throws {
-        print("jj")
+        print("ㅁㅁ", chat, data)
         do {
             try realm.write {
                 data.chatItem.append(chat)
+                realm.add(data)
             }
         } catch {
+            print("error")
             throw DBError.updateError
         }
     }

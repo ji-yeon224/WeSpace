@@ -9,31 +9,44 @@ import Foundation
 import ReactorKit
 
 final class ChatReactor: Reactor {
+    
+//    private var channelRecord: ChannelDTO?
+    
     var initialState: State = State(
         msg: "",
         loginRequest: false,
-        sendSuccess: nil
+        sendSuccess: nil,
+        channelRecord: nil
     )
     
     
     enum Action {
-        case sendRequest(channel: Channel?, id: Int?, content: String?, files: [SelectImage])
+        case fetchChannel(wsId: Int, chId: Int)
+        case sendRequest(channel: ChannelDTO?, id: Int?, content: String?, files: [SelectImage])
     }
     
     enum Mutation {
         case msg(msg: String)
         case loginRequest(login: Bool)
         case sendSuccess(data: ChannelMessage)
+        case fetchChannelRecord(data: ChannelDTO)
     }
     
     struct State {
         var msg: String
         var loginRequest: Bool
         var sendSuccess: ChannelMessage?
+        var channelRecord: ChannelDTO?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .fetchChannel(let wsId, let chId):
+            if let item = ChannelRepository().searchChannel(wsId: wsId, chId: chId).first {
+                return .just(.fetchChannelRecord(data: item))
+            }
+            return .just(.msg(msg: "문제가 발생하였습니다."))
+            
         case .sendRequest(let channel, let id, let content, let files):
             if let channel = channel, let id = id {
                 let imgs = files.map {
@@ -58,6 +71,8 @@ final class ChatReactor: Reactor {
             newState.loginRequest = login
         case .sendSuccess(let data):
             newState.sendSuccess = data
+        case .fetchChannelRecord(let data):
+            newState.channelRecord = data
         }
         return newState
     }
@@ -66,7 +81,7 @@ final class ChatReactor: Reactor {
 }
 
 extension ChatReactor {
-    func requestSendMsg(channel: Channel, id: Int, data: ChannelChatReqDTO) -> Observable<Mutation> {
+    func requestSendMsg(channel: ChannelDTO, id: Int, data: ChannelChatReqDTO) -> Observable<Mutation> {
         if data.content == nil && data.files == nil {
             return .just(Mutation.msg(msg: "No Data"))
         }
@@ -80,7 +95,7 @@ extension ChatReactor {
                         print("send success")
                         let data = response.toDomain()
                         do {
-                            try ChannelRepository().updateChatItems(data: channel.setRecord(), chat: data.toRecord())
+                            try ChannelRepository().updateChatItems(data: channel, chat: data.toRecord())
 //                            try ChannelMsgRepository().createData(data: [data.toRecord()])
                             self.saveImage(id: id, channelId: data.channelID, files: data.files, chatId: data.chatID)
                             return .just(.sendSuccess(data: data))

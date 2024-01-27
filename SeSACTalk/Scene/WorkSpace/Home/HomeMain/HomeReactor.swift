@@ -37,7 +37,7 @@ final class HomeReactor: Reactor {
         case loginRequest
         case dmsInfo(dms: DMsRoomResDTO)
         case fetchAllWorkspace(data: [WorkspaceDto])
-        case chatInfo(chInfo: Channel, chatItems: [ChannelMessage])
+        case chatInfo(chInfo: ChannelDTO, chatItems: [ChannelMessage])
     }
     
     struct State {
@@ -47,7 +47,7 @@ final class HomeReactor: Reactor {
         var message: String
         var dmRoomItems: [WorkspaceItem]
         var allWorkspace: [WorkSpace]
-        var chatInfo: (Channel?, [ChannelMessage])
+        var chatInfo: (ChannelDTO?, [ChannelMessage])
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -114,7 +114,7 @@ extension HomeReactor {
         if let channelInfo = searchChannelDB(wsId: wsId, chId: chInfo.channelID, name: chInfo.name) {
             print("채널 정보 가져옴...")
             let item = getChatItems(channelData: channelInfo)
-            return .just(.chatInfo(chInfo: chInfo, chatItems: item))
+            return .just(.chatInfo(chInfo: channelInfo, chatItems: item))
         } else {
             return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
         }
