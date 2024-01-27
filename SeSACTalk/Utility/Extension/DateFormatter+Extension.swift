@@ -10,11 +10,11 @@ import Foundation
 extension DateFormatter {
     static func convertToString(format: String, date: Date) -> String {
         let formatter = DateFormatter()
-        print("date: ", date)
+//        print("date: ", date)
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
         formatter.dateFormat = format
-        print("format: ", formatter.string(from: date))
+//        print("format: ", formatter.string(from: date))
         return formatter.string(from: date)
     }
 }

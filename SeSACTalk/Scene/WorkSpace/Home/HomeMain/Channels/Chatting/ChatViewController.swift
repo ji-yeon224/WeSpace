@@ -19,7 +19,7 @@ final class ChatViewController: BaseViewController {
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
     private var chatData: [ChannelMessage] = []
-    
+    private var lastDate: String = ""
 //    private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
@@ -31,6 +31,7 @@ final class ChatViewController: BaseViewController {
         self.workspace = workspace
         print(workspace.workspaceId)
         print(chatItems)
+        
     }
     
     @available(*, unavailable)
@@ -46,9 +47,22 @@ final class ChatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
-        updateSnapShot()
+        
+        configData()
         self.reactor = ChatReactor()
         ChannelMsgRepository().getLocation()
+    }
+    
+    private func configData() {
+        if let channel = channel {
+            let chats = channel.chatItem.map {
+                $0.toDomain()
+            }
+            chatData.append(contentsOf: chats)
+            
+            lastDate = chats.last?.createdAt ?? ""
+            updateSnapShot()
+        }
     }
     
     

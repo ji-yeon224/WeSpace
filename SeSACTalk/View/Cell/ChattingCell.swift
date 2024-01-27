@@ -18,10 +18,10 @@ final class ChattingCell: BaseCollectionViewCell {
     }
     let nickNameLabel = CustomBasicLabel(text: "", fontType: .caption, line: 1)
     
-    private let chatMsgView = UIView().then {
+    let chatMsgView = UIView().then {
         $0.backgroundColor = .clear
     }
-    private let chatTextView = UIView().then {
+    let chatTextView = UIView().then {
         $0.layer.cornerRadius = 12
         $0.layer.borderWidth = 1
         $0.layer.borderColor = Constants.Color.inActive?.cgColor
@@ -94,7 +94,7 @@ final class ChattingCell: BaseCollectionViewCell {
         profileImageView.image = nil
         chatImgView.isHidden = true
         stackView.isHidden = true
-        
+//        chatTextLabel.isHidden = true
         
     }
     

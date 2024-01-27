@@ -77,16 +77,17 @@ final class ChatView: BaseView {
         let cell = UICollectionView.CellRegistration<ChattingCell, ChannelMessage>  { cell, indexPath, itemIdentifier in
             
             cell.nickNameLabel.text = itemIdentifier.user.nickname
-            if let profileImg = itemIdentifier.user.profileImage {
+            if let profileImg = itemIdentifier.user.profileImage, !profileImg.isEmpty {
                 cell.profileImageView.setImage(with: profileImg)
             } else {
                 let img = Constants.Image.dummyProfile
                 cell.profileImageView.image = img[itemIdentifier.user.userId%3]
             }
-            if let text = itemIdentifier.content, text.count > 0 {
+            if let text = itemIdentifier.content, !text.isEmpty {
                 cell.chatTextLabel.text = itemIdentifier.content
+                cell.chatTextView.isHidden = false
             } else {
-                cell.chatTextLabel.isHidden = true
+                cell.chatTextView.isHidden = true
             }
             
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
@@ -99,7 +100,7 @@ final class ChatView: BaseView {
                 cell.chatImgView.isHidden = true
                 cell.stackView.isHidden = true
             }
-            cell.layoutSubviews()
+//            cell.layoutSubviews()
         }
         dataSource = UICollectionViewDiffableDataSource<String, ChannelMessage>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cell, for: indexPath, item: itemIdentifier)

@@ -126,7 +126,6 @@ extension HomeReactor {
         if data.isEmpty {
             let channelInfo = ChannelDTO(workspaceId: wsId, channelId: chId, name: name)
             // 저장
-            print("저장")
             do {
                 try channelRepository.create(object: channelInfo)
                 return channelInfo
