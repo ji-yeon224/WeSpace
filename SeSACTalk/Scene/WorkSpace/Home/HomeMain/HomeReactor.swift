@@ -112,7 +112,7 @@ extension HomeReactor {
     
     private func requestChannelInfo(wsId: Int, chInfo: Channel) -> Observable<Mutation> {
         if let channelInfo = searchChannelDB(wsId: wsId, chId: chInfo.channelID, name: chInfo.name) {
-            print("채널 정보 가져옴...")
+            debugPrint("채널 정보 가져옴...")
             let item = getChatItems(channelData: channelInfo)
             return .just(.chatInfo(chInfo: channelInfo, chatItems: item))
         } else {
@@ -122,7 +122,7 @@ extension HomeReactor {
     
     private func searchChannelDB(wsId: Int, chId: Int, name: String) -> ChannelDTO? {
         let data = channelRepository.searchChannel(wsId: wsId, chId: chId)
-        print(data)
+//        print(data)
         if data.isEmpty {
             let channelInfo = ChannelDTO(workspaceId: wsId, channelId: chId, name: name)
             // 저장
@@ -130,7 +130,7 @@ extension HomeReactor {
                 try channelRepository.create(object: channelInfo)
                 return channelInfo
             } catch {
-                print("channel ", error.localizedDescription)
+                debugPrint("channel ", error.localizedDescription)
                 return nil
             }
         } else {

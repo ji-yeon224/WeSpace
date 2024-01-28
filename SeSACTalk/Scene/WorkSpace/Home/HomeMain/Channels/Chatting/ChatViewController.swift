@@ -18,6 +18,7 @@ final class ChatViewController: BaseViewController {
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
+    private var requestUncheckedChat = PublishRelay<String>()
     private var chatData: [ChannelMessage] = []
     private var lastDate: String = ""
 //    private var selectLimit = 5
@@ -29,8 +30,8 @@ final class ChatViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
         self.workspace = workspace
-        print(workspace.workspaceId)
-        print(chatItems)
+//        print(workspace.workspaceId)
+//        print(chatItems)
         
     }
     
@@ -50,6 +51,7 @@ final class ChatViewController: BaseViewController {
         
         configData()
         self.reactor = ChatReactor()
+        self.reactor?.channelRecord = channel
         ChannelMsgRepository().getLocation()
     }
     
@@ -61,6 +63,7 @@ final class ChatViewController: BaseViewController {
             chatData.append(contentsOf: chats)
             
             lastDate = chats.last?.createdAt ?? ""
+            requestUncheckedChat.accept(lastDate)
             updateSnapShot()
         }
     }
@@ -162,9 +165,27 @@ extension ChatViewController: View {
             .map { Reactor.Action.sendRequest(channel: self.channel, id: self.workspace?.workspaceId, content: $0, files: self.selectImageModel.items)}
             .bind(to: reactor.action )
             .disposed(by: disposeBag)
+        
+        requestUncheckedChat
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .map { Reactor.Action.requestUncheckedMsg(date: $0, wsId: self.workspace?.workspaceId, name: self.channel?.name)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: ChatReactor) {
+        
+        reactor.state
+            .map { $0.fetchChatSuccess }
+            .asDriver(onErrorJustReturn: [])
+            .filter { !$0.isEmpty }
+            .distinctUntilChanged()
+            .drive(with: self) { owner, value in
+                owner.chatData.append(contentsOf: value)
+                owner.updateSnapShot()
+            }
+            .disposed(by: disposeBag)
         
         reactor.state
             .map { $0.msg }
@@ -256,6 +277,7 @@ ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕dddsd
 ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 3, email: "a@a.com", nickname: "jasdy", profileImage: nil)),
 ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg","/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 3, email: "a@a.com", nickname: "jasdy", profileImage: nil)),
 ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil))
+
 
 ]
 

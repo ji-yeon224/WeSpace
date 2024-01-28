@@ -28,11 +28,11 @@ final class ChannelRepository {
     }
     
     
-    func updateChatItems(data: ChannelDTO, chat: ChannelChatDTO) throws {
+    func updateChatItems(data: ChannelDTO, chat: [ChannelChatDTO]) throws {
         print("ㅁㅁ", chat, data)
         do {
             try realm.write {
-                data.chatItem.append(chat)
+                data.chatItem.append(objectsIn: chat)
                 realm.add(data)
             }
         } catch {
