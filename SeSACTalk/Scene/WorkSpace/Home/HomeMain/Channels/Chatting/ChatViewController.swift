@@ -66,6 +66,7 @@ final class ChatViewController: BaseViewController {
             requestUncheckedChat.accept(lastDate)
             updateSnapShot()
         }
+        
     }
     
     
@@ -77,6 +78,10 @@ final class ChatViewController: BaseViewController {
         title = "# " + channel.name
         
         mainView.chatWriteView.delegate = self
+        
+        if let workspace = workspace {
+            mainView.wsId = workspace.workspaceId
+        }
         
     }
     

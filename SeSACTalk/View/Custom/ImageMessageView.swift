@@ -71,12 +71,49 @@ final class ImageMessageView: BaseView {
     override func setConstraints() {
         imageStackView.snp.makeConstraints { make in
             make.edges.equalTo(self)
+            make.width.equalTo(Constants.Design.deviceWidth * 0.6)
         }
         firstStack.snp.makeConstraints { make in
             make.height.equalTo(imageStackView.snp.width).multipliedBy(0.33)
         }
         oneImageView.snp.makeConstraints { make in
             make.edges.equalTo(self)
+        }
+    }
+    
+    func configUIImage(img: [UIImage]) {
+        switch img.count {
+        case 1:
+            imageStackView.isHidden = true
+            oneImageView.isHidden = false
+            
+            oneImageView.image = img[0]
+        case 2:
+            imageView1.image = img[0]
+            imageView2.image = img[1]
+            secondStack.isHidden = true
+            imageView3.isHidden = true
+        case 3:
+            imageView1.image = img[0]
+            imageView2.image = img[1]
+            imageView3.image = img[2]
+            secondStack.isHidden = true
+            
+        case 4:
+            imageView1.image = img[0]
+            imageView2.image = img[1]
+            imageView4.image = img[2]
+            imageView5.image = img[3]
+            
+            imageView3.isHidden = true
+        case 5:
+            
+            imageView1.image = img[0]
+            imageView2.image = img[1]
+            imageView3.image = img[2]
+            imageView4.image = img[3]
+            imageView5.image = img[4]
+        default: break
         }
     }
     
@@ -87,13 +124,14 @@ final class ImageMessageView: BaseView {
             oneImageView.isHidden = false
             oneImageView.setImage(with: files[0])
         case 2:
-            
+            oneImageView.isHidden = true
             imageView1.setImage(with: files[0])
             
             imageView2.setImage(with: files[1])
             secondStack.isHidden = true
             imageView3.isHidden = true
         case 3:
+            oneImageView.isHidden = true
             imageView1.setImage(with: files[0])
             imageView2.setImage(with: files[1])
             imageView3.setImage(with: files[2])

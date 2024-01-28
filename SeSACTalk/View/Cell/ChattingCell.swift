@@ -20,6 +20,7 @@ final class ChattingCell: BaseCollectionViewCell {
     
     let chatMsgView = UIView().then {
         $0.backgroundColor = .clear
+        $0.isHidden = true
     }
     let chatTextView = UIView().then {
         $0.layer.cornerRadius = 12
@@ -68,7 +69,7 @@ final class ChattingCell: BaseCollectionViewCell {
             make.width.lessThanOrEqualTo(maxWidth)
         }
         nickNameLabel.snp.makeConstraints { make in
-            make.height.equalTo(18)
+//            make.height.equalTo(18)
         }
         timeLabel.snp.makeConstraints { make in
             make.leading.equalTo(contentStackView.snp.trailing).offset(8)
@@ -81,10 +82,11 @@ final class ChattingCell: BaseCollectionViewCell {
         }
         chatTextLabel.snp.makeConstraints { make in
             make.edges.equalTo(chatTextView).inset(8)
+            make.height.greaterThanOrEqualTo(18)
         }
         
         chatImgView.snp.makeConstraints { make in
-            make.width.equalTo(maxWidth)
+//            make.width.equalTo(maxWidth)
         }
         
     }
@@ -100,6 +102,9 @@ final class ChattingCell: BaseCollectionViewCell {
     
     func configImage(files: [String]) {
         chatImgView.configImage(files: files)
+    }
+    func configUIImage(imgs: [UIImage]) {
+        chatImgView.configUIImage(img: imgs)
     }
     
 }

@@ -106,11 +106,13 @@ extension ChatReactor {
                     if let response = response, let channelRecord = self.channelRecord {
                         debugPrint("SUCCESS FETCH MSG", response.count)
                         let chatData = response.map { $0.toDomain() }
-                        if self.saveChatItems(wsId: wsId, data: channelRecord, chat: chatData) {
-                            return .just(.fetchChatSuccess(data: chatData))
-                        } else {
-                            return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
-                        }
+                        let uncheckMsg = self.saveChatItems(wsId: wsId, data: channelRecord, chat: chatData)
+                        return .just(.fetchChatSuccess(data: uncheckMsg))
+//                        if self.saveChatItems(wsId: wsId, data: channelRecord, chat: chatData) {
+//                            return .just(.fetchChatSuccess(data: chatData))
+//                        } else {
+//                            return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
+//                        }
                     }
                     return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
                 case .failure(let error):
@@ -143,11 +145,17 @@ extension ChatReactor {
                         debugPrint("SUCCESS SEND MSG")
                         let data = response.toDomain()
                         
-                        if self.saveChatItems(wsId: id, data: channel, chat: [data]) {
-                            return .just(.sendSuccess(data: data))
-                        } else {
-                            return .just(.msg(msg: ChannelToastMessage.otherError.message))
+                        if let sendData = self.saveChatItems(wsId: id, data: channel, chat: [data]).first {
+                            print(sendData)
+                            return .just(.sendSuccess(data: sendData))
                         }
+                        return .just(.msg(msg: ChannelToastMessage.otherError.message))
+                        
+//                        if self.saveChatItems(wsId: id, data: channel, chat: [data]) {
+//
+//                        } else {
+//                            return .just(.msg(msg: ChannelToastMessage.otherError.message))
+//                        }
                     }
                     return .just(.msg(msg: ChannelToastMessage.otherError.message))
                     
@@ -171,35 +179,43 @@ extension ChatReactor {
         
     }
     
-    private func saveChatItems(wsId: Int, data: ChannelDTO, chat: [ChannelMessage]) -> Bool {
+    private func saveChatItems(wsId: Int, data: ChannelDTO, chat: [ChannelMessage]) -> [ChannelMessage] {
         
         let chatRecords = chat.map { $0.toRecord() }
+        var channelMsgWithImg: [ChannelMessage] = []
+        channelMsgWithImg = chat.map {
+            var data = $0
+            
+            let fileName = saveImage(id: wsId, channelId: $0.channelID, files: $0.files, chatId: $0.chatID)
+//                data.urls?.append(contentsOf: fileName)
+            data.setUrls(urls: fileName)
+            return data
+        }
         do {
             try ChannelRepository().updateChatItems(data: data, chat: chatRecords)
             
-            chat.forEach {
-                self.saveImage(id: wsId, channelId: $0.channelID, files: $0.files, chatId: $0.chatID)
-                
-            }
+            
+            print(channelMsgWithImg)
             debugPrint("[SAVE CHAT ITEMS SUCCESS]")
-            return true
+            return channelMsgWithImg
         } catch {
             print(error.localizedDescription)
-            return false
+            return chat
         }
     }
     
-    private func saveImage(id: Int, channelId: Int, files:[String], chatId: Int) {
-        
+    private func saveImage(id: Int, channelId: Int, files:[String], chatId: Int) -> [String] {
+        var imgUrls: [String] = []
         files.forEach { url in
             ImageDownloadManager.shared.getUIImage(with: url) { img in
                 let fileName = ImageFileService.getFileName(type: .channel(wsId: id, channelId: channelId), fileURL: url)
+                
                 ChannelMsgRepository().saveImageToDocument(fileName: fileName, image: img)
-//                imgUrls.append(fileName)
+                imgUrls.append(fileName)
                 
             }
         }
-//        return imgUrls
+        return imgUrls
     }
     
 }

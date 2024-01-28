@@ -9,6 +9,8 @@ import UIKit
 
 final class ChatView: BaseView {
     
+    var wsId: Int?
+    
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: compostionalViewLayout()).then {
         $0.contentInset = .init(top: 5, left: 0, bottom: 0, right: 0)
         $0.keyboardDismissMode = .interactive
@@ -85,14 +87,23 @@ final class ChatView: BaseView {
             }
             if let text = itemIdentifier.content, !text.isEmpty {
                 cell.chatTextLabel.text = itemIdentifier.content
-                cell.chatTextView.isHidden = false
+                cell.chatMsgView.isHidden = false
             } else {
-                cell.chatTextView.isHidden = true
+                cell.chatMsgView.isHidden = true
             }
             
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
             if !itemIdentifier.files.isEmpty {
-                cell.configImage(files: itemIdentifier.files)
+                print(itemIdentifier.imgUrls)
+                if let imgUrls = itemIdentifier.imgUrls {
+                    print("uiimage")
+                    let imgs = ChannelRepository().loadImageFromDocuments(fileName: imgUrls)
+                    cell.configUIImage(imgs: imgs)
+                }else {
+                    print("kinfisher")
+                    cell.configImage(files: itemIdentifier.files)
+                }
+                
                 cell.chatImgView.isHidden = false
                 cell.stackView.isHidden = false
                 
@@ -100,7 +111,7 @@ final class ChatView: BaseView {
                 cell.chatImgView.isHidden = true
                 cell.stackView.isHidden = true
             }
-//            cell.layoutSubviews()
+            cell.layoutSubviews()
         }
         dataSource = UICollectionViewDiffableDataSource<String, ChannelMessage>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cell, for: indexPath, item: itemIdentifier)

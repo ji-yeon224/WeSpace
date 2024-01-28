@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 final class ChannelRepository {
     
@@ -29,7 +30,7 @@ final class ChannelRepository {
     
     
     func updateChatItems(data: ChannelDTO, chat: [ChannelChatDTO]) throws {
-        print("ㅁㅁ", chat, data)
+//        print("ㅁㅁ", chat, data)
         do {
             try realm.write {
                 data.chatItem.append(objectsIn: chat)
@@ -56,5 +57,26 @@ final class ChannelRepository {
         }
         
         return data
+    }
+    
+    func loadImageFromDocuments(fileName: [String]) -> [UIImage] {
+        
+        var imgData: [UIImage] = []
+        
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
+        
+        fileName.forEach {
+            let fileURL = documentDirectory.appendingPathComponent($0)
+            
+            if FileManager.default.fileExists(atPath: fileURL.path) {
+                if let img = UIImage(contentsOfFile: fileURL.path) {
+                    imgData.append(img)
+                }
+                
+            }
+        }
+        debugPrint("이미지 가져오기.. ", imgData.count)
+        return imgData
+        
     }
 }
