@@ -18,9 +18,9 @@ final class ChatViewController: BaseViewController {
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
-    private var requestUncheckedChat = PublishRelay<String>()
+    private var requestUncheckedChat = PublishRelay<String?>()
     private var chatData: [ChannelMessage] = []
-    private var lastDate: String = ""
+    private var lastDate: String?
 //    private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
@@ -52,6 +52,8 @@ final class ChatViewController: BaseViewController {
         configData()
         self.reactor = ChatReactor()
         self.reactor?.channelRecord = channel
+        requestUncheckedChat.accept(lastDate)
+        updateSnapShot()
         ChannelMsgRepository().getLocation()
     }
     
@@ -62,9 +64,8 @@ final class ChatViewController: BaseViewController {
             }
             chatData.append(contentsOf: chats)
             
-            lastDate = chats.last?.createdAt ?? ""
-            requestUncheckedChat.accept(lastDate)
-            updateSnapShot()
+            lastDate = chats.last?.createdAt
+            print("last date ", lastDate)
         }
         
     }
@@ -78,6 +79,7 @@ final class ChatViewController: BaseViewController {
         title = "# " + channel.name
         
         mainView.chatWriteView.delegate = self
+        
         
         if let workspace = workspace {
             mainView.wsId = workspace.workspaceId
@@ -188,6 +190,7 @@ extension ChatViewController: View {
             .distinctUntilChanged()
             .drive(with: self) { owner, value in
                 owner.chatData.append(contentsOf: value)
+                print(value)
                 owner.updateSnapShot()
             }
             .disposed(by: disposeBag)
@@ -250,6 +253,7 @@ extension ChatViewController {
         snapshot.appendSections([""])
         snapshot.appendItems(chatData)
         mainView.dataSource.apply(snapshot)
+        mainView.collectionView.scrollToItem(at: IndexPath(item: chatData.count-1, section: 0), at: .bottom, animated: false)
         
     }
 }

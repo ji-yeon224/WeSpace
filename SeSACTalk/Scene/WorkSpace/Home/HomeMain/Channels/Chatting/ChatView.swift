@@ -95,8 +95,8 @@ final class ChatView: BaseView {
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
             if !itemIdentifier.files.isEmpty {
                 print(itemIdentifier.imgUrls)
-                if let imgUrls = itemIdentifier.imgUrls {
-                    print("uiimage")
+                if let imgUrls = itemIdentifier.imgUrls, !imgUrls.isEmpty{
+                    print("uiimage", imgUrls)
                     let imgs = ChannelRepository().loadImageFromDocuments(fileName: imgUrls)
                     cell.configUIImage(imgs: imgs)
                 }else {

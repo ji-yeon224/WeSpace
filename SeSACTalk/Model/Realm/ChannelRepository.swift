@@ -29,6 +29,8 @@ final class ChannelRepository {
     }
     
     
+    
+    
     func updateChatItems(data: ChannelDTO, chat: [ChannelChatDTO]) throws {
 //        print("ㅁㅁ", chat, data)
         do {

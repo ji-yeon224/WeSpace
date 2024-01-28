@@ -11,6 +11,7 @@ import ReactorKit
 final class ChatReactor: Reactor {
     
     var channelRecord: ChannelDTO?
+    private let group = DispatchGroup()
     
     var initialState: State = State(
         msg: "",
@@ -64,6 +65,7 @@ final class ChatReactor: Reactor {
             }
         case .requestUncheckedMsg(let date, let wsId, let name):
             if let wsId = wsId, let name = name {
+                print(date)
                 return requestUnckeckedMsg(date: date, wsId: wsId, name: name)
             } else {
                 debugPrint("[data binding error]")
@@ -151,11 +153,6 @@ extension ChatReactor {
                         }
                         return .just(.msg(msg: ChannelToastMessage.otherError.message))
                         
-//                        if self.saveChatItems(wsId: id, data: channel, chat: [data]) {
-//
-//                        } else {
-//                            return .just(.msg(msg: ChannelToastMessage.otherError.message))
-//                        }
                     }
                     return .just(.msg(msg: ChannelToastMessage.otherError.message))
                     
@@ -179,43 +176,43 @@ extension ChatReactor {
         
     }
     
+    
     private func saveChatItems(wsId: Int, data: ChannelDTO, chat: [ChannelMessage]) -> [ChannelMessage] {
         
-        let chatRecords = chat.map { $0.toRecord() }
-        var channelMsgWithImg: [ChannelMessage] = []
-        channelMsgWithImg = chat.map {
-            var data = $0
-            
-            let fileName = saveImage(id: wsId, channelId: $0.channelID, files: $0.files, chatId: $0.chatID)
-//                data.urls?.append(contentsOf: fileName)
-            data.setUrls(urls: fileName)
-            return data
+        let recordList = chat.map {
+            let urls: [String] = $0.files.map { url in
+                ImageFileService.getFileName(type: .channel(wsId: wsId, channelId: data.channelId), fileURL: url)
+            }
+            saveImage(id: wsId, channelId: $0.channelID, files: $0.files, chatId: $0.chatID, fileNames: urls)
+            let record = $0.toRecord()
+            record.setImgUrls(urls: urls)
+            return record
         }
         do {
-            try ChannelRepository().updateChatItems(data: data, chat: chatRecords)
+            try ChannelRepository().updateChatItems(data: data, chat: recordList)
             
-            
-            print(channelMsgWithImg)
             debugPrint("[SAVE CHAT ITEMS SUCCESS]")
-            return channelMsgWithImg
+            return recordList.map { $0.toDomain() }
         } catch {
             print(error.localizedDescription)
             return chat
         }
     }
     
-    private func saveImage(id: Int, channelId: Int, files:[String], chatId: Int) -> [String] {
-        var imgUrls: [String] = []
-        files.forEach { url in
-            ImageDownloadManager.shared.getUIImage(with: url) { img in
-                let fileName = ImageFileService.getFileName(type: .channel(wsId: id, channelId: channelId), fileURL: url)
+    private func saveImage(id: Int, channelId: Int, files:[String], chatId: Int, fileNames: [String]) {
+        
+        
+        for i in 0..<files.count {
+            let file = files[i]
+            ImageDownloadManager.shared.getUIImage(with: file) { img in
                 
-                ChannelMsgRepository().saveImageToDocument(fileName: fileName, image: img)
-                imgUrls.append(fileName)
+                ChannelMsgRepository().saveImageToDocument(fileName: fileNames[i], image: img)
+
                 
             }
         }
-        return imgUrls
+        
+        
     }
     
 }
