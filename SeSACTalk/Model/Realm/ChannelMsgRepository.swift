@@ -58,9 +58,9 @@ final class ChannelMsgRepository {
         
         // 2. 저장할 경로 설정(세부 경로, 이미지를 저장할 위치)
         let fileURL = documentDirectory.appendingPathComponent("\(fileName)")
-        print(fileURL)
+//        print(fileURL)
         // 3. 이미지 변환
-        guard let data = image.img?.jpegData(compressionQuality: 0.8) else { return }
+        guard let data = image.img?.jpegData(compressionQuality: 0.5) else { return }
         
         
         

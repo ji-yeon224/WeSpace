@@ -75,9 +75,9 @@ final class ChannelRepository {
                     imgData.append(img)
                 }
                 
-            }
+            } 
         }
-        debugPrint("이미지 가져오기.. ", imgData.count)
+        
         return imgData
         
     }

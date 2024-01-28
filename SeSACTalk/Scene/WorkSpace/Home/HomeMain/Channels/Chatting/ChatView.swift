@@ -94,13 +94,20 @@ final class ChatView: BaseView {
             
             cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
             if !itemIdentifier.files.isEmpty {
-                print(itemIdentifier.imgUrls)
+
                 if let imgUrls = itemIdentifier.imgUrls, !imgUrls.isEmpty{
-                    print("uiimage", imgUrls)
+                    
                     let imgs = ChannelRepository().loadImageFromDocuments(fileName: imgUrls)
-                    cell.configUIImage(imgs: imgs)
+                    
+                    if imgs.count > 0 {
+                        cell.configUIImage(imgs: imgs)
+                    } else {
+                        
+                        cell.configImage(files: itemIdentifier.files)
+                    }
+                    
                 }else {
-                    print("kinfisher")
+                    
                     cell.configImage(files: itemIdentifier.files)
                 }
                 

@@ -11,7 +11,7 @@ import ReactorKit
 final class ChatReactor: Reactor {
     
     var channelRecord: ChannelDTO?
-    private let group = DispatchGroup()
+    private let channelMsgRepository = ChannelMsgRepository()
     
     var initialState: State = State(
         msg: "",
@@ -65,7 +65,7 @@ final class ChatReactor: Reactor {
             }
         case .requestUncheckedMsg(let date, let wsId, let name):
             if let wsId = wsId, let name = name {
-                print(date)
+                
                 return requestUnckeckedMsg(date: date, wsId: wsId, name: name)
             } else {
                 debugPrint("[data binding error]")
@@ -107,14 +107,14 @@ extension ChatReactor {
                 case .success(let response):
                     if let response = response, let channelRecord = self.channelRecord {
                         debugPrint("SUCCESS FETCH MSG", response.count)
-                        let chatData = response.map { $0.toDomain() }
+                        let chatData = response.map {
+                            $0.toDomain()
+                        }.filter {
+                            !self.channelMsgRepository.isExistItem(channelId: $0.channelID, chatId: $0.chatID)
+                        }
+                        
                         let uncheckMsg = self.saveChatItems(wsId: wsId, data: channelRecord, chat: chatData)
                         return .just(.fetchChatSuccess(data: uncheckMsg))
-//                        if self.saveChatItems(wsId: wsId, data: channelRecord, chat: chatData) {
-//                            return .just(.fetchChatSuccess(data: chatData))
-//                        } else {
-//                            return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
-//                        }
                     }
                     return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
                 case .failure(let error):
@@ -148,7 +148,6 @@ extension ChatReactor {
                         let data = response.toDomain()
                         
                         if let sendData = self.saveChatItems(wsId: id, data: channel, chat: [data]).first {
-                            print(sendData)
                             return .just(.sendSuccess(data: sendData))
                         }
                         return .just(.msg(msg: ChannelToastMessage.otherError.message))

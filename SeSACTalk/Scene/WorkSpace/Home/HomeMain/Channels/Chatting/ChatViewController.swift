@@ -54,6 +54,7 @@ final class ChatViewController: BaseViewController {
         self.reactor?.channelRecord = channel
         requestUncheckedChat.accept(lastDate)
         updateSnapShot()
+        
         ChannelMsgRepository().getLocation()
     }
     
@@ -190,8 +191,10 @@ extension ChatViewController: View {
             .distinctUntilChanged()
             .drive(with: self) { owner, value in
                 owner.chatData.append(contentsOf: value)
-                print(value)
+//                print(value)
+                
                 owner.updateSnapShot()
+                
             }
             .disposed(by: disposeBag)
         
@@ -213,6 +216,7 @@ extension ChatViewController: View {
                     print("[SUCCESS] ", value.createdAt)
                     owner.chatData.append(value)
                     owner.updateSnapShot()
+                    owner.mainView.collectionView.scrollToItem(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
                 }
@@ -253,8 +257,6 @@ extension ChatViewController {
         snapshot.appendSections([""])
         snapshot.appendItems(chatData)
         mainView.dataSource.apply(snapshot)
-        mainView.collectionView.scrollToItem(at: IndexPath(item: chatData.count-1, section: 0), at: .bottom, animated: false)
-        
     }
 }
 
@@ -279,14 +281,4 @@ extension ChatViewController {
         navigationController?.popViewController(animated: true)
     }
 }
- 
-let dummy: [ChannelMessage] = [
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 1, email: "a@a.com", nickname: "jy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕dddsdkfjlsdkjflsdjfljsdlfjlsdjflsasdaasd 12312312313djflkjslfjlsdk", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 3, email: "a@a.com", nickname: "jasdy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg","/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 3, email: "a@a.com", nickname: "jasdy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil))
-
-
-]
 
