@@ -97,12 +97,19 @@ final class ChatReactor: Reactor {
 
 extension ChatReactor {
     
+    private func requestChannelMembers(name: String, wsId: Int) {
+        
+        
+        
+        
+    }
+    
     private func requestUnckeckedMsg(date: String?, wsId: Int, name: String) -> Observable<Mutation> {
         
         return ChannelsAPIManager.shared.request(api: .fetchMsg(date: date, name: name, wsId: wsId), responseType: ChannelChatResDTO.self)
             .asObservable()
-            .flatMap { result -> Observable<Mutation> in
-                
+            .withUnretained(self)
+            .flatMap { (self, result) -> Observable<Mutation> in
                 switch result {
                 case .success(let response):
                     if let response = response, let channelRecord = self.channelRecord {
@@ -140,7 +147,8 @@ extension ChatReactor {
         
         return ChannelsAPIManager.shared.request(api: .sendMsg(name: channel.name, id: id, data: data), responseType: ChannelMessageDTO.self)
             .asObservable()
-            .flatMap { result -> Observable<Mutation> in
+            .withUnretained(self)
+            .flatMap { (self, result) -> Observable<Mutation> in
                 switch result {
                 case .success(let response):
                     if let response = response {

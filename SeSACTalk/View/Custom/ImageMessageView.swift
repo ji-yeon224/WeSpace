@@ -71,14 +71,14 @@ final class ImageMessageView: BaseView {
     override func setConstraints() {
         imageStackView.snp.makeConstraints { make in
             make.edges.equalTo(self)
-            make.width.equalTo(Constants.Design.deviceWidth * 0.6)
+//            make.width.equalTo(self).multipliedBy(0.6)
         }
         firstStack.snp.makeConstraints { make in
-            make.height.equalTo(imageStackView.snp.width).multipliedBy(0.33)
+            make.height.equalTo(firstStack.snp.width).multipliedBy(0.33)
         }
         oneImageView.snp.makeConstraints { make in
             make.edges.equalTo(self)
-            make.width.equalTo(Constants.Design.deviceWidth * 0.6)
+//            make.width.equalTo(Constants.Design.deviceWidth * 0.6)
 //            make.height.equalTo(oneImageView.snp.width).multipliedBy(0.66)
         }
     }

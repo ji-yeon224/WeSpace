@@ -120,6 +120,12 @@ extension HomeReactor {
         }
     }
     
+//    private func fetchChannelMembers(wsId: Int, name: String) -> [User] {
+//         return ChannelsAPIManager.shared.request(api: .member(name: name, wsId: wsId), responseType: MemberResDTO.self)
+//            
+//        
+//    }
+    
     private func searchChannelDB(wsId: Int, chId: Int, name: String) -> ChannelDTO? {
         let data = channelRepository.searchChannel(wsId: wsId, chId: chId)
 //        print(data)

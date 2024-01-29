@@ -53,7 +53,8 @@ final class ChatViewController: BaseViewController {
         self.reactor = ChatReactor()
         self.reactor?.channelRecord = channel
         requestUncheckedChat.accept(lastDate)
-        updateSnapShot()
+//        updateSnapShot()
+        updateTableSnapShot()
         
         ChannelMsgRepository().getLocation()
     }
@@ -66,7 +67,7 @@ final class ChatViewController: BaseViewController {
             chatData.append(contentsOf: chats)
             
             lastDate = chats.last?.createdAt
-            print("last date ", lastDate)
+//            print("last date ", lastDate)
         }
         
     }
@@ -170,14 +171,16 @@ extension ChatViewController: View {
             .withLatestFrom(mainView.chatWriteView.textView.rx.text.orEmpty, resultSelector: { _, value in
                 return value
             })
-            .map { Reactor.Action.sendRequest(channel: self.channel, id: self.workspace?.workspaceId, content: $0, files: self.selectImageModel.items)}
+            .withUnretained(self)
+            .map { Reactor.Action.sendRequest(channel: self.channel, id: self.workspace?.workspaceId, content: $0.1, files: self.selectImageModel.items)}
             .bind(to: reactor.action )
             .disposed(by: disposeBag)
         
         requestUncheckedChat
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
-            .map { Reactor.Action.requestUncheckedMsg(date: $0, wsId: self.workspace?.workspaceId, name: self.channel?.name)}
+            .withUnretained(self)
+            .map { Reactor.Action.requestUncheckedMsg(date: $0.1, wsId: self.workspace?.workspaceId, name: self.channel?.name)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -193,8 +196,8 @@ extension ChatViewController: View {
                 owner.chatData.append(contentsOf: value)
 //                print(value)
                 
-                owner.updateSnapShot()
-                
+//                owner.updateSnapShot()
+                owner.updateTableSnapShot()
             }
             .disposed(by: disposeBag)
         
@@ -215,8 +218,8 @@ extension ChatViewController: View {
                 if let value = value {
                     print("[SUCCESS] ", value.createdAt)
                     owner.chatData.append(value)
-                    owner.updateSnapShot()
-                    owner.mainView.collectionView.scrollToItem(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
+                    owner.updateTableSnapShot()
+                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
                 }
@@ -252,11 +255,12 @@ extension ChatViewController {
         imgData.accept([selectImageModel])
     }
     
-    private func updateSnapShot() {
+    
+    private func updateTableSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<String, ChannelMessage>()
         snapshot.appendSections([""])
         snapshot.appendItems(chatData)
-        mainView.dataSource.apply(snapshot)
+        mainView.tabledataSource.apply(snapshot)
     }
 }
 
