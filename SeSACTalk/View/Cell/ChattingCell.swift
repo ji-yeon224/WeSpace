@@ -94,10 +94,11 @@ final class ChattingCell: BaseCollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         profileImageView.image = nil
-        chatImgView.isHidden = true
-        stackView.isHidden = true
-//        chatTextLabel.isHidden = true
-        
+        chatImgView.isHidden = false
+        stackView.isHidden = false
+        chatImgView.initImageView()
+        chatMsgView.isHidden = false
+        chatTextLabel.text = nil
     }
     
     func configImage(files: [String]) {

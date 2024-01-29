@@ -78,7 +78,27 @@ final class ImageMessageView: BaseView {
         }
         oneImageView.snp.makeConstraints { make in
             make.edges.equalTo(self)
+            make.width.equalTo(Constants.Design.deviceWidth * 0.6)
+//            make.height.equalTo(oneImageView.snp.width).multipliedBy(0.66)
         }
+    }
+    
+    func initImageView() {
+        imageStackView.isHidden = false
+        oneImageView.isHidden = true
+        secondStack.isHidden = false
+        firstStack.isHidden = false
+        oneImageView.image = nil
+        imageView1.image = nil
+        imageView2.image = nil
+        imageView3.image = nil
+        imageView4.image = nil
+        imageView5.image = nil
+        imageView1.isHidden = false
+        imageView2.isHidden = false
+        imageView3.isHidden = false
+        imageView4.isHidden = false
+        imageView5.isHidden = false
     }
     
     func configUIImage(img: [UIImage]) {
@@ -86,13 +106,14 @@ final class ImageMessageView: BaseView {
         case 1:
             imageStackView.isHidden = true
             oneImageView.isHidden = false
-            
             oneImageView.image = img[0]
         case 2:
             imageView1.image = img[0]
             imageView2.image = img[1]
+            
             secondStack.isHidden = true
             imageView3.isHidden = true
+            
         case 3:
             imageView1.image = img[0]
             imageView2.image = img[1]
@@ -113,6 +134,9 @@ final class ImageMessageView: BaseView {
             imageView3.image = img[2]
             imageView4.image = img[3]
             imageView5.image = img[4]
+            
+            imageStackView.isHidden = false
+            
         default: break
         }
     }
