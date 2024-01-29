@@ -13,22 +13,26 @@ import RxDataSources
 final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
-    private var channel: Channel?
+    private var channel: ChannelDTO?
     private var workspace: WorkSpace?
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
+    private var requestUncheckedChat = PublishRelay<String?>()
     private var chatData: [ChannelMessage] = []
+    private var lastDate: String?
 //    private var selectLimit = 5
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
-    init(info: Channel, workspace: WorkSpace) {
+    init(info: ChannelDTO, workspace: WorkSpace, chatItems: [ChannelMessage]) {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
         self.workspace = workspace
-        print(workspace.workspaceId)
+//        print(workspace.workspaceId)
+//        print(chatItems)
+        
     }
     
     @available(*, unavailable)
@@ -44,9 +48,28 @@ final class ChatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
-        updateSnapShot()
+        
+        configData()
         self.reactor = ChatReactor()
+        self.reactor?.channelRecord = channel
+        requestUncheckedChat.accept(lastDate)
+//        updateSnapShot()
+        updateTableSnapShot()
+        
         ChannelMsgRepository().getLocation()
+    }
+    
+    private func configData() {
+        if let channel = channel {
+            let chats = channel.chatItem.map {
+                $0.toDomain()
+            }
+            chatData.append(contentsOf: chats)
+            
+            lastDate = chats.last?.createdAt
+//            print("last date ", lastDate)
+        }
+        
     }
     
     
@@ -58,6 +81,11 @@ final class ChatViewController: BaseViewController {
         title = "# " + channel.name
         
         mainView.chatWriteView.delegate = self
+        
+        
+        if let workspace = workspace {
+            mainView.wsId = workspace.workspaceId
+        }
         
     }
     
@@ -143,12 +171,35 @@ extension ChatViewController: View {
             .withLatestFrom(mainView.chatWriteView.textView.rx.text.orEmpty, resultSelector: { _, value in
                 return value
             })
-            .map { Reactor.Action.sendRequest(name: self.channel?.name, id: self.workspace?.workspaceId, content: $0, files: self.selectImageModel.items)}
+            .withUnretained(self)
+            .map { Reactor.Action.sendRequest(channel: self.channel, id: self.workspace?.workspaceId, content: $0.1, files: self.selectImageModel.items)}
             .bind(to: reactor.action )
+            .disposed(by: disposeBag)
+        
+        requestUncheckedChat
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .map { Reactor.Action.requestUncheckedMsg(date: $0.1, wsId: self.workspace?.workspaceId, name: self.channel?.name)}
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: ChatReactor) {
+        
+        reactor.state
+            .map { $0.fetchChatSuccess }
+            .asDriver(onErrorJustReturn: [])
+            .filter { !$0.isEmpty }
+            .distinctUntilChanged()
+            .drive(with: self) { owner, value in
+                owner.chatData.append(contentsOf: value)
+//                print(value)
+                
+//                owner.updateSnapShot()
+                owner.updateTableSnapShot()
+            }
+            .disposed(by: disposeBag)
         
         reactor.state
             .map { $0.msg }
@@ -167,7 +218,8 @@ extension ChatViewController: View {
                 if let value = value {
                     print("[SUCCESS] ", value.createdAt)
                     owner.chatData.append(value)
-                    owner.updateSnapShot()
+                    owner.updateTableSnapShot()
+                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
                 }
@@ -203,12 +255,12 @@ extension ChatViewController {
         imgData.accept([selectImageModel])
     }
     
-    private func updateSnapShot() {
+    
+    private func updateTableSnapShot() {
         var snapshot = NSDiffableDataSourceSnapshot<String, ChannelMessage>()
         snapshot.appendSections([""])
         snapshot.appendItems(chatData)
-        mainView.dataSource.apply(snapshot)
-        
+        mainView.tabledataSource.apply(snapshot)
     }
 }
 
@@ -233,13 +285,4 @@ extension ChatViewController {
         navigationController?.popViewController(animated: true)
     }
 }
- 
-let dummy: [ChannelMessage] = [
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 1, email: "a@a.com", nickname: "jy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕dddsdkfjlsdkjflsdjfljsdlfjlsdjflsasdaasd 12312312313djflkjslfjlsdk", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 3, email: "a@a.com", nickname: "jasdy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg","/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 3, email: "a@a.com", nickname: "jasdy", profileImage: nil)),
-ChannelMessage(channelID: 1, channelName: "hh", chatID: 1, content: "안녕aaa", createdAt: "2023-12-21T22:47:30.236Z", files: ["/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg", "/static/workspaceThumbnail/1705508903819.jpeg"], user: User(userId: 2, email: "a@a.com", nickname: "jjiyy", profileImage: nil))
-
-]
 

@@ -13,6 +13,7 @@ import RealmSwift
 protocol RealmDB {
     func read<T: Object>(object: T.Type) -> Results<T>
     func write<T: Object>(object: [T]) throws
+    func delete<T: Object>(object:T) throws
 }
 
 class RealmManager: RealmDB {
@@ -41,6 +42,18 @@ class RealmManager: RealmDB {
             }
         } catch {
             throw DBError.createError
+        }
+    }
+    
+    
+    
+    func delete<T: Object>(object: T) throws {
+        do {
+            try realm.write {
+                realm.delete(object)
+            }
+        } catch {
+            throw DBError.deleteError
         }
     }
     

@@ -57,6 +57,8 @@
 		CE5F94CF2B623A36006A4DA4 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */; };
 		CE5F94D12B626EBE006A4DA4 /* DBImageFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */; };
 		CE5F94D32B626F3B006A4DA4 /* ImageFileNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */; };
+		CE5F94D52B62A3EE006A4DA4 /* ChannelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D42B62A3EE006A4DA4 /* ChannelDTO.swift */; };
+		CE5F94D72B62A809006A4DA4 /* ChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D62B62A809006A4DA4 /* ChannelRepository.swift */; };
 		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
 		CE61ADF82B5B629F0091B03D /* InviteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF72B5B629F0091B03D /* InviteError.swift */; };
 		CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */; };
@@ -277,6 +279,8 @@
 		CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBImageFileName.swift; sourceTree = "<group>"; };
 		CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileNameManager.swift; sourceTree = "<group>"; };
+		CE5F94D42B62A3EE006A4DA4 /* ChannelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDTO.swift; sourceTree = "<group>"; };
+		CE5F94D62B62A809006A4DA4 /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
 		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
 		CE61ADF72B5B629F0091B03D /* InviteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteError.swift; sourceTree = "<group>"; };
 		CE61ADFA2B5CEB160091B03D /* CreateChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelViewController.swift; sourceTree = "<group>"; };
@@ -584,6 +588,8 @@
 				CE5EA4AF2B60AB1200999704 /* ChannelChatDTO.swift */,
 				CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */,
 				CE5EA4B92B60B45E00999704 /* RealmManager.swift */,
+				CE5F94D42B62A3EE006A4DA4 /* ChannelDTO.swift */,
+				CE5F94D62B62A809006A4DA4 /* ChannelRepository.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -1338,6 +1344,7 @@
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */,
 				CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */,
+				CE5F94D52B62A3EE006A4DA4 /* ChannelDTO.swift in Sources */,
 				CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */,
 				CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
@@ -1381,6 +1388,7 @@
 				CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */,
 				CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */,
 				CEA8F9BC2B494A620062B45C /* Text.swift in Sources */,
+				CE5F94D72B62A809006A4DA4 /* ChannelRepository.swift in Sources */,
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
 				CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */,

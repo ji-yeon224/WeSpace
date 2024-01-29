@@ -11,29 +11,44 @@ import RealmSwift
 
 final class ChannelMsgRepository {
     
-    private let realm = RealmManager.shared
+    private let realm = try! Realm()
     
     
     func fetchAll() -> Results<ChannelChatDTO>{
-        return realm.read(object: ChannelChatDTO.self)
+        return realm.objects(ChannelChatDTO.self)//read(object: ChannelChatDTO.self)
     }
     
-    func fetchLastData() -> ChannelChatDTO? {
-        return realm.realm.objects(ChannelChatDTO.self).max {
-            $0._id < $1._id
-        }
-    }
     
     func createData(data: [ChannelChatDTO]) throws {
         do {
-            try realm.write(object: data)
+            try realm.write {
+                realm.add(data)
+            }
         } catch {
-            throw error
+            throw DBError.createError
         }
     }
     
     func getLocation() {
-        realm.getRealmLocation()
+        print("=====Realm 경로: ", realm.configuration.fileURL!)
+    }
+    
+//    func updateImage(data: ChannelChatDTO, imgs: [ChatImageDTO]) throws {
+//        do {
+//            try realm.write {
+//                data.imgUrls.append(objectsIn: imgs)
+//                realm.add(data)
+//            }
+//        } catch {
+//            throw DBError.updateError
+//        }
+//    }
+    
+    func isExistItem(channelId: Int, chatId: Int) -> Bool {
+        return realm.objects(ChannelChatDTO.self).where {
+            $0.channelId == channelId && $0.chatId == chatId
+        }.count > 0 ? true : false
+        
     }
     
     func saveImageToDocument(fileName: String, image: SelectImage) {
@@ -43,9 +58,9 @@ final class ChannelMsgRepository {
         
         // 2. 저장할 경로 설정(세부 경로, 이미지를 저장할 위치)
         let fileURL = documentDirectory.appendingPathComponent("\(fileName)")
-        print(fileURL)
+//        print(fileURL)
         // 3. 이미지 변환
-        guard let data = image.img?.jpegData(compressionQuality: 0.8) else { return }
+        guard let data = image.img?.jpegData(compressionQuality: 0.5) else { return }
         
         
         
@@ -57,7 +72,15 @@ final class ChannelMsgRepository {
             // 사용자에게 보여줄 액션을 구현해야 한다.
         }
     }
-    
+    func delete(data: ChannelChatDTO) throws {
+        do {
+            try realm.write {
+                realm.delete(data)
+            }
+        } catch {
+            throw DBError.deleteError
+        }
+    }
     
     
 }
