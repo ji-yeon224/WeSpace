@@ -104,6 +104,10 @@
 		CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */; };
 		CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */; };
 		CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */; };
+		CE9592342B68ADA000665659 /* SearchChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592332B68ADA000665659 /* SearchChannelViewController.swift */; };
+		CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592352B68ADA700665659 /* SearchChannelView.swift */; };
+		CE9592382B68ADE500665659 /* SearchChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592372B68ADE500665659 /* SearchChannelCell.swift */; };
+		CE95923A2B68B07000665659 /* ChannelSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592392B68B07000665659 /* ChannelSectionModel.swift */; };
 		CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB532B56855900413500 /* MakeWSDelegate.swift */; };
 		CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */; };
 		CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */; };
@@ -328,6 +332,10 @@
 		CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadCntView.swift; sourceTree = "<group>"; };
+		CE9592332B68ADA000665659 /* SearchChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewController.swift; sourceTree = "<group>"; };
+		CE9592352B68ADA700665659 /* SearchChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelView.swift; sourceTree = "<group>"; };
+		CE9592372B68ADE500665659 /* SearchChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelCell.swift; sourceTree = "<group>"; };
+		CE9592392B68B07000665659 /* ChannelSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionModel.swift; sourceTree = "<group>"; };
 		CEA4EB532B56855900413500 /* MakeWSDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeWSDelegate.swift; sourceTree = "<group>"; };
 		CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactor.swift; sourceTree = "<group>"; };
 		CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDelegate.swift; sourceTree = "<group>"; };
@@ -497,6 +505,7 @@
 		CE211F342B5AC97A00C43028 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				CE9592322B68AD9200665659 /* Search */,
 				CE61AE062B5D51730091B03D /* Chatting */,
 				CE61ADF92B5CEB070091B03D /* Create */,
 			);
@@ -522,6 +531,7 @@
 				CE4904D92B4D11C9003B0204 /* DMSection.swift */,
 				CE4904DD2B4D2E41003B0204 /* Item.swift */,
 				CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */,
+				CE9592392B68B07000665659 /* ChannelSectionModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -796,8 +806,18 @@
 				CE61AE0B2B5D5FAF0091B03D /* ChatTableViewCell.swift */,
 				CE61AE0F2B5E40DC0091B03D /* ChattingCell.swift */,
 				CE61AE172B5E5BE40091B03D /* ChatImageCell.swift */,
+				CE9592372B68ADE500665659 /* SearchChannelCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		CE9592322B68AD9200665659 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CE9592332B68ADA000665659 /* SearchChannelViewController.swift */,
+				CE9592352B68ADA700665659 /* SearchChannelView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		CEA8F9AC2B4924640062B45C /* Join */ = {
@@ -1367,6 +1387,8 @@
 				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
 				CE61AE0E2B5D64EA0091B03D /* ChatWriteView.swift in Sources */,
 				CE61AE182B5E5BE40091B03D /* ChatImageCell.swift in Sources */,
+				CE9592382B68ADE500665659 /* SearchChannelCell.swift in Sources */,
+				CE95923A2B68B07000665659 /* ChannelSectionModel.swift in Sources */,
 				CE61AE032B5CF46F0091B03D /* ChannelCreateError.swift in Sources */,
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
@@ -1383,11 +1405,13 @@
 				CEEAA1D52B53FB9800EA1C58 /* WorkspaceEmptyView.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
 				CED8294D2B58C42900AD1828 /* ChangeManagerReactor.swift in Sources */,
+				CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */,
 				CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */,
 				CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */,
 				CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */,
 				CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */,
 				CEA8F9BC2B494A620062B45C /* Text.swift in Sources */,
+				CE9592342B68ADA000665659 /* SearchChannelViewController.swift in Sources */,
 				CE5F94D72B62A809006A4DA4 /* ChannelRepository.swift in Sources */,
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,

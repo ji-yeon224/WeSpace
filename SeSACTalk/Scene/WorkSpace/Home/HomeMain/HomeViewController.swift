@@ -233,6 +233,15 @@ extension HomeViewController {
                 owner.itemSelected(indexPath: indexPath)
             }
             .disposed(by: disposeBag)
+        
+        searchChannel
+            .bind(with: self) { owner, _ in
+                let vc = SearchChannelViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
                 
     }
     

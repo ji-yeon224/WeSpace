@@ -22,3 +22,5 @@ struct Channel: Hashable {
     }
     
 }
+
+
