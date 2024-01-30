@@ -28,7 +28,17 @@ final class ChannelRepository {
         }
     }
     
-    
+    func updateChannelInfo(data: ChannelDTO, name: String) throws{
+        
+        do {
+            try realm.write {
+                data.name = name
+            }
+        } catch {
+            throw DBError.createError
+        }
+        
+    }
     
     
     func updateChatItems(data: ChannelDTO, chat: [ChannelChatDTO]) throws {
