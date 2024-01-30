@@ -14,16 +14,20 @@ final class SearchChannelViewController: BaseViewController {
     
     private let requestChannelList = PublishSubject<Int?>()
     private let requestMyChannels = PublishSubject<Int>()
+    private let saveToDB = PublishSubject<Channel>()
     
     private var myChannelList: [Int:Channel] = [:]
     private var wsId: Int?
+    private var workspace: WorkSpace?
+    
+    weak var delegate: SearchChannelDelegate?
     
     var disposeBag = DisposeBag()
     
-    init(wsId: Int) {
+    init(workspace: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
-        self.wsId = wsId
-        
+        self.wsId = workspace.workspaceId
+        self.workspace = workspace
     }
     
     @available(*, unavailable)
@@ -52,6 +56,7 @@ final class SearchChannelViewController: BaseViewController {
         }
         requestMyChannels.onNext(wsId)
 //        requestChannelList.onNext(wsId)
+        navigationController?.navigationBar.isHidden = false
         
     }
     
@@ -78,6 +83,11 @@ extension SearchChannelViewController: View {
         
         requestChannelList
             .map { Reactor.Action.requestChannelList(wsId: $0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        saveToDB
+            .map { Reactor.Action.saveChannel(wsId: self.workspace?.workspaceId, chId: $0.channelID, name: $0.name)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -117,6 +127,20 @@ extension SearchChannelViewController: View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.saveChannel }
+            .filter { $0 != .none }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                if let value = value, let workspace = owner.workspace {
+                    let vc = ChatViewController(info: value, workspace: workspace, chatItems: [])
+                    vc.hidesBottomBarWhenPushed = true
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     
@@ -126,7 +150,7 @@ extension SearchChannelViewController: View {
             .asDriver()
             .drive(with: self) { owner, value in
                 if owner.myChannelList[value.channelID] != nil { // 이미 속한 채널
-                    owner.moveChannel(channel: value)
+                    owner.moveChannel(channel: value, join: false)
                 } else {
                     
                     let joinMsg = Text.joinChannel.replacingOccurrences(of: "{channel}", with: value.name)
@@ -146,11 +170,14 @@ extension SearchChannelViewController: View {
 extension SearchChannelViewController {
     
     private func joinChannel(channel: Channel) {
+        saveToDB.onNext(channel)
         
     }
     
-    private func moveChannel(channel: Channel) {
+    private func moveChannel(channel: Channel, join: Bool) {
         
+        delegate?.moveToChannel(channel: channel, join: join)
+        navigationController?.popViewController(animated: false)
     }
     
     
@@ -161,6 +188,6 @@ extension SearchChannelViewController {
         navigationController?.setupBarAppearance()
     }
     @objc private func xButtonTapped() {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }

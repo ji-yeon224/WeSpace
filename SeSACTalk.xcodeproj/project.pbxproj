@@ -109,6 +109,7 @@
 		CE9592382B68ADE500665659 /* SearchChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592372B68ADE500665659 /* SearchChannelCell.swift */; };
 		CE95923A2B68B07000665659 /* ChannelSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592392B68B07000665659 /* ChannelSectionModel.swift */; };
 		CE95923C2B68BA2000665659 /* SearchChannelReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923B2B68BA2000665659 /* SearchChannelReactor.swift */; };
+		CE95923E2B68D0E800665659 /* SearchChannelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */; };
 		CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB532B56855900413500 /* MakeWSDelegate.swift */; };
 		CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */; };
 		CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */; };
@@ -338,6 +339,7 @@
 		CE9592372B68ADE500665659 /* SearchChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelCell.swift; sourceTree = "<group>"; };
 		CE9592392B68B07000665659 /* ChannelSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionModel.swift; sourceTree = "<group>"; };
 		CE95923B2B68BA2000665659 /* SearchChannelReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelReactor.swift; sourceTree = "<group>"; };
+		CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelDelegate.swift; sourceTree = "<group>"; };
 		CEA4EB532B56855900413500 /* MakeWSDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeWSDelegate.swift; sourceTree = "<group>"; };
 		CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactor.swift; sourceTree = "<group>"; };
 		CEA4EB5E2B56BC6700413500 /* AlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDelegate.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 			isa = PBXGroup;
 			children = (
 				CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */,
+				CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -1326,6 +1329,7 @@
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
 				CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */,
+				CE95923E2B68D0E800665659 /* SearchChannelDelegate.swift in Sources */,
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CE5EA4B82B60B33400999704 /* ChannelMsgRepository.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,

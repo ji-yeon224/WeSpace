@@ -12,25 +12,31 @@ final class SearchChannelReactor: Reactor {
     var initialState: State = State(
         channelList: [],
         myChannelList: [:],
-        msg: ""
+        msg: "",
+        saveChannel: nil
     )
+    
+    private var channelRepository = ChannelRepository()
     
     
     enum Action {
         case requestChannelList(wsId: Int?)
         case requestMyChannels(wsId: Int?)
+        case saveChannel(wsId: Int?, chId: Int, name: String)
     }
     
     enum Mutation {
         case channelList(data: ChannelsItemResDTO)
         case myChannelList(data: ChannelsItemResDTO)
         case msg(msg: String)
+        case saveSuccess(data: ChannelDTO)
     }
     
     struct State {
         var channelList: [ChannelSectionModel]
         var myChannelList: [Int: Channel]
         var msg: String
+        var saveChannel: ChannelDTO?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -44,6 +50,11 @@ final class SearchChannelReactor: Reactor {
         case .requestMyChannels(let wsId):
             if let wsId = wsId {
                 return requestMyChannelList(wsId: wsId)
+            }
+            return .just(.msg(msg: ChannelToastMessage.otherError.message))
+        case .saveChannel(let wsId, let chId, let name):
+            if let wsId = wsId {
+                return searchChannelDB(wsId: wsId, chId: chId, name: name)
             }
             return .just(.msg(msg: ChannelToastMessage.otherError.message))
         }
@@ -63,6 +74,8 @@ final class SearchChannelReactor: Reactor {
             }
         case .msg(let msg):
             newState.msg = msg
+        case .saveSuccess(let data):
+            newState.saveChannel = data
         }
         
         return newState
@@ -72,6 +85,27 @@ final class SearchChannelReactor: Reactor {
 }
 
 extension SearchChannelReactor {
+    
+    private func searchChannelDB(wsId: Int, chId: Int, name: String) -> Observable<Mutation> {
+        let data = channelRepository.searchChannel(wsId: wsId, chId: chId)
+//        print(data)
+        if data.isEmpty {
+            let channelInfo = ChannelDTO(workspaceId: wsId, channelId: chId, name: name)
+            // 저장
+            do {
+                try channelRepository.create(object: channelInfo)
+                return .just(.saveSuccess(data: channelInfo))
+            } catch {
+                debugPrint("channel ", error.localizedDescription)
+                return .just(.msg(msg: ChannelToastMessage.otherError.message))
+            }
+        } else {
+            if let data = data.first {
+                return .just(.saveSuccess(data: data))
+            }
+            return .just(.msg(msg: ChannelToastMessage.otherError.message))
+        }
+    }
     
     private func requestMyChannelList(wsId: Int) -> Observable<Mutation> {
         return ChannelsAPIManager.shared.request(api: .myChannel(id: wsId), responseType: ChannelsItemResDTO.self)

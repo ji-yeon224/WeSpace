@@ -26,6 +26,8 @@ final class ChatViewController: BaseViewController {
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
+    var refreshHome: ((WorkspaceType, Bool) -> Void)?
+    
     init(info: ChannelDTO, workspace: WorkSpace, chatItems: [ChannelMessage]) {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
@@ -279,10 +281,12 @@ extension ChatViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .list, style: .plain, target: self, action: nil)
         navigationItem.leftBarButtonItem?.tintColor = .basicText
         navigationItem.rightBarButtonItem?.tintColor = .basicText
+        navigationController?.setupBarAppearance()
     }
     
     @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
