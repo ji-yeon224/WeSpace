@@ -11,21 +11,25 @@ import ReactorKit
 final class SearchChannelReactor: Reactor {
     var initialState: State = State(
         channelList: [],
+        myChannelList: [:],
         msg: ""
     )
     
     
     enum Action {
         case requestChannelList(wsId: Int?)
+        case requestMyChannels(wsId: Int?)
     }
     
     enum Mutation {
         case channelList(data: ChannelsItemResDTO)
+        case myChannelList(data: ChannelsItemResDTO)
         case msg(msg: String)
     }
     
     struct State {
         var channelList: [ChannelSectionModel]
+        var myChannelList: [Int: Channel]
         var msg: String
     }
     
@@ -37,6 +41,11 @@ final class SearchChannelReactor: Reactor {
             }
             return .just(.msg(msg: ChannelToastMessage.otherError.message))
             
+        case .requestMyChannels(let wsId):
+            if let wsId = wsId {
+                return requestMyChannelList(wsId: wsId)
+            }
+            return .just(.msg(msg: ChannelToastMessage.otherError.message))
         }
     }
     
@@ -48,6 +57,10 @@ final class SearchChannelReactor: Reactor {
             let items = data.map { $0.toDomain() }
             
             newState.channelList = [ChannelSectionModel(section: "", items: items)]
+        case .myChannelList(let data):
+            data.forEach {
+                newState.myChannelList.updateValue($0.toDomain(), forKey: $0.channelID)
+            }
         case .msg(let msg):
             newState.msg = msg
         }
@@ -59,6 +72,23 @@ final class SearchChannelReactor: Reactor {
 }
 
 extension SearchChannelReactor {
+    
+    private func requestMyChannelList(wsId: Int) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .myChannel(id: wsId), responseType: ChannelsItemResDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        return .myChannelList(data: response)
+                    }
+                    return .msg(msg: ChannelToastMessage.otherError.message)
+                case .failure(let error):
+                    return self.channelErrorCheck(error: error)
+                }
+                
+            }
+    }
     
     private func requestAllChannelList(wsId: Int) -> Observable<Mutation> {
         return ChannelsAPIManager.shared.request(api: .allChannel(wsId: wsId), responseType: ChannelsItemResDTO.self)
