@@ -14,6 +14,7 @@ enum ChannelsAPI {
     case sendMsg(name: String, id: Int, data: ChannelChatReqDTO)
     case fetchMsg(date: String?, name: String, wsId: Int)
     case member(name: String, wsId: Int)
+    case allChannel(wsId: Int)
 }
 
 extension ChannelsAPI: TargetType {
@@ -25,7 +26,7 @@ extension ChannelsAPI: TargetType {
         switch self {
         case .myChannel(let id):
             return Endpoint.workspaces.rawValue + "/\(id)/channels/my"
-        case .create(let id, _):
+        case .create(let id, _), .allChannel(let id):
             return Endpoint.workspaces.rawValue + "/\(id)/channels"
         case .sendMsg(let name, let id, _):
             return Endpoint.workspaces.rawValue + "/\(id)/channels/\(name)/chats"
@@ -33,12 +34,13 @@ extension ChannelsAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)/chats"
         case .member(let name, let wsId):
             return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)/members"
+        
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .myChannel, .fetchMsg, .member:
+        case .myChannel, .fetchMsg, .member, .allChannel:
             return .get
         case .create, .sendMsg:
             return .post
@@ -47,7 +49,7 @@ extension ChannelsAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .myChannel, .member:
+        case .myChannel, .member, .allChannel:
             return .requestPlain
         case .create(_, data: let data):
             return .requestJSONEncodable(data)
@@ -55,7 +57,7 @@ extension ChannelsAPI: TargetType {
             return .uploadMultipart(data.multipartData())
         case .fetchMsg(let date, _, _):
             if let date = date {
-                var parameter = ["cursor_date": date]
+                let parameter = ["cursor_date": date]
                 return .requestParameters(parameters: parameter, encoding: URLEncoding.queryString)
             } else {
                 return .requestPlain
@@ -67,7 +69,7 @@ extension ChannelsAPI: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .myChannel, .fetchMsg, .member:
+        case .myChannel, .fetchMsg, .member, .allChannel:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .create:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]

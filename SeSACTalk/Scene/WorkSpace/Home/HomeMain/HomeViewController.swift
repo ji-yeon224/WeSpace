@@ -236,10 +236,13 @@ extension HomeViewController {
         
         searchChannel
             .bind(with: self) { owner, _ in
-                let vc = SearchChannelViewController()
-                let nav = UINavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                owner.present(nav, animated: true)
+                if let workspace = owner.workspace {
+                    let vc = SearchChannelViewController(wsId: workspace.workspaceId)
+                    let nav = UINavigationController(rootViewController: vc)
+                    nav.modalPresentationStyle = .fullScreen
+                    owner.present(nav, animated: true)
+                }
+               
             }
             .disposed(by: disposeBag)
                 
