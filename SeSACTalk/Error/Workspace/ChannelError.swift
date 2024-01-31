@@ -6,11 +6,11 @@
 //
 
 import Foundation
-enum ChannelChatError: String, Error {
+enum ChannelError: String, Error {
     case E11, E13
 }
 
-extension ChannelChatError: LocalizedError {
+extension ChannelError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .E11:

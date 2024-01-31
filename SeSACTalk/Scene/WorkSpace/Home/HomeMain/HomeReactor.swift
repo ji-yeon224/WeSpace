@@ -112,6 +112,11 @@ extension HomeReactor {
     
     private func requestChannelInfo(wsId: Int, chInfo: Channel) -> Observable<Mutation> {
         if let channelInfo = searchChannelDB(wsId: wsId, chId: chInfo.channelID, name: chInfo.name) {
+            
+            // 이름 다르면 이름 수정
+            if chInfo.name != channelInfo.name {
+                updateChannelInfo(channel: channelInfo, name: chInfo.name)
+            }
             debugPrint("채널 정보 가져옴...")
             let item = getChatItems(channelData: channelInfo)
             return .just(.chatInfo(chInfo: channelInfo, chatItems: item))
@@ -125,6 +130,14 @@ extension HomeReactor {
 //            
 //        
 //    }
+    
+    private func updateChannelInfo(channel: ChannelDTO, name: String) {
+        do {
+            try channelRepository.updateChannelInfo(data: channel, name: name)
+        } catch {
+            debugPrint(error.localizedDescription)
+        }
+    }
     
     private func searchChannelDB(wsId: Int, chId: Int, name: String) -> ChannelDTO? {
         let data = channelRepository.searchChannel(wsId: wsId, chId: chId)

@@ -47,4 +47,8 @@ enum Text {
     static let createChannelNamePlaceholder = "채널 이름을 입력하세요.(필수)"
     static let createChannelDescrptionPlaceholder = "채널을 설명하세요.(옵션)"
     
+    // SearchChannel
+    static let joinTitle = "채널 참여"
+    static let joinChannel = "[{channel}] 채널에 참여하시겠습니까?"
+    
 }

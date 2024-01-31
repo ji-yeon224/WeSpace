@@ -126,7 +126,7 @@ extension ChatReactor {
                     return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
                 case .failure(let error):
                     var msg = CommonError.E99.localizedDescription
-                    if let error = ChannelChatError(rawValue: error.errorCode) {
+                    if let error = ChannelError(rawValue: error.errorCode) {
                         msg = error.localizedDescription
                     } else if let error = CommonError(rawValue: error.errorCode) {
                         msg = error.localizedDescription
@@ -167,7 +167,7 @@ extension ChatReactor {
                 case .failure(let error):
                     print(error.localizedDescription)
                     var msg = CommonError.E99.localizedDescription
-                    if let error = ChannelChatError(rawValue: error.errorCode) {
+                    if let error = ChannelError(rawValue: error.errorCode) {
                         msg = error.localizedDescription
                     } else if let error = CommonError(rawValue: error.errorCode) {
                         msg = error.localizedDescription

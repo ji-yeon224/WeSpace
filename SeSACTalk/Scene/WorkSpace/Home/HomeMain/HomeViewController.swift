@@ -15,7 +15,7 @@ final class HomeViewController: BaseViewController, View {
     
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
-    private let requestChannelInfo = PublishSubject<Bool>()
+    private let requestChannelInfo = PublishSubject<Void>()
     private let requestDMsInfo = PublishSubject<Bool>()
     private let requestAllWorkspaceInfo = PublishSubject<Bool>()
     private let requestChatItems = PublishRelay<Void>()
@@ -25,6 +25,7 @@ final class HomeViewController: BaseViewController, View {
     
     private var workspace: WorkSpace?
     private var allWorkspace: [WorkSpace]?
+    private var isNeedChannelRefresh: Bool = false
     
     override func loadView() {
         self.view = mainView
@@ -43,14 +44,15 @@ final class HomeViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
         self.reactor = HomeReactor()
         initData()
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         SideMenuVCManager.shared.enableSideMenu()
+        navigationController?.navigationBar.isHidden = true
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -67,7 +69,7 @@ final class HomeViewController: BaseViewController, View {
     }
     
     private func initData() {
-        requestChannelInfo.onNext(true)
+        requestChannelInfo.onNext(())
         requestDMsInfo.onNext(true)
         requestAllWorkspaceInfo.onNext(true)
         if let workspace = workspace {
@@ -96,9 +98,9 @@ extension HomeViewController {
     private func bindAction(reactor: HomeReactor) {
         
         requestChannelInfo
-            .map{ _ in
-                Reactor.Action.requestChannelInfo(id: self.workspace?.workspaceId)
-            }
+            .throttle(.seconds(2), scheduler: MainScheduler.asyncInstance)
+            .debug()
+            .map { Reactor.Action.requestChannelInfo(id: self.workspace?.workspaceId) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -183,16 +185,21 @@ extension HomeViewController {
             .filter {
                 $0.0 != .none
             }
+            .distinctUntilChanged{
+                $0.0?.name == $1.0?.name
+            }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 if let ws = owner.workspace, let channel = value.0 {
                     let vc = ChatViewController(info: channel, workspace: ws, chatItems: value.1)
                     vc.hidesBottomBarWhenPushed = true
                     owner.navigationController?.pushViewController(vc, animated: true)
+                    
                 }
             }
             .disposed(by: disposeBag)
     }
+    
     
     
     private func bindEvent() {
@@ -213,7 +220,7 @@ extension HomeViewController {
         
         NotificationCenter.default.rx.notification(.refreshWS)
             .bind(with: self) { owner, _ in
-                owner.requestChannelInfo.onNext(true)
+                owner.requestChannelInfo.onNext(())
             }
             .disposed(by: disposeBag)
         
@@ -227,10 +234,28 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.refreshChannel)
+            .bind(with: self) { owner, _ in
+                owner.requestChannelInfo.onNext(())
+            }
+            .disposed(by: disposeBag)
+        
         mainView.collectionView.rx.itemSelected
             .asDriver()
             .drive(with: self) { owner, indexPath in
                 owner.itemSelected(indexPath: indexPath)
+            }
+            .disposed(by: disposeBag)
+        
+        searchChannel
+            .bind(with: self) { owner, _ in
+                if let workspace = owner.workspace {
+                    let vc = SearchChannelViewController(workspace: workspace)
+                    vc.delegate = self
+                    vc.hidesBottomBarWhenPushed = true
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+               
             }
             .disposed(by: disposeBag)
                 
@@ -238,6 +263,18 @@ extension HomeViewController {
     
     
     
+}
+
+extension HomeViewController: SearchChannelDelegate {
+    func moveToChannel(channel: Channel, join: Bool) {
+        
+        if !join {
+            enterChannel.accept(channel)
+        }
+        
+        isNeedChannelRefresh = join
+        print(isNeedChannelRefresh)
+    }
 }
 
 // collectionview select
@@ -249,23 +286,12 @@ extension HomeViewController {
                 let vc = CreateChannelViewController(workspace: owner.workspace)
                 vc.createComplete = {
                     owner.showToastMessage(message: ChannelToastMessage.successCreate.message, position: .bottom)
-                    owner.requestChannelInfo.onNext(true)
+                    owner.requestChannelInfo.onNext(())
                     
                 }
                 owner.presentPageSheet(vc: vc)
             }
             .disposed(by: disposeBag)
-        
-//        enterChannel
-//            .bind(with: self) { owner, value in
-//                if let ws = owner.workspace {
-//                    let vc = ChatViewController(info: value, workspace: ws)
-//                    vc.hidesBottomBarWhenPushed = true
-//                    owner.navigationController?.pushViewController(vc, animated: true)
-//                }
-//                
-//            }
-//            .disposed(by: disposeBag)
         
     }
     
@@ -274,12 +300,9 @@ extension HomeViewController {
         
         guard let item = item else { return }
         
-        if let channelItem = item.item as? Channel, let ws = workspace {
+        if let channelItem = item.item as? Channel {
             print(channelItem.name)
             enterChannel.accept(channelItem)
-//            let vc = ChatViewController(info: channelItem, workspace: ws)
-//            vc.hidesBottomBarWhenPushed = true
-//            navigationController?.pushViewController(vc, animated: true)
         } else if let dmItem = item.item as? DMsRoom {
             print(dmItem.user)
         } else if let _ = item.item as? NewFriend {

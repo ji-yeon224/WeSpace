@@ -57,7 +57,7 @@ final class ChatView: BaseView {
         tabledataSource = UITableViewDiffableDataSource(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath) as? ChatTableViewCell else { return UITableViewCell() }
             
-            
+            cell.selectionStyle = .none
             cell.nickNameLabel.text = itemIdentifier.user.nickname
             if let profileImg = itemIdentifier.user.profileImage, !profileImg.isEmpty {
                 cell.profileImageView.setImage(with: profileImg)

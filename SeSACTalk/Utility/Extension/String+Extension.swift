@@ -51,7 +51,7 @@ extension String {
     
     // 서버에서 받은 데이터 포멧 변경하기
     var convertToDateFormat: String {
-        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", date: self) {
+        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", date: self) {
             return DateFormatter.convertToString(format: "yy. MM. dd", date: dateType)
             
         }
@@ -61,8 +61,7 @@ extension String {
     
     
     var convertToTimeString: String {
-        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", date: self) {
-//            print(dateType)
+        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", date: self) {
             return DateFormatter.convertToString(format: "hh:mm a", date: dateType)
         }
         
