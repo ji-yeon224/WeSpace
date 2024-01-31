@@ -19,7 +19,7 @@ final class ChatTableViewCell: BaseTableViewCell {
     }
     let nickNameLabel = CustomBasicLabel(text: "", fontType: .caption, line: 1)
     
-    let chatMsgView = UIView().then {
+    lazy var chatMsgView = UIView().then {
         $0.backgroundColor = .clear
         $0.isHidden = true
     }
@@ -87,7 +87,7 @@ final class ChatTableViewCell: BaseTableViewCell {
         }
         
         chatImgView.snp.makeConstraints { make in
-//            make.width.equalTo(maxWidth)
+            make.width.equalTo(maxWidth)
         }
         
     }

@@ -48,11 +48,16 @@ final class ChatViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(#function)
         guard let channel = channel else { return }
-        
+        SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
+        SocketNetworkManager.shared.connect()
         
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
@@ -64,9 +69,7 @@ final class ChatViewController: BaseViewController {
         updateTableSnapShot()
         
         ChannelMsgRepository().getLocation()
-        guard let channel = channel else { return }
-        SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
-        SocketNetworkManager.shared.connect()
+        
         
     }
     override func viewDidDisappear(_ animated: Bool) {

@@ -14,6 +14,7 @@ final class ChatView: BaseView {
     lazy var tableView = UITableView(frame: .zero).then {
         $0.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
         $0.rowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = 300
         $0.separatorStyle = .none
         $0.keyboardDismissMode = .onDrag
     }
@@ -82,23 +83,21 @@ final class ChatView: BaseView {
                     if imgs.count > 0 {
                         cell.configUIImage(imgs: imgs)
                     } else {
-                        
                         cell.configImage(files: itemIdentifier.files)
                     }
                     
                 }else {
-                    
                     cell.configImage(files: itemIdentifier.files)
                 }
                 
                 cell.chatImgView.isHidden = false
                 cell.stackView.isHidden = false
-                
+                cell.layoutSubviews()
             } else {
                 cell.chatImgView.isHidden = true
                 cell.stackView.isHidden = true
             }
-            cell.layoutSubviews()
+            
             return cell
         })
     }

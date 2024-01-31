@@ -14,6 +14,7 @@ final class SocketNetworkManager {
     
     static let shared = SocketNetworkManager()
     let chatMessage = PublishSubject<ChannelMessage>()
+    var isConnected: Bool = false
     private init() { }
     
     var manager: SocketManager!
@@ -28,7 +29,7 @@ final class SocketNetworkManager {
 
         socket.on(clientEvent: .connect) { data, ack in
             print("SOCKET IS CONNECTED")
-            
+            self.isConnected = true
         }
         
         socket.on(type.event) {  dataArray, ack in
@@ -38,7 +39,7 @@ final class SocketNetworkManager {
         
         socket.on(clientEvent: .disconnect) { data, ack in
             print("SOCKET IS DISCONNECTED")
-            
+            self.isConnected = false
         }
     }
     
