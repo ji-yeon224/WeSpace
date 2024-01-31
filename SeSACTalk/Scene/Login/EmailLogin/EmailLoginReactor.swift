@@ -53,7 +53,7 @@ final class EmailLoginReactor: Reactor {
                     Observable.just(Mutation.msg(msg: ""))
                 ])
             }else {
-                let data = EmailLoginRequestDTO(email: email, password: password, deviceToken: nil)
+                let data = EmailLoginRequestDTO(email: email, password: password, deviceToken: UserDefaultsManager.deviceToken)
                 return Observable.concat([
                     Observable.just(Mutation.showIndicator(show: true)),
                     reqeustLogin(data: data),
