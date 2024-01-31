@@ -26,7 +26,7 @@ final class ChatViewController: BaseViewController {
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
-    var refreshHome: ((WorkspaceType, Bool) -> Void)?
+    var refreshHome: (() -> Void)?
     
     init(info: ChannelDTO, workspace: WorkSpace, chatItems: [ChannelMessage]) {
         super.init(nibName: nil, bundle: nil)
@@ -286,6 +286,7 @@ extension ChatViewController {
     
     @objc private func backButtonTapped() {
 //        navigationController?.popViewController(animated: true)
+        refreshHome?()
         navigationController?.popToRootViewController(animated: true)
     }
 }

@@ -135,6 +135,9 @@ extension SearchChannelViewController: View {
             .bind(with: self) { owner, value in
                 if let value = value, let workspace = owner.workspace {
                     let vc = ChatViewController(info: value, workspace: workspace, chatItems: [])
+                    vc.refreshHome = {
+                        NotificationCenter.default.post(name: .refreshChannel, object: nil)
+                    }
                     vc.hidesBottomBarWhenPushed = true
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }

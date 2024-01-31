@@ -53,11 +53,6 @@ final class HomeViewController: BaseViewController, View {
         
         SideMenuVCManager.shared.enableSideMenu()
         navigationController?.navigationBar.isHidden = true
-        if isNeedChannelRefresh {
-            requestChannelInfo.onNext(())
-            isNeedChannelRefresh = false
-        }
-        
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -104,6 +99,7 @@ extension HomeViewController {
         
         requestChannelInfo
             .throttle(.seconds(2), scheduler: MainScheduler.asyncInstance)
+            .debug()
             .map { Reactor.Action.requestChannelInfo(id: self.workspace?.workspaceId) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -204,11 +200,6 @@ extension HomeViewController {
             .disposed(by: disposeBag)
     }
     
-    private func refreshWorkspace(type: WorkspaceType) {
-        if type == .channel {
-            
-        }
-    }
     
     
     private func bindEvent() {
@@ -243,6 +234,12 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.refreshChannel)
+            .bind(with: self) { owner, _ in
+                owner.requestChannelInfo.onNext(())
+            }
+            .disposed(by: disposeBag)
+        
         mainView.collectionView.rx.itemSelected
             .asDriver()
             .drive(with: self) { owner, indexPath in
@@ -271,8 +268,12 @@ extension HomeViewController {
 extension HomeViewController: SearchChannelDelegate {
     func moveToChannel(channel: Channel, join: Bool) {
         
-        enterChannel.accept(channel)
+        if !join {
+            enterChannel.accept(channel)
+        }
+        
         isNeedChannelRefresh = join
+        print(isNeedChannelRefresh)
     }
 }
 
