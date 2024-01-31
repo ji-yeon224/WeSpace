@@ -26,4 +26,5 @@ struct ChannelMessage: Hashable {
         self.imgUrls = urls
     }
     
+    
 }

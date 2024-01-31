@@ -46,6 +46,12 @@ final class ChatViewController: BaseViewController {
         self.view = mainView
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let channel = channel else { return }
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +61,17 @@ final class ChatViewController: BaseViewController {
         self.reactor = ChatReactor()
         self.reactor?.channelRecord = channel
         requestUncheckedChat.accept(lastDate)
-//        updateSnapShot()
         updateTableSnapShot()
         
         ChannelMsgRepository().getLocation()
+        guard let channel = channel else { return }
+        SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
+        SocketNetworkManager.shared.connect()
+        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SocketNetworkManager.shared.disconnect()
     }
     
     private func configData() {

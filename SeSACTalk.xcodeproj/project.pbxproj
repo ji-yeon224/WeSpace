@@ -23,6 +23,9 @@
 		CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D72B4D1137003B0204 /* ChannelSection.swift */; };
 		CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* DMSection.swift */; };
 		CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904DD2B4D2E41003B0204 /* Item.swift */; };
+		CE57192F2B69EB6100EC3E18 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = CE57192E2B69EB6100EC3E18 /* SocketIO */; };
+		CE5719322B69EBF800EC3E18 /* SocketNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */; };
+		CE5719342B69F00700EC3E18 /* SocketURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719332B69F00700EC3E18 /* SocketURL.swift */; };
 		CE57E4182B452A02009BD53A /* splashImg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57E4172B452A02009BD53A /* splashImg.png */; };
 		CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E41A2B452FE9009BD53A /* LoginViewController.swift */; };
 		CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E41C2B452FF2009BD53A /* LoginView.swift */; };
@@ -254,6 +257,8 @@
 		CE4904D72B4D1137003B0204 /* ChannelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSection.swift; sourceTree = "<group>"; };
 		CE4904D92B4D11C9003B0204 /* DMSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSection.swift; sourceTree = "<group>"; };
 		CE4904DD2B4D2E41003B0204 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketNetworkManager.swift; sourceTree = "<group>"; };
+		CE5719332B69F00700EC3E18 /* SocketURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketURL.swift; sourceTree = "<group>"; };
 		CE57E4172B452A02009BD53A /* splashImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashImg.png; sourceTree = "<group>"; };
 		CE57E41A2B452FE9009BD53A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE57E41C2B452FF2009BD53A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -451,6 +456,7 @@
 				CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */,
 				CEEE4EB02B46A1340059D1AF /* AnyFormatKit in Frameworks */,
 				CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */,
+				CE57192F2B69EB6100EC3E18 /* SocketIO in Frameworks */,
 				CED7C2C22B5230D40069EA0A /* SideMenu in Frameworks */,
 				CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */,
 				CE5EA4B52B60ACAA00999704 /* RealmSwift in Frameworks */,
@@ -538,6 +544,14 @@
 				CE9592392B68B07000665659 /* ChannelSectionModel.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		CE5719302B69EBE700EC3E18 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */,
+			);
+			path = Socket;
 			sourceTree = "<group>";
 		};
 		CE57E4192B452FDF009BD53A /* Login */ = {
@@ -982,12 +996,14 @@
 		CED65F862B45B67100CFD04C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CE5719302B69EBE700EC3E18 /* Socket */,
 				CECFCDE52B4FBBDC00EB0DB7 /* Auth */,
 				CE5D065E2B4E67E800C067A3 /* WorkSpaces */,
 				CEEE4EB12B46DBB50059D1AF /* Users */,
 				CED65F872B45B67C00CFD04C /* APIKey.swift */,
 				CED65F892B45B68300CFD04C /* BaseURL.swift */,
 				CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */,
+				CE5719332B69F00700EC3E18 /* SocketURL.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1184,6 +1200,7 @@
 				CE61AE242B5EC4BA0091B03D /* RxDataSources */,
 				CE5EA4B22B60ACAA00999704 /* Realm */,
 				CE5EA4B42B60ACAA00999704 /* RealmSwift */,
+				CE57192E2B69EB6100EC3E18 /* SocketIO */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -1272,6 +1289,7 @@
 				CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */,
 				CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CE57192D2B69EB6100EC3E18 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -1433,6 +1451,7 @@
 				CEA4EB5F2B56BC6700413500 /* AlertDelegate.swift in Sources */,
 				CEC764532B5176DA000578E9 /* User.swift in Sources */,
 				CE5D067D2B4EFE4000C067A3 /* MultipartFormDataManager.swift in Sources */,
+				CE5719322B69EBF800EC3E18 /* SocketNetworkManager.swift in Sources */,
 				CE61AE102B5E40DC0091B03D /* ChattingCell.swift in Sources */,
 				CED829512B590D7D00AD1828 /* AlertViewController.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
@@ -1504,6 +1523,7 @@
 				CEC7643E2B516306000578E9 /* Channel.swift in Sources */,
 				CE6C1FF72B43E99E00AA7F9C /* Constants.swift in Sources */,
 				CEEE4EAD2B46987F0059D1AF /* String+Extension.swift in Sources */,
+				CE5719342B69F00700EC3E18 /* SocketURL.swift in Sources */,
 				CEB7F8392B444B4A00B9A035 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1857,6 +1877,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE57192D2B69EB6100EC3E18 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
@@ -1972,6 +2000,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE57192E2B69EB6100EC3E18 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE57192D2B69EB6100EC3E18 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
 		CE57E42D2B455A61009BD53A /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;

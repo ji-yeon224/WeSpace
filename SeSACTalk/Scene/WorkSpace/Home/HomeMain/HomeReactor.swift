@@ -37,7 +37,7 @@ final class HomeReactor: Reactor {
         case loginRequest
         case dmsInfo(dms: DMsRoomResDTO)
         case fetchAllWorkspace(data: [WorkspaceDto])
-        case chatInfo(chInfo: ChannelDTO, chatItems: [ChannelMessage])
+        case chatInfo(chInfo: ChannelDTO?, chatItems: [ChannelMessage])
     }
     
     struct State {
@@ -100,7 +100,7 @@ final class HomeReactor: Reactor {
             }
         case .chatInfo(let chInfo, let chatItems):
             newState.chatInfo = (chInfo, chatItems)
-        
+            
         }
         
         return newState
@@ -119,7 +119,10 @@ extension HomeReactor {
             }
             debugPrint("채널 정보 가져옴...")
             let item = getChatItems(channelData: channelInfo)
-            return .just(.chatInfo(chInfo: channelInfo, chatItems: item))
+            return .concat(
+                .just(.chatInfo(chInfo: channelInfo, chatItems: item)),
+                .just(.chatInfo(chInfo: nil, chatItems: []))
+            )
         } else {
             return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
         }
@@ -163,7 +166,7 @@ extension HomeReactor {
         channelData.chatItem.forEach {
             data.append($0.toDomain())
         }
-        
+        print(#function, data.count)
         return data
     }
     

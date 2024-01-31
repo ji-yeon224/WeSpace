@@ -183,10 +183,7 @@ extension HomeViewController {
         reactor.state
             .map { $0.chatInfo }
             .filter {
-                $0.0 != .none
-            }
-            .distinctUntilChanged{
-                $0.0?.name == $1.0?.name
+                return $0.0 != .none
             }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
