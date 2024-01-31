@@ -82,7 +82,6 @@ final class ChatViewController: BaseViewController {
             chatData.append(contentsOf: chats)
             
             lastDate = chats.last?.createdAt
-//            print("last date ", lastDate)
         }
         
     }
@@ -144,13 +143,6 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        mainView.chatWriteView.imgCollectionView.rx.itemSelected
-            .bind(with: self) { owner, index in
-                print(index)
-            }
-            .disposed(by: disposeBag)
-        
-        
         imgData
             .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: mainView.chatWriteView.rxDataSource))
             .disposed(by: disposeBag)
@@ -167,6 +159,7 @@ final class ChatViewController: BaseViewController {
                 owner.mainView.chatWriteView.sendButton.isEnabled = value
             }
             .disposed(by: disposeBag)
+        
         
     }
     
@@ -198,6 +191,11 @@ extension ChatViewController: View {
             .map { Reactor.Action.requestUncheckedMsg(date: $0.1, wsId: self.workspace?.workspaceId, name: self.channel?.name)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        SocketNetworkManager.shared.chatMessage
+            .map { Reactor.Action.receiveMsg(wsId: self.workspace?.workspaceId, channel: self.channel, chatData: $0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: ChatReactor) {
@@ -209,9 +207,6 @@ extension ChatViewController: View {
             .distinctUntilChanged()
             .drive(with: self) { owner, value in
                 owner.chatData.append(contentsOf: value)
-//                print(value)
-                
-//                owner.updateSnapShot()
                 owner.updateTableSnapShot()
             }
             .disposed(by: disposeBag)
@@ -228,15 +223,33 @@ extension ChatViewController: View {
         reactor.state
             .map { $0.sendSuccess }
             .filter { $0 != .none }
+            .distinctUntilChanged { prev, cur in
+                prev?.id == cur?.id
+            }
             .asDriver(onErrorJustReturn: nil)
             .drive(with: self) { owner, value in
                 if let value = value {
-                    print("[SUCCESS] ", value.createdAt)
                     owner.chatData.append(value)
                     owner.updateTableSnapShot()
                     owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.saveReceive }
+            .filter { $0 != .none }
+            .distinctUntilChanged { prev, cur in
+                prev?.id == cur?.id
+            }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.chatData.append(value)
+                    owner.updateTableSnapShot()
+                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                 }
             }
             .disposed(by: disposeBag)
@@ -275,7 +288,8 @@ extension ChatViewController {
         var snapshot = NSDiffableDataSourceSnapshot<String, ChannelMessage>()
         snapshot.appendSections([""])
         snapshot.appendItems(chatData)
-        mainView.tabledataSource.apply(snapshot)
+        mainView.tabledataSource.apply(snapshot, animatingDifferences: false)
+        
     }
 }
 
@@ -301,6 +315,7 @@ extension ChatViewController {
 //        navigationController?.popViewController(animated: true)
         refreshHome?()
         navigationController?.popToRootViewController(animated: true)
+//        SocketNetworkManager.shared.disconnect()
     }
 }
 

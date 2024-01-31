@@ -13,6 +13,7 @@ import RxSwift
 final class SocketNetworkManager {
     
     static let shared = SocketNetworkManager()
+    let chatMessage = PublishSubject<ChannelMessage>()
     private init() { }
     
     var manager: SocketManager!
@@ -26,24 +27,35 @@ final class SocketNetworkManager {
         
 
         socket.on(clientEvent: .connect) { data, ack in
-            print("SOCKET IS CONNECTED", data, ack)
+            print("SOCKET IS CONNECTED")
             
         }
         
         socket.on(type.event) {  dataArray, ack in
-//            print("CHANNEL RECEIVED", dataArray, ack)
             
             self.decodedData(dataArray: dataArray)
         }
         
         socket.on(clientEvent: .disconnect) { data, ack in
-            print("SOCKET IS DISCONNECTED", data, ack)
+            print("SOCKET IS DISCONNECTED")
             
         }
     }
     
-    func decodedData(dataArray: [Any]) {
+    private func decodedData(dataArray: [Any]) {
         if let data = dataArray[0] as? Dictionary<String, Any> {
+            
+            guard let user = data["user"] as? Dictionary<String, Any> else {
+                return
+            }
+            let email = user["email"] as? String
+            let userId = user["user_id"] as? Int
+            let nickname = user["nickname"] as? String
+            let profileImage = user["profileImage"] as? String
+            
+            if userId == UserDefaultsManager.userId {
+                return 
+            }
             
             let channelName = data["channelName"] as? String
             let channelId = data["channel_id"] as? Int
@@ -53,13 +65,7 @@ final class SocketNetworkManager {
             let files = data["files"] as? Array<String>
             
             
-            guard let user = data["user"] as? Dictionary<String, Any> else {
-                return
-            }
-            let email = user["email"] as? String
-            let userId = user["user_id"] as? Int
-            let nickname = user["nickname"] as? String
-            let profileImage = user["profileImage"] as? String
+            
             
             guard let userId = userId, let email = email, let nickname = nickname else {
                 return
@@ -71,19 +77,8 @@ final class SocketNetworkManager {
 
             let chatData = ChannelMessage(channelID: channelId, channelName: channelName, chatID: chatId, content: content, createdAt: createdAt, files: files ?? [], user: userData)
             
-            print(chatData)
+            chatMessage.onNext(chatData)
         }
-        
-//        if let data = dataArray[0] as? Data {
-//            print("############# ", data)
-//            do {
-//                let decodedData = try JSONDecoder().decode(ChannelMessageDTO.self, from: data)
-//                print("@@@@@@@ ", decodedData)
-//            } catch {
-//                print("DECODED ERROR")
-//            }
-//            
-//        }
     }
     
     func connect() {
