@@ -43,19 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
-    
-    private func configFCM() {
-        Messaging.messaging().token { token, error in
-          if let error = error {
-            print("Error fetching FCM registration token: \(error)")
-          } else if let token = token {
-            print("FCM registration token: \(token)")
-//            self.fcmRegTokenMessage.text  = "Remote FCM registration token: \(token)"
-              DeviceTokenManager.shared.requestSaveDeviceToken(token: token)
-              
-          }
-        }
-    }
 
     // MARK: UISceneSession Lifecycle
 
@@ -72,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+//        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         Messaging.messaging().apnsToken = deviceToken
 //        print(token)
 //        UserDefaultsManager.deviceToken = token
@@ -94,10 +81,8 @@ extension AppDelegate: MessagingDelegate {
           if let error = error {
             print("Error fetching FCM registration token: \(error)")
           } else if let token = token {
-            print("FCM registration token: \(token)")
+//            print("FCM registration token: \(token)")
               UserDefaultsManager.deviceToken = token ?? ""
-//            self.fcmRegTokenMessage.text  = "Remote FCM registration token: \(token)"
-//              DeviceTokenManager.shared.requestSaveDeviceToken(token: token)
           }
         }
 //        let dataDict: [String: String] = ["token": fcmToken ?? ""]

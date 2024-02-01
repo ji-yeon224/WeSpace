@@ -100,7 +100,6 @@ extension HomeViewController {
         
         requestChannelInfo
             .throttle(.seconds(2), scheduler: MainScheduler.asyncInstance)
-            .debug()
             .map { Reactor.Action.requestChannelInfo(id: self.workspace?.workspaceId) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)

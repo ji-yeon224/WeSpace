@@ -182,6 +182,7 @@ extension ChatViewController: View {
             .withLatestFrom(mainView.chatWriteView.textView.rx.text.orEmpty, resultSelector: { _, value in
                 return value
             })
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .withUnretained(self)
             .map { Reactor.Action.sendRequest(channel: self.channel, id: self.workspace?.workspaceId, content: $0.1, files: self.selectImageModel.items)}
             .bind(to: reactor.action )
