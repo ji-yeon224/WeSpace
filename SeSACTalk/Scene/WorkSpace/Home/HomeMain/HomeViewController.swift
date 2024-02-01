@@ -65,6 +65,7 @@ final class HomeViewController: BaseViewController, View {
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
         SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
+        DeviceTokenManager.shared.requestSaveDeviceToken(token: UserDefaultsManager.deviceToken)
         
     }
     
