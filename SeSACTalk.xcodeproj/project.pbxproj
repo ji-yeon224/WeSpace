@@ -119,6 +119,11 @@
 		CE9DEB6C2B6BDAA50016382B /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CE9DEB6B2B6BDAA50016382B /* FirebaseMessaging */; };
 		CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */; };
 		CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */; };
+		CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */; };
+		CE9DEB752B6CB7E70016382B /* ChannelSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB742B6CB7E70016382B /* ChannelSettingView.swift */; };
+		CE9DEB772B6CB8B00016382B /* ChannelMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB762B6CB8B00016382B /* ChannelMemberCell.swift */; };
+		CE9DEB792B6CC6BF0016382B /* ChannelMemberCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB782B6CC6BF0016382B /* ChannelMemberCollectionView.swift */; };
+		CE9DEB7B2B6CD5350016382B /* ChannelMemberItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */; };
 		CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB532B56855900413500 /* MakeWSDelegate.swift */; };
 		CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */; };
 		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
@@ -353,6 +358,11 @@
 		CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenReq.swift; sourceTree = "<group>"; };
 		CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
+		CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewController.swift; sourceTree = "<group>"; };
+		CE9DEB742B6CB7E70016382B /* ChannelSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingView.swift; sourceTree = "<group>"; };
+		CE9DEB762B6CB8B00016382B /* ChannelMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMemberCell.swift; sourceTree = "<group>"; };
+		CE9DEB782B6CC6BF0016382B /* ChannelMemberCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMemberCollectionView.swift; sourceTree = "<group>"; };
+		CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMemberItem.swift; sourceTree = "<group>"; };
 		CEA4EB532B56855900413500 /* MakeWSDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeWSDelegate.swift; sourceTree = "<group>"; };
 		CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactor.swift; sourceTree = "<group>"; };
 		CEA8F9A62B4849E80062B45C /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
@@ -525,6 +535,7 @@
 		CE211F342B5AC97A00C43028 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				CE9DEB712B6CB7CE0016382B /* Setting */,
 				CE9592322B68AD9200665659 /* Search */,
 				CE61AE062B5D51730091B03D /* Chatting */,
 				CE61ADF92B5CEB070091B03D /* Create */,
@@ -552,6 +563,7 @@
 				CE4904DD2B4D2E41003B0204 /* Item.swift */,
 				CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */,
 				CE9592392B68B07000665659 /* ChannelSectionModel.swift */,
+				CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -838,6 +850,7 @@
 				CE61AE0F2B5E40DC0091B03D /* ChattingCell.swift */,
 				CE61AE172B5E5BE40091B03D /* ChatImageCell.swift */,
 				CE9592372B68ADE500665659 /* SearchChannelCell.swift */,
+				CE9DEB762B6CB8B00016382B /* ChannelMemberCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -850,6 +863,15 @@
 				CE9592352B68ADA700665659 /* SearchChannelView.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		CE9DEB712B6CB7CE0016382B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */,
+				CE9DEB742B6CB7E70016382B /* ChannelSettingView.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		CEA8F9AC2B4924640062B45C /* Join */ = {
@@ -1098,6 +1120,7 @@
 				CEEAA1D62B54085400EA1C58 /* WorkspaceListSettingView.swift */,
 				CE61AE0D2B5D64EA0091B03D /* ChatWriteView.swift */,
 				CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */,
+				CE9DEB782B6CC6BF0016382B /* ChannelMemberCollectionView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -1379,6 +1402,7 @@
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
 				CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
+				CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */,
 				CE5EA4C42B60FFCC00999704 /* ChannelChatReqDTO.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
@@ -1484,6 +1508,7 @@
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
 				CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
+				CE9DEB772B6CB8B00016382B /* ChannelMemberCell.swift in Sources */,
 				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
 				CE61AE052B5D006F0091B03D /* ChannelToastMessage.swift in Sources */,
 				CEC764512B5176C2000578E9 /* DMsRoom.swift in Sources */,
@@ -1507,11 +1532,13 @@
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
+				CE9DEB752B6CB7E70016382B /* ChannelSettingView.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
 				CE5EA4BA2B60B45E00999704 /* RealmManager.swift in Sources */,
+				CE9DEB7B2B6CD5350016382B /* ChannelMemberItem.swift in Sources */,
 				CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */,
 				CED829492B58C40A00AD1828 /* ChangeManagerViewController.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
@@ -1527,6 +1554,7 @@
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,
 				CEA8F9D12B4992130062B45C /* EmailLoginView.swift in Sources */,
 				CE5F94CD2B620004006A4DA4 /* DBError.swift in Sources */,
+				CE9DEB792B6CC6BF0016382B /* ChannelMemberCollectionView.swift in Sources */,
 				CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */,
 				CE5D06652B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift in Sources */,
 				CE85749C2B4BFEA50025ED1B /* HomeView.swift in Sources */,

@@ -166,7 +166,14 @@ final class ChatViewController: BaseViewController {
                 owner.mainView.chatWriteView.sendButton.isEnabled = value
             }
             .disposed(by: disposeBag)
-        
+        navigationItem.rightBarButtonItem?.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                // channel name, workspaceId
+                let vc = ChannelSettingViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
         
     }
     
@@ -313,7 +320,7 @@ extension ChatViewController: ChatImageSelectDelegate {
 extension ChatViewController {
     private func configNav() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: .left, style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .list, style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: Constants.Image.chatSetting, style: .plain, target: self, action: nil)
         navigationItem.leftBarButtonItem?.tintColor = .basicText
         navigationItem.rightBarButtonItem?.tintColor = .basicText
         navigationController?.setupBarAppearance()

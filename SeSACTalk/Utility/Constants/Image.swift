@@ -18,6 +18,7 @@ extension Constants {
         static let email = UIImage(named: "Email")
         static let dot = UIImage(systemName: "ellipsis")
         static let dummyProfile: [UIImage] = [.noPhotoA, .noPhotoB, .noPhotoC]
+        static let chatSetting = UIImage(systemName: "list.bullet")
     }
     
 }

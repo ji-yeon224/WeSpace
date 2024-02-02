@@ -51,4 +51,10 @@ enum Text {
     static let joinTitle = "채널 참여"
     static let joinChannel = "[{channel}] 채널에 참여하시겠습니까?"
     
+    // ChannelSettingView
+    static let editChannelTitle = "채널 편집"
+    static let exitChannelTitle = "채널에서 나가기"
+    static let changeChannelTitle = "채널 관리자 변경"
+    static let deleteChannelTitle = "채널 삭제"
+    
 }

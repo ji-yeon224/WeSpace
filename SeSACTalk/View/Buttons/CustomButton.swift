@@ -10,7 +10,7 @@ import UIKit
 final class CustomButton: UIButton {
     
     
-    init(bgColor: UIColor?, img: UIImage? = nil, title: String, radius: CGFloat = Constants.Design.cornerRadius) {
+    init(bgColor: UIColor?, img: UIImage? = nil, titleColor: UIColor? = .white, title: String, radius: CGFloat = Constants.Design.cornerRadius) {
         super.init(frame: .zero)
         backgroundColor = bgColor
         setTitle(title, for: .normal)
@@ -19,7 +19,22 @@ final class CustomButton: UIButton {
             setImage(img, for: .normal)
         }
         
-        setTitleColor(Constants.Color.white, for: .normal)
+        setTitleColor(titleColor, for: .normal)
+        layer.cornerRadius = radius
+    }
+    
+    init(bgColor: UIColor?, borderColor: UIColor?, titleColor: UIColor? = .white, img: UIImage? = nil, title: String, radius: CGFloat = Constants.Design.cornerRadius) {
+        super.init(frame: .zero)
+        backgroundColor = bgColor
+        layer.borderColor = borderColor?.cgColor
+        layer.borderWidth = 1
+        setTitle(title, for: .normal)
+        titleLabel?.font = Font.title2.fontStyle
+        if let img = img {
+            setImage(img, for: .normal)
+        }
+        
+        setTitleColor(titleColor, for: .normal)
         layer.cornerRadius = radius
     }
     
