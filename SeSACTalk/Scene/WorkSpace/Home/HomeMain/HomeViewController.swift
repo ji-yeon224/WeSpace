@@ -23,6 +23,9 @@ final class HomeViewController: BaseViewController, View {
     private let searchChannel = PublishRelay<Void>()
     private let enterChannel = PublishRelay<Channel>()
     
+    private let channelChatInfo = PublishRelay<(ChannelDTO?, [ChannelMessage])>()
+    private let channelChatUserInfo = PublishRelay<[Int: User]>()
+    
     private var workspace: WorkSpace?
     private var allWorkspace: [WorkSpace]?
     private var isNeedChannelRefresh: Bool = false
@@ -65,6 +68,7 @@ final class HomeViewController: BaseViewController, View {
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
         SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
+        DeviceTokenManager.shared.requestSaveDeviceToken(token: UserDefaultsManager.deviceToken)
         
     }
     
@@ -99,7 +103,6 @@ extension HomeViewController {
         
         requestChannelInfo
             .throttle(.seconds(2), scheduler: MainScheduler.asyncInstance)
-            .debug()
             .map { Reactor.Action.requestChannelInfo(id: self.workspace?.workspaceId) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -183,26 +186,46 @@ extension HomeViewController {
         reactor.state
             .map { $0.chatInfo }
             .filter {
-                $0.0 != .none
-            }
-            .distinctUntilChanged{
-                $0.0?.name == $1.0?.name
+                return $0.0 != .none
             }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                if let ws = owner.workspace, let channel = value.0 {
-                    let vc = ChatViewController(info: channel, workspace: ws, chatItems: value.1)
-                    vc.hidesBottomBarWhenPushed = true
-                    owner.navigationController?.pushViewController(vc, animated: true)
-                    
-                }
+                owner.channelChatInfo.accept(value)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.userInfo }
+            .asDriver(onErrorJustReturn: [:])
+            .filter { return !$0.isEmpty }
+            .drive(with: self) { owner, value in
+                owner.channelChatUserInfo.accept(value)
+            }
+            .disposed(by: disposeBag)
+        
+        
     }
     
     
     
     private func bindEvent() {
+        channelChatInfo
+            .withLatestFrom(channelChatUserInfo) { chatInfo, userInfo in
+                return (chatInfo, userInfo)
+            }
+            .bind(with: self) { owner, value in
+                let channelDto = value.0.0
+                let chatMsg = value.0.1
+                let userInfo = value.1
+                
+                if let ws = owner.workspace, let channel = channelDto {
+                    let vc = ChatViewController(info: channel, workspace: ws, chatItems: chatMsg, userInfo: userInfo)
+                    vc.hidesBottomBarWhenPushed = true
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         mainView.topView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in

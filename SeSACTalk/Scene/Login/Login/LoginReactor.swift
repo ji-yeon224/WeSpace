@@ -88,7 +88,7 @@ final class LoginReactor: Reactor {
 
 extension LoginReactor {
     private func requestLoginComplete(oauth: String) -> Observable<Mutation> {
-        let oauthRequest = KakaoLoginRequestDTO(oauthToken: oauth, deviceToken: nil)
+        let oauthRequest = KakaoLoginRequestDTO(oauthToken: oauth, deviceToken: UserDefaultsManager.deviceToken)
         return UsersAPIManager.shared.request(api: .kakaoLogin(data: oauthRequest), responseType: JoinResponseDTO.self)
             .asObservable()
             .map { result -> Mutation in

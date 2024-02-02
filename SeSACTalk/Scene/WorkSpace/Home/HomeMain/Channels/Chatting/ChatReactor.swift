@@ -18,7 +18,8 @@ final class ChatReactor: Reactor {
         loginRequest: false,
         sendSuccess: nil,
         channelRecord: nil,
-        fetchChatSuccess: []
+        fetchChatSuccess: [],
+        saveReceive: nil
     )
     
     
@@ -26,6 +27,7 @@ final class ChatReactor: Reactor {
         case fetchChannel(wsId: Int, chId: Int)
         case sendRequest(channel: ChannelDTO?, id: Int?, content: String?, files: [SelectImage])
         case requestUncheckedMsg(date: String?, wsId: Int?, name: String?)
+        case receiveMsg(wsId: Int?, channel: ChannelDTO?, chatData: ChannelMessage)
     }
     
     enum Mutation {
@@ -34,6 +36,7 @@ final class ChatReactor: Reactor {
         case sendSuccess(data: ChannelMessage)
         case fetchChannelRecord(data: ChannelDTO)
         case fetchChatSuccess(data: [ChannelMessage])
+        case saveReceiveData(data: ChannelMessage)
     }
     
     struct State {
@@ -42,6 +45,7 @@ final class ChatReactor: Reactor {
         var sendSuccess: ChannelMessage?
         var channelRecord: ChannelDTO?
         var fetchChatSuccess: [ChannelMessage]
+        var saveReceive: ChannelMessage?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -71,7 +75,16 @@ final class ChatReactor: Reactor {
                 debugPrint("[data binding error]")
                 return .just(.msg(msg: ChannelToastMessage.otherError.message))
             }
-            
+        case .receiveMsg(let wsId, let channel, let chatData):
+            if let channel = channel, let wsId = wsId {
+                if let result = self.saveChatItems(wsId: wsId, data: channel, chat: [chatData]).first {
+                    return .just(.saveReceiveData(data: result))
+                } else {
+                    return .just(.msg(msg: ChannelToastMessage.otherError.message))
+                }
+                
+            }
+            return .just(.msg(msg: ChannelToastMessage.otherError.message))
         }
     }
     
@@ -88,6 +101,8 @@ final class ChatReactor: Reactor {
             newState.channelRecord = data
         case .fetchChatSuccess(let data):
             newState.fetchChatSuccess = data
+        case .saveReceiveData(let data):
+            newState.saveReceive = data
         }
         return newState
     }
@@ -96,13 +111,6 @@ final class ChatReactor: Reactor {
 }
 
 extension ChatReactor {
-    
-    private func requestChannelMembers(name: String, wsId: Int) {
-        
-        
-        
-        
-    }
     
     private func requestUnckeckedMsg(date: String?, wsId: Int, name: String) -> Observable<Mutation> {
         

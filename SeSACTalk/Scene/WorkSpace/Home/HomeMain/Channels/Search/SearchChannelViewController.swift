@@ -15,6 +15,8 @@ final class SearchChannelViewController: BaseViewController {
     private let requestChannelList = PublishSubject<Int?>()
     private let requestMyChannels = PublishSubject<Int>()
     private let saveToDB = PublishSubject<Channel>()
+    private let joinChannelInfo = PublishSubject<ChannelDTO>()
+    private let joinChannelUserInfo = PublishSubject<[Int: User]>()
     
     private var myChannelList: [Int:Channel] = [:]
     private var wsId: Int?
@@ -133,8 +135,30 @@ extension SearchChannelViewController: View {
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                if let value = value, let workspace = owner.workspace {
-                    let vc = ChatViewController(info: value, workspace: workspace, chatItems: [])
+                if let value = value {
+                    owner.joinChannelInfo.onNext(value)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.userInfo }
+            .asDriver(onErrorJustReturn: [:])
+            .filter { !$0.isEmpty }
+            .drive(with: self) { owner, value in
+                owner.joinChannelUserInfo.onNext(value)
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    
+    private func bindEvent() {
+        
+        Observable.combineLatest(joinChannelInfo, joinChannelUserInfo)
+            .bind(with: self) { owner, value in
+                if let ws = owner.workspace {
+                    let vc = ChatViewController(info: value.0, workspace: ws, chatItems: [], userInfo: value.1)
                     vc.refreshHome = {
                         NotificationCenter.default.post(name: .refreshChannel, object: nil)
                     }
@@ -143,11 +167,6 @@ extension SearchChannelViewController: View {
                 }
             }
             .disposed(by: disposeBag)
-        
-    }
-    
-    
-    private func bindEvent() {
         
         mainView.tableView.rx.modelSelected(Channel.self)
             .asDriver()
