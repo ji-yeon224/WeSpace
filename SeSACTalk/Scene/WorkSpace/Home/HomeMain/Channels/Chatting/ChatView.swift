@@ -10,7 +10,7 @@ import UIKit
 final class ChatView: BaseView {
     
     var wsId: Int?
-    
+    var userInfo: [Int: User] = [:]
     lazy var tableView = UITableView(frame: .zero).then {
         $0.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
         $0.rowHeight = UITableView.automaticDimension
@@ -59,13 +59,27 @@ final class ChatView: BaseView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath) as? ChatTableViewCell else { return UITableViewCell() }
             
             cell.selectionStyle = .none
-            cell.nickNameLabel.text = itemIdentifier.user.nickname
-            if let profileImg = itemIdentifier.user.profileImage, !profileImg.isEmpty {
-                cell.profileImageView.setImage(with: profileImg)
+            
+            
+            // userinfo dictionary 사용함
+            if let userInfo = self.userInfo[itemIdentifier.user.userId] {
+                if let profileImg = userInfo.profileImage, !profileImg.isEmpty {
+                    cell.profileImageView.setImage(with: profileImg)
+                } else {
+                    let img = Constants.Image.dummyProfile
+                    cell.profileImageView.image = img[userInfo.userId%3]
+                }
+                cell.nickNameLabel.text = userInfo.nickname
             } else {
-                let img = Constants.Image.dummyProfile
-                cell.profileImageView.image = img[itemIdentifier.user.userId%3]
+                cell.nickNameLabel.text = itemIdentifier.user.nickname
+                if let profileImg = itemIdentifier.user.profileImage, !profileImg.isEmpty {
+                    cell.profileImageView.setImage(with: profileImg)
+                } else {
+                    let img = Constants.Image.dummyProfile
+                    cell.profileImageView.image = img[itemIdentifier.user.userId%3]
+                }
             }
+            
             if let text = itemIdentifier.content, !text.isEmpty {
                 cell.chatTextLabel.text = itemIdentifier.content
                 cell.chatMsgView.isHidden = false

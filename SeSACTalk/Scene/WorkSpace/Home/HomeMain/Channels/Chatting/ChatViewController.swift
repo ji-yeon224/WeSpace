@@ -15,6 +15,7 @@ final class ChatViewController: BaseViewController {
     private let mainView = ChatView()
     private var channel: ChannelDTO?
     private var workspace: WorkSpace?
+    private var userInfo: [Int: User] = [:]
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
@@ -28,12 +29,15 @@ final class ChatViewController: BaseViewController {
     
     var refreshHome: (() -> Void)?
     
-    init(info: ChannelDTO, workspace: WorkSpace, chatItems: [ChannelMessage]) {
+    init(info: ChannelDTO, workspace: WorkSpace, chatItems: [ChannelMessage], userInfo: [Int: User]) {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
         self.workspace = workspace
+        self.userInfo = userInfo
 //        print(workspace.workspaceId)
 //        print(chatItems)
+        
+        
         
     }
     
@@ -103,7 +107,7 @@ final class ChatViewController: BaseViewController {
         if let workspace = workspace {
             mainView.wsId = workspace.workspaceId
         }
-        
+        mainView.userInfo = self.userInfo
     }
     
     private func bindEvent() {

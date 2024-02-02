@@ -13,7 +13,8 @@ final class SearchChannelReactor: Reactor {
         channelList: [],
         myChannelList: [:],
         msg: "",
-        saveChannel: nil
+        saveChannel: nil,
+        userInfo: [:]
     )
     
     private var channelRepository = ChannelRepository()
@@ -30,6 +31,7 @@ final class SearchChannelReactor: Reactor {
         case myChannelList(data: ChannelsItemResDTO)
         case msg(msg: String)
         case saveSuccess(data: ChannelDTO)
+        case fetchUserInfo(data: [Int: User])
     }
     
     struct State {
@@ -37,6 +39,7 @@ final class SearchChannelReactor: Reactor {
         var myChannelList: [Int: Channel]
         var msg: String
         var saveChannel: ChannelDTO?
+        var userInfo: [Int: User]
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -54,7 +57,10 @@ final class SearchChannelReactor: Reactor {
             return .just(.msg(msg: ChannelToastMessage.otherError.message))
         case .saveChannel(let wsId, let chId, let name):
             if let wsId = wsId {
-                return searchChannelDB(wsId: wsId, chId: chId, name: name)
+                return .concat(
+                    searchChannelDB(wsId: wsId, chId: chId, name: name),
+                    fetchChannelMembers(wsId: wsId, name: name)
+                )
             }
             return .just(.msg(msg: ChannelToastMessage.otherError.message))
         }
@@ -76,6 +82,8 @@ final class SearchChannelReactor: Reactor {
             newState.msg = msg
         case .saveSuccess(let data):
             newState.saveChannel = data
+        case .fetchUserInfo(let data):
+            newState.userInfo = data
         }
         
         return newState
@@ -85,6 +93,34 @@ final class SearchChannelReactor: Reactor {
 }
 
 extension SearchChannelReactor {
+    
+    private func fetchChannelMembers(wsId: Int, name: String) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .member(name: name, wsId: wsId), responseType: MemberResDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        var data: [Int:User] = [:]
+                        response.forEach {
+                            data[$0.user_id] = $0.toDomain()
+                        }
+                        return .fetchUserInfo(data: data)
+                    }
+                    return .msg(msg: ChannelToastMessage.loadFailChat.message)
+                case .failure(let error):
+                    var msg = CommonError.E99.localizedDescription
+                    if let error = ChannelError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    }
+                    return .msg(msg: msg)
+                }
+            }
+        
+    }
+    
     
     private func searchChannelDB(wsId: Int, chId: Int, name: String) -> Observable<Mutation> {
         let data = channelRepository.searchChannel(wsId: wsId, chId: chId)

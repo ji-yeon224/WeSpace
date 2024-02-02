@@ -112,14 +112,6 @@ final class ChatReactor: Reactor {
 
 extension ChatReactor {
     
-    private func requestChannelMembers(name: String, wsId: Int) {
-        
-        
-        
-        
-    }
-    
-    
     private func requestUnckeckedMsg(date: String?, wsId: Int, name: String) -> Observable<Mutation> {
         
         return ChannelsAPIManager.shared.request(api: .fetchMsg(date: date, name: name, wsId: wsId), responseType: ChannelChatResDTO.self)

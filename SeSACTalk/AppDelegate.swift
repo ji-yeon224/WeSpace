@@ -82,7 +82,7 @@ extension AppDelegate: MessagingDelegate {
             print("Error fetching FCM registration token: \(error)")
           } else if let token = token {
 //            print("FCM registration token: \(token)")
-              UserDefaultsManager.deviceToken = token ?? ""
+              UserDefaultsManager.deviceToken = token 
           }
         }
 //        let dataDict: [String: String] = ["token": fcmToken ?? ""]

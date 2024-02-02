@@ -19,7 +19,8 @@ final class HomeReactor: Reactor {
         message: "",
         dmRoomItems: [],
         allWorkspace: [],
-        chatInfo: (nil, [])
+        chatInfo: (nil, []),
+        userInfo: [:]
     )
     
     
@@ -38,6 +39,7 @@ final class HomeReactor: Reactor {
         case dmsInfo(dms: DMsRoomResDTO)
         case fetchAllWorkspace(data: [WorkspaceDto])
         case chatInfo(chInfo: ChannelDTO?, chatItems: [ChannelMessage])
+        case userInfo(data: [Int: User])
     }
     
     struct State {
@@ -48,6 +50,7 @@ final class HomeReactor: Reactor {
         var dmRoomItems: [WorkspaceItem]
         var allWorkspace: [WorkSpace]
         var chatInfo: (ChannelDTO?, [ChannelMessage])
+        var userInfo: [Int: User]
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -71,7 +74,10 @@ final class HomeReactor: Reactor {
         case .searchChannelDB(let wsId, let chInfo):
             
             if let wsId = wsId, let chInfo = chInfo {
-                return requestChannelInfo(wsId: wsId, chInfo: chInfo)
+                return .concat(
+                    requestChannelInfo(wsId: wsId, chInfo: chInfo),
+                    fetchChannelMembers(wsId: wsId, name: chInfo.name)
+                )
             } else {
                 return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
             }
@@ -100,7 +106,8 @@ final class HomeReactor: Reactor {
             }
         case .chatInfo(let chInfo, let chatItems):
             newState.chatInfo = (chInfo, chatItems)
-            
+        case .userInfo(let data):
+            newState.userInfo = data
         }
         
         return newState
@@ -109,6 +116,7 @@ final class HomeReactor: Reactor {
 }
 
 extension HomeReactor {
+    
     
     private func requestChannelInfo(wsId: Int, chInfo: Channel) -> Observable<Mutation> {
         if let channelInfo = searchChannelDB(wsId: wsId, chId: chInfo.channelID, name: chInfo.name) {
@@ -120,6 +128,7 @@ extension HomeReactor {
             debugPrint("채널 정보 가져옴...")
             let item = getChatItems(channelData: channelInfo)
             return .concat(
+                self.fetchChannelMembers(wsId: wsId, name: chInfo.name),
                 .just(.chatInfo(chInfo: channelInfo, chatItems: item)),
                 .just(.chatInfo(chInfo: nil, chatItems: []))
             )
@@ -128,11 +137,33 @@ extension HomeReactor {
         }
     }
     
-//    private func fetchChannelMembers(wsId: Int, name: String) -> [User] {
-//         return ChannelsAPIManager.shared.request(api: .member(name: name, wsId: wsId), responseType: MemberResDTO.self)
-//            
-//        
-//    }
+    
+    private func fetchChannelMembers(wsId: Int, name: String) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .member(name: name, wsId: wsId), responseType: MemberResDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        var data: [Int:User] = [:]
+                        response.forEach {
+                            data[$0.user_id] = $0.toDomain()
+                        }
+                        return .userInfo(data: data)
+                    }
+                    return .msg(msg: ChannelToastMessage.loadFailChat.message)
+                case .failure(let error):
+                    var msg = CommonError.E99.localizedDescription
+                    if let error = ChannelError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    }
+                    return .msg(msg: msg)
+                }
+            }
+        
+    }
     
     private func updateChannelInfo(channel: ChannelDTO, name: String) {
         do {
