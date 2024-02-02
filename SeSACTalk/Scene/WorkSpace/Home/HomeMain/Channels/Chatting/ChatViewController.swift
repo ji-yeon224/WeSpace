@@ -54,8 +54,8 @@ final class ChatViewController: BaseViewController {
         super.viewWillAppear(animated)
         print(#function)
         guard let channel = channel else { return }
-        SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
-        SocketNetworkManager.shared.connect()
+//        SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
+//        SocketNetworkManager.shared.connect()
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -78,7 +78,7 @@ final class ChatViewController: BaseViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        SocketNetworkManager.shared.disconnect()
+//        SocketNetworkManager.shared.disconnect()
     }
     
     private func configData() {

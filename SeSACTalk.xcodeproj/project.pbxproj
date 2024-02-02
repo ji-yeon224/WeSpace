@@ -124,6 +124,7 @@
 		CE9DEB772B6CB8B00016382B /* ChannelMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB762B6CB8B00016382B /* ChannelMemberCell.swift */; };
 		CE9DEB792B6CC6BF0016382B /* ChannelMemberCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB782B6CC6BF0016382B /* ChannelMemberCollectionView.swift */; };
 		CE9DEB7B2B6CD5350016382B /* ChannelMemberItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */; };
+		CE9DEB7D2B6D1D7C0016382B /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB7C2B6D1D7C0016382B /* UIScrollView+Extension.swift */; };
 		CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB532B56855900413500 /* MakeWSDelegate.swift */; };
 		CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */; };
 		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
@@ -363,6 +364,7 @@
 		CE9DEB762B6CB8B00016382B /* ChannelMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMemberCell.swift; sourceTree = "<group>"; };
 		CE9DEB782B6CC6BF0016382B /* ChannelMemberCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMemberCollectionView.swift; sourceTree = "<group>"; };
 		CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMemberItem.swift; sourceTree = "<group>"; };
+		CE9DEB7C2B6D1D7C0016382B /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		CEA4EB532B56855900413500 /* MakeWSDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeWSDelegate.swift; sourceTree = "<group>"; };
 		CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceListReactor.swift; sourceTree = "<group>"; };
 		CEA8F9A62B4849E80062B45C /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
@@ -984,6 +986,7 @@
 				CEEAA1DA2B54278700EA1C58 /* DateFormatter+Extension.swift */,
 				CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */,
 				CED829522B590FFC00AD1828 /* UIViewController+Extension.swift */,
+				CE9DEB7C2B6D1D7C0016382B /* UIScrollView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1411,6 +1414,7 @@
 				CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */,
 				CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
+				CE9DEB7D2B6D1D7C0016382B /* UIScrollView+Extension.swift in Sources */,
 				CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */,
 				CEDCC0462B6100B1001D788C /* ChannelError.swift in Sources */,
 				CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */,

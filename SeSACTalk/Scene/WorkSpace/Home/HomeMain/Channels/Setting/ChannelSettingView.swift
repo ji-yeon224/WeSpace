@@ -10,9 +10,11 @@ import UIKit
 
 final class ChannelSettingView: BaseView {
     
-    let scrollView = UIScrollView()
+    let scrollView = UIScrollView().then {
+        $0.updateContentView()
+    }
     
-    private let stackView = {
+    private lazy var stackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.distribution = .fill
@@ -30,8 +32,10 @@ final class ChannelSettingView: BaseView {
     private let descriptionLabel = CustomBasicLabel(text: "'", fontType: .body, line: 0)
     
     var dataSource: UICollectionViewDiffableDataSource<String, ChannelMemberItem>!
-    
-    lazy var collectionView = ChannelMemberCollectionView(frame: .zero, collectionViewLayout: self.compostionalViewLayout())
+//    private let collectionBackView = UIView()
+    lazy var collectionView = ChannelMemberCollectionView(frame: .zero, collectionViewLayout: self.createLayout(userCnt: 0)).then {
+        $0.backgroundColor = .brown
+    }
     
     private let editView = UIView()
     private let exitView = UIView()
@@ -51,18 +55,19 @@ final class ChannelSettingView: BaseView {
     
     func configDummyData() {
         channelNameLabel.text = "# channelName"
-        descriptionLabel.text = "채널 설명 어쩌구 저쩌구 아아아ㅏ아아아ㅏ아아아ㅏ아아아ㅏㅇㄴ이ㅏ닝니아니ㅏㅇ나이니ㅏ너엄니어ㅏ너아넝나ㅓ아너아너아너아ㅓㅓ나어fasdfasdfasdfaszdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdffesdffdsdfsaasdfee나ㅓㅇ"
+        descriptionLabel.text = "채널 설명 어쩌구 저쩌구 아아아ㅏ아아아ㅏ아아아ㅏ아아아ㅏㅇㄴ이ㅏ닝니아니ㅏㅇ나이니ㅏdfsaasdfee나ㅓㅇ"
         
     }
     
     override func configure() {
         super.configure()
-        
+//        collectionView.collectionViewLayout = compostionalViewLayout()
         addSubview(scrollView)
         scrollView.addSubview(stackView)
         [nameBackView, descBackView, collectionView, editView, exitView, changeView, deleteView].forEach {
             stackView.addArrangedSubview($0)
         }
+//        collectionBackView.addSubview(collectionView)
         nameBackView.addSubview(channelNameLabel)
         descBackView.addSubview(descriptionLabel)
         editView.addSubview(editButton)
@@ -100,6 +105,13 @@ final class ChannelSettingView: BaseView {
             make.horizontalEdges.equalTo(descBackView).inset(16)
             make.verticalEdges.equalTo(descBackView)
         }
+//        collectionBackView.snp.makeConstraints { make in
+//            make.height.greaterThanOrEqualTo(10)
+//        }
+        collectionView.snp.makeConstraints { make in
+//            make.edges.equalTo(collectionBackView)
+            make.height.greaterThanOrEqualTo(50)
+        }
         
         editButton.snp.makeConstraints { make in
             make.verticalEdges.equalTo(editView)
@@ -122,27 +134,56 @@ final class ChannelSettingView: BaseView {
             make.height.equalTo(44)
         }
     }
-    
-    private func compostionalViewLayout() -> UICollectionViewFlowLayout {
+    func createLayout(userCnt: Int) -> UICollectionViewLayout {
         
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 0
-        let size = Constants.Design.deviceWidth - 60
-        layout.itemSize = CGSize(width: size / 5, height: size / 5)
-        
+        let layout = UICollectionViewCompositionalLayout {
+            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+            let topItem = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalHeight(1.0)))
+            let topGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
+            let topGroup = NSCollectionLayoutGroup.horizontal(layoutSize: topGroupSize, repeatingSubitem: topItem, count: 1)
+            
+            let userItem = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/5),
+                                                   heightDimension: .fractionalHeight(1.0)))
+            
+            
+            let userGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
+            
+            let userGroup = NSCollectionLayoutGroup.horizontal(layoutSize: userGroupSize, repeatingSubitem: userItem, count: 5)
+            
+            var memberGroup: [NSCollectionLayoutItem] = [topGroup]
+            for _ in 0...userCnt/5+1 {
+                memberGroup.append(userGroup)
+            }
+
+            let nestedGroup = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalHeight(1.0)),
+                subitems: memberGroup)
+            let section = NSCollectionLayoutSection(group: nestedGroup)
+            return section
+
+        }
         return layout
     }
     
     private func configDataSource() {
         
         let titleCell = UICollectionView.CellRegistration<UICollectionViewListCell, ChannelMemberItem> { cell, indexPath, itemIdentifier in
+            
             var config = UIListContentConfiguration.valueCell()
             config.text = itemIdentifier.title
             config.textProperties.font = Font.title2.fontStyle
-            let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header, tintColor: Constants.Color.black)
+            config.textProperties.color = .basicText
             
+            cell.contentConfiguration = config
+            let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header, tintColor: Constants.Color.black)
             cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
+            
+            
         }
         
         let memberCell = UICollectionView.CellRegistration<ChannelMemberCell, User> { cell, indexPath, itemIdentifier in
@@ -157,10 +198,20 @@ final class ChannelSettingView: BaseView {
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             if itemIdentifier.item != nil {
-                return collectionView.dequeueConfiguredReusableCell(using: memberCell, for: indexPath, item: itemIdentifier.item)
+//                collectionView.collectionViewLayout = self.compostionalViewLayout()
+                let cell = collectionView.dequeueConfiguredReusableCell(using: memberCell, for: indexPath, item: itemIdentifier.item)
+                cell.layoutSubviews()
+                return cell
             } else {
-                return collectionView.dequeueConfiguredReusableCell(using: titleCell, for: indexPath, item: itemIdentifier)
+//                collectionView.collectionViewLayout = self.compostionalListLayout()
+//                collectionView.setCollectionViewLayout(self.compostionalListLayout(), animated: false)
+                let cell = collectionView.dequeueConfiguredReusableCell(using: titleCell, for: indexPath, item: itemIdentifier)
+                cell.layoutSubviews()
+                
+                return cell
+                
             }
+            
         })
         
         

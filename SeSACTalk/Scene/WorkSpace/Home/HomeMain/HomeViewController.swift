@@ -398,7 +398,7 @@ extension HomeViewController {
         
     }
 
-    func initialSnapshot(items: [WorkspaceItem]) -> NSDiffableDataSourceSectionSnapshot<WorkspaceItem> {
+    private func initialSnapshot(items: [WorkspaceItem]) -> NSDiffableDataSourceSectionSnapshot<WorkspaceItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<WorkspaceItem>()
         
         snapshot.append(items, to: nil)
