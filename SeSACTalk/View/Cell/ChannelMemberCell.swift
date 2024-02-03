@@ -11,22 +11,17 @@ final class ChannelMemberCell: BaseCollectionViewCell {
     
     private let backView = UIView()
     let profileImageView = SquareFillImageView(frame: .zero)
-    let nameLabel = CustomBasicLabel(text: "", fontType: .body, line: 0).then {
+    let nameLabel = CustomBasicLabel(text: "", fontType: .body, line: 2).then {
         $0.textAlignment = .center
     }
     
     override func configure() {
         super.configure()
-//        contentView.addSubview(backView)
         [profileImageView, nameLabel].forEach { contentView.addSubview($0) }
         
     }
     
     override func setConstraints() {
-//        backView.snp.makeConstraints { make in
-//            make.edges.equalTo(contentView)
-//            
-//        }
         
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(44)
@@ -38,7 +33,7 @@ final class ChannelMemberCell: BaseCollectionViewCell {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(4)
             make.horizontalEdges.equalTo(contentView).inset(8)
-            make.bottom.greaterThanOrEqualTo(contentView).inset(4)
+            make.bottom.equalTo(contentView).inset(4)
         }
     }
     

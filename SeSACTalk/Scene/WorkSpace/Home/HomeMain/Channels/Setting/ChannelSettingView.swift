@@ -32,10 +32,8 @@ final class ChannelSettingView: BaseView {
     private let descriptionLabel = CustomBasicLabel(text: "'", fontType: .body, line: 0)
     
     var dataSource: UICollectionViewDiffableDataSource<String, ChannelMemberItem>!
-//    private let collectionBackView = UIView()
-    lazy var collectionView = ChannelMemberCollectionView(frame: .zero, collectionViewLayout: self.createLayout(userCnt: 0)).then {
-        $0.backgroundColor = .brown
-    }
+
+    lazy var collectionView = ChannelMemberCollectionView(frame: .zero, collectionViewLayout: self.createLayout(userCnt: 0))
     
     private let editView = UIView()
     private let exitView = UIView()
@@ -81,7 +79,7 @@ final class ChannelSettingView: BaseView {
     override func setConstraints() {
         
         scrollView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
+
             make.horizontalEdges.top.equalTo(safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
         }
@@ -105,11 +103,7 @@ final class ChannelSettingView: BaseView {
             make.horizontalEdges.equalTo(descBackView).inset(16)
             make.verticalEdges.equalTo(descBackView)
         }
-//        collectionBackView.snp.makeConstraints { make in
-//            make.height.greaterThanOrEqualTo(10)
-//        }
         collectionView.snp.makeConstraints { make in
-//            make.edges.equalTo(collectionBackView)
             make.height.greaterThanOrEqualTo(50)
         }
         
@@ -138,7 +132,7 @@ final class ChannelSettingView: BaseView {
         
         let layout = UICollectionViewCompositionalLayout {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-
+            
             let topItem = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .fractionalHeight(1.0)))
@@ -155,20 +149,22 @@ final class ChannelSettingView: BaseView {
             let userGroup = NSCollectionLayoutGroup.horizontal(layoutSize: userGroupSize, repeatingSubitem: userItem, count: 5)
             
             var memberGroup: [NSCollectionLayoutItem] = [topGroup]
-            for _ in 0...userCnt/5+1 {
+            for _ in 0...(userCnt/5+1) {
                 memberGroup.append(userGroup)
             }
 
             let nestedGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .fractionalHeight(1.0)),
+                                                   heightDimension: .estimated(200)),
                 subitems: memberGroup)
             let section = NSCollectionLayoutSection(group: nestedGroup)
             return section
-
+            
         }
+        
         return layout
     }
+    
     
     private func configDataSource() {
         
@@ -183,7 +179,9 @@ final class ChannelSettingView: BaseView {
             let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header, tintColor: Constants.Color.black)
             cell.accessories = [.outlineDisclosure(options: disclosureOptions)]
             
-            
+            var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
+            backgroundConfig.backgroundColor = .clear
+            cell.backgroundConfiguration = backgroundConfig
         }
         
         let memberCell = UICollectionView.CellRegistration<ChannelMemberCell, User> { cell, indexPath, itemIdentifier in
@@ -198,15 +196,12 @@ final class ChannelSettingView: BaseView {
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             if itemIdentifier.item != nil {
-//                collectionView.collectionViewLayout = self.compostionalViewLayout()
                 let cell = collectionView.dequeueConfiguredReusableCell(using: memberCell, for: indexPath, item: itemIdentifier.item)
-                cell.layoutSubviews()
+                
                 return cell
             } else {
-//                collectionView.collectionViewLayout = self.compostionalListLayout()
-//                collectionView.setCollectionViewLayout(self.compostionalListLayout(), animated: false)
                 let cell = collectionView.dequeueConfiguredReusableCell(using: titleCell, for: indexPath, item: itemIdentifier)
-                cell.layoutSubviews()
+                
                 
                 return cell
                 
