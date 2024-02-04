@@ -9,7 +9,7 @@ import Foundation
 import ReactorKit
 
 final class CreateChannelReactor: Reactor {
-    var initialState: State = State(successCreate: false, successEdit: false, msg: "", loginRequest: false)
+    var initialState: State = State(successCreate: false, successEdit: nil, msg: "", loginRequest: false)
     
     private var channelRepository = ChannelRepository()
     enum Action {
@@ -26,7 +26,7 @@ final class CreateChannelReactor: Reactor {
     
     struct State {
         var successCreate: Bool
-        var successEdit: Bool
+        var successEdit: Channel?
         var msg: String
         var loginRequest: Bool
     }
@@ -52,8 +52,8 @@ final class CreateChannelReactor: Reactor {
         switch mutation {
         case .successCreate:
             newState.successCreate = true
-        case .successEdit:
-            newState.successEdit = true
+        case .successEdit(let data):
+            newState.successEdit = data
         case .msg(let msg):
             newState.msg = msg
         case .loginRequest:
@@ -102,6 +102,7 @@ extension CreateChannelReactor {
         if let channelDto = channelRepository.searchChannel(wsId: data.workspaceID, chId: data.channelID).first {
             do {
                 try channelRepository.updateChannelInfo(data: channelDto, name: data.name)
+                NotificationCenter.default.post(name: .refreshChannel, object: nil)
                 return true
             } catch {
                 debugPrint("[UPDATE DB ERROR] ", error.localizedDescription)

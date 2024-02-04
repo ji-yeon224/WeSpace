@@ -24,10 +24,11 @@ final class ChatReactor: Reactor {
     
     
     enum Action {
-        case fetchChannel(wsId: Int, chId: Int)
+        case fetchChannel(wsId: Int?, chId: Int?)
         case sendRequest(channel: ChannelDTO?, id: Int?, content: String?, files: [SelectImage])
         case requestUncheckedMsg(date: String?, wsId: Int?, name: String?)
         case receiveMsg(wsId: Int?, channel: ChannelDTO?, chatData: ChannelMessage)
+        
     }
     
     enum Mutation {
@@ -51,7 +52,7 @@ final class ChatReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchChannel(let wsId, let chId):
-            if let item = ChannelRepository().searchChannel(wsId: wsId, chId: chId).first {
+            if let wsId = wsId, let chId = chId, let item = ChannelRepository().searchChannel(wsId: wsId, chId: chId).first {
                 return .just(.fetchChannelRecord(data: item))
             }
             return .just(.msg(msg: ChannelToastMessage.otherError.message))

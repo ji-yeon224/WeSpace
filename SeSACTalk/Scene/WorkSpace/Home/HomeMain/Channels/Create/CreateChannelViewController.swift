@@ -19,6 +19,7 @@ final class CreateChannelViewController: BaseViewController {
     private var descChange = BehaviorRelay<Bool>(value: false)
     
     var createComplete: (() -> Void)?
+    var updateComplete: ((Channel) -> Void)?
     
     var mode: CreateType = .create
     var wsId: Int?
@@ -130,6 +131,17 @@ extension CreateChannelViewController: View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.successEdit }
+            .filter { $0 != .none }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                if let value = value {
+                    owner.updateComplete?(value)
+                }
+                owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
         
     }
     

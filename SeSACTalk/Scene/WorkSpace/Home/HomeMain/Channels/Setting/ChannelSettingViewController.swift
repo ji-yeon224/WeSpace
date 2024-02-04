@@ -151,18 +151,22 @@ extension ChannelSettingViewController: View {
             .disposed(by: disposeBag)
         
         mainView.editButton.rx.tap
-            .asDriver()
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
                 if let workspace = owner.workspace {
                     let vc = CreateChannelViewController(wsId: workspace.workspaceId, channel: owner.channel, mode: .edit)
-                    vc.createComplete = {
-                        owner.requestChannelInfo.accept((workspace.workspaceId, owner.chName ?? ""))
+                    vc.updateComplete = { info in
+                        owner.showToastMessage(message: ChannelToastMessage.successEdit.message, position: .bottom)
+                        owner.mainView.setChannelInfo(name: info.name, description: info.description)
+                        
                     }
                     owner.presentPageSheet(vc: vc)
                 }
             }
             .disposed(by: disposeBag)
         
+       
     }
 }
 

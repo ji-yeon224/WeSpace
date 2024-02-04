@@ -78,7 +78,6 @@ final class ChannelRepository {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
         
         fileName.forEach {
-            print("**")
             let fileURL = documentDirectory.appendingPathComponent($0)
             
             if FileManager.default.fileExists(atPath: fileURL.path) {

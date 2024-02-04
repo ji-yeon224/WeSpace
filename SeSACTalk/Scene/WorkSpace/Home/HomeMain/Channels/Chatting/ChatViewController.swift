@@ -53,15 +53,16 @@ final class ChatViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        guard let channel = channel else { return }
-//        SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
-//        SocketNetworkManager.shared.connect()
+        guard let channel = channel else { return }
+        
+        if !SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
+            SocketNetworkManager.shared.connect()
+        }
+       
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(#function)
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
@@ -78,7 +79,10 @@ final class ChatViewController: BaseViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        SocketNetworkManager.shared.disconnect()
+        if SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.disconnect()
+        }
+        
     }
     
     private func configData() {
@@ -178,6 +182,7 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        
     }
     
     
@@ -192,6 +197,12 @@ extension ChatViewController: View {
     }
     
     private func bindAction(reactor: ChatReactor) {
+        
+        NotificationCenter.default.rx.notification(.refreshChannel)
+            .map { _ in Reactor.Action.fetchChannel(wsId: self.workspace?.workspaceId, chId: self.channel?.channelId)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         mainView.chatWriteView.sendButton.rx.tap
             .withLatestFrom(mainView.chatWriteView.textView.rx.text.orEmpty, resultSelector: { _, value in
                 return value
@@ -272,6 +283,20 @@ extension ChatViewController: View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.channelRecord }
+            .distinctUntilChanged()
+            .filter { $0 != .none }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                owner.channel = value
+                if let value = value {
+                    owner.title = "# \(value.name)"
+                }
+                
+            }
+            .disposed(by: disposeBag)
+        
     }
     
 }
@@ -333,7 +358,9 @@ extension ChatViewController {
 //        navigationController?.popViewController(animated: true)
         refreshHome?()
         navigationController?.popToRootViewController(animated: true)
-//        SocketNetworkManager.shared.disconnect()
+        if SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.disconnect()
+        }
     }
 }
 
