@@ -170,8 +170,11 @@ final class ChatViewController: BaseViewController {
             .asDriver()
             .drive(with: self) { owner, _ in
                 // channel name, workspaceId
-                let vc = ChannelSettingViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+                if let channel = owner.channel, let workspace = owner.workspace {
+                    let vc = ChannelSettingViewController(chName: channel.name, wsId: workspace.workspaceId)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+                
             }
             .disposed(by: disposeBag)
         

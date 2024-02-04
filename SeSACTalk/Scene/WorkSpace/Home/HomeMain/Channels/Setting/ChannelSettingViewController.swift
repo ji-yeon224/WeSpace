@@ -7,18 +7,34 @@
 
 import UIKit
 import ReactorKit
+import RxCocoa
 
 final class ChannelSettingViewController: BaseViewController {
     
     private let mainView = ChannelSettingView()
-    private let disposeBag = DisposeBag()
-    var user = [
-        ChannelMemberItem(title: "", subItems: [], item: User(userId: 1, email: "aa", nickname: "1111", profileImage: nil)),
-        ChannelMemberItem(title: "", subItems: [], item: User(userId: 1, email: "aa", nickname: "2222", profileImage: nil)),
-        ChannelMemberItem(title: "", subItems: [], item: User(userId: 1, email: "aa", nickname: "3333", profileImage: nil))
-    ]
+    var disposeBag = DisposeBag()
     
-    lazy var item = ChannelMemberItem(title: "멤버", subItems: user, item: nil)
+    private var chName: String?
+    private var wsId: Int?
+    private var requestChannelInfo = PublishRelay<(Int, String)>()
+    
+    var memberList: [ChannelMemberItem] = []
+    
+//    lazy var item = ChannelMemberItem(title: "멤버", subItems: user, item: nil)
+    
+    
+    init(chName: String, wsId: Int) {
+        super.init(nibName: nil, bundle: nil)
+        self.chName = chName
+        self.wsId = wsId
+        
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         self.view = mainView
     }
@@ -26,26 +42,95 @@ final class ChannelSettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print(snapshot.isVisible(item))
-        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
-            self.user.append(ChannelMemberItem(title: "", subItems: [], item: User(userId: 1, email: "aa", nickname: "4444", profileImage: nil)))
-            self.item = ChannelMemberItem(title: "멤버", subItems: self.user, item: nil)
-            self.updateSnapShot(item: self.item)
+        guard let chName = chName, let wsId = wsId else {
+            self.showToastMessage(message: "데이터를 불러올 수 없습니다.", position: .top)
+            return
         }
         
+        requestChannelInfo.accept((wsId, chName)) // 해당 채널 전체 정보
         
     }
     
     override func configure() {
         super.configure()
+        
+        self.reactor = ChannelSettingReactor()
+        
         configNav()
         title = "채널 설정"
-        updateSnapShot(item: item)
+//        updateSnapShot(item: item)
         mainView.configDummyData()
         mainView.setButtonHidden(isAdmin: true)
         
-        bindEvent()
         
+    }
+    
+    
+    
+    
+    
+}
+
+// ReactorKit
+extension ChannelSettingViewController: View {
+    
+    func bind(reactor: ChannelSettingReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+        bindEvent()
+    }
+    
+    
+    private func bindAction(reactor: ChannelSettingReactor) {
+        requestChannelInfo
+            .map { Reactor.Action.requestChannelInfo(wsId: $0.0, name: $0.1)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindState(reactor: ChannelSettingReactor) {
+        
+        reactor.state
+            .map { $0.msg }
+            .filter { !$0.isEmpty }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self) { owner, value in
+                owner.showToastMessage(message: value, position: .top)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.channelInfo }
+            .filter{ $0 != .none }
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                if let channel = value {
+                    owner.mainView.setChannelInfo(name: channel.name, description: channel.description)
+                    if value?.ownerID == UserDefaultsManager.userId { // 관리자이면
+                        owner.mainView.setButtonHidden(isAdmin: true)
+                    } else {
+                        owner.mainView.setButtonHidden(isAdmin: false)
+                        
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.memberInfo }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: [])
+            .filter { !$0.isEmpty }
+            .drive(with: self) { owner, value in
+                owner.memberList = value.map {
+                    ChannelMemberItem(title: "", subItems: [], item: $0)
+                }
+                let item = ChannelMemberItem(title: "멤버 (\(value.count))", subItems: owner.memberList, item: nil)
+                owner.updateSnapShot(item: item)
+            }
+            .disposed(by: disposeBag)
         
     }
     
@@ -62,20 +147,16 @@ final class ChannelSettingViewController: BaseViewController {
             .disposed(by: disposeBag)
         
     }
-    
-    
-    
 }
 
+
+// collectionView
 extension ChannelSettingViewController {
     
     private func updateSnapShot(item: ChannelMemberItem) {
         mainView.collectionView.collectionViewLayout = mainView.createLayout(userCnt: item.subItems.count)
         let snapshot = initialSnapshot(items: [item])
-        mainView.dataSource.apply(snapshot, to: "", animatingDifferences: false)
-//        mainView.updateCollectionViewHeight()
-        
-//        mainView.layoutIfNeeded()
+        mainView.dataSource.apply(snapshot, to: "", animatingDifferences: true)
         
     }
     

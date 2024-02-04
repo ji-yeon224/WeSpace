@@ -40,16 +40,11 @@ final class ChannelSettingView: BaseView {
     private let changeView = UIView()
     private let deleteView = UIView()
     
-    let editButton = CustomButton(bgColor: .white, borderColor: .black, titleColor: .basicText,title: Text.editChannelTitle).then {
-        $0.isHidden = true
-    }
+    let editButton = CustomButton(bgColor: .white, borderColor: .black, titleColor: .basicText,title: Text.editChannelTitle)
+    
     let exitButton = CustomButton(bgColor: .white, borderColor: .black, titleColor: .basicText, title: Text.exitChannelTitle)
-    let changeButton = CustomButton(bgColor: .white, borderColor: .black, titleColor: .basicText, title: Text.changeChannelTitle).then {
-        $0.isHidden = true
-    }
-    let deleteButton = CustomButton(bgColor: .white, borderColor: .error, titleColor: .error, title: Text.deleteChannelTitle).then {
-        $0.isHidden = true
-    }
+    let changeButton = CustomButton(bgColor: .white, borderColor: .black, titleColor: .basicText, title: Text.changeChannelTitle)
+    let deleteButton = CustomButton(bgColor: .white, borderColor: .error, titleColor: .error, title: Text.deleteChannelTitle)
     
     func configDummyData() {
         channelNameLabel.text = "# channelName"
@@ -221,11 +216,9 @@ final class ChannelSettingView: BaseView {
     }
     
     func setButtonHidden(isAdmin: Bool) {
-        if isAdmin {
-            editButton.isHidden = false
-            changeButton.isHidden = false
-            deleteButton.isHidden = false
-        }
+        editView.isHidden = !isAdmin
+        changeView.isHidden = !isAdmin
+        deleteView.isHidden = !isAdmin
     }
     
 }
