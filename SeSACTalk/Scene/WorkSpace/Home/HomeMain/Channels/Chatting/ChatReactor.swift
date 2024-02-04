@@ -12,6 +12,7 @@ final class ChatReactor: Reactor {
     
     var channelRecord: ChannelDTO?
     private let channelMsgRepository = ChannelMsgRepository()
+    private let channelRepository = ChannelRepository()
     
     var initialState: State = State(
         msg: "",
@@ -205,7 +206,7 @@ extension ChatReactor {
             return record
         }
         do {
-            try ChannelRepository().updateChatItems(data: data, chat: recordList)
+            try channelRepository.updateChatItems(data: data, chat: recordList)
             
             debugPrint("[SAVE CHAT ITEMS SUCCESS]")
             return recordList.map { $0.toDomain() }
@@ -222,7 +223,7 @@ extension ChatReactor {
             let file = files[i]
             ImageDownloadManager.shared.getUIImage(with: file) { img in
                 
-                ChannelMsgRepository().saveImageToDocument(fileName: fileNames[i], image: img)
+                self.channelMsgRepository.saveImageToDocument(fileName: fileNames[i], image: img)
 
                 
             }

@@ -63,6 +63,11 @@ final class ChannelSettingReactor: Reactor {
 }
 
 extension ChannelSettingReactor {
+    
+    private func requestExitChannel(wsId: Int, name: String) {
+        
+    }
+    
     private func requestChannelInfo(wsId: Int, name: String) -> Observable<Mutation> {
         return ChannelsAPIManager.shared.request(api: .oneChannel(wsId: wsId, name: name), responseType: ChannelResDTO.self)
             .asObservable()

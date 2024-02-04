@@ -166,6 +166,14 @@ extension ChannelSettingViewController: View {
             }
             .disposed(by: disposeBag)
         
+        mainView.exitButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                print("")
+            }
+            .disposed(by: disposeBag)
+        
        
     }
 }

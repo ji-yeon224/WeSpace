@@ -54,8 +54,10 @@ final class ChannelRepository {
         }
     }
     func delete(object: ChannelDTO) throws {
+        
         do {
             try realm.write {
+                realm.delete(object.chatItem)
                 realm.delete(object)
             }
         } catch {
@@ -91,4 +93,22 @@ final class ChannelRepository {
         return imgData
         
     }
+    
+    private func removeImageFromDocuments(fileName: [String]) {
+        
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        fileName.forEach {
+            let fileURL = documentDirectory.appendingPathComponent($0)
+            do {
+                if !FileManager.default.fileExists(atPath: fileURL.path) {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
+            } catch {
+                print("REMOVE ERROR")
+            }
+            
+        }
+    }
+    
 }

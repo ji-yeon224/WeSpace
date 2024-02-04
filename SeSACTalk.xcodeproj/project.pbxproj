@@ -559,6 +559,15 @@
 			path = Invite;
 			sourceTree = "<group>";
 		};
+		CE2BA8192B6F827F00B24B55 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */,
+				CEDCC0452B6100B1001D788C /* ChannelError.swift */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
 		CE4904D22B4D0EA9003B0204 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,8 +641,6 @@
 			children = (
 				CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */,
 				CE61ADF72B5B629F0091B03D /* InviteError.swift */,
-				CE61AE022B5CF46F0091B03D /* ChannelCreateError.swift */,
-				CEDCC0452B6100B1001D788C /* ChannelError.swift */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -1053,6 +1060,7 @@
 		CED65F8B2B45B6EE00CFD04C /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				CE2BA8192B6F827F00B24B55 /* Channel */,
 				CE5D067E2B4F027500C067A3 /* Workspace */,
 				CED65F8E2B45B77900CFD04C /* Auth */,
 				CED65F8C2B45B6F800CFD04C /* CommonError.swift */,
