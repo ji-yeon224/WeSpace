@@ -7,13 +7,17 @@
 
 import UIKit
 import ReactorKit
-
+import RxCocoa
 
 final class CreateChannelViewController: BaseViewController {
     
     private let mainView = CreateChannelView()
 //    private var workspace: WorkSpace?
     private let requestCreate = PublishSubject<String>()
+    
+    private var nameChange = BehaviorRelay<Bool>(value: false)
+    private var descChange = BehaviorRelay<Bool>(value: false)
+    
     var createComplete: (() -> Void)?
     
     var mode: CreateType = .create
@@ -64,7 +68,7 @@ final class CreateChannelViewController: BaseViewController {
         if let description = channel.description {
             mainView.descriptionForm.textfield.text = description
         }
-        
+        mainView.createButton.setTitle("완료", for: .normal)
     }
     
 }
@@ -74,7 +78,12 @@ extension CreateChannelViewController: View {
     func bind(reactor: CreateChannelReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
-        bindEvent()
+        switch mode {
+        case .create:
+            createBindEvent()
+        case .edit:
+            editBindEvent()
+        }
     }
     
     private func bindAction(reactor: CreateChannelReactor) {
@@ -85,7 +94,14 @@ extension CreateChannelViewController: View {
             .withLatestFrom(input) { _, value in
                 return value
             }
-            .map { Reactor.Action.requestCreate(id: self.wsId, name: $0.0, desc: $0.1)}
+            .map {
+                if self.mode == .create {
+                    return Reactor.Action.requestCreate(id: self.wsId, name: $0.0, desc: $0.1)
+                } else {
+                    return Reactor.Action.requestCreate(id: self.wsId, name: $0.0, desc: $0.1)
+                }
+                
+            }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -123,7 +139,7 @@ extension CreateChannelViewController: View {
         
     }
     
-    private func bindEvent() {
+    private func createBindEvent() {
         mainView.nameForm.textfield.rx.text.orEmpty
             .asDriver()
             .drive(with: self) { owner, value in
@@ -134,6 +150,40 @@ extension CreateChannelViewController: View {
             }
             .disposed(by: disposeBag)
     }
+    
+    private func editBindEvent() {
+        mainView.descriptionForm.textfield.rx.text.orEmpty
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self) { owner, value in
+                let empty = value.isEmpty || value == owner.channel?.description
+                owner.descChange.accept(!empty)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.nameForm.textfield.rx.text.orEmpty
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self) { owner, value in
+                let empty = value.isEmpty || value == owner.channel?.name
+                owner.nameChange.accept(!empty)
+            }
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(nameChange, descChange) { name, desc in
+            return name || desc
+        }
+        .distinctUntilChanged()
+        .asDriver(onErrorJustReturn: false)
+        .drive(with: self) { owner, change in
+            owner.mainView.createButton.isEnabled = change
+            let color: UIColor = change ? .brand : .inactive
+            owner.mainView.createButton.backgroundColor = color
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    
     
 }
 
