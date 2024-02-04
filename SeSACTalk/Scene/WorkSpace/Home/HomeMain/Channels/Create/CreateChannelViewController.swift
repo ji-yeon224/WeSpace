@@ -98,7 +98,8 @@ extension CreateChannelViewController: View {
                 if self.mode == .create {
                     return Reactor.Action.requestCreate(id: self.wsId, name: $0.0, desc: $0.1)
                 } else {
-                    return Reactor.Action.requestCreate(id: self.wsId, name: $0.0, desc: $0.1)
+                    let data = CreateChannelReqDTO(name: $0.0, description: $0.1)
+                    return Reactor.Action.requestEdit(id: self.wsId, name: self.channel?.name, updateData: data)
                 }
                 
             }
@@ -129,13 +130,6 @@ extension CreateChannelViewController: View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state
-            .map { $0.showIndicator }
-            .distinctUntilChanged()
-            .bind(with: self) { owner, value in
-                owner.showIndicator(show: value)
-            }
-            .disposed(by: disposeBag)
         
     }
     

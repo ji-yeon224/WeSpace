@@ -11,6 +11,7 @@ import Moya
 enum ChannelsAPI {
     case myChannel(id: Int)
     case create(id: Int, data: CreateChannelReqDTO)
+    case edit(id: Int, name: String, data: CreateChannelReqDTO)
     case sendMsg(name: String, id: Int, data: ChannelChatReqDTO)
     case fetchMsg(date: String?, name: String, wsId: Int)
     case member(name: String, wsId: Int)
@@ -29,6 +30,8 @@ extension ChannelsAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(id)/channels/my"
         case .create(let id, _), .allChannel(let id):
             return Endpoint.workspaces.rawValue + "/\(id)/channels"
+        case .edit(let id, let name, _):
+            return Endpoint.workspaces.rawValue + "/\(id)/channels/\(name)"
         case .sendMsg(let name, let id, _):
             return Endpoint.workspaces.rawValue + "/\(id)/channels/\(name)/chats"
         case .fetchMsg(_, let name, let wsId):
@@ -47,6 +50,8 @@ extension ChannelsAPI: TargetType {
             return .get
         case .create, .sendMsg:
             return .post
+        case .edit:
+            return .put
         }
     }
     
@@ -54,7 +59,7 @@ extension ChannelsAPI: TargetType {
         switch self {
         case .myChannel, .member, .allChannel, .oneChannel:
             return .requestPlain
-        case .create(_, data: let data):
+        case .create(_, data: let data), .edit(_, _, let data):
             return .requestJSONEncodable(data)
         case .sendMsg(_, _, let data):
             return .uploadMultipart(data.multipartData())
@@ -74,7 +79,7 @@ extension ChannelsAPI: TargetType {
         switch self {
         case .myChannel, .fetchMsg, .member, .allChannel, .oneChannel :
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
-        case .create:
+        case .create, .edit:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .sendMsg:
             return ["Content-Type": "multipart/form-data", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]

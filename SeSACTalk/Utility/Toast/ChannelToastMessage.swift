@@ -9,6 +9,7 @@ import Foundation
 
 enum ChannelToastMessage {
     case successCreate
+    case successEdit
     case loadFailChat
     case otherError
 }
@@ -18,6 +19,8 @@ extension ChannelToastMessage {
         switch self {
         case .successCreate:
             return "채널이 생성되었습니다."
+        case .successEdit:
+            return "채널이 편집되었습니다."
         case .loadFailChat:
             return "채팅을 로드하는데 문제가 발생하였습니다."
         case .otherError:
