@@ -10,9 +10,7 @@ import RxGesture
 import ReactorKit
 import RxCocoa
 
-enum setWSType {
-    case create, edit
-}
+
 
 final class MakeViewController: BaseViewController, View {
     
@@ -20,11 +18,11 @@ final class MakeViewController: BaseViewController, View {
     var disposeBag: DisposeBag = DisposeBag()
     var delegate: MakeWSDelegate?
     
-    private var mode: setWSType = .create
+    private var mode: CreateType = .create
     private var wsInfo: WorkSpace?
     private var img: UIImage?
     
-    init(mode: setWSType = .create, info: WorkSpace? = nil) {
+    init(mode: CreateType = .create, info: WorkSpace? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.mode = mode
         self.wsInfo = info

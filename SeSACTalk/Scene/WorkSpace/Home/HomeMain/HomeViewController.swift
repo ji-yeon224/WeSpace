@@ -306,13 +306,16 @@ extension HomeViewController {
         
         createChannel
             .bind(with: self) { owner, _ in
-                let vc = CreateChannelViewController(workspace: owner.workspace)
-                vc.createComplete = {
-                    owner.showToastMessage(message: ChannelToastMessage.successCreate.message, position: .bottom)
-                    owner.requestChannelInfo.onNext(())
-                    
+                if let workspace = owner.workspace {
+                    let vc = CreateChannelViewController(wsId: workspace.workspaceId)
+                    vc.createComplete = {
+                        owner.showToastMessage(message: ChannelToastMessage.successCreate.message, position: .bottom)
+                        owner.requestChannelInfo.onNext(())
+                        
+                    }
+                    owner.presentPageSheet(vc: vc)
                 }
-                owner.presentPageSheet(vc: vc)
+                
             }
             .disposed(by: disposeBag)
         

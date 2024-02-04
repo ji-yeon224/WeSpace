@@ -72,7 +72,7 @@ final class MakeViewReactor: Reactor {
 }
 
 extension MakeViewReactor {
-    private func validCheck(name: String, des: String?, img: SelectImage, mode: setWSType, id: Int? = nil) -> Observable<Mutation> {
+    private func validCheck(name: String, des: String?, img: SelectImage, mode: CreateType, id: Int? = nil) -> Observable<Mutation> {
         if img.img == nil {
             return Observable.of(.msg(msg: WorkspaceToastMessage.makeNoImage.message))
         }

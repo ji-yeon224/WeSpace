@@ -8,18 +8,24 @@
 import UIKit
 import ReactorKit
 
+
 final class CreateChannelViewController: BaseViewController {
     
     private let mainView = CreateChannelView()
-    private var workspace: WorkSpace?
+//    private var workspace: WorkSpace?
     private let requestCreate = PublishSubject<String>()
     var createComplete: (() -> Void)?
     
+    var mode: CreateType = .create
+    var wsId: Int?
+    
     var disposeBag = DisposeBag()
     
-    init(workspace: WorkSpace?) {
+    init(wsId: Int, mode: CreateType = .create) {
         super.init(nibName: nil, bundle: nil)
-        self.workspace = workspace
+//        self.workspace = workspace
+        self.wsId = wsId
+        self.mode = mode
     }
     
     @available(*, unavailable)
@@ -61,7 +67,7 @@ extension CreateChannelViewController: View {
             .withLatestFrom(input) { _, value in
                 return value
             }
-            .map { Reactor.Action.requestCreate(id: self.workspace?.workspaceId, name: $0.0, desc: $0.1)}
+            .map { Reactor.Action.requestCreate(id: self.wsId, name: $0.0, desc: $0.1)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         

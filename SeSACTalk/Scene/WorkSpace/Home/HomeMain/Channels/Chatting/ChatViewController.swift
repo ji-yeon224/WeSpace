@@ -52,8 +52,8 @@ final class ChatViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function)
-        guard let channel = channel else { return }
+        
+//        guard let channel = channel else { return }
 //        SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
 //        SocketNetworkManager.shared.connect()
         
@@ -171,7 +171,7 @@ final class ChatViewController: BaseViewController {
             .drive(with: self) { owner, _ in
                 // channel name, workspaceId
                 if let channel = owner.channel, let workspace = owner.workspace {
-                    let vc = ChannelSettingViewController(chName: channel.name, wsId: workspace.workspaceId)
+                    let vc = ChannelSettingViewController(chName: channel.name, ws: workspace)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
                 

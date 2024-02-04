@@ -16,6 +16,7 @@ final class ChannelSettingViewController: BaseViewController {
     
     private var chName: String?
     private var wsId: Int?
+    private var workspace: WorkSpace?
     private var requestChannelInfo = PublishRelay<(Int, String)>()
     
     var memberList: [ChannelMemberItem] = []
@@ -23,10 +24,10 @@ final class ChannelSettingViewController: BaseViewController {
 //    lazy var item = ChannelMemberItem(title: "멤버", subItems: user, item: nil)
     
     
-    init(chName: String, wsId: Int) {
+    init(chName: String, ws: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.chName = chName
-        self.wsId = wsId
+        self.workspace = ws
         
     }
     
@@ -42,12 +43,12 @@ final class ChannelSettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let chName = chName, let wsId = wsId else {
+        guard let chName = chName, let ws = workspace else {
             self.showToastMessage(message: "데이터를 불러올 수 없습니다.", position: .top)
             return
         }
         
-        requestChannelInfo.accept((wsId, chName)) // 해당 채널 전체 정보
+        requestChannelInfo.accept((ws.workspaceId, chName)) // 해당 채널 전체 정보
         
     }
     

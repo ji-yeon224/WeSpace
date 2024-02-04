@@ -15,6 +15,7 @@
 		CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F382B5AC9A000C43028 /* InviteView.swift */; };
 		CE211F3D2B5AC9B700C43028 /* InviteReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F3C2B5AC9B700C43028 /* InviteReactor.swift */; };
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
+		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */; };
 		CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */; };
 		CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */; };
@@ -261,6 +262,7 @@
 		CE211F382B5AC9A000C43028 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 		CE211F3C2B5AC9B700C43028 /* InviteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteReactor.swift; sourceTree = "<group>"; };
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
+		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVCManager.swift; sourceTree = "<group>"; };
 		CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1204,6 +1206,7 @@
 				CECFCDEC2B4FC8C300EB0DB7 /* RefreshResultType.swift */,
 				CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */,
 				CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */,
+				CE2BA8172B6F54DC00B24B55 /* CreateType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -1455,6 +1458,7 @@
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
 				CED8294B2B58C41500AD1828 /* ChangeManagerView.swift in Sources */,
+				CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */,
 				CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */,
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
 				CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */,
