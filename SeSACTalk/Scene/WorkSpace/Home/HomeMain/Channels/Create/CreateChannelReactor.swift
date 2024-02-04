@@ -88,7 +88,10 @@ extension CreateChannelReactor {
                     } else {
                         return .of(Mutation.loginRequest)
                     }
-                    return .of(Mutation.msg(msg: msg))
+                    return .concat(
+                        .of(Mutation.msg(msg: msg)),
+                        .of(Mutation.showIndicator(isShow: false))
+                    )
                 }
                 
             }

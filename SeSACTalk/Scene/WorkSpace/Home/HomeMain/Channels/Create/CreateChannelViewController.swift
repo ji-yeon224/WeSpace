@@ -18,14 +18,16 @@ final class CreateChannelViewController: BaseViewController {
     
     var mode: CreateType = .create
     var wsId: Int?
+    var channel: Channel?
     
     var disposeBag = DisposeBag()
     
-    init(wsId: Int, mode: CreateType = .create) {
+    init(wsId: Int, channel: Channel? = nil, mode: CreateType = .create) {
         super.init(nibName: nil, bundle: nil)
 //        self.workspace = workspace
         self.wsId = wsId
         self.mode = mode
+        self.channel = channel
     }
     
     @available(*, unavailable)
@@ -45,8 +47,24 @@ final class CreateChannelViewController: BaseViewController {
     
     override func configure() {
         super.configure()
-        title = "채널 생성"
+        switch mode {
+        case .create:
+            title = "채널 생성"
+        case .edit:
+            title = "채널 편집"
+            configEditData()
+        }
+        
         configNav()
+    }
+    
+    private func configEditData() {
+        guard let channel = channel else { return }
+        mainView.nameForm.textfield.text = channel.name
+        if let description = channel.description {
+            mainView.descriptionForm.textfield.text = description
+        }
+        
     }
     
 }

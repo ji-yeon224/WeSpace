@@ -15,6 +15,7 @@ final class ChannelSettingViewController: BaseViewController {
     var disposeBag = DisposeBag()
     
     private var chName: String?
+    private var channel: Channel?
     private var wsId: Int?
     private var workspace: WorkSpace?
     private var requestChannelInfo = PublishRelay<(Int, String)>()
@@ -27,6 +28,7 @@ final class ChannelSettingViewController: BaseViewController {
     init(chName: String, ws: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.chName = chName
+//        self.channel = channel
         self.workspace = ws
         
     }
@@ -43,12 +45,12 @@ final class ChannelSettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let chName = chName, let ws = workspace else {
+        guard let name = chName, let ws = workspace else {
             self.showToastMessage(message: "데이터를 불러올 수 없습니다.", position: .top)
             return
         }
         
-        requestChannelInfo.accept((ws.workspaceId, chName)) // 해당 채널 전체 정보
+        requestChannelInfo.accept((ws.workspaceId, name)) // 해당 채널 전체 정보
         
     }
     
@@ -108,6 +110,7 @@ extension ChannelSettingViewController: View {
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 if let channel = value {
+                    owner.channel = channel
                     owner.mainView.setChannelInfo(name: channel.name, description: channel.description)
                     if value?.ownerID == UserDefaultsManager.userId { // 관리자이면
                         owner.mainView.setButtonHidden(isAdmin: true)
@@ -143,6 +146,19 @@ extension ChannelSettingViewController: View {
                     owner.mainView.scrollView.updateContentView()
                     owner.mainView.collectionView.layoutIfNeeded()
                     
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.editButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                if let workspace = owner.workspace {
+                    let vc = CreateChannelViewController(wsId: workspace.workspaceId, channel: owner.channel, mode: .edit)
+                    vc.createComplete = {
+                        owner.requestChannelInfo.accept((workspace.workspaceId, owner.chName ?? ""))
+                    }
+                    owner.presentPageSheet(vc: vc)
                 }
             }
             .disposed(by: disposeBag)
@@ -185,6 +201,11 @@ extension ChannelSettingViewController {
     
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    private func presentPageSheet(vc: UIViewController) {
+        let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+        nav.setupBarAppearance()
+        present(nav, animated: true)
     }
 }
 
