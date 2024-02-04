@@ -17,6 +17,8 @@
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
 		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */; };
+		CE2BA81F2B6FE84F00B24B55 /* ChannelSettingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81E2B6FE84F00B24B55 /* ChannelSettingDelegate.swift */; };
+		CE2BA8212B6FEF1B00B24B55 /* ChannelChatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8202B6FEF1B00B24B55 /* ChannelChatDelegate.swift */; };
 		CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */; };
 		CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */; };
 		CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */; };
@@ -265,6 +267,8 @@
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
 		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
+		CE2BA81E2B6FE84F00B24B55 /* ChannelSettingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingDelegate.swift; sourceTree = "<group>"; };
+		CE2BA8202B6FEF1B00B24B55 /* ChannelChatDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatDelegate.swift; sourceTree = "<group>"; };
 		CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVCManager.swift; sourceTree = "<group>"; };
 		CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		CE4904CB2B4D0C6B003B0204 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -696,6 +700,8 @@
 				CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */,
 				CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */,
 				CED829542B59331800AD1828 /* ChangeManageDelegate.swift */,
+				CE2BA81E2B6FE84F00B24B55 /* ChannelSettingDelegate.swift */,
+				CE2BA8202B6FEF1B00B24B55 /* ChannelChatDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -1493,6 +1499,7 @@
 				CEC764452B516C04000578E9 /* DMsAPI.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
 				CEEAA1D52B53FB9800EA1C58 /* WorkspaceEmptyView.swift in Sources */,
+				CE2BA8212B6FEF1B00B24B55 /* ChannelChatDelegate.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
 				CED8294D2B58C42900AD1828 /* ChangeManagerReactor.swift in Sources */,
 				CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */,
@@ -1530,6 +1537,7 @@
 				CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */,
 				CE61AE142B5E48590091B03D /* ChannelChatResDTO.swift in Sources */,
 				CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */,
+				CE2BA81F2B6FE84F00B24B55 /* ChannelSettingDelegate.swift in Sources */,
 				CECFCDE92B4FC78F00EB0DB7 /* AuthAPI.swift in Sources */,
 				CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */,
 				CE9DEB772B6CB8B00016382B /* ChannelMemberCell.swift in Sources */,

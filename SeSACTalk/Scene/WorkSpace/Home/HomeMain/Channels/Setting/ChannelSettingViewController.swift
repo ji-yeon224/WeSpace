@@ -16,19 +16,18 @@ final class ChannelSettingViewController: BaseViewController {
     
     private var chName: String?
     private var channel: Channel?
-    private var wsId: Int?
     private var workspace: WorkSpace?
     private var requestChannelInfo = PublishRelay<(Int, String)>()
+    private var requestExitChannel = PublishRelay<Void>()
     
+    weak var delegate: ChannelSettingDelegate?
     var memberList: [ChannelMemberItem] = []
     
-//    lazy var item = ChannelMemberItem(title: "멤버", subItems: user, item: nil)
     
     
     init(chName: String, ws: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.chName = chName
-//        self.channel = channel
         self.workspace = ws
         
     }
@@ -61,7 +60,6 @@ final class ChannelSettingViewController: BaseViewController {
         
         configNav()
         title = "채널 설정"
-//        updateSnapShot(item: item)
         mainView.configDummyData()
         mainView.setButtonHidden(isAdmin: true)
         
@@ -87,6 +85,11 @@ extension ChannelSettingViewController: View {
     private func bindAction(reactor: ChannelSettingReactor) {
         requestChannelInfo
             .map { Reactor.Action.requestChannelInfo(wsId: $0.0, name: $0.1)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        requestExitChannel
+            .map { Reactor.Action.requestExitChannel(wsId: self.workspace?.workspaceId, name: self.channel?.name, chId: self.channel?.channelID)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -136,6 +139,17 @@ extension ChannelSettingViewController: View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.exitSuccess }
+            .asDriver(onErrorJustReturn: [])
+            .filter{ !$0.isEmpty }
+            .distinctUntilChanged()
+            .drive(with: self) { owner, value in
+                owner.delegate?.channelExitRefresh(data: value)
+                owner.navigationController?.popToRootViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindEvent() {
@@ -170,22 +184,29 @@ extension ChannelSettingViewController: View {
             .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
-                print("")
-//                owner.deleteTest()
+                owner.showExitPopupView()
             }
             .disposed(by: disposeBag)
         
        
     }
     
-//    func deleteTest() {
-//        let data = ChannelRepository().searchChannel(wsId: 148, chId: 343).first!
-//        do {
-//            try ChannelRepository().delete(object: data)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+    
+}
+
+
+extension ChannelSettingViewController {
+    private func showExitPopupView() {
+        // 관리자이면
+        if channel?.ownerID == UserDefaultsManager.userId {
+            showPopUp(title: Text.exitChannelTitle, message: Text.exitChannelManagerMessage, okTitle: "확인", okCompletion:  { })
+        } else {
+            showPopUp(title: Text.exitChannelTitle, message: Text.exitChannelMessage, align: .center, cancelTitle: "취소", okTitle: "삭제") { } okCompletion: {
+                self.requestExitChannel.accept(())
+            }
+
+        }
+    }
 }
 
 

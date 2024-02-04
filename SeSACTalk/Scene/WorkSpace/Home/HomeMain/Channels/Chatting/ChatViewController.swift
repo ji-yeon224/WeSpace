@@ -22,22 +22,19 @@ final class ChatViewController: BaseViewController {
     private var requestUncheckedChat = PublishRelay<String?>()
     private var chatData: [ChannelMessage] = []
     private var lastDate: String?
-//    private var selectLimit = 5
+
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
     var disposeBag = DisposeBag()
     
     var refreshHome: (() -> Void)?
+    weak var delegate: ChannelChatDelegate?
     
     init(info: ChannelDTO, workspace: WorkSpace, chatItems: [ChannelMessage], userInfo: [Int: User]) {
         super.init(nibName: nil, bundle: nil)
         self.channel = info
         self.workspace = workspace
         self.userInfo = userInfo
-//        print(workspace.workspaceId)
-//        print(chatItems)
-        
-        
         
     }
     
@@ -176,6 +173,7 @@ final class ChatViewController: BaseViewController {
                 // channel name, workspaceId
                 if let channel = owner.channel, let workspace = owner.workspace {
                     let vc = ChannelSettingViewController(chName: channel.name, ws: workspace)
+                    vc.delegate = self
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
                 
@@ -187,6 +185,12 @@ final class ChatViewController: BaseViewController {
     
     
     
+}
+
+extension ChatViewController: ChannelSettingDelegate {
+    func channelExitRefresh(data: [Channel]) {
+        delegate?.refreshChannelList(data: data)
+    }
 }
 
 extension ChatViewController: View {

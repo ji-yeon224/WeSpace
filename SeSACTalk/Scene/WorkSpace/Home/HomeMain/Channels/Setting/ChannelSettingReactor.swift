@@ -12,25 +12,30 @@ final class ChannelSettingReactor: Reactor {
     var initialState: State = State(
         memberInfo: [],
         channelInfo: nil,
-        msg: ""
+        msg: "",
+        exitSuccess: []
     )
     
+    private let channelRepository = ChannelRepository()
     
     
     enum Action {
         case requestChannelInfo(wsId: Int?, name: String?)
+        case requestExitChannel(wsId: Int?, name: String?, chId: Int?)
     }
     
     enum Mutation {
         case memberInfo(data: [User])
         case channelInfo(data: Channel)
         case msg(msg: String)
+        case exitSuccess(data: [Channel])
     }
     
     struct State {
         var memberInfo: [User]
         var channelInfo: Channel?
         var msg: String
+        var exitSuccess: [Channel]
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -38,6 +43,12 @@ final class ChannelSettingReactor: Reactor {
         case .requestChannelInfo(let wsId, let name):
             if let wsId = wsId, let name = name {
                 return requestChannelInfo(wsId: wsId, name: name)
+            } else {
+                return .just(.msg(msg: ChannelToastMessage.otherError.message))
+            }
+        case .requestExitChannel(let wsId, let name, let chId):
+            if let wsId = wsId, let name = name, let chId = chId {
+                return requestExitChannel(wsId: wsId, name: name, chId: chId)
             } else {
                 return .just(.msg(msg: ChannelToastMessage.otherError.message))
             }
@@ -54,6 +65,8 @@ final class ChannelSettingReactor: Reactor {
             newState.channelInfo = data
         case .msg(let msg):
             newState.msg = msg
+        case .exitSuccess(let data):
+            newState.exitSuccess = data
         }
         return newState
     }
@@ -64,10 +77,42 @@ final class ChannelSettingReactor: Reactor {
 
 extension ChannelSettingReactor {
     
-    private func requestExitChannel(wsId: Int, name: String) {
-        
+    private func requestExitChannel(wsId: Int, name: String, chId: Int) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .exit(wsId: wsId, name: name), responseType: ChannelsItemResDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let response):
+                    self.deleteToDB(wsId: wsId, chId: chId)
+                    if let response = response {
+                        return .exitSuccess(data:  response.map { $0.toDomain() })
+                    } else {
+                        return .msg(msg: ChannelToastMessage.otherError.message)
+                    }
+                    
+                case .failure(let error):
+                    var msg = CommonError.E99.localizedDescription
+                    if let error = ChannelError(rawValue: error.errorCode) {
+                        msg = error.exitErrorDescription ?? ""
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    }
+                    return .msg(msg: msg)
+                }
+                
+            }
     }
     
+    private func deleteToDB(wsId: Int, chId: Int) {
+        if let channelDto = channelRepository.searchChannel(wsId: wsId, chId: chId).first {
+            do {
+                try channelRepository.delete(object: channelDto)
+            } catch {
+                debugPrint("[DB DELETE ERROR] ", error.localizedDescription)
+            }
+        }
+        
+    }
     
     
     private func requestChannelInfo(wsId: Int, name: String) -> Observable<Mutation> {

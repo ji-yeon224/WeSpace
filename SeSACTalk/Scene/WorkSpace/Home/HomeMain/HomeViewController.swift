@@ -220,6 +220,7 @@ extension HomeViewController {
                 
                 if let ws = owner.workspace, let channel = channelDto {
                     let vc = ChatViewController(info: channel, workspace: ws, chatItems: chatMsg, userInfo: userInfo)
+                    vc.delegate = self
                     vc.hidesBottomBarWhenPushed = true
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -233,6 +234,30 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
+        
+        
+        mainView.collectionView.rx.itemSelected
+            .asDriver()
+            .drive(with: self) { owner, indexPath in
+                owner.itemSelected(indexPath: indexPath)
+            }
+            .disposed(by: disposeBag)
+        
+        searchChannel
+            .bind(with: self) { owner, _ in
+                if let workspace = owner.workspace {
+                    let vc = SearchChannelViewController(workspace: workspace)
+                    vc.delegate = self
+                    vc.hidesBottomBarWhenPushed = true
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+               
+            }
+            .disposed(by: disposeBag)
+                
+    }
+    
+    private func notificationEvent() {
         NotificationCenter.default.rx.notification(.isSideVCAppear)
             .bind(with: self) { owner, noti in
                 if let show = noti.userInfo?[UserInfo.alphaShow] as? Bool {
@@ -263,31 +288,18 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
-        mainView.collectionView.rx.itemSelected
-            .asDriver()
-            .drive(with: self) { owner, indexPath in
-                owner.itemSelected(indexPath: indexPath)
-            }
-            .disposed(by: disposeBag)
-        
-        searchChannel
-            .bind(with: self) { owner, _ in
-                if let workspace = owner.workspace {
-                    let vc = SearchChannelViewController(workspace: workspace)
-                    vc.delegate = self
-                    vc.hidesBottomBarWhenPushed = true
-                    owner.navigationController?.pushViewController(vc, animated: true)
-                }
-               
-            }
-            .disposed(by: disposeBag)
-                
     }
     
-    
-    
 }
-
+extension HomeViewController: ChannelChatDelegate {
+    func refreshChannelList(data: [Channel]) {
+        var channelItems = data.map { return WorkspaceItem(title: "", subItems: [], item: $0)}
+        
+        channelItems.append(WorkspaceItem(title: "", subItems: [], plus: "채널 추가"))
+        let channelSection = WorkspaceItem(title: "채널", subItems: channelItems)
+        updateSnapShot(section: .channel, item: [channelSection])
+    }
+}
 extension HomeViewController: SearchChannelDelegate {
     func moveToChannel(channel: Channel, join: Bool) {
         

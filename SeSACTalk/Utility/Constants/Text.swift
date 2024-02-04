@@ -57,4 +57,7 @@ enum Text {
     static let changeChannelTitle = "채널 관리자 변경"
     static let deleteChannelTitle = "채널 삭제"
     
+    static let exitChannelManagerMessage = "회원님은 채널 관리자입니다. 채널 관리자를 다른 멤버로 변경한 후 나갈 수 있습니다."
+    static let exitChannelMessage = "나가기를 하면 채널 목록에서 삭제됩니다."
+    
 }
