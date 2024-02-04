@@ -171,11 +171,21 @@ extension ChannelSettingViewController: View {
             .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
                 print("")
+//                owner.deleteTest()
             }
             .disposed(by: disposeBag)
         
        
     }
+    
+//    func deleteTest() {
+//        let data = ChannelRepository().searchChannel(wsId: 148, chId: 343).first!
+//        do {
+//            try ChannelRepository().delete(object: data)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
 }
 
 

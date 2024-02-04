@@ -195,17 +195,27 @@ extension ChatReactor {
     
     
     private func saveChatItems(wsId: Int, data: ChannelDTO, chat: [ChannelMessage]) -> [ChannelMessage] {
-        
+        var imgStrings: [String] = []
         let recordList = chat.map {
             let urls: [String] = $0.files.map { url in
                 ImageFileService.getFileName(type: .channel(wsId: wsId, channelId: data.channelId), fileURL: url)
             }
+            imgStrings.append(contentsOf: urls)
             saveImage(id: wsId, channelId: $0.channelID, files: $0.files, chatId: $0.chatID, fileNames: urls)
             let record = $0.toRecord()
             record.setImgUrls(urls: urls)
             return record
         }
+        
+        
         do {
+            try channelRepository.updateImgItems(data: data, img: imgStrings.map { return ImageDTO(url: $0)})
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        do {
+            
             try channelRepository.updateChatItems(data: data, chat: recordList)
             
             debugPrint("[SAVE CHAT ITEMS SUCCESS]")

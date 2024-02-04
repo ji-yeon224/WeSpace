@@ -14,6 +14,7 @@ final class ChannelDTO: Object {
     @Persisted var channelId: Int
     @Persisted var name: String
     @Persisted var chatItem: List<ChannelChatDTO>
+    @Persisted var imgItem: List<ImageDTO>
     
     convenience init(workspaceId: Int, channelId: Int, name: String) {
         self.init()

@@ -53,10 +53,24 @@ final class ChannelRepository {
             throw DBError.updateError
         }
     }
-    func delete(object: ChannelDTO) throws {
-        
+    
+    func updateImgItems(data: ChannelDTO, img: [ImageDTO]) throws {
         do {
             try realm.write {
+                data.imgItem.append(objectsIn: img)
+                realm.add(data)
+            }
+        } catch {
+            print("error")
+            throw DBError.updateError
+        }
+    }
+    
+    func delete(object: ChannelDTO) throws {
+        removeImageFromDocuments(fileName: object.imgItem.map { $0.url })
+        do {
+            try realm.write {
+                realm.delete(object.imgItem)
                 realm.delete(object.chatItem)
                 realm.delete(object)
             }
