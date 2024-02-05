@@ -8,13 +8,13 @@
 import UIKit
 import ReactorKit
 
-final class ChangeManagerViewController: BaseViewController, View {
+final class ChangeWSManagerViewController: BaseViewController, View {
     
     var disposeBag = DisposeBag()
     var workspace: WorkSpace?
     private var items: [User]?
     
-    weak var delegate: ChangeManageDelegate?
+    weak var delegate: ChangeWSManageDelegate?
     
     private let mainView = ChangeManagerView()
     private let requestMember = PublishSubject<Void>()
@@ -28,19 +28,19 @@ final class ChangeManagerViewController: BaseViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "워크스페이스 관리자 변경"
-        self.reactor = ChangeManagerReactor()
+        self.reactor = ChangeWSManagerReactor()
         requestMember.onNext(())
         configNav()
 
     }
     
-    func bind(reactor: ChangeManagerReactor) {
+    func bind(reactor: ChangeWSManagerReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
         bindEvent()
     }
     
-    private func bindAction(reactor: ChangeManagerReactor) {
+    private func bindAction(reactor: ChangeWSManagerReactor) {
         requestMember
             .map { Reactor.Action.requestMember(id: self.workspace?.workspaceId) }
             .bind(to: reactor.action)
@@ -52,7 +52,7 @@ final class ChangeManagerViewController: BaseViewController, View {
             .disposed(by: disposeBag)
     }
     
-    private func bindState(reactor: ChangeManagerReactor) {
+    private func bindState(reactor: ChangeWSManagerReactor) {
         reactor.state
             .map { $0.memberInfo }
             .filter{ $0 != .none }
@@ -137,7 +137,7 @@ final class ChangeManagerViewController: BaseViewController, View {
     
 }
 
-extension ChangeManagerViewController {
+extension ChangeWSManagerViewController {
     private func configNav() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(xButtonTapped))
         navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black

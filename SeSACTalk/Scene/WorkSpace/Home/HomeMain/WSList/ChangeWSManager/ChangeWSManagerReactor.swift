@@ -8,7 +8,7 @@
 import Foundation
 import ReactorKit
 
-final class ChangeManagerReactor: Reactor {
+final class ChangeWSManagerReactor: Reactor {
     var initialState: State = State(
         memberInfo: nil,
         msg: "",
@@ -72,7 +72,7 @@ final class ChangeManagerReactor: Reactor {
     
 }
 
-extension ChangeManagerReactor {
+extension ChangeWSManagerReactor {
     
     private func requestChangeManager(wsId: Int, userId: Int) -> Observable<Mutation> {
         

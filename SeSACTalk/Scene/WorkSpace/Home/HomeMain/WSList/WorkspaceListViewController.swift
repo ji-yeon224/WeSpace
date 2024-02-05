@@ -164,7 +164,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         
         changeManager
             .bind(with: self) { owner, _ in
-                let vc = ChangeManagerViewController()
+                let vc = ChangeWSManagerViewController()
                 vc.workspace = owner.workspace
                 vc.delegate = self
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
@@ -294,7 +294,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     
 }
 
-extension WorkspaceListViewController: ChangeManageDelegate {
+extension WorkspaceListViewController: ChangeWSManageDelegate {
     func completeChanageManager(data: WorkSpace) {
         self.workspace = data
         

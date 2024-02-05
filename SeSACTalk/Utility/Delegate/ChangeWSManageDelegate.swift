@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ChangeManageDelegate: AnyObject {
+protocol ChangeWSManageDelegate: AnyObject {
     func completeChanageManager(data: WorkSpace)
 }
