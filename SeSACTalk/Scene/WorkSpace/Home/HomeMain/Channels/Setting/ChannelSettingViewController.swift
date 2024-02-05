@@ -188,7 +188,16 @@ extension ChannelSettingViewController: View {
             }
             .disposed(by: disposeBag)
         
-       
+        mainView.changeButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, _ in
+                let vc = ChangeCHManagerViewController()
+                vc.channel = owner.channel
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     

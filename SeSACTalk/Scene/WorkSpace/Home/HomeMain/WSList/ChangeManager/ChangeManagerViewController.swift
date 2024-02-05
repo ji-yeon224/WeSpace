@@ -138,7 +138,7 @@ final class ChangeManagerViewController: BaseViewController, View {
 }
 
 extension ChangeManagerViewController {
-    func configNav() {
+    private func configNav() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(xButtonTapped))
         navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black
     }
