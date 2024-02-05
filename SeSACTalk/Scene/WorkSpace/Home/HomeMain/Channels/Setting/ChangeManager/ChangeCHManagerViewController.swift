@@ -14,7 +14,7 @@ final class ChangeCHManagerViewController: BaseViewController {
     var disposeBag = DisposeBag()
     var channel: Channel?
     private var items: [User]?
-    
+    private var requestMemberList = PublishSubject<Void>()
     
     override func loadView() {
         self.view = mainView
@@ -23,20 +23,21 @@ final class ChangeCHManagerViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let user = [
-            User(userId: 1, email: "aa", nickname: "aa", profileImage: nil),
-            User(userId: 2, email: "bb", nickname: "bb", profileImage: nil),
-            User(userId: 3, email: "cc", nickname: "cc", profileImage: nil)
-        
-        ]
-        updateSnapShot(data: user)
+//        let user = [
+//            User(userId: 1, email: "aa", nickname: "aa", profileImage: nil),
+//            User(userId: 2, email: "bb", nickname: "bb", profileImage: nil),
+//            User(userId: 3, email: "cc", nickname: "cc", profileImage: nil)
+//        
+//        ]
+//        updateSnapShot(data: user)
+        requestMemberList.onNext(())
     }
     
     override func configure() {
         super.configure()
         title = "채널 관리자 변경"
         configNav()
-        
+        self.reactor = ChangeCHManagerReactor()
     }
     
     
@@ -48,8 +49,41 @@ final class ChangeCHManagerViewController: BaseViewController {
     }
 }
 
-extension ChangeCHManagerViewController {
+extension ChangeCHManagerViewController: View {
+    func bind(reactor: ChangeCHManagerReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+    }
     
+    private func bindAction(reactor: ChangeCHManagerReactor) {
+        
+        requestMemberList
+            .map { Reactor.Action.requestMemberList(wsId: self.channel?.workspaceID, name: self.channel?.name)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        
+    }
+    private func bindState(reactor: ChangeCHManagerReactor) {
+        
+        reactor.state
+            .map { $0.memberList }
+            .distinctUntilChanged()
+            .filter { !$0.isEmpty }
+            .asDriver(onErrorJustReturn: [])
+            .drive(with: self) { owner, value in
+                if value.count <= 1 {
+                    owner.showPopUp(title: Text.cannotChangeTitle, message: Text.cannotChangeMsg, okTitle: "확인", okCompletion:  {
+                        owner.dismiss(animated: true)
+                    })
+                } else {
+                    owner.updateSnapShot(data: value)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
+    }
 }
 
 
