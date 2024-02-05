@@ -23,7 +23,7 @@ final class ChannelSettingReactor: Reactor {
     enum Action {
         case requestChannelInfo(wsId: Int?, name: String?)
         case requestExitChannel(wsId: Int?, name: String?, chId: Int?)
-        case requestDeleteChannel(wsId: Int?, name: String?)
+        case requestDeleteChannel(wsId: Int?, name: String?, chId: Int?)
     }
     
     enum Mutation {
@@ -56,9 +56,9 @@ final class ChannelSettingReactor: Reactor {
             } else {
                 return .just(.msg(msg: ChannelToastMessage.otherError.message))
             }
-        case .requestDeleteChannel(let wsId, let name):
-            if let wsId = wsId, let name = name {
-                return requestDeleteChannel(wsId: wsId, name: name)
+        case .requestDeleteChannel(let wsId, let name, let chId):
+            if let wsId = wsId, let name = name, let chId = chId {
+                return requestDeleteChannel(wsId: wsId, name: name, chId: chId)
             }
             return .empty()
         }
@@ -87,13 +87,15 @@ final class ChannelSettingReactor: Reactor {
 
 extension ChannelSettingReactor {
     
-    private func requestDeleteChannel(wsId: Int, name: String) -> Observable<Mutation> {
+    private func requestDeleteChannel(wsId: Int, name: String, chId: Int) -> Observable<Mutation> {
         return ChannelsAPIManager.shared.request(api: .delete(wsId: wsId, name: name), responseType: EmptyResponse.self)
             .asObservable()
             .map { result -> Mutation in
                 
                 switch result {
                 case .success(_):
+                    self.deleteToDB(wsId: wsId, chId: chId)
+                    print("delete success")
                     return .successDelete
                 case .failure(let error):
                     var msg = CommonError.E99.localizedDescription

@@ -95,7 +95,7 @@ extension ChannelSettingViewController: View {
             .disposed(by: disposeBag)
         
         requestDeleteChannel
-            .map { Reactor.Action.requestDeleteChannel(wsId: self.workspace?.workspaceId, name: self.chName)}
+            .map { Reactor.Action.requestDeleteChannel(wsId: self.workspace?.workspaceId, name: self.chName, chId: self.channel?.channelID)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -162,8 +162,9 @@ extension ChannelSettingViewController: View {
             .distinctUntilChanged()
             .filter { $0 }
             .drive(with: self) { owner, value in
-                NotificationCenter.default.post(name: .refreshChannel, object: nil)
+                NotificationCenter.default.post(name: .refreshWS, object: nil)
                 owner.navigationController?.popToRootViewController(animated: true)
+                
             }
             .disposed(by: disposeBag)
         

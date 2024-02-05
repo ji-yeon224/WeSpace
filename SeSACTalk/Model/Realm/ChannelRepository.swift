@@ -69,6 +69,7 @@ final class ChannelRepository {
     func delete(object: ChannelDTO) throws {
         removeImageFromDocuments(fileName: object.imgItem.map { $0.url })
         do {
+            print("DELETE DB")
             try realm.write {
                 realm.delete(object.imgItem)
                 realm.delete(object.chatItem)
@@ -109,7 +110,7 @@ final class ChannelRepository {
     }
     
     private func removeImageFromDocuments(fileName: [String]) {
-        
+        print("REMOVE IMG..")
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
         fileName.forEach {
