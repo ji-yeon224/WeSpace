@@ -95,7 +95,6 @@ extension ChannelSettingReactor {
                 switch result {
                 case .success(_):
                     self.deleteToDB(wsId: wsId, chId: chId)
-                    print("delete success")
                     return .successDelete
                 case .failure(let error):
                     var msg = CommonError.E99.localizedDescription

@@ -69,7 +69,6 @@ final class ChannelRepository {
     func delete(object: ChannelDTO) throws {
         removeImageFromDocuments(fileName: object.imgItem.map { $0.url })
         do {
-            print("DELETE DB")
             try realm.write {
                 realm.delete(object.imgItem)
                 realm.delete(object.chatItem)

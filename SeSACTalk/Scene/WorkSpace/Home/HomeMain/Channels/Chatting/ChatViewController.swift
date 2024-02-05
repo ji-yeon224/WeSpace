@@ -52,10 +52,10 @@ final class ChatViewController: BaseViewController {
         
         guard let channel = channel else { return }
         
-//        if !SocketNetworkManager.shared.isConnected {
-//            SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
-//            SocketNetworkManager.shared.connect()
-//        }
+        if !SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
+            SocketNetworkManager.shared.connect()
+        }
        
         
     }
@@ -76,9 +76,9 @@ final class ChatViewController: BaseViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        if SocketNetworkManager.shared.isConnected {
-//            SocketNetworkManager.shared.disconnect()
-//        }
+        if SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.disconnect()
+        }
         
     }
     
@@ -359,12 +359,11 @@ extension ChatViewController {
     }
     
     @objc private func backButtonTapped() {
-//        navigationController?.popViewController(animated: true)
         refreshHome?()
         navigationController?.popToRootViewController(animated: true)
-//        if SocketNetworkManager.shared.isConnected {
-//            SocketNetworkManager.shared.disconnect()
-//        }
+        if SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.disconnect()
+        }
     }
 }
 
