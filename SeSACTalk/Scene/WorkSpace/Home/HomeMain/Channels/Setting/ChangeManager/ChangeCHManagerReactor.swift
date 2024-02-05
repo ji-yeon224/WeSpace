@@ -11,23 +11,27 @@ import ReactorKit
 final class ChangeCHManagerReactor: Reactor {
     var initialState: State = State(
         memberList: nil,
-        msg: ""
+        msg: "",
+        changeInfo: nil
     )
     
     
     
     enum Action {
         case requestMemberList(wsId: Int?, name: String?)
+        case requestChangeManager(wsId: Int?, name: String?, userId: Int)
     }
     
     enum Mutation {
         case memberList(data: [User])
         case msg(msg: String)
+        case change(data: Channel)
     }
     
     struct State {
         var memberList: [User]?
         var msg: String
+        var changeInfo: Channel?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -35,6 +39,12 @@ final class ChangeCHManagerReactor: Reactor {
         case .requestMemberList(let wsId, let name):
             if let wsId = wsId, let name = name {
                 return requestMemberList(wsId: wsId, name: name)
+            } else {
+                return .just(.msg(msg: ChannelToastMessage.otherError.message))
+            }
+        case .requestChangeManager(let wsId, let name, let userId):
+            if let wsId = wsId, let name = name {
+                return requestChangeManager(wsId: wsId, name: name, userId: userId)
             } else {
                 return .just(.msg(msg: ChannelToastMessage.otherError.message))
             }
@@ -48,6 +58,8 @@ final class ChangeCHManagerReactor: Reactor {
             newState.memberList = data
         case .msg(let msg):
             newState.msg = msg
+        case .change(let data):
+            newState.changeInfo = data
         }
         return newState
     }
@@ -56,6 +68,31 @@ final class ChangeCHManagerReactor: Reactor {
 }
 
 extension ChangeCHManagerReactor {
+    
+    private func requestChangeManager(wsId: Int, name: String, userId: Int) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .change(wsId: wsId, userId: userId, name: name), responseType: ChannelResDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        return .change(data: response.toDomain())
+                    } else {
+                        return .msg(msg: ChannelToastMessage.otherError.message)
+                    }
+                case .failure(let error):
+                    var msg = CommonError.E99.localizedDescription
+                    if let error = ChannelError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    }
+                    return .msg(msg: msg)
+                }
+            }
+    }
+    
+    
     private func requestMemberList(wsId: Int, name: String) -> Observable<Mutation> {
         return ChannelsAPIManager.shared.request(api: .member(name: name, wsId: wsId), responseType: MemberResDTO.self)
             .asObservable()
@@ -78,4 +115,6 @@ extension ChangeCHManagerReactor {
                 }
             }
     }
+    
+    
 }

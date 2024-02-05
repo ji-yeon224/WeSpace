@@ -193,6 +193,7 @@ extension ChannelSettingViewController: View {
             .bind(with: self) { owner, _ in
                 let vc = ChangeCHManagerViewController()
                 vc.channel = owner.channel
+                vc.delegate = self
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
                 nav.setupBarAppearance()
                 owner.present(nav, animated: true)
@@ -203,6 +204,14 @@ extension ChannelSettingViewController: View {
     
 }
 
+extension ChannelSettingViewController: ChannelCHManagerDelegate{
+    func successChangeCHMAnager(data: Channel) {
+        showToastMessage(message: ChannelToastMessage.successChange.message, position: .bottom)
+        NotificationCenter.default.post(name: .refreshChannel, object: nil)
+        channel = data
+        mainView.setButtonHidden(isAdmin: false)
+    }
+}
 
 extension ChannelSettingViewController {
     private func showExitPopupView() {

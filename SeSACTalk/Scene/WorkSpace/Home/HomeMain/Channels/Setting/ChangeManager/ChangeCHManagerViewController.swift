@@ -15,6 +15,9 @@ final class ChangeCHManagerViewController: BaseViewController {
     var channel: Channel?
     private var items: [User]?
     private var requestMemberList = PublishSubject<Void>()
+    private var requestChangeManager = PublishSubject<Int>()
+    
+    weak var delegate: ChannelCHManagerDelegate?
     
     override func loadView() {
         self.view = mainView
@@ -23,13 +26,6 @@ final class ChangeCHManagerViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let user = [
-//            User(userId: 1, email: "aa", nickname: "aa", profileImage: nil),
-//            User(userId: 2, email: "bb", nickname: "bb", profileImage: nil),
-//            User(userId: 3, email: "cc", nickname: "cc", profileImage: nil)
-//        
-//        ]
-//        updateSnapShot(data: user)
         requestMemberList.onNext(())
     }
     
@@ -53,6 +49,7 @@ extension ChangeCHManagerViewController: View {
     func bind(reactor: ChangeCHManagerReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
+        bindEvent()
     }
     
     private func bindAction(reactor: ChangeCHManagerReactor) {
@@ -61,6 +58,12 @@ extension ChangeCHManagerViewController: View {
             .map { Reactor.Action.requestMemberList(wsId: self.channel?.workspaceID, name: self.channel?.name)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        requestChangeManager
+            .map { Reactor.Action.requestChangeManager(wsId: self.channel?.workspaceID, name: self.channel?.name, userId: $0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+            
         
         
     }
@@ -78,7 +81,7 @@ extension ChangeCHManagerViewController: View {
                             owner.dismiss(animated: true)
                         })
                     } else {
-                        
+                        owner.items = value
                         owner.updateSnapShot(data: value)
                     }
                 }
@@ -86,7 +89,36 @@ extension ChangeCHManagerViewController: View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.changeInfo }
+            .distinctUntilChanged()
+            .filter { $0 != .none }
+            .bind(with: self) { owner, value in
+                if let value = value {
+                    print("SUCCESS - CHANGEVIEW")
+                    owner.delegate?.successChangeCHMAnager(data: value)
+                    owner.dismiss(animated: true)
+                }
+                
+            }
+            .disposed(by: disposeBag)
         
+        
+    }
+    private func bindEvent() {
+        mainView.collectionView.rx.itemSelected
+            .asDriver()
+            .drive(with: self) { owner, indexpath in
+                if let user = owner.items?[indexpath.item] {
+                    let title = Text.changeCHManagerTitle.replacingOccurrences(of: "{name}", with: user.nickname)
+                    owner.showPopUp(title: title, message: Text.changeCHManagerMessage, align: .left, cancelTitle: "취소", okTitle: "확인") { } okCompletion: {
+                        owner.requestChangeManager.onNext(user.userId)
+                    }
+
+                }
+                
+            }
+            .disposed(by: disposeBag)
     }
 }
 

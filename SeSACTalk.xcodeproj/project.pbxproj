@@ -169,6 +169,7 @@
 		CEC46BAE2B708CF400F5A651 /* ChangeCHManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BAD2B708CF400F5A651 /* ChangeCHManagerViewController.swift */; };
 		CEC46BB02B708D0A00F5A651 /* ChangeCHManangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BAF2B708D0A00F5A651 /* ChangeCHManangerView.swift */; };
 		CEC46BB22B708D1600F5A651 /* ChangeCHManagerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */; };
+		CEC46BB42B70BCE600F5A651 /* ChannelCHManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */; };
 		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
 		CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764282B5122E7000578E9 /* HomeReactor.swift */; };
 		CEC7642C2B5123F1000578E9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEC7642B2B5123F1000578E9 /* Kingfisher */; };
@@ -411,6 +412,7 @@
 		CEC46BAD2B708CF400F5A651 /* ChangeCHManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManagerViewController.swift; sourceTree = "<group>"; };
 		CEC46BAF2B708D0A00F5A651 /* ChangeCHManangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManangerView.swift; sourceTree = "<group>"; };
 		CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManagerReactor.swift; sourceTree = "<group>"; };
+		CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCHManagerDelegate.swift; sourceTree = "<group>"; };
 		CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewControllerMananger.swift; sourceTree = "<group>"; };
 		CEC764282B5122E7000578E9 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
 		CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				CED829542B59331800AD1828 /* ChangeManageDelegate.swift */,
 				CE2BA81E2B6FE84F00B24B55 /* ChannelSettingDelegate.swift */,
 				CE2BA8202B6FEF1B00B24B55 /* ChannelChatDelegate.swift */,
+				CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -1519,6 +1522,7 @@
 				CEEAA1D52B53FB9800EA1C58 /* WorkspaceEmptyView.swift in Sources */,
 				CE2BA8212B6FEF1B00B24B55 /* ChannelChatDelegate.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
+				CEC46BB42B70BCE600F5A651 /* ChannelCHManagerDelegate.swift in Sources */,
 				CED8294D2B58C42900AD1828 /* ChangeManagerReactor.swift in Sources */,
 				CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */,
 				CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */,
