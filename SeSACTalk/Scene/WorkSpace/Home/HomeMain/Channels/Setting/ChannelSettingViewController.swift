@@ -19,6 +19,7 @@ final class ChannelSettingViewController: BaseViewController {
     private var workspace: WorkSpace?
     private var requestChannelInfo = PublishRelay<(Int, String)>()
     private var requestExitChannel = PublishRelay<Void>()
+    private var requestDeleteChannel = PublishRelay<Void>()
     
     weak var delegate: ChannelSettingDelegate?
     var memberList: [ChannelMemberItem] = []
@@ -92,6 +93,11 @@ extension ChannelSettingViewController: View {
             .map { Reactor.Action.requestExitChannel(wsId: self.workspace?.workspaceId, name: self.channel?.name, chId: self.channel?.channelID)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        requestDeleteChannel
+            .map { Reactor.Action.requestDeleteChannel(wsId: self.workspace?.workspaceId, name: self.chName)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: ChannelSettingReactor) {
@@ -150,6 +156,17 @@ extension ChannelSettingViewController: View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.successDelete }
+            .asDriver(onErrorJustReturn: false)
+            .distinctUntilChanged()
+            .filter { $0 }
+            .drive(with: self) { owner, value in
+                NotificationCenter.default.post(name: .refreshChannel, object: nil)
+                owner.navigationController?.popToRootViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindEvent() {
@@ -197,6 +214,15 @@ extension ChannelSettingViewController: View {
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
                 nav.setupBarAppearance()
                 owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.deleteButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, _ in
+                owner.showPopUp(title: Text.channelDeleteTitle, message: Text.channelDeleteMessage, align: .center, cancelTitle: "취소", okTitle: "삭제", okCompletion:  {
+                    owner.requestDeleteChannel.accept(())
+                })
             }
             .disposed(by: disposeBag)
     }

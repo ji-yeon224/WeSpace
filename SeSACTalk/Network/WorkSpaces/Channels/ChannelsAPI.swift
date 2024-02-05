@@ -19,6 +19,7 @@ enum ChannelsAPI {
     case oneChannel(wsId: Int, name: String)
     case exit(wsId: Int, name: String)
     case change(wsId: Int, userId: Int, name: String)
+    case delete(wsId: Int, name: String)
 }
 
 extension ChannelsAPI: TargetType {
@@ -32,16 +33,14 @@ extension ChannelsAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(id)/channels/my"
         case .create(let id, _), .allChannel(let id):
             return Endpoint.workspaces.rawValue + "/\(id)/channels"
-        case .edit(let id, let name, _):
-            return Endpoint.workspaces.rawValue + "/\(id)/channels/\(name)"
+        case .edit(let wsId, let name, _), .oneChannel(let wsId, let name), .delete(let wsId, let name):
+            return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)"
         case .sendMsg(let name, let id, _):
             return Endpoint.workspaces.rawValue + "/\(id)/channels/\(name)/chats"
         case .fetchMsg(_, let name, let wsId):
             return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)/chats"
         case .member(let name, let wsId):
             return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)/members"
-        case .oneChannel(let wsId, let name):
-            return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)"
         case .exit(let wsId, let name):
             return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)/leave"
         case .change(let wsId, let userId, let name):
@@ -57,12 +56,14 @@ extension ChannelsAPI: TargetType {
             return .post
         case .edit, .change:
             return .put
+        case .delete:
+            return .delete
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .myChannel, .member, .allChannel, .oneChannel, .exit, .change:
+        case .myChannel, .member, .allChannel, .oneChannel, .exit, .change, .delete:
             return .requestPlain
         case .create(_, data: let data), .edit(_, _, let data):
             return .requestJSONEncodable(data)
@@ -82,7 +83,7 @@ extension ChannelsAPI: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .myChannel, .fetchMsg, .member, .allChannel, .oneChannel, .exit, .change:
+        case .myChannel, .fetchMsg, .member, .allChannel, .oneChannel, .exit, .change, .delete:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .create, .edit:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
