@@ -164,7 +164,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         
         changeManager
             .bind(with: self) { owner, _ in
-                let vc = ChangeWSManagerViewController()
+                let vc = ChangeManagerViewController()
                 vc.workspace = owner.workspace
                 vc.delegate = self
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
@@ -210,7 +210,6 @@ final class WorkspaceListViewController: BaseViewController, View {
             .filter {
                 !$0.isEmpty
             }
-            .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
                 debugPrint("ERROR - \(value)")

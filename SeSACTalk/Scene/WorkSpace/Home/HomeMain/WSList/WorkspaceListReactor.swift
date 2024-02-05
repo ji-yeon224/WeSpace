@@ -43,7 +43,6 @@ final class WorkspaceListReactor: Reactor {
         case .requestAllWorkspace:
             return requestAllWS(type: .fetchAll).asObservable()
         case .requestExit(let id):
-            print("workspace id ", id)
             if let id = id {
                 return requestExitWorkspace(id: id)
             } else {
@@ -127,17 +126,26 @@ final class WorkspaceListReactor: Reactor {
     private func requestExitWorkspace(id: Int) -> Observable<Mutation> {
         return WorkspacesAPIManager.shared.request(api: .leave(id: id), resonseType: AllWorkspaceReDTO.self)
             .asObservable()
-            .map { result -> Mutation in
+            .flatMap { result -> Observable<Mutation> in
                 switch result {
                 case .success(let response):
-                    return Mutation.completLeave(data: response ?? [])
+                    return .just(.completLeave(data: response ?? []))
                 case .failure(let error):
                     if let error = WorkspaceError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
+                        return .concat(
+                            .just(.msg(msg: error.localizedDescription)),
+                            .empty()
+                        )
                     } else if let error = CommonError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
+                        return .concat(
+                            .just(.msg(msg: error.localizedDescription)),
+                            .just(.msg(msg: ""))
+                        )
                     } else {
-                        return Mutation.msg(msg: CommonError.E99.localizedDescription)
+                        return .concat(
+                            .just(.msg(msg: error.localizedDescription)),
+                            .empty()
+                        )
                     }
                 }
                 

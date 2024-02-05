@@ -28,7 +28,6 @@
 		CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D72B4D1137003B0204 /* ChannelSection.swift */; };
 		CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* DMSection.swift */; };
 		CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904DD2B4D2E41003B0204 /* Item.swift */; };
-		CE57192F2B69EB6100EC3E18 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = CE57192E2B69EB6100EC3E18 /* SocketIO */; };
 		CE5719322B69EBF800EC3E18 /* SocketNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */; };
 		CE5719342B69F00700EC3E18 /* SocketURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719332B69F00700EC3E18 /* SocketURL.swift */; };
 		CE57E4182B452A02009BD53A /* splashImg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57E4172B452A02009BD53A /* splashImg.png */; };
@@ -40,7 +39,6 @@
 		CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4262B454726009BD53A /* PageSheetManager.swift */; };
 		CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4282B454E52009BD53A /* CustomTextField.swift */; };
 		CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E42A2B4557CE009BD53A /* CustomStackView.swift */; };
-		CE57E42E2B455A61009BD53A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE57E42D2B455A61009BD53A /* IQKeyboardManagerSwift */; };
 		CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */; };
 		CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */; };
 		CE5D06652B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06642B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift */; };
@@ -56,8 +54,6 @@
 		CE5D06802B4F028400C067A3 /* WorkspaceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D067F2B4F028400C067A3 /* WorkspaceError.swift */; };
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
 		CE5EA4B02B60AB1200999704 /* ChannelChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4AF2B60AB1200999704 /* ChannelChatDTO.swift */; };
-		CE5EA4B32B60ACAA00999704 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CE5EA4B22B60ACAA00999704 /* Realm */; };
-		CE5EA4B52B60ACAA00999704 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE5EA4B42B60ACAA00999704 /* RealmSwift */; };
 		CE5EA4B82B60B33400999704 /* ChannelMsgRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */; };
 		CE5EA4BA2B60B45E00999704 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4B92B60B45E00999704 /* RealmManager.swift */; };
 		CE5EA4C42B60FFCC00999704 /* ChannelChatReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */; };
@@ -87,7 +83,6 @@
 		CE61AE1A2B5E5D170091B03D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE192B5E5D170091B03D /* CircleButton.swift */; };
 		CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE1F2B5EBAEF0091B03D /* ChatImageSelectDelegate.swift */; };
 		CE61AE222B5EC47C0091B03D /* SelectImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */; };
-		CE61AE252B5EC4BA0091B03D /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CE61AE242B5EC4BA0091B03D /* RxDataSources */; };
 		CE61AE272B5F7AB90091B03D /* ImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
@@ -103,7 +98,6 @@
 		CE6C1FF92B43E9B300AA7F9C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FF82B43E9B300AA7F9C /* Color.swift */; };
 		CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FFA2B43F1A900AA7F9C /* Image.swift */; };
 		CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85748B2B4AE7A10025ED1B /* EditImageView.swift */; };
-		CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE85748E2B4AFD810025ED1B /* ReactorKit */; };
 		CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574922B4AFEB50025ED1B /* LoginReactor.swift */; };
 		CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574942B4BD5670025ED1B /* EmailLoginReactor.swift */; };
 		CE85749A2B4BFE9B0025ED1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574992B4BFE9B0025ED1B /* HomeViewController.swift */; };
@@ -119,9 +113,6 @@
 		CE95923C2B68BA2000665659 /* SearchChannelReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923B2B68BA2000665659 /* SearchChannelReactor.swift */; };
 		CE95923E2B68D0E800665659 /* SearchChannelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */; };
 		CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */; };
-		CE9DEB682B6BDAA50016382B /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = CE9DEB672B6BDAA50016382B /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		CE9DEB6A2B6BDAA50016382B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE9DEB692B6BDAA50016382B /* FirebaseCrashlytics */; };
-		CE9DEB6C2B6BDAA50016382B /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CE9DEB6B2B6BDAA50016382B /* FirebaseMessaging */; };
 		CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */; };
 		CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */; };
 		CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */; };
@@ -132,7 +123,6 @@
 		CE9DEB7D2B6D1D7C0016382B /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB7C2B6D1D7C0016382B /* UIScrollView+Extension.swift */; };
 		CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB532B56855900413500 /* MakeWSDelegate.swift */; };
 		CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4EB552B5686CB00413500 /* WorkspaceListReactor.swift */; };
-		CEA8F9A52B48425C0062B45C /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9A42B48425C0062B45C /* Toast */; };
 		CEA8F9A72B4849E80062B45C /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A62B4849E80062B45C /* JoinRequest.swift */; };
 		CEA8F9A92B48F7FF0062B45C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9A82B48F7FF0062B45C /* Endpoint.swift */; };
 		CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */; };
@@ -143,7 +133,6 @@
 		CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9B92B49491D0062B45C /* InitialView.swift */; };
 		CEA8F9BC2B494A620062B45C /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9BB2B494A620062B45C /* Text.swift */; };
 		CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9BD2B49608B0062B45C /* UINavigationController+Extension.swift */; };
-		CEA8F9C12B496EB80062B45C /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9C02B496EB80062B45C /* KakaoSDK */; };
 		CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C22B4970570062B45C /* KakaoLoginManager.swift */; };
 		CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C42B497C670062B45C /* LoginViewModel.swift */; };
 		CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9C72B4981930062B45C /* KakaoLoginRequestDTO.swift */; };
@@ -151,11 +140,6 @@
 		CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9CE2B49920E0062B45C /* EmailLoginViewController.swift */; };
 		CEA8F9D12B4992130062B45C /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9D02B4992130062B45C /* EmailLoginView.swift */; };
 		CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA8F9D22B49921A0062B45C /* EmailLoginViewModel.swift */; };
-		CEA8F9D62B4993A20062B45C /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CEA8F9D52B4993A20062B45C /* Then */; };
-		CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82C2B444B0100B9A035 /* SnapKit */; };
-		CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F82F2B444B1000B9A035 /* RxCocoa */; };
-		CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F8312B444B1000B9A035 /* RxSwift */; };
-		CEB7F8352B444B2A00B9A035 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F8342B444B2A00B9A035 /* RxGesture */; };
 		CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8362B444B4400B9A035 /* BaseViewController.swift */; };
 		CEB7F8392B444B4A00B9A035 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F8382B444B4A00B9A035 /* BaseView.swift */; };
 		CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F83C2B4456E000B9A035 /* OnBoardingViewController.swift */; };
@@ -170,9 +154,29 @@
 		CEC46BB02B708D0A00F5A651 /* ChangeCHManangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BAF2B708D0A00F5A651 /* ChangeCHManangerView.swift */; };
 		CEC46BB22B708D1600F5A651 /* ChangeCHManagerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */; };
 		CEC46BB42B70BCE600F5A651 /* ChannelCHManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */; };
+		CEC46BB72B70CC9100F5A651 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BB62B70CC9100F5A651 /* SnapKit */; };
+		CEC46BBA2B70CCB500F5A651 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BB92B70CCB500F5A651 /* RxCocoa */; };
+		CEC46BBC2B70CCB500F5A651 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BBB2B70CCB500F5A651 /* RxSwift */; };
+		CEC46BBF2B70CCC700F5A651 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BBE2B70CCC700F5A651 /* RxGesture */; };
+		CEC46BC22B70CCF200F5A651 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BC12B70CCF200F5A651 /* IQKeyboardManagerSwift */; };
+		CEC46BC52B70CD0100F5A651 /* AnyFormatKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BC42B70CD0100F5A651 /* AnyFormatKit */; };
+		CEC46BC82B70CD1000F5A651 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BC72B70CD1000F5A651 /* Moya */; };
+		CEC46BCB2B70CD2700F5A651 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BCA2B70CD2700F5A651 /* Toast */; };
+		CEC46BCE2B70CDCD00F5A651 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BCD2B70CDCD00F5A651 /* KakaoSDK */; };
+		CEC46BD12B70CDD900F5A651 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD02B70CDD900F5A651 /* Then */; };
+		CEC46BD42B70CDE700F5A651 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD32B70CDE700F5A651 /* ReactorKit */; };
+		CEC46BD72B70CDF300F5A651 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD62B70CDF300F5A651 /* Kingfisher */; };
+		CEC46BDA2B70CE8700F5A651 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD92B70CE8700F5A651 /* SideMenu */; };
+		CEC46BDD2B70CE9800F5A651 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BDC2B70CE9800F5A651 /* RxDataSources */; };
+		CEC46BE02B70CEB100F5A651 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BDF2B70CEB100F5A651 /* Realm */; };
+		CEC46BE22B70CEB100F5A651 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE12B70CEB100F5A651 /* RealmSwift */; };
+		CEC46BE52B70CEBE00F5A651 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE42B70CEBE00F5A651 /* SocketIO */; };
+		CEC46BE82B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE72B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		CEC46BEA2B70CF3900F5A651 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE92B70CF3900F5A651 /* FirebaseCrashlytics */; };
+		CEC46BEC2B70CF3900F5A651 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BEB2B70CF3900F5A651 /* FirebaseMessaging */; };
+		CEC46BEE2B70D06C00F5A651 /* ChangeManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BED2B70D06C00F5A651 /* ChangeManagerViewController.swift */; };
 		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
 		CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764282B5122E7000578E9 /* HomeReactor.swift */; };
-		CEC7642C2B5123F1000578E9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEC7642B2B5123F1000578E9 /* Kingfisher */; };
 		CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */; };
 		CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642F2B512471000578E9 /* ImageLoadManager.swift */; };
 		CEC764322B51257F000578E9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764312B51257F000578E9 /* InfoViewController.swift */; };
@@ -196,13 +200,11 @@
 		CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F892B45B68300CFD04C /* BaseURL.swift */; };
 		CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F8C2B45B6F800CFD04C /* CommonError.swift */; };
 		CED65F902B45B78600CFD04C /* EmailError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED65F8F2B45B78600CFD04C /* EmailError.swift */; };
-		CED7C2C22B5230D40069EA0A /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = CED7C2C12B5230D40069EA0A /* SideMenu */; };
 		CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C42B5234AD0069EA0A /* WorkspaceListViewController.swift */; };
 		CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C62B5234B70069EA0A /* WorkspaceListView.swift */; };
 		CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */; };
 		CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */; };
 		CED829462B58C28900AD1828 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829452B58C28900AD1828 /* ReusableProtocol.swift */; };
-		CED829492B58C40A00AD1828 /* ChangeWSManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829482B58C40A00AD1828 /* ChangeWSManagerViewController.swift */; };
 		CED8294B2B58C41500AD1828 /* ChangeManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8294A2B58C41500AD1828 /* ChangeManagerView.swift */; };
 		CED8294D2B58C42900AD1828 /* ChangeWSManagerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8294C2B58C42900AD1828 /* ChangeWSManagerReactor.swift */; };
 		CED829512B590D7D00AD1828 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED829502B590D7D00AD1828 /* AlertViewController.swift */; };
@@ -232,9 +234,7 @@
 		CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EA82B4688A10059D1AF /* JoinViewModel.swift */; };
 		CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAA2B4697650059D1AF /* Regex.swift */; };
 		CEEE4EAD2B46987F0059D1AF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EAC2B46987F0059D1AF /* String+Extension.swift */; };
-		CEEE4EB02B46A1340059D1AF /* AnyFormatKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEEE4EAF2B46A1340059D1AF /* AnyFormatKit */; };
 		CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EB22B46DBF40059D1AF /* UsersAPI.swift */; };
-		CEEE4EB62B46DC220059D1AF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = CEEE4EB52B46DC220059D1AF /* Moya */; };
 		CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */; };
 		CEEE4EBB2B46DE9A0059D1AF /* EmailValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBA2B46DE9A0059D1AF /* EmailValidationRequest.swift */; };
 		CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EBC2B46DF170059D1AF /* UsersAPIManager.swift */; };
@@ -413,6 +413,7 @@
 		CEC46BAF2B708D0A00F5A651 /* ChangeCHManangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManangerView.swift; sourceTree = "<group>"; };
 		CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManagerReactor.swift; sourceTree = "<group>"; };
 		CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCHManagerDelegate.swift; sourceTree = "<group>"; };
+		CEC46BED2B70D06C00F5A651 /* ChangeManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerViewController.swift; sourceTree = "<group>"; };
 		CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewControllerMananger.swift; sourceTree = "<group>"; };
 		CEC764282B5122E7000578E9 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
 		CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -443,7 +444,6 @@
 		CED7C2C82B524F7B0069EA0A /* WorkSpaceListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceListDelegate.swift; sourceTree = "<group>"; };
 		CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		CED829452B58C28900AD1828 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
-		CED829482B58C40A00AD1828 /* ChangeWSManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWSManagerViewController.swift; sourceTree = "<group>"; };
 		CED8294A2B58C41500AD1828 /* ChangeManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerView.swift; sourceTree = "<group>"; };
 		CED8294C2B58C42900AD1828 /* ChangeWSManagerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWSManagerReactor.swift; sourceTree = "<group>"; };
 		CED829502B590D7D00AD1828 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -487,26 +487,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC7642C2B5123F1000578E9 /* Kingfisher in Frameworks */,
-				CEA8F9A52B48425C0062B45C /* Toast in Frameworks */,
-				CE57E42E2B455A61009BD53A /* IQKeyboardManagerSwift in Frameworks */,
-				CE85748F2B4AFD810025ED1B /* ReactorKit in Frameworks */,
-				CEEE4EB02B46A1340059D1AF /* AnyFormatKit in Frameworks */,
-				CEB7F8322B444B1000B9A035 /* RxSwift in Frameworks */,
-				CE57192F2B69EB6100EC3E18 /* SocketIO in Frameworks */,
-				CE9DEB682B6BDAA50016382B /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				CED7C2C22B5230D40069EA0A /* SideMenu in Frameworks */,
-				CEB7F8302B444B1000B9A035 /* RxCocoa in Frameworks */,
-				CE5EA4B52B60ACAA00999704 /* RealmSwift in Frameworks */,
-				CEA8F9D62B4993A20062B45C /* Then in Frameworks */,
-				CE9DEB6C2B6BDAA50016382B /* FirebaseMessaging in Frameworks */,
-				CE5EA4B32B60ACAA00999704 /* Realm in Frameworks */,
-				CEB7F8352B444B2A00B9A035 /* RxGesture in Frameworks */,
-				CE9DEB6A2B6BDAA50016382B /* FirebaseCrashlytics in Frameworks */,
-				CEEE4EB62B46DC220059D1AF /* Moya in Frameworks */,
-				CE61AE252B5EC4BA0091B03D /* RxDataSources in Frameworks */,
-				CEB7F82D2B444B0100B9A035 /* SnapKit in Frameworks */,
-				CEA8F9C12B496EB80062B45C /* KakaoSDK in Frameworks */,
+				CEC46BCE2B70CDCD00F5A651 /* KakaoSDK in Frameworks */,
+				CEC46BE02B70CEB100F5A651 /* Realm in Frameworks */,
+				CEC46BBF2B70CCC700F5A651 /* RxGesture in Frameworks */,
+				CEC46BBC2B70CCB500F5A651 /* RxSwift in Frameworks */,
+				CEC46BC22B70CCF200F5A651 /* IQKeyboardManagerSwift in Frameworks */,
+				CEC46BD72B70CDF300F5A651 /* Kingfisher in Frameworks */,
+				CEC46BE22B70CEB100F5A651 /* RealmSwift in Frameworks */,
+				CEC46BE82B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				CEC46BCB2B70CD2700F5A651 /* Toast in Frameworks */,
+				CEC46BB72B70CC9100F5A651 /* SnapKit in Frameworks */,
+				CEC46BDD2B70CE9800F5A651 /* RxDataSources in Frameworks */,
+				CEC46BE52B70CEBE00F5A651 /* SocketIO in Frameworks */,
+				CEC46BEC2B70CF3900F5A651 /* FirebaseMessaging in Frameworks */,
+				CEC46BD12B70CDD900F5A651 /* Then in Frameworks */,
+				CEC46BC52B70CD0100F5A651 /* AnyFormatKit in Frameworks */,
+				CEC46BEA2B70CF3900F5A651 /* FirebaseCrashlytics in Frameworks */,
+				CEC46BC82B70CD1000F5A651 /* Moya in Frameworks */,
+				CEC46BD42B70CDE700F5A651 /* ReactorKit in Frameworks */,
+				CEC46BDA2B70CE8700F5A651 /* SideMenu in Frameworks */,
+				CEC46BBA2B70CCB500F5A651 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,9 +1124,9 @@
 		CED829472B58C3E200AD1828 /* ChangeWSManager */ = {
 			isa = PBXGroup;
 			children = (
-				CED829482B58C40A00AD1828 /* ChangeWSManagerViewController.swift */,
 				CED8294A2B58C41500AD1828 /* ChangeManagerView.swift */,
 				CED8294C2B58C42900AD1828 /* ChangeWSManagerReactor.swift */,
+				CEC46BED2B70D06C00F5A651 /* ChangeManagerViewController.swift */,
 			);
 			path = ChangeWSManager;
 			sourceTree = "<group>";
@@ -1265,26 +1265,26 @@
 			);
 			name = SeSACTalk;
 			packageProductDependencies = (
-				CEB7F82C2B444B0100B9A035 /* SnapKit */,
-				CEB7F82F2B444B1000B9A035 /* RxCocoa */,
-				CEB7F8312B444B1000B9A035 /* RxSwift */,
-				CEB7F8342B444B2A00B9A035 /* RxGesture */,
-				CE57E42D2B455A61009BD53A /* IQKeyboardManagerSwift */,
-				CEEE4EAF2B46A1340059D1AF /* AnyFormatKit */,
-				CEEE4EB52B46DC220059D1AF /* Moya */,
-				CEA8F9A42B48425C0062B45C /* Toast */,
-				CEA8F9C02B496EB80062B45C /* KakaoSDK */,
-				CEA8F9D52B4993A20062B45C /* Then */,
-				CE85748E2B4AFD810025ED1B /* ReactorKit */,
-				CEC7642B2B5123F1000578E9 /* Kingfisher */,
-				CED7C2C12B5230D40069EA0A /* SideMenu */,
-				CE61AE242B5EC4BA0091B03D /* RxDataSources */,
-				CE5EA4B22B60ACAA00999704 /* Realm */,
-				CE5EA4B42B60ACAA00999704 /* RealmSwift */,
-				CE57192E2B69EB6100EC3E18 /* SocketIO */,
-				CE9DEB672B6BDAA50016382B /* FirebaseAnalyticsWithoutAdIdSupport */,
-				CE9DEB692B6BDAA50016382B /* FirebaseCrashlytics */,
-				CE9DEB6B2B6BDAA50016382B /* FirebaseMessaging */,
+				CEC46BB62B70CC9100F5A651 /* SnapKit */,
+				CEC46BB92B70CCB500F5A651 /* RxCocoa */,
+				CEC46BBB2B70CCB500F5A651 /* RxSwift */,
+				CEC46BBE2B70CCC700F5A651 /* RxGesture */,
+				CEC46BC12B70CCF200F5A651 /* IQKeyboardManagerSwift */,
+				CEC46BC42B70CD0100F5A651 /* AnyFormatKit */,
+				CEC46BC72B70CD1000F5A651 /* Moya */,
+				CEC46BCA2B70CD2700F5A651 /* Toast */,
+				CEC46BCD2B70CDCD00F5A651 /* KakaoSDK */,
+				CEC46BD02B70CDD900F5A651 /* Then */,
+				CEC46BD32B70CDE700F5A651 /* ReactorKit */,
+				CEC46BD62B70CDF300F5A651 /* Kingfisher */,
+				CEC46BD92B70CE8700F5A651 /* SideMenu */,
+				CEC46BDC2B70CE9800F5A651 /* RxDataSources */,
+				CEC46BDF2B70CEB100F5A651 /* Realm */,
+				CEC46BE12B70CEB100F5A651 /* RealmSwift */,
+				CEC46BE42B70CEBE00F5A651 /* SocketIO */,
+				CEC46BE72B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				CEC46BE92B70CF3900F5A651 /* FirebaseCrashlytics */,
+				CEC46BEB2B70CF3900F5A651 /* FirebaseMessaging */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -1359,22 +1359,22 @@
 			);
 			mainGroup = CE6C1FB52B43E8BA00AA7F9C;
 			packageReferences = (
-				CEB7F82B2B444B0100B9A035 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				CEB7F82E2B444B1000B9A035 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				CEB7F8332B444B2A00B9A035 /* XCRemoteSwiftPackageReference "RxGesture" */,
-				CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				CEEE4EAE2B46A1340059D1AF /* XCRemoteSwiftPackageReference "AnyFormatKit" */,
-				CEEE4EB42B46DC220059D1AF /* XCRemoteSwiftPackageReference "Moya" */,
-				CEA8F9A32B48425C0062B45C /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				CEA8F9BF2B496EB80062B45C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
-				CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */,
-				CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */,
-				CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */,
-				CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */,
-				CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				CE57192D2B69EB6100EC3E18 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
-				CE9DEB662B6BDAA50016382B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CEC46BB52B70CC9100F5A651 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				CEC46BBD2B70CCC700F5A651 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				CEC46BC02B70CCF200F5A651 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				CEC46BC32B70CD0100F5A651 /* XCRemoteSwiftPackageReference "AnyFormatKit" */,
+				CEC46BC62B70CD1000F5A651 /* XCRemoteSwiftPackageReference "Moya" */,
+				CEC46BC92B70CD2700F5A651 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				CEC46BCC2B70CDCD00F5A651 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				CEC46BCF2B70CDD900F5A651 /* XCRemoteSwiftPackageReference "Then" */,
+				CEC46BD22B70CDE700F5A651 /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				CEC46BD52B70CDF300F5A651 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CEC46BD82B70CE8700F5A651 /* XCRemoteSwiftPackageReference "SideMenu" */,
+				CEC46BDB2B70CE9800F5A651 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CEC46BE32B70CEBE00F5A651 /* XCRemoteSwiftPackageReference "socket" */,
+				CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -1587,6 +1587,7 @@
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
+				CEC46BEE2B70D06C00F5A651 /* ChangeManagerViewController.swift in Sources */,
 				CE9DEB752B6CB7E70016382B /* ChannelSettingView.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
@@ -1595,7 +1596,6 @@
 				CE5EA4BA2B60B45E00999704 /* RealmManager.swift in Sources */,
 				CE9DEB7B2B6CD5350016382B /* ChannelMemberItem.swift in Sources */,
 				CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */,
-				CED829492B58C40A00AD1828 /* ChangeWSManagerViewController.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,
@@ -1979,79 +1979,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CE57192D2B69EB6100EC3E18 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.5.16;
-			};
-		};
-		CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.2;
-			};
-		};
-		CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactorKit/ReactorKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.0;
-			};
-		};
-		CE9DEB662B6BDAA50016382B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.20.0;
-			};
-		};
-		CEA8F9A32B48425C0062B45C /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scalessec/Toast-Swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
-			};
-		};
-		CEA8F9BF2B496EB80062B45C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.20.0;
-			};
-		};
-		CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-		CEB7F82B2B444B0100B9A035 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		CEC46BB52B70CC9100F5A651 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -2059,7 +1987,7 @@
 				minimumVersion = 5.7.0;
 			};
 		};
-		CEB7F82E2B444B1000B9A035 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
@@ -2067,7 +1995,7 @@
 				minimumVersion = 6.6.0;
 			};
 		};
-		CEB7F8332B444B2A00B9A035 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+		CEC46BBD2B70CCC700F5A651 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
 			requirement = {
@@ -2075,23 +2003,15 @@
 				minimumVersion = 4.0.4;
 			};
 		};
-		CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		CEC46BC02B70CCF200F5A651 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.10.2;
+				minimumVersion = 7.0.1;
 			};
 		};
-		CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.5.0;
-			};
-		};
-		CEEE4EAE2B46A1340059D1AF /* XCRemoteSwiftPackageReference "AnyFormatKit" */ = {
+		CEC46BC32B70CD0100F5A651 /* XCRemoteSwiftPackageReference "AnyFormatKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/luximetr/AnyFormatKit.git";
 			requirement = {
@@ -2099,7 +2019,7 @@
 				minimumVersion = 2.5.2;
 			};
 		};
-		CEEE4EB42B46DC220059D1AF /* XCRemoteSwiftPackageReference "Moya" */ = {
+		CEC46BC62B70CD1000F5A651 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
@@ -2107,108 +2027,188 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		CEC46BC92B70CD2700F5A651 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		CEC46BCC2B70CDCD00F5A651 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.20.0;
+			};
+		};
+		CEC46BCF2B70CDD900F5A651 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		CEC46BD22B70CDE700F5A651 /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactorKit/ReactorKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+		CEC46BD52B70CDF300F5A651 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
+		CEC46BD82B70CE8700F5A651 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+		CEC46BDB2B70CE9800F5A651 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+		CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		CEC46BE32B70CEBE00F5A651 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.20.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CE57192E2B69EB6100EC3E18 /* SocketIO */ = {
+		CEC46BB62B70CC9100F5A651 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE57192D2B69EB6100EC3E18 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
-			productName = SocketIO;
-		};
-		CE57E42D2B455A61009BD53A /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE57E42C2B455A61009BD53A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
-		CE5EA4B22B60ACAA00999704 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		CE5EA4B42B60ACAA00999704 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE5EA4B12B60ACAA00999704 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
-		CE61AE242B5EC4BA0091B03D /* RxDataSources */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE61AE232B5EC4BA0091B03D /* XCRemoteSwiftPackageReference "RxDataSources" */;
-			productName = RxDataSources;
-		};
-		CE85748E2B4AFD810025ED1B /* ReactorKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE85748D2B4AFD810025ED1B /* XCRemoteSwiftPackageReference "ReactorKit" */;
-			productName = ReactorKit;
-		};
-		CE9DEB672B6BDAA50016382B /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE9DEB662B6BDAA50016382B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		CE9DEB692B6BDAA50016382B /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE9DEB662B6BDAA50016382B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		CE9DEB6B2B6BDAA50016382B /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE9DEB662B6BDAA50016382B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
-		CEA8F9A42B48425C0062B45C /* Toast */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEA8F9A32B48425C0062B45C /* XCRemoteSwiftPackageReference "Toast-Swift" */;
-			productName = Toast;
-		};
-		CEA8F9C02B496EB80062B45C /* KakaoSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEA8F9BF2B496EB80062B45C /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDK;
-		};
-		CEA8F9D52B4993A20062B45C /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEA8F9D42B4993A20062B45C /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
-		};
-		CEB7F82C2B444B0100B9A035 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEB7F82B2B444B0100B9A035 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = CEC46BB52B70CC9100F5A651 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		CEB7F82F2B444B1000B9A035 /* RxCocoa */ = {
+		CEC46BB92B70CCB500F5A651 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEB7F82E2B444B1000B9A035 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		CEB7F8312B444B1000B9A035 /* RxSwift */ = {
+		CEC46BBB2B70CCB500F5A651 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEB7F82E2B444B1000B9A035 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		CEB7F8342B444B2A00B9A035 /* RxGesture */ = {
+		CEC46BBE2B70CCC700F5A651 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEB7F8332B444B2A00B9A035 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			package = CEC46BBD2B70CCC700F5A651 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
 		};
-		CEC7642B2B5123F1000578E9 /* Kingfisher */ = {
+		CEC46BC12B70CCF200F5A651 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC7642A2B5123F1000578E9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = CEC46BC02B70CCF200F5A651 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
-		CED7C2C12B5230D40069EA0A /* SideMenu */ = {
+		CEC46BC42B70CD0100F5A651 /* AnyFormatKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CED7C2C02B5230D40069EA0A /* XCRemoteSwiftPackageReference "SideMenu" */;
-			productName = SideMenu;
-		};
-		CEEE4EAF2B46A1340059D1AF /* AnyFormatKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEEE4EAE2B46A1340059D1AF /* XCRemoteSwiftPackageReference "AnyFormatKit" */;
+			package = CEC46BC32B70CD0100F5A651 /* XCRemoteSwiftPackageReference "AnyFormatKit" */;
 			productName = AnyFormatKit;
 		};
-		CEEE4EB52B46DC220059D1AF /* Moya */ = {
+		CEC46BC72B70CD1000F5A651 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEEE4EB42B46DC220059D1AF /* XCRemoteSwiftPackageReference "Moya" */;
+			package = CEC46BC62B70CD1000F5A651 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		CEC46BCA2B70CD2700F5A651 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BC92B70CD2700F5A651 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		CEC46BCD2B70CDCD00F5A651 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BCC2B70CDCD00F5A651 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		CEC46BD02B70CDD900F5A651 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BCF2B70CDD900F5A651 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		CEC46BD32B70CDE700F5A651 /* ReactorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BD22B70CDE700F5A651 /* XCRemoteSwiftPackageReference "ReactorKit" */;
+			productName = ReactorKit;
+		};
+		CEC46BD62B70CDF300F5A651 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BD52B70CDF300F5A651 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		CEC46BD92B70CE8700F5A651 /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BD82B70CE8700F5A651 /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+		CEC46BDC2B70CE9800F5A651 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BDB2B70CE9800F5A651 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
+		CEC46BDF2B70CEB100F5A651 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		CEC46BE12B70CEB100F5A651 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		CEC46BE42B70CEBE00F5A651 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BE32B70CEBE00F5A651 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+		CEC46BE72B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		CEC46BE92B70CF3900F5A651 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		CEC46BEB2B70CF3900F5A651 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

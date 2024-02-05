@@ -2,13 +2,14 @@
 //  ChangeManagerViewController.swift
 //  SeSACTalk
 //
-//  Created by 김지연 on 1/18/24.
+//  Created by 김지연 on 2/5/24.
 //
 
+import Foundation
 import UIKit
 import ReactorKit
 
-final class ChangeWSManagerViewController: BaseViewController, View {
+final class ChangeManagerViewController: BaseViewController, View {
     
     var disposeBag = DisposeBag()
     var workspace: WorkSpace?
@@ -137,7 +138,7 @@ final class ChangeWSManagerViewController: BaseViewController, View {
     
 }
 
-extension ChangeWSManagerViewController {
+extension ChangeManagerViewController {
     private func configNav() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(xButtonTapped))
         navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black
