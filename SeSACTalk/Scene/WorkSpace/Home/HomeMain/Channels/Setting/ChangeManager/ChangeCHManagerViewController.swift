@@ -69,16 +69,20 @@ extension ChangeCHManagerViewController: View {
         reactor.state
             .map { $0.memberList }
             .distinctUntilChanged()
-            .filter { !$0.isEmpty }
+            .filter { $0 != .none }
             .asDriver(onErrorJustReturn: [])
             .drive(with: self) { owner, value in
-                if value.count <= 1 {
-                    owner.showPopUp(title: Text.cannotChangeTitle, message: Text.cannotChangeMsg, okTitle: "확인", okCompletion:  {
-                        owner.dismiss(animated: true)
-                    })
-                } else {
-                    owner.updateSnapShot(data: value)
+                if let value = value {
+                    if value.count <= 0 {
+                        owner.showPopUp(title: Text.cannotChangeTitle, message: Text.cannotChangeMsg, okTitle: "확인", okCompletion:  {
+                            owner.dismiss(animated: true)
+                        })
+                    } else {
+                        
+                        owner.updateSnapShot(data: value)
+                    }
                 }
+                
             }
             .disposed(by: disposeBag)
         

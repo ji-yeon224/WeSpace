@@ -10,7 +10,7 @@ import ReactorKit
 
 final class ChangeCHManagerReactor: Reactor {
     var initialState: State = State(
-        memberList: [],
+        memberList: nil,
         msg: ""
     )
     
@@ -26,7 +26,7 @@ final class ChangeCHManagerReactor: Reactor {
     }
     
     struct State {
-        var memberList: [User]
+        var memberList: [User]?
         var msg: String
     }
     
@@ -63,7 +63,8 @@ extension ChangeCHManagerReactor {
                 switch result {
                 case .success(let response):
                     if let response = response {
-                        return .memberList(data: response.map { $0.toDomain() })
+                        let data = response.map{ $0.toDomain() }.filter { $0.userId != UserDefaultsManager.userId }
+                        return .memberList(data: data)
                     }
                     return .msg(msg: ChannelToastMessage.otherError.message)
                 case .failure(let error):
