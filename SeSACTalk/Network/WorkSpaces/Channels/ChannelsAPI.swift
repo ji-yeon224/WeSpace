@@ -18,6 +18,7 @@ enum ChannelsAPI {
     case allChannel(wsId: Int)
     case oneChannel(wsId: Int, name: String)
     case exit(wsId: Int, name: String)
+    case change(wsId: Int, userId: Int, name: String)
 }
 
 extension ChannelsAPI: TargetType {
@@ -43,6 +44,8 @@ extension ChannelsAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)"
         case .exit(let wsId, let name):
             return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)/leave"
+        case .change(let wsId, let userId, let name):
+            return Endpoint.workspaces.rawValue + "/\(wsId)/channels/\(name)/change/admin/\(userId)"
         }
     }
     
@@ -52,14 +55,14 @@ extension ChannelsAPI: TargetType {
             return .get
         case .create, .sendMsg:
             return .post
-        case .edit:
+        case .edit, .change:
             return .put
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .myChannel, .member, .allChannel, .oneChannel, .exit:
+        case .myChannel, .member, .allChannel, .oneChannel, .exit, .change:
             return .requestPlain
         case .create(_, data: let data), .edit(_, _, let data):
             return .requestJSONEncodable(data)
@@ -79,7 +82,7 @@ extension ChannelsAPI: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .myChannel, .fetchMsg, .member, .allChannel, .oneChannel, .exit :
+        case .myChannel, .fetchMsg, .member, .allChannel, .oneChannel, .exit, .change:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .create, .edit:
             return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]

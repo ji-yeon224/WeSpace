@@ -12,6 +12,7 @@ enum ChannelToastMessage {
     case successEdit
     case loadFailChat
     case otherError
+    case successChange
 }
 
 extension ChannelToastMessage {
@@ -25,6 +26,8 @@ extension ChannelToastMessage {
             return "채팅을 로드하는데 문제가 발생하였습니다."
         case .otherError:
             return "문제가 발생하였습니다."
+        case .successChange:
+            return "채널 관리자가 변경되었습니다."
         }
     }
 }

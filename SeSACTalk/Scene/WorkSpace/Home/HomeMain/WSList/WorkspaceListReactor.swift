@@ -20,7 +20,7 @@ final class WorkspaceListReactor: Reactor {
     
     enum Action {
         case requestAllWorkspace
-        case requestExit(id: Int?)
+        case requestExit(id: Int?, owner: Int)
         case requestDelete(id: Int?)
     }
     enum Mutation {
@@ -42,10 +42,9 @@ final class WorkspaceListReactor: Reactor {
         switch action {
         case .requestAllWorkspace:
             return requestAllWS(type: .fetchAll).asObservable()
-        case .requestExit(let id):
-            print("workspace id ", id)
+        case .requestExit(let id, let owner):
             if let id = id {
-                return requestExitWorkspace(id: id)
+                return requestExitWorkspace(id: id, owner: owner)
             } else {
                 return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
             }
@@ -124,20 +123,37 @@ final class WorkspaceListReactor: Reactor {
     }
 
     
-    private func requestExitWorkspace(id: Int) -> Observable<Mutation> {
+    private func requestExitWorkspace(id: Int, owner: Int) -> Observable<Mutation> {
         return WorkspacesAPIManager.shared.request(api: .leave(id: id), resonseType: AllWorkspaceReDTO.self)
             .asObservable()
-            .map { result -> Mutation in
+            .flatMap { result -> Observable<Mutation> in
                 switch result {
                 case .success(let response):
-                    return Mutation.completLeave(data: response ?? [])
+                    return .just(.completLeave(data: response ?? []))
                 case .failure(let error):
                     if let error = WorkspaceError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
+                        if error == .E15 && UserDefaultsManager.userId != owner { // 채널관리자
+                            return .concat(
+                                .just(.msg(msg: WorkspaceToastMessage.exitChannelOwner.message)),
+                                .just(.msg(msg: ""))
+                            )
+                        } else {
+                            return .concat(
+                                .just(.msg(msg: error.localizedDescription)),
+                                .just(.msg(msg: ""))
+                            )
+                        }
+                        
                     } else if let error = CommonError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
+                        return .concat(
+                            .just(.msg(msg: error.localizedDescription)),
+                            .just(.msg(msg: ""))
+                        )
                     } else {
-                        return Mutation.msg(msg: CommonError.E99.localizedDescription)
+                        return .concat(
+                            .just(.msg(msg: error.localizedDescription)),
+                            .just(.msg(msg: ""))
+                        )
                     }
                 }
                 

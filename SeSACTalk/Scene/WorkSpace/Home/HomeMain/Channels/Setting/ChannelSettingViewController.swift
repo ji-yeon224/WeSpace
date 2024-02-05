@@ -188,12 +188,30 @@ extension ChannelSettingViewController: View {
             }
             .disposed(by: disposeBag)
         
-       
+        mainView.changeButton.rx.tap
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, _ in
+                let vc = ChangeCHManagerViewController()
+                vc.channel = owner.channel
+                vc.delegate = self
+                let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+                nav.setupBarAppearance()
+                owner.present(nav, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     
 }
 
+extension ChannelSettingViewController: ChannelCHManagerDelegate{
+    func successChangeCHMAnager(data: Channel) {
+        showToastMessage(message: ChannelToastMessage.successChange.message, position: .bottom)
+        NotificationCenter.default.post(name: .refreshChannel, object: nil)
+        channel = data
+        mainView.setButtonHidden(isAdmin: false)
+    }
+}
 
 extension ChannelSettingViewController {
     private func showExitPopupView() {

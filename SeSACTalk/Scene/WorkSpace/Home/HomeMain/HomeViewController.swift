@@ -97,6 +97,7 @@ extension HomeViewController {
         bindState(reactor: reactor)
         bindEvent()
         homeItemEvent()
+        notificationEvent()
     }
     
     private func bindAction(reactor: HomeReactor) {
@@ -339,7 +340,6 @@ extension HomeViewController {
         guard let item = item else { return }
         
         if let channelItem = item.item as? Channel {
-            print(channelItem.name)
             enterChannel.accept(channelItem)
         } else if let dmItem = item.item as? DMsRoom {
             print(dmItem.user)
@@ -359,7 +359,6 @@ extension HomeViewController {
             if indexPath.section == 0 {
                 present(showChannelActionSheet(), animated: true)
             }
-            print(plus)
         }
         
         

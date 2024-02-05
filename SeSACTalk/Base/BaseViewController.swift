@@ -26,7 +26,7 @@ class BaseViewController: UIViewController {
         style.messageColor = Constants.Color.white
         
         DispatchQueue.main.async {
-            self.view.makeToast(message, duration: 1.0, position: position, style: style)
+            self.view.makeToast(message, duration: 2.0, position: position, style: style)
         }
     }
     
