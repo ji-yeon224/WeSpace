@@ -32,7 +32,7 @@ final class WorkspaceListViewController: BaseViewController, View {
     private let deleteWorkspaceList = PublishRelay<Void>()
     private let workspaceItem = PublishRelay<[WorkSpace]>()
     
-    private let requestExit = PublishRelay<Void>()
+    private let requestExit = PublishRelay<Int>()
     private let requestDelete = PublishRelay<Void>()
     
     
@@ -124,7 +124,10 @@ final class WorkspaceListViewController: BaseViewController, View {
                     
                 } else {
                     owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExit, align: .center, cancelTitle: "취소", okTitle: "나가기") { } okCompletion: {
-                        owner.requestExit.accept(())
+                        if let workspace = owner.workspace {
+                            owner.requestExit.accept((workspace.workspaceId))
+                        }
+                        
                     }
 
                 }
@@ -164,7 +167,7 @@ final class WorkspaceListViewController: BaseViewController, View {
         
         changeManager
             .bind(with: self) { owner, _ in
-                let vc = ChangeManagerViewController()
+                let vc = ChangeWSManagerViewController()
                 vc.workspace = owner.workspace
                 vc.delegate = self
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
@@ -183,7 +186,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .disposed(by: disposeBag)
         
         requestExit
-            .map { _ in Reactor.Action.requestExit(id: self.workspace?.workspaceId)}
+            .map { Reactor.Action.requestExit(id: self.workspace?.workspaceId, owner: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         

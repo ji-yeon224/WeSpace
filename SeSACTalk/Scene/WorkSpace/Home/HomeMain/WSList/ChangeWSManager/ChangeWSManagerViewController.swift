@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import ReactorKit
 
-final class ChangeManagerViewController: BaseViewController, View {
+final class ChangeWSManagerViewController: BaseViewController, View {
     
     var disposeBag = DisposeBag()
     var workspace: WorkSpace?
@@ -138,7 +138,7 @@ final class ChangeManagerViewController: BaseViewController, View {
     
 }
 
-extension ChangeManagerViewController {
+extension ChangeWSManagerViewController {
     private func configNav() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: Constants.Image.xmark, style: .plain, target: self, action: #selector(xButtonTapped))
         navigationItem.leftBarButtonItem?.tintColor = Constants.Color.black

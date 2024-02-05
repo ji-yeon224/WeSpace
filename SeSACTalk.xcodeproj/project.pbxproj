@@ -174,7 +174,7 @@
 		CEC46BE82B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE72B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		CEC46BEA2B70CF3900F5A651 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE92B70CF3900F5A651 /* FirebaseCrashlytics */; };
 		CEC46BEC2B70CF3900F5A651 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BEB2B70CF3900F5A651 /* FirebaseMessaging */; };
-		CEC46BEE2B70D06C00F5A651 /* ChangeManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BED2B70D06C00F5A651 /* ChangeManagerViewController.swift */; };
+		CEC46BEE2B70D06C00F5A651 /* ChangeWSManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BED2B70D06C00F5A651 /* ChangeWSManagerViewController.swift */; };
 		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
 		CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764282B5122E7000578E9 /* HomeReactor.swift */; };
 		CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */; };
@@ -413,7 +413,7 @@
 		CEC46BAF2B708D0A00F5A651 /* ChangeCHManangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManangerView.swift; sourceTree = "<group>"; };
 		CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManagerReactor.swift; sourceTree = "<group>"; };
 		CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCHManagerDelegate.swift; sourceTree = "<group>"; };
-		CEC46BED2B70D06C00F5A651 /* ChangeManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeManagerViewController.swift; sourceTree = "<group>"; };
+		CEC46BED2B70D06C00F5A651 /* ChangeWSManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWSManagerViewController.swift; sourceTree = "<group>"; };
 		CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewControllerMananger.swift; sourceTree = "<group>"; };
 		CEC764282B5122E7000578E9 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
 		CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -1126,7 +1126,7 @@
 			children = (
 				CED8294A2B58C41500AD1828 /* ChangeManagerView.swift */,
 				CED8294C2B58C42900AD1828 /* ChangeWSManagerReactor.swift */,
-				CEC46BED2B70D06C00F5A651 /* ChangeManagerViewController.swift */,
+				CEC46BED2B70D06C00F5A651 /* ChangeWSManagerViewController.swift */,
 			);
 			path = ChangeWSManager;
 			sourceTree = "<group>";
@@ -1587,7 +1587,7 @@
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
-				CEC46BEE2B70D06C00F5A651 /* ChangeManagerViewController.swift in Sources */,
+				CEC46BEE2B70D06C00F5A651 /* ChangeWSManagerViewController.swift in Sources */,
 				CE9DEB752B6CB7E70016382B /* ChannelSettingView.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
