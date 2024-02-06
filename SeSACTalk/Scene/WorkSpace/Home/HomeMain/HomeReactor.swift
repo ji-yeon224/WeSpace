@@ -195,7 +195,7 @@ extension HomeReactor {
     private func getChatItems(channelData: ChannelDTO) -> [ChannelMessage] {
         var data: [ChannelMessage] = []
         channelData.chatItem.forEach {
-            data.append($0.toDomain())
+            data.append($0.toDomain(name: channelData.name))
         }
         print(#function, data.count)
         return data

@@ -85,7 +85,7 @@ final class ChatViewController: BaseViewController {
     private func configData() {
         if let channel = channel {
             let chats = channel.chatItem.map {
-                $0.toDomain()
+                $0.toDomain(name: channel.name)
             }
             chatData.append(contentsOf: chats)
             

@@ -35,11 +35,21 @@ final class ChannelRepository {
                 data.name = name
             }
         } catch {
-            throw DBError.createError
+            throw DBError.updateError
         }
         
     }
-    
+    func updateChannelDate(data: ChannelDTO, date: String) throws {
+        
+        do {
+            try realm.write {
+                data.lastDate = date
+            }
+        } catch {
+            throw DBError.updateError
+        }
+        
+    }
     
     func updateChatItems(data: ChannelDTO, chat: [ChannelChatDTO]) throws {
 //        print("ㅁㅁ", chat, data)

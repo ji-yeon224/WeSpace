@@ -211,12 +211,18 @@ extension ChatReactor {
             print(error.localizedDescription)
         }
         
+        do {  
+            if let lastData = chat.last {
+                try channelRepository.updateChannelDate(data: data, date: lastData.createdAt)
+            }
+        } catch { print(error.localizedDescription)}
+        
         do {
             
             try channelRepository.updateChatItems(data: data, chat: recordList)
-            
+           
             debugPrint("[SAVE CHAT ITEMS SUCCESS]")
-            return recordList.map { $0.toDomain() }
+            return recordList.map { $0.toDomain(name: data.name) }
         } catch {
             print(error.localizedDescription)
             return chat
