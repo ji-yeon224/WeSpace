@@ -33,6 +33,12 @@ final class ChannelSettingViewController: BaseViewController {
         
     }
     
+    deinit {
+        self.disposeBag = DisposeBag()
+        print("ChannelSetting deinit")
+    }
+    
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -90,12 +96,17 @@ extension ChannelSettingViewController: View {
             .disposed(by: disposeBag)
         
         requestExitChannel
-            .map { Reactor.Action.requestExitChannel(wsId: self.workspace?.workspaceId, name: self.channel?.name, chId: self.channel?.channelID)}
+            .withUnretained(self)
+            .map { owner, _ in
+                Reactor.Action.requestExitChannel(wsId: owner.workspace?.workspaceId, name: owner.channel?.name, chId: owner.channel?.channelID)
+            }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         requestDeleteChannel
-            .map { Reactor.Action.requestDeleteChannel(wsId: self.workspace?.workspaceId, name: self.chName, chId: self.channel?.channelID)}
+            .withUnretained(self)
+            .map { owner, _ in
+                Reactor.Action.requestDeleteChannel(wsId: owner.workspace?.workspaceId, name: owner.chName, chId: owner.channel?.channelID)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -116,7 +127,7 @@ extension ChannelSettingViewController: View {
             .map { $0.channelInfo }
             .filter{ $0 != .none }
             .distinctUntilChanged()
-            .observe(on: MainScheduler.asyncInstance)
+            .observe(on: MainScheduler.instance)
             .bind(with: self) { owner, value in
                 if let channel = value {
                     owner.channel = channel
@@ -208,6 +219,7 @@ extension ChannelSettingViewController: View {
         
         mainView.changeButton.rx.tap
             .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .observe(on: MainScheduler.instance)
             .bind(with: self) { owner, _ in
                 let vc = ChangeCHManagerViewController()
                 vc.channel = owner.channel
@@ -220,6 +232,7 @@ extension ChannelSettingViewController: View {
         
         mainView.deleteButton.rx.tap
             .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .observe(on: MainScheduler.instance)
             .bind(with: self) { owner, _ in
                 owner.showPopUp(title: Text.channelDeleteTitle, message: Text.channelDeleteMessage, align: .center, cancelTitle: "취소", okTitle: "삭제", okCompletion:  {
                     owner.requestDeleteChannel.accept(())

@@ -19,6 +19,16 @@ final class InviteViewController: BaseViewController {
         self.view = mainView
     }
     
+    deinit {
+        
+        print("InviteVC deinit")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disposeBag = DisposeBag()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reactor = InviteReactor()

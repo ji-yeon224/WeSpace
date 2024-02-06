@@ -24,6 +24,10 @@ final class ChangeCHManagerViewController: BaseViewController {
         
     }
     
+    deinit {
+        print("ChangeCHMAnager Deinit")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         requestMemberList.onNext(())

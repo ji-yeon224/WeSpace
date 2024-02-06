@@ -38,6 +38,12 @@ final class ChatViewController: BaseViewController {
         
     }
     
+    deinit {
+        self.disposeBag = DisposeBag()
+        NotificationCenter.default.removeObserver(self, name: .refreshChannel, object: nil)
+        print("ChatVC deinit")
+    }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -68,7 +74,7 @@ final class ChatViewController: BaseViewController {
         requestUncheckedChat.accept(lastDate)
 //        updateTableSnapShot()
         
-        ChannelMsgRepository().getLocation()
+//        ChannelMsgRepository().getLocation()
         
         
     }
@@ -77,7 +83,7 @@ final class ChatViewController: BaseViewController {
         if SocketNetworkManager.shared.isConnected {
             SocketNetworkManager.shared.disconnect()
         }
-        
+//        self.disposeBag = DisposeBag()
     }
     
     private func configData() {
@@ -120,7 +126,8 @@ final class ChatViewController: BaseViewController {
     
     private func bindEvent() {
         mainView.chatWriteView.textView.rx.didChange
-            .bind(with: self) { owner, _ in
+            .asDriver()
+            .drive(with: self) { owner, _ in
                 
                 let chatWriteView = owner.mainView.chatWriteView
                 let size = CGSize(width: chatWriteView.frame.width, height: .infinity)
@@ -159,6 +166,7 @@ final class ChatViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         imgData
+            .observe(on: MainScheduler.instance)
             .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: mainView.chatWriteView.rxDataSource))
             .disposed(by: disposeBag)
         
@@ -210,7 +218,8 @@ extension ChatViewController: View {
     private func bindAction(reactor: ChatReactor) {
         
         NotificationCenter.default.rx.notification(.refreshChannel)
-            .map { _ in Reactor.Action.fetchChannel(wsId: self.workspace?.workspaceId, chId: self.channel?.channelId)}
+            .withUnretained(self)
+            .map { owner, _ in Reactor.Action.fetchChannel(wsId: owner.workspace?.workspaceId, chId: owner.channel?.channelId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -220,7 +229,7 @@ extension ChatViewController: View {
             })
             .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .withUnretained(self)
-            .map { Reactor.Action.sendRequest(channel: self.channel, id: self.workspace?.workspaceId, content: $0.1, files: self.selectImageModel.items)}
+            .map { owner, value in Reactor.Action.sendRequest(channel: owner.channel, id: owner.workspace?.workspaceId, content: value, files: owner.selectImageModel.items)}
             .bind(to: reactor.action )
             .disposed(by: disposeBag)
         
@@ -228,12 +237,13 @@ extension ChatViewController: View {
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .withUnretained(self)
-            .map { _ in Reactor.Action.requestUncheckedMsg(wsId: self.workspace?.workspaceId, name: self.channel?.name, chId: self.channel?.channelId)}
+            .map { owner, _ in Reactor.Action.requestUncheckedMsg(wsId: owner.workspace?.workspaceId, name: owner.channel?.name, chId: owner.channel?.channelId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         SocketNetworkManager.shared.chatMessage
-            .map { Reactor.Action.receiveMsg(wsId: self.workspace?.workspaceId, channel: self.channel, chatData: $0)}
+            .withUnretained(self)
+            .map { owner, data in Reactor.Action.receiveMsg(wsId: owner.workspace?.workspaceId, channel: owner.channel, chatData: data)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }

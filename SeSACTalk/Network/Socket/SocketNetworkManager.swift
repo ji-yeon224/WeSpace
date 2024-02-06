@@ -22,7 +22,7 @@ final class SocketNetworkManager {
     
     func configSocketManager(type: SocketURL) {
         
-        manager = SocketManager(socketURL: type.url, config: [.log(true), .compress])
+        manager = SocketManager(socketURL: type.url, config: [.log(false), .compress])
         
         socket = manager.socket(forNamespace: type.nameSpace)
         

@@ -45,6 +45,10 @@ final class HomeViewController: BaseViewController, View {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        self.disposeBag = DisposeBag()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reactor = HomeReactor()

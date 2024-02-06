@@ -35,6 +35,10 @@ final class CreateChannelViewController: BaseViewController {
         self.channel = channel
     }
     
+    deinit {
+        print("CreateChannelVC deinit")
+    }
+    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

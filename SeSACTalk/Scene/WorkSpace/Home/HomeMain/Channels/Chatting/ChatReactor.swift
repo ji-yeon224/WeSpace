@@ -53,7 +53,7 @@ final class ChatReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchChannel(let wsId, let chId):
-            if let wsId = wsId, let chId = chId, let item = ChannelRepository().searchChannel(wsId: wsId, chId: chId).first {
+            if let wsId = wsId, let chId = chId, let item = channelRepository.searchChannel(wsId: wsId, chId: chId).first {
                 return .just(.fetchChannelRecord(data: item))
             }
             return .just(.msg(msg: ChannelToastMessage.otherError.message))
@@ -80,7 +80,7 @@ final class ChatReactor: Reactor {
             }
         case .receiveMsg(let wsId, let channel, let chatData):
             if let channel = channel, let wsId = wsId {
-                if let result = self.saveChatItems(wsId: wsId, data: channel, chat: [chatData]).first {
+                if let result = saveChatItems(wsId: wsId, data: channel, chat: [chatData]).first {
                     return .just(.saveReceiveData(data: result))
                 } else {
                     return .just(.msg(msg: ChannelToastMessage.otherError.message))
@@ -235,8 +235,8 @@ extension ChatReactor {
         
         for i in 0..<files.count {
             let file = files[i]
-            ImageDownloadManager.shared.getUIImage(with: file) { img in
-                
+            ImageDownloadManager.shared.getUIImage(with: file) { [weak self] img in
+                guard let self = self else { return }
                 self.channelMsgRepository.saveImageToDocument(fileName: fileNames[i], image: img)
 
                 

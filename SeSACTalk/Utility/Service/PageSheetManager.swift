@@ -32,6 +32,6 @@ final class PageSheetManager {
             return height - safeAreaBottom
         }
         
-        return self.sheetPresentation(vc, detent: customDetent)
+        return sheetPresentation(vc, detent: customDetent)
     }
 }
