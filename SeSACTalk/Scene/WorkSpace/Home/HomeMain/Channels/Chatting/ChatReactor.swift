@@ -126,8 +126,6 @@ extension ChatReactor {
                         debugPrint("SUCCESS FETCH MSG", response.count)
                         let chatData = response.map {
                             $0.toDomain()
-                        }.filter {
-                            !self.channelMsgRepository.isExistItem(channelId: $0.channelID, chatId: $0.chatID)
                         }
                         
                         let uncheckMsg = self.saveChatItems(wsId: wsId, data: channelRecord, chat: chatData)
@@ -164,7 +162,6 @@ extension ChatReactor {
                     if let response = response {
                         debugPrint("SUCCESS SEND MSG")
                         let data = response.toDomain()
-                        
                         if let sendData = self.saveChatItems(wsId: id, data: channel, chat: [data]).first {
                             return .just(.sendSuccess(data: sendData))
                         }
