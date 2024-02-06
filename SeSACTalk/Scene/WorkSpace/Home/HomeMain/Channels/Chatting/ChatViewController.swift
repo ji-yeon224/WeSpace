@@ -49,15 +49,13 @@ final class ChatViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(#function)
+//        configData()
         
-        guard let channel = channel else { return }
-        
-        if !SocketNetworkManager.shared.isConnected {
-            SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
-            SocketNetworkManager.shared.connect()
-        }
-       
-        
+//        self.reactor?.channelRecord = channel
+        requestUncheckedChat.accept(lastDate)
+        updateTableSnapShot()
+        connectSocket()
     }
     
     override func viewDidLoad() {
@@ -68,7 +66,7 @@ final class ChatViewController: BaseViewController {
         self.reactor = ChatReactor()
         self.reactor?.channelRecord = channel
         requestUncheckedChat.accept(lastDate)
-        updateTableSnapShot()
+//        updateTableSnapShot()
         
         ChannelMsgRepository().getLocation()
         
@@ -109,6 +107,15 @@ final class ChatViewController: BaseViewController {
             mainView.wsId = workspace.workspaceId
         }
         mainView.userInfo = self.userInfo
+    }
+    
+    private func connectSocket() {
+        guard let channel = channel else { return }
+        
+        if !SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.configSocketManager(type: .channel(chId: channel.channelId))
+            SocketNetworkManager.shared.connect()
+        }
     }
     
     private func bindEvent() {
@@ -221,7 +228,7 @@ extension ChatViewController: View {
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .withUnretained(self)
-            .map { Reactor.Action.requestUncheckedMsg(date: $0.1, wsId: self.workspace?.workspaceId, name: self.channel?.name)}
+            .map { _ in Reactor.Action.requestUncheckedMsg(wsId: self.workspace?.workspaceId, name: self.channel?.name, chId: self.channel?.channelId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -239,8 +246,10 @@ extension ChatViewController: View {
             .filter { !$0.isEmpty }
             .distinctUntilChanged()
             .drive(with: self) { owner, value in
+                owner.lastDate = value.last?.createdAt
                 owner.chatData.append(contentsOf: value)
                 owner.updateTableSnapShot()
+                
             }
             .disposed(by: disposeBag)
         
@@ -262,11 +271,13 @@ extension ChatViewController: View {
             .asDriver(onErrorJustReturn: nil)
             .drive(with: self) { owner, value in
                 if let value = value {
+                    owner.lastDate = value.createdAt
                     owner.chatData.append(value)
                     owner.updateTableSnapShot()
                     owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
+                    
                 }
             }
             .disposed(by: disposeBag)

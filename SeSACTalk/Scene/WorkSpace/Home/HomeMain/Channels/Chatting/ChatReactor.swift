@@ -27,7 +27,7 @@ final class ChatReactor: Reactor {
     enum Action {
         case fetchChannel(wsId: Int?, chId: Int?)
         case sendRequest(channel: ChannelDTO?, id: Int?, content: String?, files: [SelectImage])
-        case requestUncheckedMsg(date: String?, wsId: Int?, name: String?)
+        case requestUncheckedMsg(wsId: Int?, name: String?, chId: Int?)
         case receiveMsg(wsId: Int?, channel: ChannelDTO?, chatData: ChannelMessage)
         
     }
@@ -69,10 +69,11 @@ final class ChatReactor: Reactor {
                 debugPrint("[data binding error]")
                 return .just(.msg(msg: ChannelToastMessage.otherError.message))
             }
-        case .requestUncheckedMsg(let date, let wsId, let name):
-            if let wsId = wsId, let name = name {
-                
-                return requestUnckeckedMsg(date: date, wsId: wsId, name: name)
+        case .requestUncheckedMsg(let wsId, let name, let chId):
+            
+            if let wsId = wsId, let name = name, let chId = chId {
+                let d = channelRepository.fetchChannelCursorDate(wsId: wsId, chId: chId)
+                return requestUnckeckedMsg(date: d, wsId: wsId, name: name)
             } else {
                 debugPrint("[data binding error]")
                 return .just(.msg(msg: ChannelToastMessage.otherError.message))
