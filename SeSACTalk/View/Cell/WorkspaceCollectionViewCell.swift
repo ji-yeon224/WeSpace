@@ -28,6 +28,12 @@ final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
         
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setInit()
+        unreadView.isHidden = true
+    }
+    
     override func setConstraints() {
         imageView.snp.makeConstraints { make in
             make.centerY.equalTo(self)
@@ -46,6 +52,18 @@ final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
             make.centerY.equalTo(self)
             make.trailing.equalTo(self).offset(-17)
         }
+    }
+    
+    func setBold() {
+        titleLabel.font = Font.bodyBold.fontStyle
+        titleLabel.textColor = .basicText
+        imageView.image = .hashTagThick
+    }
+    
+    func setInit() {
+        titleLabel.font = Font.body.fontStyle
+        titleLabel.textColor = .secondaryText
+        imageView.image = .hashTagThin
     }
 }
 

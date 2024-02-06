@@ -85,6 +85,7 @@
 		CE61AE222B5EC47C0091B03D /* SelectImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */; };
 		CE61AE272B5F7AB90091B03D /* ImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
+		CE6513CC2B71F2000084EB9C /* UnreadChannelCntResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6513CB2B71F2000084EB9C /* UnreadChannelCntResDTO.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -339,6 +340,7 @@
 		CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageModel.swift; sourceTree = "<group>"; };
 		CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageView.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
+		CE6513CB2B71F2000084EB9C /* UnreadChannelCntResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadChannelCntResDTO.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1039,6 +1041,7 @@
 				CEC764352B512CCB000578E9 /* ChannelResDTO.swift */,
 				CEC7643D2B516306000578E9 /* Channel.swift */,
 				CE61AE002B5CF2E00091B03D /* CreateChannelReqDTO.swift */,
+				CE6513CB2B71F2000084EB9C /* UnreadChannelCntResDTO.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -1591,6 +1594,7 @@
 				CE9DEB752B6CB7E70016382B /* ChannelSettingView.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
+				CE6513CC2B71F2000084EB9C /* UnreadChannelCntResDTO.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
 				CE5EA4BA2B60B45E00999704 /* RealmManager.swift in Sources */,

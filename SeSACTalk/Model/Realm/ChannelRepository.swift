@@ -28,6 +28,13 @@ final class ChannelRepository {
         }
     }
     
+    func fetchChannelCursorDate(wsId: Int, chId: Int) -> String? {
+        if let channel = searchChannel(wsId: wsId, chId: chId).first {
+            return channel.lastDate
+        }
+        return nil
+    }
+    
     func updateChannelInfo(data: ChannelDTO, name: String) throws{
         
         do {

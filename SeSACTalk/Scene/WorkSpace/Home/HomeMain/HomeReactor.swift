@@ -11,6 +11,7 @@ import ReactorKit
 final class HomeReactor: Reactor {
     
     private let channelRepository = ChannelRepository()
+    private var disposeBag = DisposeBag()
     
     var initialState: State = State(
         channelItem: [],
@@ -23,8 +24,6 @@ final class HomeReactor: Reactor {
         userInfo: [:]
     )
     
-    
-    
     enum Action {
         case requestChannelInfo(id: Int?)
         case requestDMsInfo(id: Int?)
@@ -33,13 +32,14 @@ final class HomeReactor: Reactor {
     }
     
     enum Mutation {
-        case channelInfo(channels: [ChannelResDTO])
+        case channelInfo(channels: [Channel])
         case msg(msg: String)
         case loginRequest
         case dmsInfo(dms: DMsRoomResDTO)
         case fetchAllWorkspace(data: [WorkspaceDto])
         case chatInfo(chInfo: ChannelDTO?, chatItems: [ChannelMessage])
         case userInfo(data: [Int: User])
+//        case unreadList(data: [Int: Int])
     }
     
     struct State {
@@ -90,7 +90,7 @@ final class HomeReactor: Reactor {
         switch mutation {
         case .channelInfo(let channels):
             newState.channelItem = channels.map {
-                return WorkspaceItem(title: "", subItems: [], item: $0.toDomain())
+                return WorkspaceItem(title: "", subItems: [], item: $0)
             }
         case .msg(let msg):
             newState.message = msg
@@ -242,24 +242,77 @@ extension HomeReactor {
     private func requestMyChannels(id: Int) -> Observable<Mutation> {
         return ChannelsAPIManager.shared.request(api: .myChannel(id: id), responseType: ChannelsItemResDTO.self)
             .asObservable()
-            .map { result -> Mutation in
+            .flatMap { result -> Observable<Mutation> in
                 switch result {
                 case .success(let response):
                     if let response = response {
-                        return Mutation.channelInfo(channels: response)
+                        let data = response.map { $0.toDomain() }
+                        let req = data.map { return ($0, self.channelRepository.fetchChannelCursorDate(wsId: $0.workspaceID, chId: $0.channelID))}
+                        return self.requestUnreadCnt(data: req)
+                            .map { channels in
+                                return .channelInfo(channels: channels)
+                         }
                     } else {
-                        return Mutation.msg(msg: "오류가 발생하였습니다.")
+                        return .just(Mutation.msg(msg: "오류가 발생하였습니다."))
                     }
                 case .failure(let error):
-                    if let error = WorkspaceError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
+                    if let error = ChannelError(rawValue: error.errorCode) {
+                        return .just(Mutation.msg(msg: error.localizedDescription))
                     } else if let error = CommonError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
+                        return .just(Mutation.msg(msg: error.localizedDescription))
                     } else {
-                        return Mutation.loginRequest
+                        return .just(Mutation.loginRequest)
                     }
                 }
-                
             }
     }
+    
+    
+    
+    private func requestUnreadCnt(data: [(Channel, String?)]) -> Observable<[Channel]> {
+        return Observable.create { observer in
+            let group = DispatchGroup()
+            var channelItems: [Channel] = []
+
+            data.forEach {
+                var channel = $0.0
+                let last = $0.1
+                group.enter()
+                DispatchQueue.main.async {
+                    self.reqeustUnreadChannel(wsId: channel.workspaceID, name: channel.name, after: last) { unreadCount in
+                        channel.unread = unreadCount ?? 0
+                        channelItems.append(channel)
+                        group.leave()
+                    }
+                }
+            }
+
+            group.notify(queue: DispatchQueue.main) {
+                observer.onNext(channelItems)
+                observer.onCompleted()
+            }
+
+            return Disposables.create()
+        }
+    }
+    
+    private func reqeustUnreadChannel(wsId: Int, name: String, after: String?, completion: @escaping ((Int?) -> Void)) {
+        
+        var cnt = 0
+        ChannelsAPIManager.shared.request(api: .unreads(wsId: wsId, name: name, after: after ?? nil), responseType: UnreadChannelCntResDTO.self)
+            .asObservable()
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    cnt = response?.count ?? 0
+                    completion(cnt)
+                    
+                case .failure(let error):
+                    completion(nil)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    
 }

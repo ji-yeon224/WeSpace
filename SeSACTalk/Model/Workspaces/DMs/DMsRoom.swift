@@ -11,4 +11,5 @@ struct DMsRoom: Hashable {
     let workspaceID, roomID: Int
     let createdAt: String
     let user: User
+    var unread: Int = 0
 }

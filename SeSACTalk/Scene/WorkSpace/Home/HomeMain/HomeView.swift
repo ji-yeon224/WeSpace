@@ -110,6 +110,11 @@ extension HomeView {
         let channelCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, Channel> { cell, indexPath, itemIdentifier in
             cell.titleLabel.text = itemIdentifier.name
             cell.imageView.image = .hashTagThin
+            if itemIdentifier.unread > 0 {
+                cell.unreadView.isHidden = false
+                cell.unreadView.countLabel.text = "\(itemIdentifier.unread)"
+                cell.setBold()
+            }
         }
         let dmCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, DMsRoom> { cell, indexPath, itemIdentifier in
             cell.titleLabel.text = itemIdentifier.user.nickname

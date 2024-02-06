@@ -16,6 +16,7 @@ struct Channel: Hashable {
     let ownerID: Int
     let channelPrivate: Int?
     let createdAt: String
+    var unread: Int = 0
     
     func setRecord() -> ChannelDTO {
         return .init(workspaceId: workspaceID, channelId: channelID, name: name)

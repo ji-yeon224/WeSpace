@@ -53,10 +53,16 @@ final class HomeViewController: BaseViewController, View {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print(#function)
         SideMenuVCManager.shared.enableSideMenu()
         navigationController?.navigationBar.isHidden = true
         
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        requestChannelInfo.onNext(())
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -73,7 +79,7 @@ final class HomeViewController: BaseViewController, View {
     }
     
     private func initData() {
-        requestChannelInfo.onNext(())
+//        requestChannelInfo.onNext(())
         requestDMsInfo.onNext(true)
         requestAllWorkspaceInfo.onNext(true)
         if let workspace = workspace {
