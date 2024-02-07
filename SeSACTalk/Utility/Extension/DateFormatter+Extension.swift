@@ -8,11 +8,11 @@
 import Foundation
 
 extension DateFormatter {
-    static func convertToString(format: String, date: Date) -> String {
+    static func convertToString(format: DateFormatterType, date: Date) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
-        formatter.dateFormat = format
+        formatter.dateFormat = format.rawValue
         return formatter.string(from: date)
     }
 }

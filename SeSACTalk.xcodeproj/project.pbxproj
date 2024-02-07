@@ -11,6 +11,12 @@
 		CE1806D72B731D2F002DD9C3 /* DMListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */; };
 		CE1806D92B7341C3002DD9C3 /* DMListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806D82B7341C3002DD9C3 /* DMListView.swift */; };
 		CE1806DF2B734358002DD9C3 /* NoMemberDmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806DE2B734358002DD9C3 /* NoMemberDmView.swift */; };
+		CE1806E12B734AB9002DD9C3 /* DmSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E02B734AB8002DD9C3 /* DmSection.swift */; };
+		CE1806E42B734B81002DD9C3 /* DmMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E32B734B81002DD9C3 /* DmMemberCell.swift */; };
+		CE1806E62B734B8B002DD9C3 /* DmChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E52B734B8B002DD9C3 /* DmChatCell.swift */; };
+		CE1806E82B735BAD002DD9C3 /* DmItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E72B735BAD002DD9C3 /* DmItems.swift */; };
+		CE1806EA2B735ED0002DD9C3 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806E92B735ED0002DD9C3 /* Date+Extension.swift */; };
+		CE1806EC2B7360B4002DD9C3 /* DateFormatterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806EB2B7360B4002DD9C3 /* DateFormatterType.swift */; };
 		CE211F312B5AC09000C43028 /* ChannelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F302B5AC09000C43028 /* ChannelsAPI.swift */; };
 		CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */; };
 		CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F362B5AC99A00C43028 /* InviteViewController.swift */; };
@@ -28,7 +34,7 @@
 		CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */; };
 		CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */; };
 		CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D72B4D1137003B0204 /* ChannelSection.swift */; };
-		CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* DMSection.swift */; };
+		CE4904DA2B4D11C9003B0204 /* HomeDmSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* HomeDmSection.swift */; };
 		CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904DD2B4D2E41003B0204 /* Item.swift */; };
 		CE5719322B69EBF800EC3E18 /* SocketNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */; };
 		CE5719342B69F00700EC3E18 /* SocketURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719332B69F00700EC3E18 /* SocketURL.swift */; };
@@ -268,6 +274,12 @@
 		CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListViewController.swift; sourceTree = "<group>"; };
 		CE1806D82B7341C3002DD9C3 /* DMListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListView.swift; sourceTree = "<group>"; };
 		CE1806DE2B734358002DD9C3 /* NoMemberDmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMemberDmView.swift; sourceTree = "<group>"; };
+		CE1806E02B734AB8002DD9C3 /* DmSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmSection.swift; sourceTree = "<group>"; };
+		CE1806E32B734B81002DD9C3 /* DmMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmMemberCell.swift; sourceTree = "<group>"; };
+		CE1806E52B734B8B002DD9C3 /* DmChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatCell.swift; sourceTree = "<group>"; };
+		CE1806E72B735BAD002DD9C3 /* DmItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmItems.swift; sourceTree = "<group>"; };
+		CE1806E92B735ED0002DD9C3 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		CE1806EB2B7360B4002DD9C3 /* DateFormatterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterType.swift; sourceTree = "<group>"; };
 		CE211F302B5AC09000C43028 /* ChannelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPI.swift; sourceTree = "<group>"; };
 		CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPIManager.swift; sourceTree = "<group>"; };
 		CE211F362B5AC99A00C43028 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
@@ -285,7 +297,7 @@
 		CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceType.swift; sourceTree = "<group>"; };
 		CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceItem.swift; sourceTree = "<group>"; };
 		CE4904D72B4D1137003B0204 /* ChannelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSection.swift; sourceTree = "<group>"; };
-		CE4904D92B4D11C9003B0204 /* DMSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSection.swift; sourceTree = "<group>"; };
+		CE4904D92B4D11C9003B0204 /* HomeDmSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDmSection.swift; sourceTree = "<group>"; };
 		CE4904DD2B4D2E41003B0204 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketNetworkManager.swift; sourceTree = "<group>"; };
 		CE5719332B69F00700EC3E18 /* SocketURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketURL.swift; sourceTree = "<group>"; };
@@ -594,6 +606,15 @@
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
+		CE1806E22B734B6E002DD9C3 /* DM */ = {
+			isa = PBXGroup;
+			children = (
+				CE1806E32B734B81002DD9C3 /* DmMemberCell.swift */,
+				CE1806E52B734B8B002DD9C3 /* DmChatCell.swift */,
+			);
+			path = DM;
+			sourceTree = "<group>";
+		};
 		CE211F2F2B5AC06800C43028 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,11 +660,12 @@
 				CE4904D02B4D0E55003B0204 /* WorkspaceType.swift */,
 				CE4904D32B4D0EC4003B0204 /* WorkspaceItem.swift */,
 				CE4904D72B4D1137003B0204 /* ChannelSection.swift */,
-				CE4904D92B4D11C9003B0204 /* DMSection.swift */,
+				CE4904D92B4D11C9003B0204 /* HomeDmSection.swift */,
 				CE4904DD2B4D2E41003B0204 /* Item.swift */,
 				CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */,
 				CE9592392B68B07000665659 /* ChannelSectionModel.swift */,
 				CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */,
+				CE1806E72B735BAD002DD9C3 /* DmItems.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -918,6 +940,7 @@
 		CE85749F2B4C01AD0025ED1B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				CE1806E22B734B6E002DD9C3 /* DM */,
 				CE1806DC2B7342BD002DD9C3 /* Workspace */,
 				CE1806DB2B7342A5002DD9C3 /* Chatting */,
 				CE1806DA2B734290002DD9C3 /* Channel */,
@@ -1049,6 +1072,7 @@
 				CE3001C92B54F3A3005CB58D /* Notification.Name+Extension.swift */,
 				CED829522B590FFC00AD1828 /* UIViewController+Extension.swift */,
 				CE9DEB7C2B6D1D7C0016382B /* UIScrollView+Extension.swift */,
+				CE1806E92B735ED0002DD9C3 /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1277,6 +1301,8 @@
 				CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */,
 				CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */,
 				CE2BA8172B6F54DC00B24B55 /* CreateType.swift */,
+				CE1806E02B734AB8002DD9C3 /* DmSection.swift */,
+				CE1806EB2B7360B4002DD9C3 /* DateFormatterType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -1465,6 +1491,7 @@
 				CECFCDF12B4FCAB800EB0DB7 /* AuthIntercepter.swift in Sources */,
 				CEA8F9C32B4970570062B45C /* KakaoLoginManager.swift in Sources */,
 				CE4904D12B4D0E55003B0204 /* WorkspaceType.swift in Sources */,
+				CE1806EA2B735ED0002DD9C3 /* Date+Extension.swift in Sources */,
 				CED7C2C72B5234B70069EA0A /* WorkspaceListView.swift in Sources */,
 				CE95923E2B68D0E800665659 /* SearchChannelDelegate.swift in Sources */,
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
@@ -1496,7 +1523,7 @@
 				CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */,
 				CEDCC0462B6100B1001D788C /* ChannelError.swift in Sources */,
 				CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */,
-				CE4904DA2B4D11C9003B0204 /* DMSection.swift in Sources */,
+				CE4904DA2B4D11C9003B0204 /* HomeDmSection.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
 				CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */,
@@ -1584,6 +1611,7 @@
 				CED829512B590D7D00AD1828 /* AlertViewController.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
 				CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */,
+				CE1806E12B734AB9002DD9C3 /* DmSection.swift in Sources */,
 				CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,
 				CEA8F9B32B492D370062B45C /* UserDefaultsManager.swift in Sources */,
@@ -1600,11 +1628,13 @@
 				CED65F8D2B45B6F800CFD04C /* CommonError.swift in Sources */,
 				CE61AE052B5D006F0091B03D /* ChannelToastMessage.swift in Sources */,
 				CEC764512B5176C2000578E9 /* DMsRoom.swift in Sources */,
+				CE1806E82B735BAD002DD9C3 /* DmItems.swift in Sources */,
 				CEEAA1D72B54085400EA1C58 /* WorkspaceListSettingView.swift in Sources */,
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,
 				CE85749E2B4BFF7F0025ED1B /* HomeTabBarController.swift in Sources */,
 				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
 				CE61AE162B5E48DB0091B03D /* ChannelMessage.swift in Sources */,
+				CE1806E42B734B81002DD9C3 /* DmMemberCell.swift in Sources */,
 				CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */,
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
 				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,
@@ -1614,6 +1644,7 @@
 				CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */,
 				CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */,
 				CEC7644B2B5173AE000578E9 /* DMsAPIManager.swift in Sources */,
+				CE1806EC2B7360B4002DD9C3 /* DateFormatterType.swift in Sources */,
 				CE5D06752B4EEC4100C067A3 /* SelectImage.swift in Sources */,
 				CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
@@ -1640,6 +1671,7 @@
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CE85749A2B4BFE9B0025ED1B /* HomeViewController.swift in Sources */,
 				CEE989AA2B4AAB8300590A19 /* MakeViewController.swift in Sources */,
+				CE1806E62B734B8B002DD9C3 /* DmChatCell.swift in Sources */,
 				CEE9899B2B4A7E8C00590A19 /* HomeEmptyViewController.swift in Sources */,
 				CE61AE0C2B5D5FAF0091B03D /* ChatTableViewCell.swift in Sources */,
 				CEB7F8452B4459D800B9A035 /* CustomButton.swift in Sources */,

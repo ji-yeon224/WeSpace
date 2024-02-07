@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DMSection: Hashable, Identifiable {
+struct HomeDmSection: Hashable, Identifiable {
     let id = UUID()
     let section: String
     let items: [DMsRoom]

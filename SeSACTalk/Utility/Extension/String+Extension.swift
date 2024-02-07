@@ -41,18 +41,18 @@ extension String {
         return pred.evaluate(with: self)
     }
     
-    static func convertToDate(format: String, date: String) -> Date? {
+    static func convertToDate(format: DateFormatterType, date: String) -> Date? {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
-        formatter.dateFormat = format
+        formatter.dateFormat = format.rawValue
         return formatter.date(from: date)
     }
     
     // 서버에서 받은 데이터 포멧 변경하기
     var convertToDateFormat: String {
-        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", date: self) {
-            return DateFormatter.convertToString(format: "yy. MM. dd", date: dateType)
+        if let dateType = String.convertToDate(format: .fullDate, date: self) {
+            return DateFormatter.convertToString(format: .yearByDot, date: dateType)
             
         }
         
@@ -61,10 +61,18 @@ extension String {
     
     
     var convertToTimeString: String {
-        if let dateType = String.convertToDate(format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", date: self) {
-            return DateFormatter.convertToString(format: "hh:mm a", date: dateType)
+        if let dateType = String.convertToDate(format: .fullDate, date: self) {
+            return DateFormatter.convertToString(format: .time1, date: dateType)
         }
         
+        return ""
+    }
+    
+    // 이거로 변경하기..
+    func convertDateFormat(format: DateFormatterType, to: DateFormatterType, date: String) -> String {
+        if let dateType = String.convertToDate(format: format, date: date) {
+            return DateFormatter.convertToString(format: to, date: dateType)
+        }
         return ""
     }
     
