@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE15528E2B5A55040011D106 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15528D2B5A55040011D106 /* SearchViewController.swift */; };
 		CE1806D72B731D2F002DD9C3 /* DMListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */; };
+		CE1806D92B7341C3002DD9C3 /* DMListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806D82B7341C3002DD9C3 /* DMListView.swift */; };
+		CE1806DF2B734358002DD9C3 /* NoMemberDmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806DE2B734358002DD9C3 /* NoMemberDmView.swift */; };
 		CE211F312B5AC09000C43028 /* ChannelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F302B5AC09000C43028 /* ChannelsAPI.swift */; };
 		CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */; };
 		CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F362B5AC99A00C43028 /* InviteViewController.swift */; };
@@ -264,6 +266,8 @@
 /* Begin PBXFileReference section */
 		CE15528D2B5A55040011D106 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListViewController.swift; sourceTree = "<group>"; };
+		CE1806D82B7341C3002DD9C3 /* DMListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListView.swift; sourceTree = "<group>"; };
+		CE1806DE2B734358002DD9C3 /* NoMemberDmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMemberDmView.swift; sourceTree = "<group>"; };
 		CE211F302B5AC09000C43028 /* ChannelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPI.swift; sourceTree = "<group>"; };
 		CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPIManager.swift; sourceTree = "<group>"; };
 		CE211F362B5AC99A00C43028 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
@@ -533,6 +537,7 @@
 			isa = PBXGroup;
 			children = (
 				CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */,
+				CE1806D82B7341C3002DD9C3 /* DMListView.swift */,
 			);
 			path = DMs;
 			sourceTree = "<group>";
@@ -543,6 +548,50 @@
 				CE15528D2B5A55040011D106 /* SearchViewController.swift */,
 			);
 			path = SearchTab;
+			sourceTree = "<group>";
+		};
+		CE1806DA2B734290002DD9C3 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				CE9DEB762B6CB8B00016382B /* ChannelMemberCell.swift */,
+				CE9592372B68ADE500665659 /* SearchChannelCell.swift */,
+				CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		CE1806DB2B7342A5002DD9C3 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				CE61AE172B5E5BE40091B03D /* ChatImageCell.swift */,
+				CE61AE0F2B5E40DC0091B03D /* ChattingCell.swift */,
+				CE61AE0B2B5D5FAF0091B03D /* ChatTableViewCell.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		CE1806DC2B7342BD002DD9C3 /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */,
+				CEEAA1D82B540E2500EA1C58 /* WorkspaceListCell.swift */,
+				CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */,
+			);
+			path = Workspace;
+			sourceTree = "<group>";
+		};
+		CE1806DD2B7342DD002DD9C3 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				CEB7F8442B4459D800B9A035 /* CustomButton.swift */,
+				CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */,
+				CE57E4282B454E52009BD53A /* CustomTextField.swift */,
+				CE57E42A2B4557CE009BD53A /* CustomStackView.swift */,
+				CEE989A22B4A874300590A19 /* ProfileImageView.swift */,
+				CE61AE112B5E41670091B03D /* SquareFillImageView.swift */,
+				CE61AE192B5E5D170091B03D /* CircleButton.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		CE211F2F2B5AC06800C43028 /* Channels */ = {
@@ -821,16 +870,10 @@
 		CE6C1FF42B43E98900AA7F9C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE1806DD2B7342DD002DD9C3 /* CustomUI */,
 				CE85749F2B4C01AD0025ED1B /* Cell */,
-				CEE9899F2B4A85C700590A19 /* Custom */,
+				CEE9899F2B4A85C700590A19 /* CustomView */,
 				CEB7F8462B445E2D00B9A035 /* Font */,
-				CEB7F8432B4459CF00B9A035 /* Buttons */,
-				CEB7F8502B44664400B9A035 /* CustomBasicLabel.swift */,
-				CE57E4282B454E52009BD53A /* CustomTextField.swift */,
-				CE57E42A2B4557CE009BD53A /* CustomStackView.swift */,
-				CEE989A22B4A874300590A19 /* ProfileImageView.swift */,
-				CE61AE112B5E41670091B03D /* SquareFillImageView.swift */,
-				CE61AE192B5E5D170091B03D /* CircleButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -875,15 +918,9 @@
 		CE85749F2B4C01AD0025ED1B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */,
-				CE4904CD2B4D0CF9003B0204 /* WorkspaceCollectionViewCell.swift */,
-				CEEAA1D82B540E2500EA1C58 /* WorkspaceListCell.swift */,
-				CED829432B58C22C00AD1828 /* MemberCollectionViewCell.swift */,
-				CE61AE0B2B5D5FAF0091B03D /* ChatTableViewCell.swift */,
-				CE61AE0F2B5E40DC0091B03D /* ChattingCell.swift */,
-				CE61AE172B5E5BE40091B03D /* ChatImageCell.swift */,
-				CE9592372B68ADE500665659 /* SearchChannelCell.swift */,
-				CE9DEB762B6CB8B00016382B /* ChannelMemberCell.swift */,
+				CE1806DC2B7342BD002DD9C3 /* Workspace */,
+				CE1806DB2B7342A5002DD9C3 /* Chatting */,
+				CE1806DA2B734290002DD9C3 /* Channel */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -989,14 +1026,6 @@
 				CEB7F83F2B44571800B9A035 /* OnBoardingView.swift */,
 			);
 			path = OnBoarding;
-			sourceTree = "<group>";
-		};
-		CEB7F8432B4459CF00B9A035 /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				CEB7F8442B4459D800B9A035 /* CustomButton.swift */,
-			);
-			path = Buttons;
 			sourceTree = "<group>";
 		};
 		CEB7F8462B445E2D00B9A035 /* Font */ = {
@@ -1156,7 +1185,7 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		CEE9899F2B4A85C700590A19 /* Custom */ = {
+		CEE9899F2B4A85C700590A19 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
 				CED829502B590D7D00AD1828 /* AlertViewController.swift */,
@@ -1169,8 +1198,9 @@
 				CE61AE0D2B5D64EA0091B03D /* ChatWriteView.swift */,
 				CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */,
 				CE9DEB782B6CC6BF0016382B /* ChannelMemberCollectionView.swift */,
+				CE1806DE2B734358002DD9C3 /* NoMemberDmView.swift */,
 			);
-			path = Custom;
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		CEE989A82B4AAA3100590A19 /* Make */ = {
@@ -1473,6 +1503,7 @@
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
 				CE5EA4B02B60AB1200999704 /* ChannelChatDTO.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
+				CE1806DF2B734358002DD9C3 /* NoMemberDmView.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
 				CEC7643A2B512EEB000578E9 /* OneWorkspaceResDTO.swift in Sources */,
@@ -1591,6 +1622,7 @@
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
 				CEC46BEE2B70D06C00F5A651 /* ChangeWSManagerViewController.swift in Sources */,
 				CE9DEB752B6CB7E70016382B /* ChannelSettingView.swift in Sources */,
+				CE1806D92B7341C3002DD9C3 /* DMListView.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
 				CE3001CA2B54F3A3005CB58D /* Notification.Name+Extension.swift in Sources */,
 				CE6513CC2B71F2000084EB9C /* UnreadChannelCntResDTO.swift in Sources */,

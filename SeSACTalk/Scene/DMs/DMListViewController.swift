@@ -10,6 +10,11 @@ import UIKit
 final class DMListViewController: BaseViewController {
     
     private var workspaceId: Int?
+    private var mainView = DMListView()
+    
+    override func loadView() {
+        self.view = mainView
+    }
     
     init(wsId: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -33,7 +38,8 @@ final class DMListViewController: BaseViewController {
     }
     
     override func configure() {
-        super.configure()
+//        super.configure()
+        view.backgroundColor = .secondaryBackground
         navigationController?.navigationBar.isHidden = true
     }
     

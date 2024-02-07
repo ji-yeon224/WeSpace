@@ -71,4 +71,10 @@ enum Text {
     
     static let channelDeleteTitle = "채널 삭제"
     static let channelDeleteMessage = "정말 이 채널을 삭제하시겠습니까? 삭제 시 멤버/채팅 등 채널 내의 모든 정보가 삭제되며 복구할 수 없습니다."
+    
+    
+    //DM
+    static let noMemberDmTitle = "워크스페이스에\n 멤버가 없어요."
+    static let noMemberDmMsg = "새로운 팀원을 초대해보세요."
+    static let inviteMember = "팀원 초대하기"
 }
