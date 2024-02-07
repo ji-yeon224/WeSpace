@@ -11,6 +11,7 @@ final class DmChatCell: BaseCollectionViewCell {
     
     let profileImageView = SquareFillImageView(frame: .zero)
     let nickNameLabel = CustomBasicLabel(text: "", fontType: .body, line: 1)
+    
     let messagelabel = CustomBasicLabel(text: "", fontType: .body, color: .secondaryText, line: 2)
     let timeLabel = CustomBasicLabel(text: "", fontType: .body, color: .secondaryText, line: 1)
     let unreadView = UnreadCntView().then {

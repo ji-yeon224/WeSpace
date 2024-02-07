@@ -77,7 +77,7 @@ final class DMListView: BaseView {
             } else {
                 cell.unreadView.isHidden = true
             }
-            if Date.isTodayDate(from: itemIdentifier.createdAt) {
+            if Date.isTodayDate(compareDate: itemIdentifier.createdAt) {
                 cell.timeLabel.text = String().convertDateFormat(format: .fullDate, to: .time2, date: itemIdentifier.createdAt)
             } else {
                 cell.timeLabel.text = String().convertDateFormat(format: .fullDate, to: .yearByLan, date: itemIdentifier.createdAt)
@@ -96,6 +96,7 @@ final class DMListView: BaseView {
     
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIdx, layoutEnvironment in
+            
             guard let section = DmSection(rawValue: sectionIdx) else { return nil }
             
 //            print(section)
@@ -108,7 +109,7 @@ final class DMListView: BaseView {
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
-                
+                section.contentInsets = NSDirectionalEdgeInsets(top: .zero, leading: 10, bottom: .zero, trailing: 10)
                 section.orthogonalScrollingBehavior = .continuous
                 
                 
@@ -116,7 +117,9 @@ final class DMListView: BaseView {
                 return section
                 
             } else {
-                print(section)
+                
+                
+                
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -125,6 +128,7 @@ final class DMListView: BaseView {
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
+                
                 
                 var contentInset = section.contentInsets
                 contentInset.top = 30

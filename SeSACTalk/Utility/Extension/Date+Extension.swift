@@ -29,10 +29,15 @@ extension Date {
         }
     
     
-    static func isTodayDate(from: String) -> Bool {
-        if let date = String.convertToDate(format: .fullDate, date: from) {
-            return Date().compare(date) == .orderedSame
+    static func isTodayDate(compareDate: String) -> Bool {
+        if let date = String.convertToDate(format: .fullDate, date: compareDate) {
+            if Calendar.current.compare(Date(), to: date, toGranularity: .day) == .orderedSame {
+                return true
+            } else {
+                return false
+            }
         }
+        
         return false
         
     }
