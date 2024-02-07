@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE15528C2B5A54DC0011D106 /* DMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15528B2B5A54DC0011D106 /* DMViewController.swift */; };
 		CE15528E2B5A55040011D106 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15528D2B5A55040011D106 /* SearchViewController.swift */; };
+		CE1806D72B731D2F002DD9C3 /* DMListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */; };
 		CE211F312B5AC09000C43028 /* ChannelsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F302B5AC09000C43028 /* ChannelsAPI.swift */; };
 		CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */; };
 		CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F362B5AC99A00C43028 /* InviteViewController.swift */; };
@@ -262,8 +262,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE15528B2B5A54DC0011D106 /* DMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMViewController.swift; sourceTree = "<group>"; };
 		CE15528D2B5A55040011D106 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMListViewController.swift; sourceTree = "<group>"; };
 		CE211F302B5AC09000C43028 /* ChannelsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPI.swift; sourceTree = "<group>"; };
 		CE211F322B5AC4EF00C43028 /* ChannelsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsAPIManager.swift; sourceTree = "<group>"; };
 		CE211F362B5AC99A00C43028 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
@@ -529,12 +529,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE1552892B5A54B90011D106 /* DMTab */ = {
+		CE1552892B5A54B90011D106 /* DMs */ = {
 			isa = PBXGroup;
 			children = (
-				CE15528B2B5A54DC0011D106 /* DMViewController.swift */,
+				CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */,
 			);
-			path = DMTab;
+			path = DMs;
 			sourceTree = "<group>";
 		};
 		CE15528A2B5A54C60011D106 /* SearchTab */ = {
@@ -796,7 +796,7 @@
 			isa = PBXGroup;
 			children = (
 				CE15528A2B5A54C60011D106 /* SearchTab */,
-				CE1552892B5A54B90011D106 /* DMTab */,
+				CE1552892B5A54B90011D106 /* DMs */,
 				CEA8F9B52B4949010062B45C /* WorkSpace */,
 				CE57E4192B452FDF009BD53A /* Login */,
 				CEB7F83E2B44570100B9A035 /* OnBoarding */,
@@ -1490,7 +1490,6 @@
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEC764322B51257F000578E9 /* InfoViewController.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
-				CE15528C2B5A54DC0011D106 /* DMViewController.swift in Sources */,
 				CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
 				CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */,
@@ -1605,6 +1604,7 @@
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,
 				CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */,
 				CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */,
+				CE1806D72B731D2F002DD9C3 /* DMListViewController.swift in Sources */,
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CE85749A2B4BFE9B0025ED1B /* HomeViewController.swift in Sources */,
 				CEE989AA2B4AAB8300590A19 /* MakeViewController.swift in Sources */,

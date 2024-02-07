@@ -20,7 +20,7 @@ final class HomeTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = true
         tabBar.barTintColor = Constants.Color.background
         tabBar.tintColor = Constants.Color.basicText
         tabBar.unselectedItemTintColor = Constants.Color.inActive
@@ -37,7 +37,7 @@ final class HomeTabBarController: UITabBarController {
         home.tabBarItem.title = "홈"
         let homeNav = UINavigationController(rootViewController: home)
         
-        let dm = DMViewController()
+        let dm = DMListViewController(wsId: ws.workspaceId)
         dm.tabBarItem.image = .message
         dm.tabBarItem.selectedImage = .messageActive
         dm.tabBarItem.title = "DM"

@@ -33,7 +33,7 @@ final class HomeEmptyViewController: BaseViewController {
     }
     override func configure() {
         view.backgroundColor = Constants.Color.secondaryBG
-        SideMenuVCManager.shared.initSideMenu(vc: self)
+        SideMenuVCManager.shared.setViewController(vc: self)//initSideMenu(vc: self)
     }
     
     private func bind() {

@@ -22,10 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         if UserDefaultsManager.isLogin {
+            
             EnterViewControllerMananger.shared.fetchWorkspace()
                 .asObservable()
                 .bind(with: self, onNext: { owner, vc in
 //                    print(vc)
+                    SideMenuVCManager.shared.initSideMenu()
                     owner.window?.rootViewController = vc
                     owner.window?.makeKeyAndVisible()
                 })

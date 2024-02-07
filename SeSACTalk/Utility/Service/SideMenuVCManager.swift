@@ -11,6 +11,7 @@ import SideMenu
 final class SideMenuVCManager {
     
     static let shared = SideMenuVCManager()
+    static var isInit = false
     private init() { }
     
     private weak var vc: UIViewController?
@@ -19,18 +20,30 @@ final class SideMenuVCManager {
     private var panGesture  = UIPanGestureRecognizer()
     private var edgeGesture = UIScreenEdgePanGestureRecognizer()
     
-    func initSideMenu(vc: UIViewController, curWS: WorkSpace? = nil) {
-        self.vc = vc
-        self.listVC = WorkspaceListViewController()
-        if let listVC = listVC {
-            menuVC = SideMenuNavigationController(rootViewController: listVC)
+    func initSideMenu() {
+//        self.vc = vc
+        if !SideMenuVCManager.isInit {
+            self.listVC = WorkspaceListViewController()
+            if let listVC = listVC {
+                menuVC = SideMenuNavigationController(rootViewController: listVC)
+            }
+            SideMenuVCManager.isInit = true
         }
         
-        setupSideMenu()
-        listVC?.workspace = curWS
+        
+//        setupSideMenu()
+//        listVC?.workspace = curWS
     }
+    
+    func setViewController(vc: UIViewController, ws: WorkSpace? = nil) {
+        self.vc = vc
+        listVC?.workspace = ws
+        setupSideMenu()
+    }
+    
     func setWorkspaceData(ws: WorkSpace? = nil) {
         listVC?.workspace = ws
+        setupSideMenu()
     }
     
     func presentSideMenu(){

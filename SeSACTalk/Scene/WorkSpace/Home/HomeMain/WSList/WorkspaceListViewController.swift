@@ -158,9 +158,9 @@ final class WorkspaceListViewController: BaseViewController, View {
         
         mainView.collectionView.rx.itemSelected
             .bind(with: self) { owner, indexPath in
+                
+                owner.reloadHomeView(ws: owner.items[indexPath.item])
                 owner.dismiss(animated: false)
-                NotificationCenter.default.post(name: .resetWS, object: nil, userInfo: [UserInfo.workspace: owner.items[indexPath.item]])
-//                NotificationCenter.default.post(name: .refreshWS, object: nil)
                 
             }
             .disposed(by: disposeBag)
@@ -176,6 +176,12 @@ final class WorkspaceListViewController: BaseViewController, View {
             }
             .disposed(by: disposeBag)
         
+    }
+    
+    private func reloadHomeView(ws: WorkSpace) {
+        let vc = HomeTabBarController(workspace: ws)
+        view.window?.rootViewController = vc
+        view.window?.makeKeyAndVisible()
     }
     
     private func bindAction(reactor: WorkspaceListReactor) {
@@ -232,7 +238,8 @@ final class WorkspaceListViewController: BaseViewController, View {
                     if value.isEmpty {
                         owner.presentHomeEmptyView()
                     } else {
-                        owner.presentOtherWorkspace(workspace: value[0])
+//                        owner.presentOtherWorkspace(workspace: value[0])
+                        owner.reloadHomeView(ws: value[0])
                     }
                 }
                
@@ -253,7 +260,8 @@ final class WorkspaceListViewController: BaseViewController, View {
                     if value.isEmpty {
                         owner.presentHomeEmptyView()
                     } else {
-                        owner.presentOtherWorkspace(workspace: value[0])
+//                        owner.presentOtherWorkspace(workspace: value[0])
+                        owner.reloadHomeView(ws: value[0])
                     }
                 }
             }

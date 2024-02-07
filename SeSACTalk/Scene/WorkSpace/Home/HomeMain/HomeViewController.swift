@@ -54,11 +54,13 @@ final class HomeViewController: BaseViewController, View {
         self.reactor = HomeReactor()
         initData()
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        SideMenuVCManager.shared.setViewController(vc: self, ws: workspace)
+        SideMenuVCManager.shared.enableSideMenu()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(#function)
-        SideMenuVCManager.shared.enableSideMenu()
+        
         navigationController?.navigationBar.isHidden = true
         
         
@@ -77,7 +79,7 @@ final class HomeViewController: BaseViewController, View {
         sectionSnapShot()
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
-        SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
+//        SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
 //        DeviceTokenManager.shared.requestSaveDeviceToken(token: UserDefaultsManager.deviceToken)
         
     }
@@ -283,15 +285,6 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.resetWS)
-            .bind(with: self) { owner, noti in
-                if let ws = noti.userInfo?[UserInfo.workspace] as? WorkSpace {
-                    owner.workspace = ws
-                    SideMenuVCManager.shared.setWorkspaceData(ws: ws)
-                    owner.initData()
-                }
-            }
-            .disposed(by: disposeBag)
         
         NotificationCenter.default.rx.notification(.refreshChannel)
             .bind(with: self) { owner, _ in
@@ -300,6 +293,12 @@ extension HomeViewController {
             .disposed(by: disposeBag)
         
     }
+    private func reloadHomeView(ws: WorkSpace) {
+        let vc = HomeTabBarController(workspace: ws)
+        view.window?.rootViewController = vc
+        view.window?.makeKeyAndVisible()
+    }
+    
     
 }
 extension HomeViewController: ChannelChatDelegate {

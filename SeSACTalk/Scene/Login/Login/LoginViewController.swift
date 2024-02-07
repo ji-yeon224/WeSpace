@@ -115,6 +115,7 @@ final class LoginViewController: BaseViewController, View {
             }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, data in
+                SideMenuVCManager.shared.initSideMenu()
                 if let data = data.0 {
                     owner.transitionHomeView(vc: HomeTabBarController(workspace: data))
                 } else {
