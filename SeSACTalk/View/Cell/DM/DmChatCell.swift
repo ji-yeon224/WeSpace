@@ -11,7 +11,6 @@ final class DmChatCell: BaseCollectionViewCell {
     
     let profileImageView = SquareFillImageView(frame: .zero)
     let nickNameLabel = CustomBasicLabel(text: "", fontType: .body, line: 1)
-    
     let messagelabel = CustomBasicLabel(text: "", fontType: .body, color: .secondaryText, line: 2)
     let timeLabel = CustomBasicLabel(text: "", fontType: .body, color: .secondaryText, line: 1)
     let unreadView = UnreadCntView().then {
@@ -30,7 +29,6 @@ final class DmChatCell: BaseCollectionViewCell {
             make.size.equalTo(34)
             make.leading.equalTo(contentView).inset(16)
             make.top.equalTo(contentView).inset(6)
-//            make.bottom.greaterThanOrEqualTo(contentView).inset(6)
         }
         
         nickNameLabel.snp.makeConstraints { make in
@@ -38,18 +36,16 @@ final class DmChatCell: BaseCollectionViewCell {
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
             make.top.equalTo(contentView).inset(6)
         }
+        
         messagelabel.snp.makeConstraints { make in
             make.top.equalTo(nickNameLabel.snp.bottom)
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
-            make.bottom.greaterThanOrEqualTo(contentView).inset(6)
         }
         
         timeLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).inset(6)
             make.height.equalTo(18)
             make.trailing.equalTo(contentView).inset(16)
-//            make.leading.equalTo(nickNameLabel.snp.trailing)
-            
         }
         
         unreadView.snp.makeConstraints { make in
