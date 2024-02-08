@@ -66,7 +66,8 @@ extension DmListReactor {
                 case .success(let response):
                     if let response = response {
                         print("[SUCCESS FETCH MEMBER]")
-                        return .memberInfo(data: response.map { $0.toDomain()})
+                        let data = response.map { $0.toDomain()}.filter { $0.userId != UserDefaultsManager.userId }
+                        return .memberInfo(data: data)
                     }
                     return .msg(msg: WorkspaceToastMessage.loadError.message)
                 case .failure(let error):
