@@ -19,6 +19,7 @@ final class DMListViewController: BaseViewController {
     private var chatData: [DmItems] = []
     private var requestMemberList = PublishRelay<Int?>()
     private var requestDmList = PublishRelay<Int?>()
+    private var enterDmRoom = PublishRelay<DMsRoom>()
     
     override func loadView() {
         self.view = mainView
@@ -41,6 +42,10 @@ final class DMListViewController: BaseViewController {
 //        dummyData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
     
     override func configure() {
 //        super.configure()
@@ -49,6 +54,7 @@ final class DMListViewController: BaseViewController {
         self.reactor = DmListReactor()
         view.backgroundColor = .secondaryBackground
         navigationController?.navigationBar.isHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
         requestMemberList.accept(workspace.workspaceId)
     }
     
@@ -84,6 +90,7 @@ extension DMListViewController: View {
             .map { Reactor.Action.requestDmList(wsId: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
     }
     
     private func bindState(reactor: DmListReactor) {
@@ -154,6 +161,31 @@ extension DMListViewController: View {
                     self.showToastMessage(message: WorkspaceToastMessage.successInvite.message, position: .bottom)
                 }
                 owner.presentPageSheet(vc: vc)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.collectionView.rx.itemSelected
+            .asDriver()
+            .drive(with: self) { owner, indexPath in
+                if indexPath.section == 0 { // 멤버 섹션
+                    
+                    if let user = owner.member[indexPath.item].items as? User {
+                        print(user)
+                    }
+                } else if indexPath.section == 1{ // 채팅 섹션
+                    if let dm = owner.chatData[indexPath.item].items as? DMsRoom {
+                        owner.enterDmRoom.accept(dm)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        enterDmRoom
+            .bind(with: self) { owner, value in
+                // db 조회, wsId
+                let vc = DmChatViewController(myInfo: nil, dmInfo: value)
+                vc.hidesBottomBarWhenPushed = true
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }

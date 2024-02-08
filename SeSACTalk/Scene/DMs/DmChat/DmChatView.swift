@@ -1,16 +1,14 @@
 //
-//  ChatView.swift
+//  DmChatView.swift
 //  SeSACTalk
 //
-//  Created by 김지연 on 1/21/24.
+//  Created by 김지연 on 2/8/24.
 //
 
 import UIKit
 
-final class ChatView: BaseView {
+final class DmChatView: BaseView {
     
-    
-    var userInfo: [Int: User] = [:]
     lazy var tableView = UITableView(frame: .zero).then {
         $0.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
         $0.rowHeight = UITableView.automaticDimension
@@ -60,24 +58,12 @@ final class ChatView: BaseView {
             
             cell.selectionStyle = .none
             
-            
-            // userinfo dictionary 사용함
-            if let userInfo = self.userInfo[itemIdentifier.user.userId] {
-                if let profileImg = userInfo.profileImage, !profileImg.isEmpty {
-                    cell.profileImageView.setImage(with: profileImg)
-                } else {
-                    let img = Constants.Image.dummyProfile
-                    cell.profileImageView.image = img[userInfo.userId%3]
-                }
-                cell.nickNameLabel.text = userInfo.nickname
+            cell.nickNameLabel.text = itemIdentifier.user.nickname
+            if let profileImg = itemIdentifier.user.profileImage, !profileImg.isEmpty {
+                cell.profileImageView.setImage(with: profileImg)
             } else {
-                cell.nickNameLabel.text = itemIdentifier.user.nickname
-                if let profileImg = itemIdentifier.user.profileImage, !profileImg.isEmpty {
-                    cell.profileImageView.setImage(with: profileImg)
-                } else {
-                    let img = Constants.Image.dummyProfile
-                    cell.profileImageView.image = img[itemIdentifier.user.userId%3]
-                }
+                let img = Constants.Image.dummyProfile
+                cell.profileImageView.image = img[itemIdentifier.user.userId%3]
             }
             
             if let text = itemIdentifier.content, !text.isEmpty {
@@ -115,5 +101,6 @@ final class ChatView: BaseView {
             return cell
         })
     }
+    
     
 }

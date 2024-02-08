@@ -227,6 +227,9 @@
 		CEE7DA522B74B970007BAAE6 /* DmChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA512B74B970007BAAE6 /* DmChat.swift */; };
 		CEE7DA542B74BA1D007BAAE6 /* DmChatListResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA532B74BA1D007BAAE6 /* DmChatListResDTO.swift */; };
 		CEE7DA562B74BA74007BAAE6 /* DmChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA552B74BA74007BAAE6 /* DmChatList.swift */; };
+		CEE7DA592B74C2D5007BAAE6 /* DmChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA582B74C2D5007BAAE6 /* DmChatViewController.swift */; };
+		CEE7DA5B2B74C2D9007BAAE6 /* DmChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA5A2B74C2D9007BAAE6 /* DmChatView.swift */; };
+		CEE7DA5D2B74C2E8007BAAE6 /* DmChatReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA5C2B74C2E8007BAAE6 /* DmChatReactor.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -481,6 +484,9 @@
 		CEE7DA512B74B970007BAAE6 /* DmChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChat.swift; sourceTree = "<group>"; };
 		CEE7DA532B74BA1D007BAAE6 /* DmChatListResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatListResDTO.swift; sourceTree = "<group>"; };
 		CEE7DA552B74BA74007BAAE6 /* DmChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatList.swift; sourceTree = "<group>"; };
+		CEE7DA582B74C2D5007BAAE6 /* DmChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatViewController.swift; sourceTree = "<group>"; };
+		CEE7DA5A2B74C2D9007BAAE6 /* DmChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatView.swift; sourceTree = "<group>"; };
+		CEE7DA5C2B74C2E8007BAAE6 /* DmChatReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatReactor.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -560,6 +566,7 @@
 		CE1552892B5A54B90011D106 /* DMs */ = {
 			isa = PBXGroup;
 			children = (
+				CEE7DA572B74C2C5007BAAE6 /* DmChat */,
 				CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */,
 				CE1806D82B7341C3002DD9C3 /* DMListView.swift */,
 				CEE7DA472B749486007BAAE6 /* DmListReactor.swift */,
@@ -1221,6 +1228,16 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		CEE7DA572B74C2C5007BAAE6 /* DmChat */ = {
+			isa = PBXGroup;
+			children = (
+				CEE7DA582B74C2D5007BAAE6 /* DmChatViewController.swift */,
+				CEE7DA5A2B74C2D9007BAAE6 /* DmChatView.swift */,
+				CEE7DA5C2B74C2E8007BAAE6 /* DmChatReactor.swift */,
+			);
+			path = DmChat;
+			sourceTree = "<group>";
+		};
 		CEE989962B4A52E100590A19 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1533,6 +1550,7 @@
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
 				CEDCC0442B610093001D788C /* ChatReactor.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
+				CEE7DA592B74C2D5007BAAE6 /* DmChatViewController.swift in Sources */,
 				CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */,
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
@@ -1604,6 +1622,7 @@
 				CE95923A2B68B07000665659 /* ChannelSectionModel.swift in Sources */,
 				CE61AE032B5CF46F0091B03D /* ChannelCreateError.swift in Sources */,
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
+				CEE7DA5D2B74C2E8007BAAE6 /* DmChatReactor.swift in Sources */,
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
 				CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */,
 				CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */,
@@ -1630,6 +1649,7 @@
 				CEEE4EA92B4688A10059D1AF /* JoinViewModel.swift in Sources */,
 				CEEE4EAB2B4697650059D1AF /* Regex.swift in Sources */,
 				CEA8F9BC2B494A620062B45C /* Text.swift in Sources */,
+				CEE7DA5B2B74C2D9007BAAE6 /* DmChatView.swift in Sources */,
 				CE9592342B68ADA000665659 /* SearchChannelViewController.swift in Sources */,
 				CE5F94D72B62A809006A4DA4 /* ChannelRepository.swift in Sources */,
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,

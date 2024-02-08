@@ -108,10 +108,6 @@ final class ChatViewController: BaseViewController {
         
         mainView.chatWriteView.delegate = self
         
-        
-        if let workspace = workspace {
-            mainView.wsId = workspace.workspaceId
-        }
         mainView.userInfo = self.userInfo
     }
     
