@@ -97,6 +97,7 @@ final class HomeViewController: BaseViewController, View {
     private func configData(ws: WorkSpace) {
         mainView.topView.wsImageView.setImage(with: ws.thumbnail)
         mainView.topView.workSpaceName.text = ws.name
+        mainView.topView.profileImageView.image = Constants.Image.dummyProfile[UserDefaultsManager.userId % 3]
     }
     
 }

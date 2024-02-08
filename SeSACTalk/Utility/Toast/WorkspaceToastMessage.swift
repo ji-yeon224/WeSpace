@@ -15,6 +15,7 @@ enum WorkspaceToastMessage {
     case successInvite
     case invalidInvite
     case exitChannelOwner
+    case loadError
 }
 
 extension WorkspaceToastMessage {
@@ -34,6 +35,8 @@ extension WorkspaceToastMessage {
             return "워크스페이스 관리자만 팀원을 초대할 수 있어요. \n관리자에게 요청을 해보세요."
         case .exitChannelOwner:
             return "채널 관리자이신 것 같아요. \n채널 관리자는 채널에 대한 권한을 양도해야 워크스페이스를 퇴장할 수 있어요."
+        case .loadError:
+            return "데이터를 로드하는데 문제가 발생했습니다."
         }
     }
 }

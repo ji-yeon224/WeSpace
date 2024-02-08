@@ -39,7 +39,8 @@ final class DMListView: BaseView {
             make.center.equalTo(self)
         }
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(topView.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
         
     }

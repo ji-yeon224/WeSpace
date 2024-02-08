@@ -37,7 +37,7 @@ final class HomeTabBarController: UITabBarController {
         home.tabBarItem.title = "홈"
         let homeNav = UINavigationController(rootViewController: home)
         
-        let dm = DMListViewController(wsId: ws.workspaceId)
+        let dm = DMListViewController(workspace: ws)
         dm.tabBarItem.image = .message
         dm.tabBarItem.selectedImage = .messageActive
         dm.tabBarItem.title = "DM"
