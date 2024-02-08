@@ -75,6 +75,8 @@ final class DmListReactor: Reactor {
 
 extension DmListReactor {
     
+    
+    
     private func requestDmList(wsId: Int) -> Observable<Mutation> {
         return DMsAPIManager.shared.request(api: .fetchDM(id: wsId), resonseType: DMsRoomResDTO.self)
             .asObservable()
@@ -98,6 +100,25 @@ extension DmListReactor {
                 
             }
     }
+    
+//    private func requestLastDmChat(wsId: Int, userId: Int, date: String?) -> Observable<String> {
+//        return DMsAPIManager.shared.request(api: .fetchDmChat(wsId: wsId, userId: userId, date: date), resonseType: DmChatListResDTO.self)
+//            .asObservable()
+//            .map { result -> Mutation in
+//                switch result {
+//                case .success(let response):
+//                    
+//                case .failure(let error):
+//                    if let error = DmError(rawValue: error.errorCode) {
+//                        return .msg(msg: error.localizedDescription)
+//                    } else if let error = CommonError(rawValue: error.localizedDescription) {
+//                        return .msg(msg: error.localizedDescription)
+//                    } else {
+//                        return .loginRequest
+//                    }
+//                }
+//            }
+//    }
     
     
     private func requestMemberList(wsId: Int) -> Observable<Mutation> {

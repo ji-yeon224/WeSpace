@@ -223,6 +223,10 @@
 		CEDCC0462B6100B1001D788C /* ChannelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCC0452B6100B1001D788C /* ChannelError.swift */; };
 		CEE7DA482B749486007BAAE6 /* DmListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA472B749486007BAAE6 /* DmListReactor.swift */; };
 		CEE7DA4B2B74ACC8007BAAE6 /* DmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA4A2B74ACC8007BAAE6 /* DmError.swift */; };
+		CEE7DA4E2B74B6ED007BAAE6 /* DmChatResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA4D2B74B6ED007BAAE6 /* DmChatResDTO.swift */; };
+		CEE7DA522B74B970007BAAE6 /* DmChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA512B74B970007BAAE6 /* DmChat.swift */; };
+		CEE7DA542B74BA1D007BAAE6 /* DmChatListResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA532B74BA1D007BAAE6 /* DmChatListResDTO.swift */; };
+		CEE7DA562B74BA74007BAAE6 /* DmChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA552B74BA74007BAAE6 /* DmChatList.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -473,6 +477,10 @@
 		CEDCC0452B6100B1001D788C /* ChannelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelError.swift; sourceTree = "<group>"; };
 		CEE7DA472B749486007BAAE6 /* DmListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmListReactor.swift; sourceTree = "<group>"; };
 		CEE7DA4A2B74ACC8007BAAE6 /* DmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmError.swift; sourceTree = "<group>"; };
+		CEE7DA4D2B74B6ED007BAAE6 /* DmChatResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatResDTO.swift; sourceTree = "<group>"; };
+		CEE7DA512B74B970007BAAE6 /* DmChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChat.swift; sourceTree = "<group>"; };
+		CEE7DA532B74BA1D007BAAE6 /* DmChatListResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatListResDTO.swift; sourceTree = "<group>"; };
+		CEE7DA552B74BA74007BAAE6 /* DmChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatList.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -1116,6 +1124,7 @@
 		CEC7644D2B517427000578E9 /* DMs */ = {
 			isa = PBXGroup;
 			children = (
+				CEE7DA4C2B74B6CF007BAAE6 /* Chat */,
 				CEC7644E2B517434000578E9 /* DMsRoomResDTO.swift */,
 				CEC764502B5176C2000578E9 /* DMsRoom.swift */,
 			);
@@ -1199,6 +1208,17 @@
 				CEE7DA4A2B74ACC8007BAAE6 /* DmError.swift */,
 			);
 			path = Dms;
+			sourceTree = "<group>";
+		};
+		CEE7DA4C2B74B6CF007BAAE6 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				CEE7DA4D2B74B6ED007BAAE6 /* DmChatResDTO.swift */,
+				CEE7DA512B74B970007BAAE6 /* DmChat.swift */,
+				CEE7DA532B74BA1D007BAAE6 /* DmChatListResDTO.swift */,
+				CEE7DA552B74BA74007BAAE6 /* DmChatList.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		CEE989962B4A52E100590A19 /* Profile */ = {
@@ -1567,6 +1587,7 @@
 				CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */,
 				CE61AE012B5CF2E00091B03D /* CreateChannelReqDTO.swift in Sources */,
 				CEE989A72B4AA36900590A19 /* HomeEmptyViewModel.swift in Sources */,
+				CEE7DA4E2B74B6ED007BAAE6 /* DmChatResDTO.swift in Sources */,
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
@@ -1586,9 +1607,12 @@
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
 				CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */,
 				CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */,
+				CEE7DA562B74BA74007BAAE6 /* DmChatList.swift in Sources */,
 				CE61AE222B5EC47C0091B03D /* SelectImageModel.swift in Sources */,
 				CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */,
 				CEB7F8422B44585600B9A035 /* Design.swift in Sources */,
+				CEE7DA522B74B970007BAAE6 /* DmChat.swift in Sources */,
+				CEE7DA542B74BA1D007BAAE6 /* DmChatListResDTO.swift in Sources */,
 				CE61AE0A2B5D525F0091B03D /* ChatView.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
 				CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */,
