@@ -6,3 +6,21 @@
 //
 
 import Foundation
+import RealmSwift
+
+final class DmDTO: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var workspaceId: Int
+    @Persisted var roomId: Int
+    @Persisted var createdAt: String
+    @Persisted var lastDate: String?
+    @Persisted var dmImg: List<ImageDTO>
+    
+    convenience init(workspaceId: Int, roomId: Int, createdAt: String) {
+        self.init()
+        self.workspaceId = workspaceId
+        self.roomId = roomId
+        self.createdAt = createdAt
+    }
+    
+}
