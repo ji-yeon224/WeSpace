@@ -49,6 +49,7 @@ final class DmChatViewController: BaseViewController {
         configNav()
         title = dmUserInfo?.nickname
         navigationController?.navigationBar.isHidden = false
+        mainView.chatWriteView.delegate = self
         bindEvent()
     }
 }
@@ -100,6 +101,28 @@ extension DmChatViewController {
             .bind(to: mainView.chatWriteView.imgCollectionView.rx.items(dataSource: mainView.chatWriteView.rxDataSource))
             .disposed(by: disposeBag)
         
+        let buttonEnable = Observable.combineLatest(selectImgCount, mainView.chatWriteView.textView.rx.text.orEmpty) { imgCnt, text in
+            return imgCnt > 0 || !text.isEmpty
+        }
+        
+        buttonEnable
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, value in
+                let img: UIImage = value ? .sendActive : .sendInactive
+                owner.mainView.chatWriteView.sendButton.setImage(img, for: .normal)
+                owner.mainView.chatWriteView.sendButton.isEnabled = value
+            }
+            .disposed(by: disposeBag)
+        
+    }
+}
+
+extension DmChatViewController: ChatImageSelectDelegate {
+    func deleteImage(indexPath: IndexPath) {
+        selectedAssetIdentifiers.remove(at: indexPath.item)
+        selectImageModel.items.remove(at: indexPath.item)
+        selectImgCount.accept(selectImageModel.items.count)
+        imgData.accept([selectImageModel])
     }
 }
 
