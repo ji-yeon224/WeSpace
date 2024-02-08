@@ -17,7 +17,7 @@ final class DmListReactor: Reactor {
     
     
     enum Action {
-        case requestMemberList(wsId: Int)
+        case requestMemberList(wsId: Int?)
     }
     
     enum Mutation {
@@ -37,7 +37,12 @@ final class DmListReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .requestMemberList(let wsId):
-            return requestMemberList(wsId: wsId)
+            if let wsId = wsId {
+                return requestMemberList(wsId: wsId)
+            } else {
+                return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
+            }
+            
         }
     }
     
@@ -65,7 +70,7 @@ extension DmListReactor {
                 switch result {
                 case .success(let response):
                     if let response = response {
-                        print("[SUCCESS FETCH MEMBER]")
+                        
                         let data = response.map { $0.toDomain()}.filter { $0.userId != UserDefaultsManager.userId }
                         return .memberInfo(data: data)
                     }

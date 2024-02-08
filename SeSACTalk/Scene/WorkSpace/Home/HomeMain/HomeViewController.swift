@@ -365,7 +365,7 @@ extension HomeViewController {
                 self.showToastMessage(message: WorkspaceToastMessage.invalidInvite.message, position: .bottom)
             }
             
-        } else if let plus = item.plus {
+        } else if let _ = item.plus {
             if indexPath.section == 0 {
                 present(showChannelActionSheet(), animated: true)
             }

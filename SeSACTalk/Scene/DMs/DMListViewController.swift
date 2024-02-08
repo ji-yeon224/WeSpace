@@ -17,7 +17,7 @@ final class DMListViewController: BaseViewController {
     
     private var member: [DmItems] = []
     private var chatData: [DmItems] = []
-    private var requestMemberList = PublishRelay<Int>()
+    private var requestMemberList = PublishRelay<Int?>()
     
     override func loadView() {
         self.view = mainView
@@ -56,6 +56,12 @@ final class DMListViewController: BaseViewController {
         mainView.topView.workSpaceName.text = ws.name
         mainView.topView.profileImageView.image = Constants.Image.dummyProfile[UserDefaultsManager.userId % 3]
     }
+    
+    private func presentPageSheet(vc: UIViewController) {
+        let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
+        nav.setupBarAppearance()
+        present(nav, animated: true)
+    }
 }
 
 extension DMListViewController: View {
@@ -63,6 +69,7 @@ extension DMListViewController: View {
     func bind(reactor: DmListReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
+        bindEvent()
     }
     
     private func bindAction(reactor: DmListReactor) {
@@ -92,7 +99,7 @@ extension DMListViewController: View {
             }
             .disposed(by: disposeBag)
         
-        // 멤버 없으면 empty view 보여줘야함
+        
         reactor.state
             .map { $0.memberInfo }
             .asDriver(onErrorJustReturn: [])
@@ -113,6 +120,21 @@ extension DMListViewController: View {
             }
             .disposed(by: disposeBag)
             
+    }
+    
+    private func bindEvent() {
+        mainView.noMemberView.inviteMemberButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                 let vc = InviteViewController()
+                vc.workspace = owner.workspace
+                vc.complete = {
+                    owner.requestMemberList.accept(owner.workspace?.workspaceId)
+                    self.showToastMessage(message: WorkspaceToastMessage.successInvite.message, position: .bottom)
+                }
+                owner.presentPageSheet(vc: vc)
+            }
+            .disposed(by: disposeBag)
     }
     
 }
