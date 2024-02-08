@@ -12,19 +12,21 @@ final class DmListReactor: Reactor {
     var initialState: State = State(
         msg: "",
         loginRequest: false,
-        memberInfo: nil
+        memberInfo: nil,
+        dmList: []
     )
     
     
     enum Action {
         case requestMemberList(wsId: Int?)
+        case requestDmList(wsId: Int?)
     }
     
     enum Mutation {
         case msg(msg: String)
         case loginRequest
         case memberInfo(data: [User])
-        
+        case dmList(data: [DMsRoom])
         
     }
     
@@ -32,6 +34,7 @@ final class DmListReactor: Reactor {
         var msg: String
         var loginRequest: Bool
         var memberInfo: [User]?
+        var dmList: [DMsRoom]
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -39,6 +42,12 @@ final class DmListReactor: Reactor {
         case .requestMemberList(let wsId):
             if let wsId = wsId {
                 return requestMemberList(wsId: wsId)
+            } else {
+                return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
+            }
+        case .requestDmList(let wsId):
+            if let wsId = wsId {
+                return requestDmList(wsId: wsId)
             } else {
                 return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
             }
@@ -55,6 +64,8 @@ final class DmListReactor: Reactor {
             newState.loginRequest = true
         case .memberInfo(let data):
             newState.memberInfo = data
+        case .dmList(let data):
+            newState.dmList = data
         }
         
         return newState
@@ -63,6 +74,32 @@ final class DmListReactor: Reactor {
 }
 
 extension DmListReactor {
+    
+    private func requestDmList(wsId: Int) -> Observable<Mutation> {
+        return DMsAPIManager.shared.request(api: .fetchDM(id: wsId), resonseType: DMsRoomResDTO.self)
+            .asObservable()
+            .map { result in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        let error = response.map { $0.toDomain() }
+                        return .dmList(data: error)
+                    }
+                    return .msg(msg: WorkspaceToastMessage.loadError.message)
+                case .failure(let error):
+                    if let error = DmError(rawValue: error.errorCode) {
+                        return .msg(msg: error.localizedDescription)
+                    } else if let error = CommonError(rawValue: error.localizedDescription) {
+                        return .msg(msg: error.localizedDescription)
+                    } else {
+                        return .loginRequest
+                    }
+                }
+                
+            }
+    }
+    
+    
     private func requestMemberList(wsId: Int) -> Observable<Mutation> {
         return WorkspacesAPIManager.shared.request(api: .member(id: wsId), resonseType: MemberResDTO.self)
             .asObservable()

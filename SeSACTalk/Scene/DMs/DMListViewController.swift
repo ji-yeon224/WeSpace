@@ -18,6 +18,7 @@ final class DMListViewController: BaseViewController {
     private var member: [DmItems] = []
     private var chatData: [DmItems] = []
     private var requestMemberList = PublishRelay<Int?>()
+    private var requestDmList = PublishRelay<Int?>()
     
     override func loadView() {
         self.view = mainView
@@ -26,6 +27,7 @@ final class DMListViewController: BaseViewController {
     init(workspace: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.workspace = workspace
+        print(workspace)
     }
     
     @available(*, unavailable)
@@ -77,6 +79,11 @@ extension DMListViewController: View {
             .map { Reactor.Action.requestMemberList(wsId: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        requestDmList
+            .map { Reactor.Action.requestDmList(wsId: $0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: DmListReactor) {
@@ -115,8 +122,22 @@ extension DMListViewController: View {
                         }
                         owner.updateSnapshot()
                         owner.mainView.noWorkspaceMember(isEmpty: false)
+                        owner.requestDmList.accept(owner.workspace?.workspaceId)
                     }
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.dmList }
+            .asDriver(onErrorJustReturn: [])
+            .filter { !$0.isEmpty }
+            .distinctUntilChanged()
+            .drive(with: self) { owner, value in
+                owner.chatData = value.map {
+                    DmItems(items: $0)
+                }
+                owner.updateSnapshot()
             }
             .disposed(by: disposeBag)
             

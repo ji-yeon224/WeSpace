@@ -222,6 +222,7 @@
 		CEDCC0442B610093001D788C /* ChatReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCC0432B610093001D788C /* ChatReactor.swift */; };
 		CEDCC0462B6100B1001D788C /* ChannelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCC0452B6100B1001D788C /* ChannelError.swift */; };
 		CEE7DA482B749486007BAAE6 /* DmListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA472B749486007BAAE6 /* DmListReactor.swift */; };
+		CEE7DA4B2B74ACC8007BAAE6 /* DmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA4A2B74ACC8007BAAE6 /* DmError.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -471,6 +472,7 @@
 		CEDCC0432B610093001D788C /* ChatReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReactor.swift; sourceTree = "<group>"; };
 		CEDCC0452B6100B1001D788C /* ChannelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelError.swift; sourceTree = "<group>"; };
 		CEE7DA472B749486007BAAE6 /* DmListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmListReactor.swift; sourceTree = "<group>"; };
+		CEE7DA4A2B74ACC8007BAAE6 /* DmError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmError.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -1148,6 +1150,7 @@
 		CED65F8B2B45B6EE00CFD04C /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				CEE7DA492B74ACBC007BAAE6 /* Dms */,
 				CE2BA8192B6F827F00B24B55 /* Channel */,
 				CE5D067E2B4F027500C067A3 /* Workspace */,
 				CED65F8E2B45B77900CFD04C /* Auth */,
@@ -1188,6 +1191,14 @@
 				CEC46BED2B70D06C00F5A651 /* ChangeWSManagerViewController.swift */,
 			);
 			path = ChangeWSManager;
+			sourceTree = "<group>";
+		};
+		CEE7DA492B74ACBC007BAAE6 /* Dms */ = {
+			isa = PBXGroup;
+			children = (
+				CEE7DA4A2B74ACC8007BAAE6 /* DmError.swift */,
+			);
+			path = Dms;
 			sourceTree = "<group>";
 		};
 		CEE989962B4A52E100590A19 /* Profile */ = {
@@ -1562,6 +1573,7 @@
 				CED8294B2B58C41500AD1828 /* ChangeManagerView.swift in Sources */,
 				CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */,
 				CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */,
+				CEE7DA4B2B74ACC8007BAAE6 /* DmError.swift in Sources */,
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
 				CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */,
 				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
