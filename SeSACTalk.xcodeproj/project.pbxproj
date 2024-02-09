@@ -122,6 +122,7 @@
 		CE95923A2B68B07000665659 /* ChannelSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592392B68B07000665659 /* ChannelSectionModel.swift */; };
 		CE95923C2B68BA2000665659 /* SearchChannelReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923B2B68BA2000665659 /* SearchChannelReactor.swift */; };
 		CE95923E2B68D0E800665659 /* SearchChannelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */; };
+		CE9841F52B75FC46005F9352 /* DmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9841F42B75FC46005F9352 /* DmRepository.swift */; };
 		CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */; };
 		CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */; };
 		CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */; };
@@ -399,6 +400,7 @@
 		CE9592392B68B07000665659 /* ChannelSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSectionModel.swift; sourceTree = "<group>"; };
 		CE95923B2B68BA2000665659 /* SearchChannelReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelReactor.swift; sourceTree = "<group>"; };
 		CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelDelegate.swift; sourceTree = "<group>"; };
+		CE9841F42B75FC46005F9352 /* DmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmRepository.swift; sourceTree = "<group>"; };
 		CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenReq.swift; sourceTree = "<group>"; };
 		CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
@@ -949,6 +951,7 @@
 			children = (
 				CE7A58A62B75291C00EBBDF5 /* DmDTO.swift */,
 				CE7A58A82B752D2700EBBDF5 /* DmChatDTO.swift */,
+				CE9841F42B75FC46005F9352 /* DmRepository.swift */,
 			);
 			path = DM;
 			sourceTree = "<group>";
@@ -1774,6 +1777,7 @@
 				CEEE4EAD2B46987F0059D1AF /* String+Extension.swift in Sources */,
 				CE5719342B69F00700EC3E18 /* SocketURL.swift in Sources */,
 				CEB7F8392B444B4A00B9A035 /* BaseView.swift in Sources */,
+				CE9841F52B75FC46005F9352 /* DmRepository.swift in Sources */,
 				CEC46BB22B708D1600F5A651 /* ChangeCHManagerReactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
