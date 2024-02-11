@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-struct ChannelChatReqDTO: Encodable {
+struct ChatReqDTO: Encodable {
     let content: String?
     let files: [Data?]?
     

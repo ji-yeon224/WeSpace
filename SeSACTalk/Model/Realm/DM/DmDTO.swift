@@ -15,7 +15,7 @@ final class DmDTO: Object {
     @Persisted var createdAt: String
     @Persisted var lastDate: String?
     @Persisted var dmImg: List<ImageDTO>
-    @Persisted var chatItem: List<DmChatDTO>
+    @Persisted var dmItem: List<DmChatDTO>
     
     convenience init(workspaceId: Int, roomId: Int, createdAt: String) {
         self.init()

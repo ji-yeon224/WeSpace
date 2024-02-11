@@ -15,7 +15,7 @@ struct DmChatResDTO: Decodable {
     let user: UserResDTO
     
     func toDomain() -> DmChat {
-        return .init(dmId: dm_id, roomId: room_id, content: content, cratedAt: createdAt, files: files, user: user.toDomain())
+        return .init(dmId: dm_id, roomId: room_id, content: content, createdAt: createdAt, files: files, user: user.toDomain())
     }
 }
 

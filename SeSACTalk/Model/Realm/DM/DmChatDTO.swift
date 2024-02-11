@@ -35,7 +35,8 @@ final class DmChatDTO: Object {
     }
     
     func toDomain() -> DmChat {
-        return .init(dmId: dmId, roomId: roomId, content: content, cratedAt: createdAt, files: files.map { $0 }, imgUrls: urls.map {$0}, user: nil)
+        return .init(dmId: dmId, roomId: roomId, content: content, createdAt: createdAt, files: files.map { $0 }, imgUrls: urls.map { $0 } ,user: nil)
+//        return .init(dmId: dmId, roomId: roomId, content: content, createdAt: createdAt, files: files.map { $0 }, imgUrls: urls.map {$0}, user: nil)
     }
     
 }

@@ -13,8 +13,8 @@ struct DmChat: Hashable {
     let content: String?
     let createdAt: String
     let files: [String]
-    let imgUrls: [String]? = nil
-    let user: User?
+    var imgUrls: [String]? = nil
+    var user: User?
     
     func toRecord() -> DmChatDTO {
         return .init(dmId: dmId, roomId: roomId, content: content, files: files, urls: imgUrls ?? [], createdAt: createdAt)

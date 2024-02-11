@@ -63,7 +63,7 @@ final class ChatReactor: Reactor {
                 let imgs = files.map {
                     return $0.img?.imageToData()
                 }
-                let data = ChannelChatReqDTO(content: content, files: imgs)
+                let data = ChatReqDTO(content: content, files: imgs)
                 return requestSendMsg(channel: channel, id: id, data: data)
             } else {
                 debugPrint("[data binding error]")
@@ -149,7 +149,7 @@ extension ChatReactor {
         
     }
     
-    private func requestSendMsg(channel: ChannelDTO, id: Int, data: ChannelChatReqDTO) -> Observable<Mutation> {
+    private func requestSendMsg(channel: ChannelDTO, id: Int, data: ChatReqDTO) -> Observable<Mutation> {
         if data.content == nil && data.files == nil {
             return .just(Mutation.msg(msg: "No Data"))
         }

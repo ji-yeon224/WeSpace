@@ -11,6 +11,7 @@ import Moya
 enum DMsAPI {
     case fetchDM(id: Int)
     case fetchDmChat(wsId: Int, userId: Int, date: String?)
+    case sendMsg(wsId: Int, roomId: Int, data: ChatReqDTO)
 }
 
 extension DMsAPI: TargetType {
@@ -24,6 +25,8 @@ extension DMsAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(id)/dms"
         case .fetchDmChat(let wsId, let userId, _):
             return Endpoint.workspaces.rawValue + "/\(wsId)/dms/\(userId)/chats"
+        case .sendMsg(let wsId, let roomId, _):
+            return Endpoint.workspaces.rawValue + "/\(wsId)/dms/\(roomId)/chats"
         }
     }
     
@@ -31,6 +34,8 @@ extension DMsAPI: TargetType {
         switch self {
         case .fetchDM, .fetchDmChat:
             return .get
+        case .sendMsg:
+            return .post
         }
     }
     
@@ -45,6 +50,8 @@ extension DMsAPI: TargetType {
             } else {
                 return .requestPlain
             }
+        case .sendMsg(_, _, let data):
+            return .uploadMultipart(data.multipartData())
         }
     }
     
@@ -52,6 +59,8 @@ extension DMsAPI: TargetType {
         switch self {
         case .fetchDM, .fetchDmChat:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
+        case .sendMsg:
+            return ["Content-Type": "multipart/form-data", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         }
         
     }
@@ -59,4 +68,10 @@ extension DMsAPI: TargetType {
     
     
     
+}
+
+extension DMsAPI {
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }

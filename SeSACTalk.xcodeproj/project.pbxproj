@@ -47,6 +47,7 @@
 		CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4262B454726009BD53A /* PageSheetManager.swift */; };
 		CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4282B454E52009BD53A /* CustomTextField.swift */; };
 		CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E42A2B4557CE009BD53A /* CustomStackView.swift */; };
+		CE583B842B7873BA00B541EE /* DmToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE583B832B7873BA00B541EE /* DmToastMessage.swift */; };
 		CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */; };
 		CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */; };
 		CE5D06652B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06642B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift */; };
@@ -63,7 +64,7 @@
 		CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06812B4F057F00C067A3 /* Data+Extension.swift */; };
 		CE5EA4B02B60AB1200999704 /* ChannelChatDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4AF2B60AB1200999704 /* ChannelChatDTO.swift */; };
 		CE5EA4B82B60B33400999704 /* ChannelMsgRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */; };
-		CE5EA4C42B60FFCC00999704 /* ChannelChatReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */; };
+		CE5EA4C42B60FFCC00999704 /* ChatReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EA4C32B60FFCC00999704 /* ChatReqDTO.swift */; };
 		CE5F94CD2B620004006A4DA4 /* DBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CC2B620004006A4DA4 /* DBError.swift */; };
 		CE5F94CF2B623A36006A4DA4 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */; };
 		CE5F94D12B626EBE006A4DA4 /* DBImageFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */; };
@@ -321,6 +322,7 @@
 		CE57E4262B454726009BD53A /* PageSheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageSheetManager.swift; sourceTree = "<group>"; };
 		CE57E4282B454E52009BD53A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CE57E42A2B4557CE009BD53A /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
+		CE583B832B7873BA00B541EE /* DmToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmToastMessage.swift; sourceTree = "<group>"; };
 		CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesAPI.swift; sourceTree = "<group>"; };
 		CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesAPIManager.swift; sourceTree = "<group>"; };
 		CE5D06642B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWorkspaceReDTO.swift; sourceTree = "<group>"; };
@@ -337,7 +339,7 @@
 		CE5D06812B4F057F00C067A3 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		CE5EA4AF2B60AB1200999704 /* ChannelChatDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatDTO.swift; sourceTree = "<group>"; };
 		CE5EA4B72B60B33400999704 /* ChannelMsgRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelMsgRepository.swift; sourceTree = "<group>"; };
-		CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatReqDTO.swift; sourceTree = "<group>"; };
+		CE5EA4C32B60FFCC00999704 /* ChatReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReqDTO.swift; sourceTree = "<group>"; };
 		CE5F94CC2B620004006A4DA4 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
 		CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBImageFileName.swift; sourceTree = "<group>"; };
@@ -771,7 +773,7 @@
 			children = (
 				CE61AE132B5E48590091B03D /* ChannelChatResDTO.swift */,
 				CE61AE152B5E48DB0091B03D /* ChannelMessage.swift */,
-				CE5EA4C32B60FFCC00999704 /* ChannelChatReqDTO.swift */,
+				CE5EA4C32B60FFCC00999704 /* ChatReqDTO.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1359,6 +1361,7 @@
 				CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */,
 				CE5D06762B4EF00300C067A3 /* WorkspaceToastMessage.swift */,
 				CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */,
+				CE583B832B7873BA00B541EE /* DmToastMessage.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -1584,7 +1587,7 @@
 				CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */,
-				CE5EA4C42B60FFCC00999704 /* ChannelChatReqDTO.swift in Sources */,
+				CE5EA4C42B60FFCC00999704 /* ChatReqDTO.swift in Sources */,
 				CEC46BB02B708D0A00F5A651 /* ChangeCHManangerView.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,
 				CE8574952B4BD5670025ED1B /* EmailLoginReactor.swift in Sources */,
@@ -1745,6 +1748,7 @@
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
 				CE9DEB7B2B6CD5350016382B /* ChannelMemberItem.swift in Sources */,
 				CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */,
+				CE583B842B7873BA00B541EE /* DmToastMessage.swift in Sources */,
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,

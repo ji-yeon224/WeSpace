@@ -38,7 +38,7 @@ final class DmRepository {
     func updateDmChatItems(object: DmDTO, chat: [DmChatDTO]) throws {
         do {
             try realm.write {
-                object.chatItem.append(objectsIn: chat)
+                object.dmItem.append(objectsIn: chat)
                 realm.add(object)
             }
         } catch {

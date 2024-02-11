@@ -12,7 +12,7 @@ enum ChannelsAPI {
     case myChannel(id: Int)
     case create(id: Int, data: CreateChannelReqDTO)
     case edit(id: Int, name: String, data: CreateChannelReqDTO)
-    case sendMsg(name: String, id: Int, data: ChannelChatReqDTO)
+    case sendMsg(name: String, id: Int, data: ChatReqDTO)
     case fetchMsg(date: String?, name: String, wsId: Int)
     case member(name: String, wsId: Int)
     case allChannel(wsId: Int)

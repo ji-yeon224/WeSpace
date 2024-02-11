@@ -16,7 +16,7 @@ final class DmChatView: BaseView {
         $0.separatorStyle = .none
         $0.keyboardDismissMode = .onDrag
     }
-    var tabledataSource: UITableViewDiffableDataSource<String, ChannelMessage>!
+    var tabledataSource: UITableViewDiffableDataSource<String, DmChat>!
     
     private let bottomView = UIStackView().then {
         $0.backgroundColor = .white
@@ -58,12 +58,12 @@ final class DmChatView: BaseView {
             
             cell.selectionStyle = .none
             
-            cell.nickNameLabel.text = itemIdentifier.user.nickname
-            if let profileImg = itemIdentifier.user.profileImage, !profileImg.isEmpty {
+            cell.nickNameLabel.text = itemIdentifier.user?.nickname
+            if let profileImg = itemIdentifier.user?.profileImage, !profileImg.isEmpty {
                 cell.profileImageView.setImage(with: profileImg)
             } else {
                 let img = Constants.Image.dummyProfile
-                cell.profileImageView.image = img[itemIdentifier.user.userId%3]
+                cell.profileImageView.image = img[(itemIdentifier.user?.userId ?? 0)%3]
             }
             
             if let text = itemIdentifier.content, !text.isEmpty {

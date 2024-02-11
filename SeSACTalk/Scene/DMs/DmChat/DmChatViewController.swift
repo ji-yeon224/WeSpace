@@ -11,13 +11,15 @@ import RxCocoa
 
 final class DmChatViewController: BaseViewController {
     
-    private let mainView = ChatView()
+    private let mainView = DmChatView()
     private var dmUserInfo: User?
     private var myInfo: User?
     private var dmRoomInfo: DMsRoom?
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
+    private var dmData: [DmChat] = []
+    
     
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
@@ -45,16 +47,63 @@ final class DmChatViewController: BaseViewController {
     }
     
     override func configure() {
+        self.reactor = DmChatReactor()
         view.backgroundColor = .secondaryBackground
         configNav()
         title = dmUserInfo?.nickname
         navigationController?.navigationBar.isHidden = false
         mainView.chatWriteView.delegate = self
-        bindEvent()
+//        bindEvent()
     }
 }
 
-extension DmChatViewController {
+extension DmChatViewController: View {
+    
+    func bind(reactor: DmChatReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+        bindEvent()
+    }
+    
+    private func bindAction(reactor: DmChatReactor) {
+        
+        mainView.chatWriteView.sendButton.rx.tap
+            .withLatestFrom(mainView.chatWriteView.textView.rx.text.orEmpty, resultSelector: { _, value in
+                return value
+            })
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .map { owner, value in
+                Reactor.Action.sendReqeust(wsId: owner.dmRoomInfo?.workspaceID, roomId: owner.dmRoomInfo?.roomID, content: value, files: owner.selectImageModel.items)
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func bindState(reactor: DmChatReactor) {
+        
+        reactor.state
+            .map { $0.sendSuccess }
+            .filter { $0 != .none }
+            .distinctUntilChanged { prev, cur in
+                prev?.dmId == cur?.dmId
+            }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    print(value)
+                    owner.dmData.append(value)
+                    owner.updateTableSnapShot()
+                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
+                    owner.initImageCell()
+                    owner.mainView.chatWriteView.textView.text = nil
+                }
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
     private func bindEvent() {
         mainView.chatWriteView.textView.rx.didChange
             .asDriver()
@@ -117,6 +166,7 @@ extension DmChatViewController {
     }
 }
 
+
 extension DmChatViewController: ChatImageSelectDelegate {
     func deleteImage(indexPath: IndexPath) {
         selectedAssetIdentifiers.remove(at: indexPath.item)
@@ -127,6 +177,15 @@ extension DmChatViewController: ChatImageSelectDelegate {
 }
 
 extension DmChatViewController {
+    
+    private func updateTableSnapShot() {
+        var snapshot = NSDiffableDataSourceSnapshot<String, DmChat>()
+        snapshot.appendSections([""])
+        snapshot.appendItems(dmData)
+        mainView.tabledataSource.apply(snapshot, animatingDifferences: false)
+        
+    }
+    
     private func configSelectImage() {
         PHPickerManager.shared.presentPicker(vc: self, selectLimit: 5, selectedId: selectedAssetIdentifiers)
         PHPickerManager.shared.selectedImage
