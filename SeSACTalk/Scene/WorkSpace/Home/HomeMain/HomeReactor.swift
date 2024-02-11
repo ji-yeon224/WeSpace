@@ -21,7 +21,8 @@ final class HomeReactor: Reactor {
         dmRoomItems: [],
         allWorkspace: [],
         chatInfo: (nil, []),
-        userInfo: [:]
+        userInfo: [:],
+        myInfo: nil
     )
     
     enum Action {
@@ -29,6 +30,7 @@ final class HomeReactor: Reactor {
         case requestDMsInfo(id: Int?)
         case requestAllWorkspace
         case searchChannelDB(wsId: Int?, chInfo: Channel?)
+        case requestMyInfo
     }
     
     enum Mutation {
@@ -39,6 +41,7 @@ final class HomeReactor: Reactor {
         case fetchAllWorkspace(data: [WorkspaceDto])
         case chatInfo(chInfo: ChannelDTO?, chatItems: [ChannelMessage])
         case userInfo(data: [Int: User])
+        case myInfo(data: User)
 //        case unreadList(data: [Int: Int])
     }
     
@@ -51,6 +54,7 @@ final class HomeReactor: Reactor {
         var allWorkspace: [WorkSpace]
         var chatInfo: (ChannelDTO?, [ChannelMessage])
         var userInfo: [Int: User]
+        var myInfo: User?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -81,7 +85,8 @@ final class HomeReactor: Reactor {
             } else {
                 return Observable.of(Mutation.msg(msg: "ARGUMENT ERROR"))
             }
-            
+        case .requestMyInfo:
+            return requestMyInfo()
         }
     }
     
@@ -108,6 +113,8 @@ final class HomeReactor: Reactor {
             newState.chatInfo = (chInfo, chatItems)
         case .userInfo(let data):
             newState.userInfo = data
+        case .myInfo(let data):
+            newState.myInfo = data
         }
         
         return newState
@@ -116,6 +123,26 @@ final class HomeReactor: Reactor {
 }
 
 extension HomeReactor {
+    
+    private func requestMyInfo() -> Observable<Mutation> {
+        return UsersAPIManager.shared.request(api: .my, responseType: UserResDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        return .myInfo(data: response.toDomain())
+                    } else {
+                        return .msg(msg: "정보를 가져오는데 실패하였습니다.")
+                    }
+                case .failure(_):
+                    return .msg(msg: CommonError.E99.localizedDescription)
+                    
+                }
+            
+                
+            }
+    }
     
     
     private func requestChannelInfo(wsId: Int, chInfo: Channel) -> Observable<Mutation> {

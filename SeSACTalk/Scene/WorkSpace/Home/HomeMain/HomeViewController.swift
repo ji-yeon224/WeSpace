@@ -22,6 +22,7 @@ final class HomeViewController: BaseViewController, View {
     private let createChannel = PublishRelay<Void>()
     private let searchChannel = PublishRelay<Void>()
     private let enterChannel = PublishRelay<Channel>()
+    private let requestMyInfo = PublishRelay<Void>()
     
     private let channelChatInfo = PublishRelay<(ChannelDTO?, [ChannelMessage])>()
     private let channelChatUserInfo = PublishRelay<[Int: User]>()
@@ -29,6 +30,7 @@ final class HomeViewController: BaseViewController, View {
     private var workspace: WorkSpace?
     private var allWorkspace: [WorkSpace]?
     private var isNeedChannelRefresh: Bool = false
+    private var myInfo: User?
     
     override func loadView() {
         self.view = mainView
@@ -51,7 +53,7 @@ final class HomeViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.reactor = HomeReactor()
+        
         initData()
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         SideMenuVCManager.shared.setViewController(vc: self, ws: workspace)
@@ -75,8 +77,10 @@ final class HomeViewController: BaseViewController, View {
         SideMenuVCManager.shared.disableSideMenu()
     }
     override func configure() {
+        self.reactor = HomeReactor()
         view.backgroundColor = .white
         sectionSnapShot()
+        requestMyInfo.accept(())
         let newFriend = [ WorkspaceItem(title: "", subItems: [], item: NewFriend(title: "팀원 추가")) ]
         updateSnapShot(section: .newFriend, item: newFriend)
 //        SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
@@ -97,7 +101,7 @@ final class HomeViewController: BaseViewController, View {
     private func configData(ws: WorkSpace) {
         mainView.topView.wsImageView.setImage(with: ws.thumbnail)
         mainView.topView.workSpaceName.text = ws.name
-        mainView.topView.profileImageView.image = Constants.Image.dummyProfile[UserDefaultsManager.userId % 3]
+        
     }
     
 }
@@ -135,7 +139,11 @@ extension HomeViewController {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        
+        requestMyInfo
+            .map { Reactor.Action.requestMyInfo }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+            
     }
     
     
@@ -214,6 +222,25 @@ extension HomeViewController {
             .filter { return !$0.isEmpty }
             .drive(with: self) { owner, value in
                 owner.channelChatUserInfo.accept(value)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.myInfo }
+            .filter { $0 != .none }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                owner.myInfo = value
+                
+                if let value = value, let profile = value.profileImage {
+                    
+                    owner.mainView.topView.profileImageView.setImage(with: profile)
+                } else {
+                    owner.mainView.topView.profileImageView.image = Constants.Image.dummyProfile[UserDefaultsManager.userId % 3]
+                }
+                
+                
             }
             .disposed(by: disposeBag)
         

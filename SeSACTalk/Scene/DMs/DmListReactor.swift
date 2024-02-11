@@ -17,7 +17,8 @@ final class DmListReactor: Reactor {
         loginRequest: false,
         memberInfo: nil,
         dmList: [],
-        dmInfo: (nil, [])
+        dmInfo: (nil, []),
+        myInfo: nil
     )
     
     
@@ -25,6 +26,7 @@ final class DmListReactor: Reactor {
         case requestMemberList(wsId: Int?)
         case requestDmList(wsId: Int?)
         case enterDmRoom(wsId: Int?, roomId: Int?, userId: Int)
+        case requestMyInfo
     }
     
     enum Mutation {
@@ -33,6 +35,7 @@ final class DmListReactor: Reactor {
         case memberInfo(data: [User])
         case dmList(data: [DMsRoom])
         case dmInfo(data: DmDTO, dmChat: [DmChat])
+        case myInfo(data: User)
     }
     
     struct State {
@@ -41,6 +44,7 @@ final class DmListReactor: Reactor {
         var memberInfo: [User]?
         var dmList: [DMsRoom]
         var dmInfo: (DmDTO?, [DmChat])
+        var myInfo: User?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -63,6 +67,9 @@ final class DmListReactor: Reactor {
             } else {
                 return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
             }
+        case .requestMyInfo:
+            return requestMyInfo()
+            
         }
     }
     
@@ -79,6 +86,8 @@ final class DmListReactor: Reactor {
             newState.dmList = data
         case .dmInfo(let data, let dmChat):
             newState.dmInfo = (data, dmChat)
+        case .myInfo(let data):
+            newState.myInfo = data
         }
         
         return newState
@@ -192,6 +201,26 @@ extension DmListReactor {
                     }
                     
                 }
+            }
+    }
+    
+    private func requestMyInfo() -> Observable<Mutation> {
+        return UsersAPIManager.shared.request(api: .my, responseType: UserResDTO.self)
+            .asObservable()
+            .map { result -> Mutation in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        return .myInfo(data: response.toDomain())
+                    } else {
+                        return .msg(msg: "정보를 가져오는데 실패하였습니다.")
+                    }
+                case .failure(_):
+                    return .msg(msg: CommonError.E99.localizedDescription)
+                    
+                }
+            
+                
             }
     }
 }
