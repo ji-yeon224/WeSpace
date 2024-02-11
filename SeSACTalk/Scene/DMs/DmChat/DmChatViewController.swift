@@ -18,6 +18,7 @@ final class DmChatViewController: BaseViewController {
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
+    private var requestUncheckedChat = PublishRelay<DmDTO>()
     private var dmData: [DmChat] = []
     
     
@@ -47,6 +48,9 @@ final class DmChatViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DmRepository().getLocation()
+        
+        guard let dmRoomInfo = dmRoomInfo else { return }
+        requestUncheckedChat.accept(dmRoomInfo)
     }
     
     override func configure() {
@@ -83,6 +87,13 @@ extension DmChatViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        requestUncheckedChat
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.asyncInstance)
+            .map { Reactor.Action.requestUncheckedMsg(dmInfo: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindState(reactor: DmChatReactor) {
@@ -103,6 +114,17 @@ extension DmChatViewController: View {
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.fetchChatSuccess }
+            .filter { !$0.isEmpty }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: [])
+            .drive(with: self) { owner, value in
+                owner.dmData.append(contentsOf: value)
+                owner.updateTableSnapShot()
             }
             .disposed(by: disposeBag)
         

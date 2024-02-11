@@ -15,24 +15,28 @@ final class DmChatReactor: Reactor {
     var initialState: State = State(
         msg: "", 
         loginReqeust: false,
-        sendSuccess: nil
+        sendSuccess: nil,
+        fetchChatSuccess: []
     )
     
     
     enum Action {
         case sendReqeust(dmInfo: DmDTO?, content: String?, files: [SelectImage])
+        case requestUncheckedMsg(dmInfo: DmDTO?)
     }
     
     enum Mutation {
         case msg(msg: String)
         case loginRequest
         case sendSuccess(data: DmChat)
+        case fetchChatSuccess(data: [DmChat])
     }
     
     struct State {
         var msg: String
         var loginReqeust: Bool
         var sendSuccess: DmChat?
+        var fetchChatSuccess: [DmChat]
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -48,7 +52,12 @@ final class DmChatReactor: Reactor {
                 debugPrint("[DATA BINDING ERROR]")
                 return .just(.msg(msg: DmToastMessage.otherError.message))
             }
-            
+        case .requestUncheckedMsg(let dmInfo):
+            if let dmInfo = dmInfo {
+                return requestUncheckedMsg(dmInfo: dmInfo)
+            } else {
+                return .just(.msg(msg: DmToastMessage.loadFailDm.message))
+            }
         }
     }
     
@@ -61,6 +70,8 @@ final class DmChatReactor: Reactor {
             newState.loginReqeust = true
         case .sendSuccess(let data):
             newState.sendSuccess = data
+        case .fetchChatSuccess(let data):
+            newState.fetchChatSuccess = data
         }
         
         return newState
@@ -70,6 +81,35 @@ final class DmChatReactor: Reactor {
 }
 
 extension DmChatReactor {
+    
+    private func requestUncheckedMsg(dmInfo: DmDTO) -> Observable<Mutation>{
+        return DMsAPIManager.shared.request(api: .fetchDmChat(wsId: dmInfo.workspaceId, userId: dmInfo.userId, date: dmInfo.lastDate), resonseType: DmChatListResDTO.self)
+            .asObservable()
+            .withUnretained(self)
+            .flatMap { (owner, result) -> Observable<Mutation> in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        let chatData = response.chats.map { $0.toDomain() }
+                        let uncheckedMsg = owner.saveDmChatItems(data: dmInfo, chat: chatData)
+                        return .just(.fetchChatSuccess(data: uncheckedMsg))
+                    }
+                    return .just(.msg(msg: DmToastMessage.loadFailDm.message))
+                case .failure(let error):
+                    var msg = CommonError.E99.localizedDescription
+                    if let error = DmError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        msg = error.localizedDescription
+                    } else {
+                        return .just(.loginRequest)
+                    }
+                    return .just(.msg(msg: msg))
+                }
+            }
+    }
+    
+    
     private func requestSendMsg(dmInfo: DmDTO, data: ChatReqDTO) -> Observable<Mutation> {
         return DMsAPIManager.shared.request(api: .sendMsg(wsId: dmInfo.workspaceId, roomId: dmInfo.roomId, data: data), resonseType: DmChatResDTO.self)
             .asObservable()
@@ -81,7 +121,7 @@ extension DmChatReactor {
                         debugPrint("SUCCESS SEND DM")
                         let data = response.toDomain()
                         if let sendData = owner.saveDmChatItems(data: dmInfo, chat: [data]).first {
-                            return .just(.sendSuccess(data: data))
+                            return .just(.sendSuccess(data: sendData))
                         }
                         return .just(.msg(msg: DmToastMessage.otherError.message))
                     }
@@ -93,6 +133,7 @@ extension DmChatReactor {
                     } else if let error = CommonError(rawValue: error.errorCode) {
                         msg = error.localizedDescription
                     } else {
+                        
                         return .just(.loginRequest)
                     }
                     return .just(.msg(msg: msg))
