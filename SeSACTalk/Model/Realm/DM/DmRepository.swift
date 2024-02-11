@@ -38,6 +38,17 @@ final class DmRepository {
         }
         return data
     }
+    func updateImgItems(data: DmDTO, img: [ImageDTO]) throws {
+        do {
+            try realm.write {
+                data.dmImg.append(objectsIn: img)
+                realm.add(data)
+            }
+        } catch {
+            print("error")
+            throw DBError.updateError
+        }
+    }
     
     func updateDmLastDate(object: DmDTO, date: String) throws {
         do {

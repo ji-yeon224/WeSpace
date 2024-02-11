@@ -16,16 +16,10 @@ final class ImageFileManager {
         return type.fileName + fileName
     }
     
-    func saveImageToDocument(type: DBImageFileName ,fileName: String, image: SelectImage) {
+    func saveImageToDocument(type: CategoryType ,fileName: String, image: SelectImage) {
         // 1. 도큐먼트 경로 찾기
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        var directoryPath: URL
-        switch type {
-        case .channel:
-            directoryPath = documentDirectory.appendingPathComponent("Channel")
-        case .dm:
-            directoryPath = documentDirectory.appendingPathComponent("Dm")
-        }
+        var directoryPath = documentDirectory.appendingPathComponent(type.rawValue)
         
         if !FileManager.default.fileExists(atPath: directoryPath.path) {
             do {
@@ -53,19 +47,13 @@ final class ImageFileManager {
         }
     }
     
-    func loadImageFromDocuments(type: DBImageFileName, fileName: [String]) -> [UIImage] {
+    func loadImageFromDocuments(type: CategoryType, fileName: [String]) -> [UIImage] {
         
         var imgData: [UIImage] = []
         
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
         
-        var directoryPath: URL
-        switch type {
-        case .channel:
-            directoryPath = documentDirectory.appendingPathComponent("Channel")
-        case .dm:
-            directoryPath = documentDirectory.appendingPathComponent("Dm")
-        }
+        var directoryPath = documentDirectory.appendingPathComponent(type.rawValue)
         
         if !FileManager.default.fileExists(atPath: directoryPath.path) {
             do {
@@ -91,17 +79,12 @@ final class ImageFileManager {
         
     }
     
-    private func removeImageFromDocuments(type: DBImageFileName, fileName: [String]) {
+    private func removeImageFromDocuments(type: CategoryType, fileName: [String]) {
         print("REMOVE IMG..")
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
-        var directoryPath: URL
-        switch type {
-        case .channel:
-            directoryPath = documentDirectory.appendingPathComponent("Channel")
-        case .dm:
-            directoryPath = documentDirectory.appendingPathComponent("Dm")
-        }
+        var directoryPath = documentDirectory.appendingPathComponent(type.rawValue)
+        
         
         if !FileManager.default.fileExists(atPath: directoryPath.path) {
             directoryPath = documentDirectory

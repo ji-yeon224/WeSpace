@@ -48,6 +48,7 @@
 		CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4282B454E52009BD53A /* CustomTextField.swift */; };
 		CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E42A2B4557CE009BD53A /* CustomStackView.swift */; };
 		CE583B842B7873BA00B541EE /* DmToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE583B832B7873BA00B541EE /* DmToastMessage.swift */; };
+		CE583B862B78BCC100B541EE /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE583B852B78BCC100B541EE /* CategoryType.swift */; };
 		CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */; };
 		CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */; };
 		CE5D06652B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D06642B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift */; };
@@ -323,6 +324,7 @@
 		CE57E4282B454E52009BD53A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		CE57E42A2B4557CE009BD53A /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
 		CE583B832B7873BA00B541EE /* DmToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmToastMessage.swift; sourceTree = "<group>"; };
+		CE583B852B78BCC100B541EE /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		CE5D065F2B4E67F400C067A3 /* WorkspacesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesAPI.swift; sourceTree = "<group>"; };
 		CE5D06612B4E67FE00C067A3 /* WorkspacesAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacesAPIManager.swift; sourceTree = "<group>"; };
 		CE5D06642B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWorkspaceReDTO.swift; sourceTree = "<group>"; };
@@ -1379,6 +1381,7 @@
 				CE2BA8172B6F54DC00B24B55 /* CreateType.swift */,
 				CE1806E02B734AB8002DD9C3 /* DmSection.swift */,
 				CE1806EB2B7360B4002DD9C3 /* DateFormatterType.swift */,
+				CE583B852B78BCC100B541EE /* CategoryType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -1573,6 +1576,7 @@
 				CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */,
 				CE5EA4B82B60B33400999704 /* ChannelMsgRepository.swift in Sources */,
 				CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */,
+				CE583B862B78BCC100B541EE /* CategoryType.swift in Sources */,
 				CEDCC0442B610093001D788C /* ChatReactor.swift in Sources */,
 				CECFCDE72B4FBC2600EB0DB7 /* AuthAPIManager.swift in Sources */,
 				CEE7DA592B74C2D5007BAAE6 /* DmChatViewController.swift in Sources */,

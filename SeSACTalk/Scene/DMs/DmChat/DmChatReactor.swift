@@ -109,12 +109,18 @@ extension DmChatReactor {
                 ImageFileService.getFileName(type: .dm(wsId: data.workspaceId, roomId: data.roomId), fileURL: url)
             }
             imgStrings.append(contentsOf: urls)
+            saveImage(files: $0.files, fileNames: urls)
             let record = $0.toRecord()
             record.setImgUrls(urls: urls)
             return record
         }
         
         // 이미지 저장 추가..
+        do {
+            try dmRepository.updateImgItems(data: data, img: imgStrings.map { return ImageDTO(url: $0)})
+        } catch {
+            debugPrint("ERROR SAVE DM ERROR ", error.localizedDescription)
+        }
         
         do {
             if let lastData = chat.last {
@@ -134,5 +140,18 @@ extension DmChatReactor {
         
     }
     
+    private func saveImage(files:[String], fileNames: [String]) {
+        
+        for i in 0..<files.count {
+            let file = files[i]
+            ImageDownloadManager.shared.getUIImage(with: file) { [weak self] img in
+                guard let self = self else { return }
+                ImageFileManager.shared.saveImageToDocument(type: .dm, fileName: fileNames[i], image: img)
+                
+            }
+        }
+        
+        
+    }
     
 }
