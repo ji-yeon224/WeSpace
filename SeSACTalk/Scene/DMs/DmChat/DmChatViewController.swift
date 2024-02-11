@@ -20,7 +20,7 @@ final class DmChatViewController: BaseViewController {
     private var imgData = PublishRelay<[SelectImageModel]>()
     private var requestUncheckedChat = PublishRelay<DmDTO>()
     private var dmData: [DmChat] = []
-    
+    private var usersInfo: [Int: User] = [:]
     
     private var selectedAssetIdentifiers = [String]()
     private let selectImgCount = BehaviorRelay(value: 0)
@@ -30,9 +30,10 @@ final class DmChatViewController: BaseViewController {
         self.view = mainView
     }
     
-    init(myInfo: User?, dmInfo: DmDTO?, dmChatItem: [DmChat]?) {
+    init(dmInfo: DmDTO?, dmChatItem: [DmChat]?, userInfo: [Int: User]) {
         super.init(nibName: nil, bundle: nil)
-        self.myInfo = myInfo
+        self.usersInfo = userInfo
+        
         self.dmRoomInfo = dmInfo
         if let chatItem = dmChatItem {
             self.dmData.append(contentsOf: chatItem)
@@ -54,14 +55,21 @@ final class DmChatViewController: BaseViewController {
     }
     
     override func configure() {
+       
         self.reactor = DmChatReactor()
         view.backgroundColor = .secondaryBackground
         configNav()
         title = dmUserInfo?.nickname
         navigationController?.navigationBar.isHidden = false
         mainView.chatWriteView.delegate = self
+        
         updateTableSnapShot()
 //        bindEvent()
+        
+        if let userId = dmRoomInfo?.userId, let userInfo = usersInfo[userId] {
+            title = userInfo.nickname
+        }
+        
     }
 }
 

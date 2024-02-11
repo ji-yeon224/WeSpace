@@ -17,7 +17,7 @@ struct DmChat: Hashable {
     var user: User?
     
     func toRecord() -> DmChatDTO {
-        return .init(dmId: dmId, roomId: roomId, content: content, files: files, urls: imgUrls ?? [], createdAt: createdAt)
+        return .init(dmId: dmId, roomId: roomId, userId: user?.userId ?? 0 ,content: content, files: files, urls: imgUrls ?? [], createdAt: createdAt)
     }
     
 }

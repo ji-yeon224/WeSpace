@@ -16,6 +16,7 @@ enum UsersAPI {
     case emailLogin(data: EmailLoginRequestDTO)
     case my
     case deviceToken(data: DeviceTokenReq)
+    case otherUser(userId: Int)
 }
 extension UsersAPI: TargetType {
     
@@ -37,6 +38,8 @@ extension UsersAPI: TargetType {
             return Endpoint.user.rawValue + "/my"
         case .deviceToken:
             return Endpoint.user.rawValue + "/deviceToken"
+        case .otherUser(let userId):
+            return Endpoint.user.rawValue + "/\(userId)"
         }
     }
     
@@ -44,7 +47,7 @@ extension UsersAPI: TargetType {
         switch self {
         case .validation, .join, .kakaoLogin, .emailLogin, .deviceToken:
             return .post
-        case .my:
+        case .my, .otherUser:
             return .get
             
         }
@@ -60,7 +63,7 @@ extension UsersAPI: TargetType {
             return .requestJSONEncodable(data)
         case .emailLogin(let data):
             return .requestJSONEncodable(data)
-        case .my:
+        case .my, .otherUser:
             return .requestPlain
         case .deviceToken(let data):
             return .requestJSONEncodable(data)
@@ -71,7 +74,7 @@ extension UsersAPI: TargetType {
         switch self {
         case .validation, .join, .kakaoLogin, .emailLogin:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key]
-        case .my:
+        case .my, .otherUser:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .deviceToken:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key, "Authorization": UserDefaultsManager.accessToken]

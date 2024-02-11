@@ -9,6 +9,8 @@ import UIKit
 
 final class DmChatView: BaseView {
     
+    var userInfo: [Int: User] = [:]
+    
     lazy var tableView = UITableView(frame: .zero).then {
         $0.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
         $0.rowHeight = UITableView.automaticDimension
@@ -57,14 +59,27 @@ final class DmChatView: BaseView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath) as? ChatTableViewCell else { return UITableViewCell() }
             
             cell.selectionStyle = .none
-            
-            cell.nickNameLabel.text = itemIdentifier.user?.nickname
-            if let profileImg = itemIdentifier.user?.profileImage, !profileImg.isEmpty {
-                cell.profileImageView.setImage(with: profileImg)
+            //----
+            if let user = itemIdentifier.user, let userInfo = self.userInfo[user.userId] {
+                print(userInfo)
+                cell.nickNameLabel.text = userInfo.nickname
+                if let profileImg = userInfo.profileImage, !profileImg.isEmpty {
+                    cell.profileImageView.setImage(with: profileImg)
+                } else {
+                    let img = Constants.Image.dummyProfile
+                    cell.profileImageView.image = img[userInfo.userId % 3]
+                }
             } else {
-                let img = Constants.Image.dummyProfile
-                cell.profileImageView.image = img[(itemIdentifier.user?.userId ?? 0)%3]
+                cell.nickNameLabel.text = itemIdentifier.user?.nickname
+                if let profileImg = itemIdentifier.user?.profileImage, !profileImg.isEmpty {
+                    cell.profileImageView.setImage(with: profileImg)
+                } else {
+                    let img = Constants.Image.dummyProfile
+                    cell.profileImageView.image = img[(itemIdentifier.user?.userId ?? 0)%3]
+                }
             }
+            
+            //----
             
             if let text = itemIdentifier.content, !text.isEmpty {
                 cell.chatTextLabel.text = itemIdentifier.content

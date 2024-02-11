@@ -18,7 +18,8 @@ final class DmListReactor: Reactor {
         memberInfo: nil,
         dmList: [],
         dmInfo: (nil, []),
-        myInfo: nil
+        myInfo: nil,
+        userInfo: nil
     )
     
     
@@ -34,8 +35,9 @@ final class DmListReactor: Reactor {
         case loginRequest
         case memberInfo(data: [User])
         case dmList(data: [DMsRoom])
-        case dmInfo(data: DmDTO, dmChat: [DmChat])
+        case dmInfo(data: DmDTO?, dmChat: [DmChat])
         case myInfo(data: User)
+        case userInfo (data: User?)
     }
     
     struct State {
@@ -45,6 +47,7 @@ final class DmListReactor: Reactor {
         var dmList: [DMsRoom]
         var dmInfo: (DmDTO?, [DmChat])
         var myInfo: User?
+        var userInfo: User?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -63,7 +66,11 @@ final class DmListReactor: Reactor {
             }
         case .enterDmRoom(let wsId, let roomId, let userId):
             if let wsId = wsId, let roomId = roomId {
-                return requestDmInfo(wsId: wsId, roomId: roomId, userId: userId)
+                return .concat(
+                    requestUserInfo(userId: userId),
+                    requestDmInfo(wsId: wsId, roomId: roomId, userId: userId)
+                    
+                )
             } else {
                 return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
             }
@@ -88,6 +95,8 @@ final class DmListReactor: Reactor {
             newState.dmInfo = (data, dmChat)
         case .myInfo(let data):
             newState.myInfo = data
+        case .userInfo(let data):
+            newState.userInfo = data
         }
         
         return newState
@@ -97,11 +106,40 @@ final class DmListReactor: Reactor {
 
 extension DmListReactor {
     
+    private func requestUserInfo(userId: Int) -> Observable<Mutation> {
+        return UsersAPIManager.shared.request(api: .otherUser(userId: userId), responseType: UserResDTO.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        return .concat(
+                            .just(.userInfo(data: response.toDomain()))
+                        )
+                    } else {
+                        return .just(.msg(msg: "문제가 발생하였습니다."))
+                    }
+                case .failure(let error):
+                    
+                    if error.errorCode == "E03" {
+                        return .just(.msg(msg: "알 수 없는 계정입니다."))
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else {
+                        return .just(.loginRequest)
+                    }
+                }
+            }
+    }
+    
     private func requestDmInfo(wsId: Int, roomId: Int, userId: Int) -> Observable<Mutation> {
         if let dmInfo = searchDmDB(wsId: wsId, roomId: roomId, userId: userId) {
             debugPrint("DM DATA")
             let chatItem = getDmChatItems(dmData: dmInfo)
-            return .just(.dmInfo(data: dmInfo, dmChat: chatItem))
+            return .concat(
+                .just(.dmInfo(data: dmInfo, dmChat: chatItem)),
+                .just(.dmInfo(data: nil, dmChat: []))
+            )
         } else {
             return .just(.msg(msg: DmToastMessage.loadFailDm.message))
         }

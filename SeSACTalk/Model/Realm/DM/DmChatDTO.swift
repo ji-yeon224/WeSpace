@@ -12,6 +12,7 @@ final class DmChatDTO: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var dmId: Int
     @Persisted var roomId: Int
+    @Persisted var userId: Int?
     @Persisted var content: String?
     @Persisted var files: List<String>
     @Persisted var urls: List<String>
@@ -19,10 +20,11 @@ final class DmChatDTO: Object {
     
     @Persisted(originProperty: "dmItem") var dmInfo: LinkingObjects<DmDTO>
     
-    convenience init(dmId: Int, roomId: Int, content: String? = nil, files: [String], urls: [String], createdAt: String) {
+    convenience init(dmId: Int, roomId: Int, userId: Int, content: String? = nil, files: [String], urls: [String], createdAt: String) {
         self.init()
         self.dmId = dmId
         self.roomId = roomId
+        self.userId = userId
         self.content = content
         self.files.append(objectsIn: files.map { $0 })
         self.urls.append(objectsIn: urls.map { $0 })
@@ -35,7 +37,7 @@ final class DmChatDTO: Object {
     }
     
     func toDomain() -> DmChat {
-        return .init(dmId: dmId, roomId: roomId, content: content, createdAt: createdAt, files: files.map { $0 }, imgUrls: urls.map { $0 } ,user: nil)
+        return .init(dmId: dmId, roomId: roomId, content: content, createdAt: createdAt, files: files.map { $0 }, imgUrls: urls.map { $0 } ,user: User(userId: userId ?? 0, email: "", nickname: "", profileImage: nil))
 //        return .init(dmId: dmId, roomId: roomId, content: content, createdAt: createdAt, files: files.map { $0 }, imgUrls: urls.map {$0}, user: nil)
     }
     

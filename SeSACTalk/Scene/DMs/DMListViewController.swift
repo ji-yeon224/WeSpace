@@ -20,7 +20,11 @@ final class DMListViewController: BaseViewController {
     private var requestMemberList = PublishRelay<Int?>()
     private var requestDmList = PublishRelay<Int?>()
     private var enterDmRoom = PublishRelay<DMsRoom>()
+    private var requestUserInfo = PublishRelay<Int>()
     private let requestMyInfo = PublishRelay<Void>()
+    
+    private let enterDmData = PublishRelay<(DmDTO?, [DmChat])>()
+    private let dmUserData = PublishRelay<User>()
     
     private var myInfo: User?
     
@@ -58,6 +62,7 @@ final class DMListViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         requestMemberList.accept(workspace.workspaceId)
+        
     }
     
     
@@ -98,10 +103,14 @@ extension DMListViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        
+            
+        
         requestMyInfo
             .map { Reactor.Action.requestMyInfo }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
         
     }
     
@@ -162,15 +171,25 @@ extension DMListViewController: View {
         
         reactor.state
             .map { $0.dmInfo }
-            .filter {
-                $0.0 != .none
-            }
+            .filter { $0.0 != .none }
+            .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, value in
-                let vc = DmChatViewController(myInfo: nil, dmInfo: value.0, dmChatItem: value.1)
-                vc.hidesBottomBarWhenPushed = true
-                owner.navigationController?.pushViewController(vc, animated: true)
+                owner.enterDmData.accept(value)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.userInfo }
+            .filter { $0 != .none }
+            .asDriver(onErrorJustReturn: nil)
+            .distinctUntilChanged()
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.dmUserData.accept(value)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         
         reactor.state
             .map { $0.myInfo }
@@ -191,6 +210,25 @@ extension DMListViewController: View {
     }
     
     private func bindEvent() {
+        
+        enterDmData
+            .withLatestFrom(dmUserData) { dmInfo, userInfo in
+                return (dmInfo, userInfo)
+            }
+            .bind(with: self) { owner, value in
+                let dmDto = value.0.0
+                let chat = value.0.1
+                let user = value.1
+                if let myInfo = owner.myInfo {
+                    let userInfo = [myInfo.userId: myInfo, user.userId: user]
+                    let vc = DmChatViewController(dmInfo: dmDto, dmChatItem: chat, userInfo: userInfo)
+                    vc.hidesBottomBarWhenPushed = true
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
         mainView.noMemberView.inviteMemberButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
@@ -198,7 +236,7 @@ extension DMListViewController: View {
                 vc.workspace = owner.workspace
                 vc.complete = {
                     owner.requestMemberList.accept(owner.workspace?.workspaceId)
-                    self.showToastMessage(message: WorkspaceToastMessage.successInvite.message, position: .bottom)
+                    owner.showToastMessage(message: WorkspaceToastMessage.successInvite.message, position: .bottom)
                 }
                 owner.presentPageSheet(vc: vc)
             }
@@ -215,6 +253,7 @@ extension DMListViewController: View {
                 } else if indexPath.section == 1{ // 채팅 섹션
                     if let dm = owner.chatData[indexPath.item].items as? DMsRoom {
                         owner.enterDmRoom.accept(dm)
+                        owner.requestUserInfo.accept(dm.user.userId)
                     }
                 }
             }
