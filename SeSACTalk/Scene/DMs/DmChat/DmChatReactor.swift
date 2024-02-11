@@ -10,6 +10,8 @@ import ReactorKit
 
 final class DmChatReactor: Reactor {
     
+    private let dmRepository = DmRepository()
+    
     var initialState: State = State(
         msg: "", 
         loginReqeust: false,
@@ -18,7 +20,7 @@ final class DmChatReactor: Reactor {
     
     
     enum Action {
-        case sendReqeust(wsId: Int?, roomId: Int?, content: String?, files: [SelectImage])
+        case sendReqeust(dmInfo: DmDTO?, content: String?, files: [SelectImage])
     }
     
     enum Mutation {
@@ -35,13 +37,13 @@ final class DmChatReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .sendReqeust(let wsId, let roomId, let content, let files):
-            if let wsId = wsId, let roomId = roomId {
+        case .sendReqeust(let dmInfo, let content, let files):
+            if let dmInfo = dmInfo {
                 let imgs = files.map {
                     return $0.img?.imageToData()
                 }
                 let data = ChatReqDTO(content: content, files: imgs)
-                return requestSendMsg(wsId: wsId, roomId: roomId, data: data)
+                return requestSendMsg(dmInfo: dmInfo, data: data)
             } else {
                 debugPrint("[DATA BINDING ERROR]")
                 return .just(.msg(msg: DmToastMessage.otherError.message))
@@ -68,8 +70,8 @@ final class DmChatReactor: Reactor {
 }
 
 extension DmChatReactor {
-    private func requestSendMsg(wsId: Int, roomId: Int, data: ChatReqDTO) -> Observable<Mutation> {
-        return DMsAPIManager.shared.request(api: .sendMsg(wsId: wsId, roomId: roomId, data: data), resonseType: DmChatResDTO.self)
+    private func requestSendMsg(dmInfo: DmDTO, data: ChatReqDTO) -> Observable<Mutation> {
+        return DMsAPIManager.shared.request(api: .sendMsg(wsId: dmInfo.workspaceId, roomId: dmInfo.roomId, data: data), resonseType: DmChatResDTO.self)
             .asObservable()
             .withUnretained(self)
             .flatMap { (owner, result) -> Observable<Mutation> in
@@ -78,7 +80,10 @@ extension DmChatReactor {
                     if let response = response {
                         debugPrint("SUCCESS SEND DM")
                         let data = response.toDomain()
-                        return .just(.sendSuccess(data: data))
+                        if let sendData = owner.saveDmChatItems(data: dmInfo, chat: [data]).first {
+                            return .just(.sendSuccess(data: data))
+                        }
+                        return .just(.msg(msg: DmToastMessage.otherError.message))
                     }
                     return .just(.msg(msg: DmToastMessage.otherError.message))
                 case .failure(let error):
@@ -96,4 +101,38 @@ extension DmChatReactor {
                 
             }
     }
+    
+    private func saveDmChatItems(data: DmDTO, chat: [DmChat]) -> [DmChat] {
+        var imgStrings: [String] = []
+        let recordList = chat.map {
+            let urls: [String] = $0.files.map { url in
+                ImageFileService.getFileName(type: .dm(wsId: data.workspaceId, roomId: data.roomId), fileURL: url)
+            }
+            imgStrings.append(contentsOf: urls)
+            let record = $0.toRecord()
+            record.setImgUrls(urls: urls)
+            return record
+        }
+        
+        // 이미지 저장 추가..
+        
+        do {
+            if let lastData = chat.last {
+                try dmRepository.updateDmLastDate(object: data, date: lastData.createdAt)
+            }
+        } catch {
+            debugPrint("UPDATE DATE ERROR ", error.localizedDescription)
+        }
+        
+        do {
+            try dmRepository.updateDmChatItems(object: data, chat: recordList)
+            return recordList.map { $0.toDomain() }
+        } catch {
+            debugPrint("SAVE DM CHAT ERROR ", error.localizedDescription)
+            return chat
+        }
+        
+    }
+    
+    
 }

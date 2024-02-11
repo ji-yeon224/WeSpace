@@ -39,6 +39,17 @@ final class DmRepository {
         return data
     }
     
+    func updateDmLastDate(object: DmDTO, date: String) throws {
+        do {
+            try realm.write {
+                object.lastDate = date
+            }
+        } catch {
+            throw DBError.updateError
+            
+        }
+    }
+    
     func updateDmChatItems(object: DmDTO, chat: [DmChatDTO]) throws {
         do {
             try realm.write {

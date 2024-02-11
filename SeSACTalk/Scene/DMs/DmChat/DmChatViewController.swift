@@ -33,6 +33,10 @@ final class DmChatViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         self.myInfo = myInfo
         self.dmRoomInfo = dmInfo
+        if let chatItem = dmChatItem {
+            self.dmData.append(contentsOf: chatItem)
+        }
+        
     }
     
     @available(*, unavailable)
@@ -52,6 +56,7 @@ final class DmChatViewController: BaseViewController {
         title = dmUserInfo?.nickname
         navigationController?.navigationBar.isHidden = false
         mainView.chatWriteView.delegate = self
+        updateTableSnapShot()
 //        bindEvent()
     }
 }
@@ -73,7 +78,7 @@ extension DmChatViewController: View {
             .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .withUnretained(self)
             .map { owner, value in
-                Reactor.Action.sendReqeust(wsId: owner.dmRoomInfo?.workspaceId, roomId: owner.dmRoomInfo?.roomId, content: value, files: owner.selectImageModel.items)
+                Reactor.Action.sendReqeust(dmInfo: owner.dmRoomInfo, content: value, files: owner.selectImageModel.items)
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
