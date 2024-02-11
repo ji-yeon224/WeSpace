@@ -68,7 +68,7 @@
 		CE5F94CD2B620004006A4DA4 /* DBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CC2B620004006A4DA4 /* DBError.swift */; };
 		CE5F94CF2B623A36006A4DA4 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */; };
 		CE5F94D12B626EBE006A4DA4 /* DBImageFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */; };
-		CE5F94D32B626F3B006A4DA4 /* ImageFileNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */; };
+		CE5F94D32B626F3B006A4DA4 /* ImageFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D22B626F3B006A4DA4 /* ImageFileManager.swift */; };
 		CE5F94D52B62A3EE006A4DA4 /* ChannelDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D42B62A3EE006A4DA4 /* ChannelDTO.swift */; };
 		CE5F94D72B62A809006A4DA4 /* ChannelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F94D62B62A809006A4DA4 /* ChannelRepository.swift */; };
 		CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */; };
@@ -343,7 +343,7 @@
 		CE5F94CC2B620004006A4DA4 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
 		CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		CE5F94D02B626EBE006A4DA4 /* DBImageFileName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBImageFileName.swift; sourceTree = "<group>"; };
-		CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileNameManager.swift; sourceTree = "<group>"; };
+		CE5F94D22B626F3B006A4DA4 /* ImageFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileManager.swift; sourceTree = "<group>"; };
 		CE5F94D42B62A3EE006A4DA4 /* ChannelDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDTO.swift; sourceTree = "<group>"; };
 		CE5F94D62B62A809006A4DA4 /* ChannelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRepository.swift; sourceTree = "<group>"; };
 		CE61ADF52B5B625A0091B03D /* EmailReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailReqDTO.swift; sourceTree = "<group>"; };
@@ -1349,7 +1349,7 @@
 				CE3001C72B54D6D2005CB58D /* SideMenuVCManager.swift */,
 				CED829452B58C28900AD1828 /* ReusableProtocol.swift */,
 				CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */,
-				CE5F94D22B626F3B006A4DA4 /* ImageFileNameManager.swift */,
+				CE5F94D22B626F3B006A4DA4 /* ImageFileManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1725,7 +1725,7 @@
 				CE61ADFB2B5CEB160091B03D /* CreateChannelViewController.swift in Sources */,
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
 				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,
-				CE5F94D32B626F3B006A4DA4 /* ImageFileNameManager.swift in Sources */,
+				CE5F94D32B626F3B006A4DA4 /* ImageFileManager.swift in Sources */,
 				CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */,
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */,

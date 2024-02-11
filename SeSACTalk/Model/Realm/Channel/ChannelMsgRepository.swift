@@ -55,9 +55,19 @@ final class ChannelMsgRepository {
         // 1. 도큐먼트 경로 찾기
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
+        var directoryPath = documentDirectory.appendingPathComponent("Channel")
         
+        if !FileManager.default.fileExists(atPath: directoryPath.path) {
+            do {
+                try FileManager.default.createDirectory(atPath: directoryPath.path, withIntermediateDirectories: false)
+            } catch {
+                directoryPath = documentDirectory
+            }
+            
+        }
         // 2. 저장할 경로 설정(세부 경로, 이미지를 저장할 위치)
-        let fileURL = documentDirectory.appendingPathComponent("\(fileName)")
+        let fileURL = directoryPath.appendingPathComponent("\(fileName)")
+        
 //        print(fileURL)
         // 3. 이미지 변환
         guard let data = image.img?.jpegData(compressionQuality: 0.5) else { return }

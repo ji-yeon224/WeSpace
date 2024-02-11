@@ -15,6 +15,7 @@ final class ChannelRepository {
     
     let realm = try! Realm()
     
+    
 //    func read(data: ChannelDTO) -> Results<ChannelDTO> {
 //        return realm.objects(data)
 //    }
@@ -110,8 +111,18 @@ final class ChannelRepository {
         
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
         
+        var directoryPath = documentDirectory.appendingPathComponent("Channel")
+        if !FileManager.default.fileExists(atPath: directoryPath.path) {
+            do {
+                try FileManager.default.createDirectory(atPath: directoryPath.path, withIntermediateDirectories: false)
+            } catch {
+                directoryPath = documentDirectory
+            }
+            
+        }
+        
         fileName.forEach {
-            let fileURL = documentDirectory.appendingPathComponent($0)
+            let fileURL = directoryPath.appendingPathComponent($0)
             
             if FileManager.default.fileExists(atPath: fileURL.path) {
                 if let img = UIImage(contentsOfFile: fileURL.path) {
@@ -128,11 +139,19 @@ final class ChannelRepository {
     private func removeImageFromDocuments(fileName: [String]) {
         print("REMOVE IMG..")
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        
-        fileName.forEach {
-            let fileURL = documentDirectory.appendingPathComponent($0)
+        var directoryPath = documentDirectory.appendingPathComponent("Channel")
+        if !FileManager.default.fileExists(atPath: directoryPath.path) {
             do {
-                if !FileManager.default.fileExists(atPath: fileURL.path) {
+                try FileManager.default.createDirectory(atPath: directoryPath.path, withIntermediateDirectories: false)
+            } catch {
+                directoryPath = documentDirectory
+            }
+            
+        }
+        fileName.forEach {
+            let fileURL = directoryPath.appendingPathComponent($0)
+            do {
+                if FileManager.default.fileExists(atPath: fileURL.path) {
                     try FileManager.default.removeItem(at: fileURL)
                 }
             } catch {

@@ -95,8 +95,10 @@ final class ChatView: BaseView {
                     let imgs = ChannelRepository().loadImageFromDocuments(fileName: imgUrls)
                     
                     if imgs.count > 0 {
+                        print("db")
                         cell.configUIImage(imgs: imgs)
                     } else {
+                        print("kf")
                         cell.configImage(files: itemIdentifier.files)
                     }
                     
