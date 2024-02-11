@@ -11,6 +11,10 @@ import RealmSwift
 final class DmRepository {
     let realm = try! Realm()
     
+    func getLocation() {
+        print("=====Realm 경로: ", realm.configuration.fileURL!)
+    }
+    
     func create(object: DmDTO) throws {
         do {
             try realm.write {
@@ -22,17 +26,17 @@ final class DmRepository {
     }
     
     func fetchDmCursorDate(wsId: Int, roomId: Int) -> String? {
-        if let dm = searchDm(wsId: wsId, roomId: roomId) {
+        if let dm = searchDm(wsId: wsId, roomId: roomId).first {
             return dm.lastDate
         }
         return nil
     }
     
-    func searchDm(wsId: Int, roomId: Int) -> DmDTO? {
+    func searchDm(wsId: Int, roomId: Int) -> Results<DmDTO> {
         let data = realm.objects(DmDTO.self).where {
             $0.workspaceId == wsId && $0.roomId == roomId
         }
-        return data.first
+        return data
     }
     
     func updateDmChatItems(object: DmDTO, chat: [DmChatDTO]) throws {

@@ -9,17 +9,22 @@ import Foundation
 import ReactorKit
 
 final class DmListReactor: Reactor {
+    
+    private let dmRepository = DmRepository()
+    
     var initialState: State = State(
         msg: "",
         loginRequest: false,
         memberInfo: nil,
-        dmList: []
+        dmList: [],
+        dmInfo: (nil, [])
     )
     
     
     enum Action {
         case requestMemberList(wsId: Int?)
         case requestDmList(wsId: Int?)
+        case enterDmRoom(wsId: Int?, roomId: Int?, userId: Int)
     }
     
     enum Mutation {
@@ -27,7 +32,7 @@ final class DmListReactor: Reactor {
         case loginRequest
         case memberInfo(data: [User])
         case dmList(data: [DMsRoom])
-        
+        case dmInfo(data: DmDTO, dmChat: [DmChat])
     }
     
     struct State {
@@ -35,6 +40,7 @@ final class DmListReactor: Reactor {
         var loginRequest: Bool
         var memberInfo: [User]?
         var dmList: [DMsRoom]
+        var dmInfo: (DmDTO?, [DmChat])
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -51,7 +57,12 @@ final class DmListReactor: Reactor {
             } else {
                 return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
             }
-            
+        case .enterDmRoom(let wsId, let roomId, let userId):
+            if let wsId = wsId, let roomId = roomId {
+                return requestDmInfo(wsId: wsId, roomId: roomId, userId: userId)
+            } else {
+                return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
+            }
         }
     }
     
@@ -66,6 +77,8 @@ final class DmListReactor: Reactor {
             newState.memberInfo = data
         case .dmList(let data):
             newState.dmList = data
+        case .dmInfo(let data, let dmChat):
+            newState.dmInfo = (data, dmChat)
         }
         
         return newState
@@ -75,6 +88,41 @@ final class DmListReactor: Reactor {
 
 extension DmListReactor {
     
+    private func requestDmInfo(wsId: Int, roomId: Int, userId: Int) -> Observable<Mutation> {
+        if let dmInfo = searchDmDB(wsId: wsId, roomId: roomId, userId: userId) {
+            debugPrint("DM DATA")
+            let chatItem = getDmChatItems(dmData: dmInfo)
+            return .just(.dmInfo(data: dmInfo, dmChat: chatItem))
+        } else {
+            return .just(.msg(msg: DmToastMessage.loadFailDm.message))
+        }
+    }
+    
+    private func searchDmDB(wsId: Int, roomId: Int, userId: Int) -> DmDTO? {
+        let data = dmRepository.searchDm(wsId: wsId, roomId: roomId)
+        
+        if data.isEmpty {
+            let dmInfo = DmDTO(workspaceId: wsId, roomId: roomId, userId: userId)
+            do {
+                try dmRepository.create(object: dmInfo)
+                return dmInfo
+            } catch {
+                debugPrint("DM ", error.localizedDescription)
+                return nil
+            }
+        } else {
+            return data.first
+        }
+        
+    }
+    
+    private func getDmChatItems(dmData: DmDTO) -> [DmChat] {
+        var data: [DmChat] = []
+        dmData.dmItem.forEach {
+            data.append($0.toDomain())
+        }
+        return data
+    }
     
     
     private func requestDmList(wsId: Int) -> Observable<Mutation> {

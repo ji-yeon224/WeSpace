@@ -91,6 +91,11 @@ extension DMListViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        enterDmRoom
+            .map { Reactor.Action.enterDmRoom(wsId: $0.workspaceID, roomId: $0.roomID, userId: $0.user.userId) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindState(reactor: DmListReactor) {
@@ -147,6 +152,18 @@ extension DMListViewController: View {
                 owner.updateSnapshot()
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.dmInfo }
+            .filter {
+                $0.0 != .none
+            }
+            .bind(with: self) { owner, value in
+                let vc = DmChatViewController(myInfo: nil, dmInfo: value.0, dmChatItem: value.1)
+                vc.hidesBottomBarWhenPushed = true
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
             
     }
     
@@ -180,14 +197,16 @@ extension DMListViewController: View {
             }
             .disposed(by: disposeBag)
         
-        enterDmRoom
-            .bind(with: self) { owner, value in
-                // db 조회, wsId
-                let vc = DmChatViewController(myInfo: nil, dmInfo: value)
-                vc.hidesBottomBarWhenPushed = true
-                owner.navigationController?.pushViewController(vc, animated: true)
-            }
-            .disposed(by: disposeBag)
+//        enterDmRoom
+//            .bind(with: self) { owner, value in
+//                // db 조회, wsId
+//                let vc = DmChatViewController(myInfo: nil, dmInfo: value)
+//                vc.hidesBottomBarWhenPushed = true
+//                owner.navigationController?.pushViewController(vc, animated: true)
+//            }
+//            .disposed(by: disposeBag)
+        
+        
     }
     
 }

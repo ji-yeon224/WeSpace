@@ -16,12 +16,13 @@ final class DmDTO: Object {
     @Persisted var lastDate: String?
     @Persisted var dmImg: List<ImageDTO>
     @Persisted var dmItem: List<DmChatDTO>
+    @Persisted var userId: Int
     
-    convenience init(workspaceId: Int, roomId: Int, createdAt: String) {
+    convenience init(workspaceId: Int, roomId: Int, userId: Int) {
         self.init()
         self.workspaceId = workspaceId
         self.roomId = roomId
-        self.createdAt = createdAt
+        self.userId = userId
     }
     
 }

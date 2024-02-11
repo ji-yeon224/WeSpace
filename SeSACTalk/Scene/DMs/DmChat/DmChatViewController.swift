@@ -14,7 +14,7 @@ final class DmChatViewController: BaseViewController {
     private let mainView = DmChatView()
     private var dmUserInfo: User?
     private var myInfo: User?
-    private var dmRoomInfo: DMsRoom?
+    private var dmRoomInfo: DmDTO?
     
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
@@ -29,10 +29,9 @@ final class DmChatViewController: BaseViewController {
         self.view = mainView
     }
     
-    init(myInfo: User?, dmInfo: DMsRoom) {
+    init(myInfo: User?, dmInfo: DmDTO?, dmChatItem: [DmChat]?) {
         super.init(nibName: nil, bundle: nil)
         self.myInfo = myInfo
-        self.dmUserInfo = dmInfo.user
         self.dmRoomInfo = dmInfo
     }
     
@@ -43,7 +42,7 @@ final class DmChatViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        DmRepository().getLocation()
     }
     
     override func configure() {
@@ -74,7 +73,7 @@ extension DmChatViewController: View {
             .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .withUnretained(self)
             .map { owner, value in
-                Reactor.Action.sendReqeust(wsId: owner.dmRoomInfo?.workspaceID, roomId: owner.dmRoomInfo?.roomID, content: value, files: owner.selectImageModel.items)
+                Reactor.Action.sendReqeust(wsId: owner.dmRoomInfo?.workspaceId, roomId: owner.dmRoomInfo?.roomId, content: value, files: owner.selectImageModel.items)
             }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
