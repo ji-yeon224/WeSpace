@@ -11,6 +11,7 @@ import ReactorKit
 final class DmListReactor: Reactor {
     
     private let dmRepository = DmRepository()
+    private var disposeBag = DisposeBag()
     
     var initialState: State = State(
         msg: "",
@@ -174,25 +175,77 @@ extension DmListReactor {
     private func requestDmList(wsId: Int) -> Observable<Mutation> {
         return DMsAPIManager.shared.request(api: .fetchDM(id: wsId), resonseType: DMsRoomResDTO.self)
             .asObservable()
-            .map { result in
+            .flatMap { result -> Observable<Mutation> in
                 switch result {
                 case .success(let response):
                     if let response = response {
-                        let error = response.map { $0.toDomain() }
-                        return .dmList(data: error)
+                        let data = response.map { $0.toDomain() }
+                        let req = data.map {
+                            return ($0, self.dmRepository.fetchDmCursorDate(wsId: $0.workspaceID, roomId: $0.roomID))
+                        }
+                        return self.requestUnreadCnt(data: req)
+                            .map {
+                                return .dmList(data: $0)
+                            }
+                       
                     }
-                    return .msg(msg: WorkspaceToastMessage.loadError.message)
+                    return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
                 case .failure(let error):
                     if let error = DmError(rawValue: error.errorCode) {
-                        return .msg(msg: error.localizedDescription)
+                        return .just(.msg(msg: error.localizedDescription))
                     } else if let error = CommonError(rawValue: error.localizedDescription) {
-                        return .msg(msg: error.localizedDescription)
+                        return .just(.msg(msg: error.localizedDescription))
                     } else {
-                        return .loginRequest
+                        return .just(.loginRequest)
                     }
                 }
                 
             }
+    }
+    
+    private func requestUnreadCnt(data: [(DMsRoom, String?)]) -> Observable<[DMsRoom]> {
+        
+        return Observable.create { observer in
+            var dmItems: [DMsRoom] = []
+            let group = DispatchGroup()
+            
+            data.forEach { value in
+                var dmRoom = value.0
+                let last = value.1
+                group.enter()
+                DispatchQueue.main.async {
+                    self.requestUnreadDm(wsId: dmRoom.workspaceID, roomId: dmRoom.roomID, after: last) { cnt in
+                        dmRoom.unread = cnt ?? 0
+                        dmItems.append(dmRoom)
+                        group.leave()
+                    }
+                }
+            }
+            
+            group.notify(queue: DispatchQueue.main) {
+                observer.onNext(dmItems)
+                observer.onCompleted()
+            }
+            
+            
+            return Disposables.create()
+        }
+    }
+    
+    private func requestUnreadDm(wsId: Int, roomId: Int, after: String?, completion: @escaping ((Int?) -> Void)) {
+        var cnt = 0
+        DMsAPIManager.shared.request(api: .unreads(wsId: wsId, roomId: roomId, after: after), resonseType: UnreadDmCntResDTO.self)
+            .asObservable()
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    cnt = response?.count ?? 0
+                    completion(cnt)
+                case .failure(let error):
+                    completion(nil)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
 //    private func requestLastDmChat(wsId: Int, userId: Int, date: String?) -> Observable<String> {

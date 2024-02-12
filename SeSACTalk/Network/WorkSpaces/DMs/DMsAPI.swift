@@ -12,6 +12,7 @@ enum DMsAPI {
     case fetchDM(id: Int)
     case fetchDmChat(wsId: Int, userId: Int, date: String?)
     case sendMsg(wsId: Int, roomId: Int, data: ChatReqDTO)
+    case unreads(wsId: Int, roomId: Int, after: String?)
 }
 
 extension DMsAPI: TargetType {
@@ -27,12 +28,14 @@ extension DMsAPI: TargetType {
             return Endpoint.workspaces.rawValue + "/\(wsId)/dms/\(userId)/chats"
         case .sendMsg(let wsId, let roomId, _):
             return Endpoint.workspaces.rawValue + "/\(wsId)/dms/\(roomId)/chats"
+        case .unreads(let wsId, let roomId, let after):
+            return Endpoint.workspaces.rawValue + "/\(wsId)/dms/\(roomId)/unreads"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .fetchDM, .fetchDmChat:
+        case .fetchDM, .fetchDmChat, .unreads:
             return .get
         case .sendMsg:
             return .post
@@ -52,12 +55,19 @@ extension DMsAPI: TargetType {
             }
         case .sendMsg(_, _, let data):
             return .uploadMultipart(data.multipartData())
+        case .unreads(_, _, let after):
+            if let after = after {
+                let parameter = ["after": after]
+                return .requestParameters(parameters: parameter, encoding: URLEncoding.queryString)
+            } else {
+                return .requestPlain
+            }
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .fetchDM, .fetchDmChat:
+        case .fetchDM, .fetchDmChat, .unreads:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .sendMsg:
             return ["Content-Type": "multipart/form-data", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]

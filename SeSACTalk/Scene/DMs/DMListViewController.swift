@@ -52,6 +52,14 @@ final class DMListViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
+        guard let workspace = workspace else { return }
+//        requestMemberList.accept(workspace.workspaceId)
+        requestDmList.accept(workspace.workspaceId)
+    }
+    
     override func configure() {
 //        super.configure()
         guard let workspace = workspace else { return }
@@ -150,7 +158,7 @@ extension DMListViewController: View {
                         }
                         owner.updateSnapshot()
                         owner.mainView.noWorkspaceMember(isEmpty: false)
-                        owner.requestDmList.accept(owner.workspace?.workspaceId)
+//                        owner.requestDmList.accept(owner.workspace?.workspaceId)
                     }
                 }
             }
@@ -162,7 +170,10 @@ extension DMListViewController: View {
             .filter { !$0.isEmpty }
             .distinctUntilChanged()
             .drive(with: self) { owner, value in
-                owner.chatData = value.map {
+                owner.chatData = value.sorted(by: { value1, value2 in
+                    value1.createdAt > value2.createdAt
+                })
+                    .map {
                     DmItems(items: $0)
                 }
                 owner.updateSnapshot()

@@ -68,5 +68,14 @@ final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
         titleLabel.textColor = .secondaryText
         imageView.image = .hashTagThin
     }
+    
+    func setDmBold() {
+        titleLabel.font = Font.bodyBold.fontStyle
+        titleLabel.textColor = .basicText
+    }
+    func setDmThin() {
+        titleLabel.font = Font.body.fontStyle
+        titleLabel.textColor = .secondaryText
+    }
 }
 
