@@ -33,6 +33,7 @@ final class DmChatViewController: BaseViewController {
     init(dmInfo: DmDTO?, dmChatItem: [DmChat]?, userInfo: [Int: User]) {
         super.init(nibName: nil, bundle: nil)
         self.usersInfo = userInfo
+        mainView.userInfo = userInfo
         
         self.dmRoomInfo = dmInfo
         if let chatItem = dmChatItem {
@@ -55,7 +56,6 @@ final class DmChatViewController: BaseViewController {
     }
     
     override func configure() {
-       
         self.reactor = DmChatReactor()
         view.backgroundColor = .secondaryBackground
         configNav()

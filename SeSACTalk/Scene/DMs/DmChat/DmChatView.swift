@@ -61,7 +61,7 @@ final class DmChatView: BaseView {
             cell.selectionStyle = .none
             //----
             if let user = itemIdentifier.user, let userInfo = self.userInfo[user.userId] {
-                print(userInfo)
+                
                 cell.nickNameLabel.text = userInfo.nickname
                 if let profileImg = userInfo.profileImage, !profileImg.isEmpty {
                     cell.profileImageView.setImage(with: profileImg)

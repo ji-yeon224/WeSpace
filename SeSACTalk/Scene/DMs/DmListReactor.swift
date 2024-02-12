@@ -134,7 +134,6 @@ extension DmListReactor {
     
     private func requestDmInfo(wsId: Int, roomId: Int, userId: Int) -> Observable<Mutation> {
         if let dmInfo = searchDmDB(wsId: wsId, roomId: roomId, userId: userId) {
-            debugPrint("DM DATA")
             let chatItem = getDmChatItems(dmData: dmInfo)
             return .concat(
                 .just(.dmInfo(data: dmInfo, dmChat: chatItem)),
