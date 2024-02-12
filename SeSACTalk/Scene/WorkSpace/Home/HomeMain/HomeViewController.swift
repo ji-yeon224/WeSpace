@@ -24,6 +24,10 @@ final class HomeViewController: BaseViewController, View {
     private let enterChannel = PublishRelay<Channel>()
     private let requestMyInfo = PublishRelay<Void>()
     
+    private let enterDmRoom = PublishRelay<DMsRoom>()
+    private let dmRoomData = PublishRelay<(DmDTO?, [DmChat])>()
+    private let dmUserData = PublishRelay<User>()
+    
     private let channelChatInfo = PublishRelay<(ChannelDTO?, [ChannelMessage])>()
     private let channelChatUserInfo = PublishRelay<[Int: User]>()
     
@@ -143,6 +147,11 @@ extension HomeViewController {
             .map { Reactor.Action.requestMyInfo }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        enterDmRoom
+            .map { Reactor.Action.requestDmRoomInfo(wsId: $0.workspaceID, roomId: $0.roomID, userId: $0.user.userId)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
             
     }
     
@@ -244,12 +253,51 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.dmInfo }
+            .filter { $0.0 != .none }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, value in
+                owner.dmRoomData.accept(value)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.dmUserInfo }
+            .filter { $0 != .none }
+            .asDriver(onErrorJustReturn: nil)
+            .distinctUntilChanged()
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.dmUserData.accept(value)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         
     }
     
     
     
     private func bindEvent() {
+        
+        dmRoomData
+            .withLatestFrom(dmUserData) { dmInfo, userInfo in
+                return (dmInfo, userInfo)
+            }
+            .bind(with: self) { owner, value in
+                let dmDto = value.0.0
+                let chat = value.0.1
+                let user = value.1
+                if let myInfo = owner.myInfo {
+                    let userInfo = [myInfo.userId: myInfo, user.userId: user]
+                    let vc = DmChatViewController(dmInfo: dmDto, dmChatItem: chat, userInfo: userInfo)
+                    vc.hidesBottomBarWhenPushed = true
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         channelChatInfo
             .withLatestFrom(channelChatUserInfo) { chatInfo, userInfo in
                 return (chatInfo, userInfo)
@@ -379,7 +427,7 @@ extension HomeViewController {
         if let channelItem = item.item as? Channel {
             enterChannel.accept(channelItem)
         } else if let dmItem = item.item as? DMsRoom {
-            print(dmItem.user)
+            enterDmRoom.accept(dmItem)
         } else if let _ = item.item as? NewFriend {
             if UserDefaultsManager.userId == workspace?.ownerId {
                 let vc = InviteViewController()

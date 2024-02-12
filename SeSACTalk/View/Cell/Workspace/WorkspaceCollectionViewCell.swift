@@ -13,6 +13,9 @@ final class WorkspaceCollectionViewCell: BaseCollectionViewCell {
     
     var imageView = UIImageView().then {
         $0.image = .hashTagThin
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = 4
+        $0.clipsToBounds = true
     }
     
     let titleLabel = CustomBasicLabel(text: "", fontType: .body, color: .secondaryText, line: 1)

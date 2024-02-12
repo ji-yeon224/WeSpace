@@ -11,6 +11,7 @@ import ReactorKit
 final class HomeReactor: Reactor {
     
     private let channelRepository = ChannelRepository()
+    private let dmRepository = DmRepository()
     private var disposeBag = DisposeBag()
     
     var initialState: State = State(
@@ -22,7 +23,9 @@ final class HomeReactor: Reactor {
         allWorkspace: [],
         chatInfo: (nil, []),
         userInfo: [:],
-        myInfo: nil
+        myInfo: nil,
+        dmInfo: (nil, []),
+        dmUserInfo: nil
     )
     
     enum Action {
@@ -31,6 +34,7 @@ final class HomeReactor: Reactor {
         case requestAllWorkspace
         case searchChannelDB(wsId: Int?, chInfo: Channel?)
         case requestMyInfo
+        case requestDmRoomInfo(wsId: Int?, roomId: Int?, userId: Int)
     }
     
     enum Mutation {
@@ -42,7 +46,8 @@ final class HomeReactor: Reactor {
         case chatInfo(chInfo: ChannelDTO?, chatItems: [ChannelMessage])
         case userInfo(data: [Int: User])
         case myInfo(data: User)
-//        case unreadList(data: [Int: Int])
+        case dmInfo(data: DmDTO?, dmChat: [DmChat])
+        case dmUserInfo (data: User?)
     }
     
     struct State {
@@ -55,6 +60,8 @@ final class HomeReactor: Reactor {
         var chatInfo: (ChannelDTO?, [ChannelMessage])
         var userInfo: [Int: User]
         var myInfo: User?
+        var dmInfo: (DmDTO?, [DmChat])
+        var dmUserInfo: User?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -87,6 +94,15 @@ final class HomeReactor: Reactor {
             }
         case .requestMyInfo:
             return requestMyInfo()
+        case .requestDmRoomInfo(let wsId, let roomId, let userId):
+            if let wsId = wsId, let roomId = roomId {
+                return .concat(
+                    requestUserInfo(userId: userId),
+                    requestDmInfo(wsId: wsId, roomId: roomId, userId: userId)
+                )
+            } else {
+                return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
+            }
         }
     }
     
@@ -115,6 +131,10 @@ final class HomeReactor: Reactor {
             newState.userInfo = data
         case .myInfo(let data):
             newState.myInfo = data
+        case .dmInfo(data: let data, let dmChat):
+            newState.dmInfo = (data, dmChat)
+        case .dmUserInfo(data: let data):
+            newState.dmUserInfo = data
         }
         
         return newState
@@ -342,4 +362,71 @@ extension HomeReactor {
     }
     
     
+}
+
+// DM
+extension HomeReactor {
+    private func requestUserInfo(userId: Int) -> Observable<Mutation> {
+        return UsersAPIManager.shared.request(api: .otherUser(userId: userId), responseType: UserResDTO.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        return .concat(
+                            .just(.dmUserInfo(data: response.toDomain()))
+                        )
+                    } else {
+                        return .just(.msg(msg: "문제가 발생하였습니다."))
+                    }
+                case .failure(let error):
+                    
+                    if error.errorCode == "E03" {
+                        return .just(.msg(msg: "알 수 없는 계정입니다."))
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else {
+                        return .just(.loginRequest)
+                    }
+                }
+            }
+    }
+    
+    private func requestDmInfo(wsId: Int, roomId: Int, userId: Int) -> Observable<Mutation> {
+        if let dmInfo = searchDmDB(wsId: wsId, roomId: roomId, userId: userId) {
+            let chatItem = getDmChatItems(dmData: dmInfo)
+            return .concat(
+                .just(.dmInfo(data: dmInfo, dmChat: chatItem)),
+                .just(.dmInfo(data: nil, dmChat: []))
+            )
+        } else {
+            return .just(.msg(msg: DmToastMessage.loadFailDm.message))
+        }
+    }
+    
+    private func searchDmDB(wsId: Int, roomId: Int, userId: Int) -> DmDTO? {
+        let data = dmRepository.searchDm(wsId: wsId, roomId: roomId)
+        
+        if data.isEmpty {
+            let dmInfo = DmDTO(workspaceId: wsId, roomId: roomId, userId: userId)
+            do {
+                try dmRepository.create(object: dmInfo)
+                return dmInfo
+            } catch {
+                debugPrint("DM ", error.localizedDescription)
+                return nil
+            }
+        } else {
+            return data.first
+        }
+        
+    }
+    
+    private func getDmChatItems(dmData: DmDTO) -> [DmChat] {
+        var data: [DmChat] = []
+        dmData.dmItem.forEach {
+            data.append($0.toDomain())
+        }
+        return data
+    }
 }

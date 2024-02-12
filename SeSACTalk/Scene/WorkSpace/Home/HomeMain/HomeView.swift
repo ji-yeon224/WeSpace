@@ -118,7 +118,13 @@ extension HomeView {
         }
         let dmCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, DMsRoom> { cell, indexPath, itemIdentifier in
             cell.titleLabel.text = itemIdentifier.user.nickname
-            cell.imageView.image = .seSACBot
+            if let profile = itemIdentifier.user.profileImage {
+                cell.imageView.setImage(with: profile)
+            } else {
+                let img = Constants.Image.dummyProfile
+                cell.imageView.image = img[itemIdentifier.user.userId % 3]
+            }
+            
         }
         let newFriendCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, NewFriend> { cell, indexPath, itemIdentifier in
             cell.titleLabel.text = "팀원 추가"
