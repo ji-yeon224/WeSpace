@@ -164,7 +164,6 @@ extension DmChatReactor {
         }
         
         do {
-            print("!!")
             if let lastData = chat.last {
                 print(lastData.createdAt)
                 try dmRepository.updateDmLastDate(object: data, date: lastData.createdAt)
@@ -187,8 +186,7 @@ extension DmChatReactor {
         
         for i in 0..<files.count {
             let file = files[i]
-            ImageDownloadManager.shared.getUIImage(with: file) { [weak self] img in
-                guard let self = self else { return }
+            ImageDownloadManager.shared.getUIImage(with: file) { img in
                 ImageFileManager.shared.saveImageToDocument(type: .dm, fileName: fileNames[i], image: img)
                 
             }

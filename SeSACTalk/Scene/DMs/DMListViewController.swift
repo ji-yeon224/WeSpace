@@ -25,6 +25,7 @@ final class DMListViewController: BaseViewController {
     
     private let enterDmData = PublishRelay<(DmDTO?, [DmChat])>()
     private let dmUserData = PublishRelay<User>()
+    private let selectUserCell = PublishRelay<User>()
     
     private var myInfo: User?
     
@@ -76,7 +77,7 @@ final class DMListViewController: BaseViewController {
     
     private func configData(ws: WorkSpace) {
         mainView.topView.wsImageView.setImage(with: ws.thumbnail)
-        mainView.topView.workSpaceName.text = ws.name
+        mainView.topView.workSpaceName.text = "Direct Message"//ws.name
         mainView.topView.profileImageView.image = Constants.Image.dummyProfile[UserDefaultsManager.userId % 3]
     }
     
@@ -111,14 +112,15 @@ extension DMListViewController: View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        
-            
-        
         requestMyInfo
             .map { Reactor.Action.requestMyInfo }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        selectUserCell
+            .map { Reactor.Action.selectUserCell(wsId: self.workspace?.workspaceId, user: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
     }
     
@@ -259,7 +261,7 @@ extension DMListViewController: View {
                 if indexPath.section == 0 { // 멤버 섹션
                     
                     if let user = owner.member[indexPath.item].items as? User {
-                        print(user)
+                        owner.selectUserCell.accept(user)
                     }
                 } else if indexPath.section == 1{ // 채팅 섹션
                     if let dm = owner.chatData[indexPath.item].items as? DMsRoom {

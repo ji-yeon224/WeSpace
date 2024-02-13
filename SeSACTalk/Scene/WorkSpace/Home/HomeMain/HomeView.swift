@@ -119,7 +119,7 @@ extension HomeView {
         let dmCell = UICollectionView.CellRegistration<WorkspaceCollectionViewCell, DMsRoom> { cell, indexPath, itemIdentifier in
             cell.titleLabel.text = itemIdentifier.user.nickname
             
-            print("DM UNREAD ", itemIdentifier.unread)
+            
             if itemIdentifier.unread > 0 {
                 cell.unreadView.isHidden = false
                 cell.unreadView.countLabel.text = "\(itemIdentifier.unread)"

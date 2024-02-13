@@ -38,6 +38,14 @@ final class DmRepository {
         }
         return data
     }
+    
+    func searchDmRoom(userId: Int) -> DmDTO? {
+        let data = realm.objects(DmDTO.self).where {
+            $0.userId == userId
+        }
+        return data.first
+    }
+    
     func updateImgItems(data: DmDTO, img: [ImageDTO]) throws {
         do {
             try realm.write {

@@ -29,6 +29,7 @@ final class DmListReactor: Reactor {
         case requestDmList(wsId: Int?)
         case enterDmRoom(wsId: Int?, roomId: Int?, userId: Int)
         case requestMyInfo
+        case selectUserCell(wsId: Int?, user: User)
     }
     
     enum Mutation {
@@ -77,7 +78,22 @@ final class DmListReactor: Reactor {
             }
         case .requestMyInfo:
             return requestMyInfo()
-            
+        case .selectUserCell(let wsId, let user):
+            if let wsId = wsId {
+                if let dmData = dmRepository.searchDmRoom(userId: user.userId) {
+                    return .concat(
+                        requestUserInfo(userId: user.userId),
+                        requestDmInfo(wsId: wsId, roomId: dmData.roomId, userId: user.userId)
+                    )
+                } else {
+                    return requestDmChat(wsId: wsId, userId: user.userId)
+                    
+                }
+            }
+            else {
+                return .just(.msg(msg: DmToastMessage.otherError.message))
+            }
+                
         }
     }
     
@@ -189,7 +205,7 @@ extension DmListReactor {
                             }
                        
                     }
-                    return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
+                    return .just(.msg(msg: DmToastMessage.otherError.message))
                 case .failure(let error):
                     if let error = DmError(rawValue: error.errorCode) {
                         return .just(.msg(msg: error.localizedDescription))
@@ -248,24 +264,31 @@ extension DmListReactor {
             .disposed(by: disposeBag)
     }
     
-//    private func requestLastDmChat(wsId: Int, userId: Int, date: String?) -> Observable<String> {
-//        return DMsAPIManager.shared.request(api: .fetchDmChat(wsId: wsId, userId: userId, date: date), resonseType: DmChatListResDTO.self)
-//            .asObservable()
-//            .map { result -> Mutation in
-//                switch result {
-//                case .success(let response):
-//                    
-//                case .failure(let error):
-//                    if let error = DmError(rawValue: error.errorCode) {
-//                        return .msg(msg: error.localizedDescription)
-//                    } else if let error = CommonError(rawValue: error.localizedDescription) {
-//                        return .msg(msg: error.localizedDescription)
-//                    } else {
-//                        return .loginRequest
-//                    }
-//                }
-//            }
-//    }
+    private func requestDmChat(wsId: Int, userId: Int) -> Observable<Mutation> {
+        DMsAPIManager.shared.request(api: .fetchDmChat(wsId: wsId, userId: userId, date: nil), resonseType: DmChatListResDTO.self)
+            .asObservable()
+            .withUnretained(self)
+            .flatMap { (owner, result) -> Observable<Mutation> in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        return .concat(
+                            owner.requestUserInfo(userId: userId),
+                            owner.requestDmInfo(wsId: wsId, roomId: response.room_id, userId: userId)
+                        )
+                    }
+                    return .just(.msg(msg: DmToastMessage.loadFailDm.message))
+                case .failure(let error):
+                    if let error = WorkspaceError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else {
+                        return .just(.loginRequest)
+                    }
+                }
+            }
+    }
     
     
     private func requestMemberList(wsId: Int) -> Observable<Mutation> {
