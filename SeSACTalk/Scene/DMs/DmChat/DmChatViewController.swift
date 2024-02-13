@@ -55,6 +55,18 @@ final class DmChatViewController: BaseViewController {
         requestUncheckedChat.accept(dmRoomInfo)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        connectSocket()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.disconnect()
+        }
+    }
+    
     override func configure() {
         self.reactor = DmChatReactor()
         view.backgroundColor = .secondaryBackground
@@ -70,6 +82,16 @@ final class DmChatViewController: BaseViewController {
             title = userInfo.nickname
         }
         
+    }
+    
+    private func connectSocket() {
+        guard let dmRoom = dmRoomInfo else { return }
+        
+        if !SocketNetworkManager.shared.isConnected {
+            SocketNetworkManager.shared.configSocketManager(type: .dm(roomId: dmRoom.roomId))
+            SocketNetworkManager.shared.connect()
+            
+        }
     }
 }
 
@@ -99,6 +121,11 @@ extension DmChatViewController: View {
             .distinctUntilChanged()
             .observe(on: MainScheduler.asyncInstance)
             .map { Reactor.Action.requestUncheckedMsg(dmInfo: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        SocketNetworkManager.shared.dmContent
+            .map { Reactor.Action.receiveDmData(dmInfo: self.dmRoomInfo, dmData: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -133,6 +160,21 @@ extension DmChatViewController: View {
             .drive(with: self) { owner, value in
                 owner.dmData.append(contentsOf: value)
                 owner.updateTableSnapShot()
+                owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.saveReceive }
+            .filter { $0 != .none }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.dmData.append(value)
+                    owner.updateTableSnapShot()
+                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
+                }
             }
             .disposed(by: disposeBag)
         

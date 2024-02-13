@@ -16,13 +16,15 @@ final class DmChatReactor: Reactor {
         msg: "", 
         loginReqeust: false,
         sendSuccess: nil,
-        fetchChatSuccess: []
+        fetchChatSuccess: [],
+        saveReceive: nil
     )
     
     
     enum Action {
         case sendReqeust(dmInfo: DmDTO?, content: String?, files: [SelectImage])
         case requestUncheckedMsg(dmInfo: DmDTO?)
+        case receiveDmData(dmInfo: DmDTO?, dmData: DmChat)
     }
     
     enum Mutation {
@@ -30,6 +32,7 @@ final class DmChatReactor: Reactor {
         case loginRequest
         case sendSuccess(data: DmChat)
         case fetchChatSuccess(data: [DmChat])
+        case saveReceiveData(data: DmChat)
     }
     
     struct State {
@@ -37,6 +40,7 @@ final class DmChatReactor: Reactor {
         var loginReqeust: Bool
         var sendSuccess: DmChat?
         var fetchChatSuccess: [DmChat]
+        var saveReceive: DmChat?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -58,6 +62,16 @@ final class DmChatReactor: Reactor {
             } else {
                 return .just(.msg(msg: DmToastMessage.loadFailDm.message))
             }
+        case .receiveDmData(let dmInfo, let dmData):
+            if let dmInfo = dmInfo {
+                if let result = saveDmChatItems(data: dmInfo, chat: [dmData]).first {
+                    return .just(.saveReceiveData(data: result))
+                }
+                return .just(.msg(msg: DmToastMessage.loadFailDm.message))
+            } else {
+                return .just(.msg(msg: DmToastMessage.loadFailDm.message))
+            }
+            
         }
     }
     
@@ -72,6 +86,8 @@ final class DmChatReactor: Reactor {
             newState.sendSuccess = data
         case .fetchChatSuccess(let data):
             newState.fetchChatSuccess = data
+        case .saveReceiveData(let data):
+            newState.saveReceive = data
         }
         
         return newState
