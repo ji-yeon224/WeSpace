@@ -332,7 +332,14 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
-        
+        mainView.topView.profileImageView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                let vc = MyProfileViewController()
+                vc.hidesBottomBarWhenPushed = true
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
         
         mainView.collectionView.rx.itemSelected
             .asDriver()

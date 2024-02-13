@@ -235,6 +235,11 @@
 		CEE7DA592B74C2D5007BAAE6 /* DmChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA582B74C2D5007BAAE6 /* DmChatViewController.swift */; };
 		CEE7DA5B2B74C2D9007BAAE6 /* DmChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA5A2B74C2D9007BAAE6 /* DmChatView.swift */; };
 		CEE7DA5D2B74C2E8007BAAE6 /* DmChatReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7DA5C2B74C2E8007BAAE6 /* DmChatReactor.swift */; };
+		CEE938132B7B781D003B4585 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938122B7B781D003B4585 /* MyProfileViewController.swift */; };
+		CEE938152B7B7860003B4585 /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938142B7B7860003B4585 /* MyProfileView.swift */; };
+		CEE938182B7B8110003B4585 /* ProfileEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938172B7B8110003B4585 /* ProfileEditCell.swift */; };
+		CEE9381A2B7B8637003B4585 /* MyProfileEditType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938192B7B8637003B4585 /* MyProfileEditType.swift */; };
+		CEE9381C2B7B8718003B4585 /* MyProfileEditItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9381B2B7B8718003B4585 /* MyProfileEditItem.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -497,6 +502,11 @@
 		CEE7DA582B74C2D5007BAAE6 /* DmChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatViewController.swift; sourceTree = "<group>"; };
 		CEE7DA5A2B74C2D9007BAAE6 /* DmChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatView.swift; sourceTree = "<group>"; };
 		CEE7DA5C2B74C2E8007BAAE6 /* DmChatReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmChatReactor.swift; sourceTree = "<group>"; };
+		CEE938122B7B781D003B4585 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		CEE938142B7B7860003B4585 /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		CEE938172B7B8110003B4585 /* ProfileEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCell.swift; sourceTree = "<group>"; };
+		CEE938192B7B8637003B4585 /* MyProfileEditType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEditType.swift; sourceTree = "<group>"; };
+		CEE9381B2B7B8718003B4585 /* MyProfileEditItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEditItem.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -694,6 +704,7 @@
 				CE9592392B68B07000665659 /* ChannelSectionModel.swift */,
 				CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */,
 				CE1806E72B735BAD002DD9C3 /* DmItems.swift */,
+				CEE9381B2B7B8718003B4585 /* MyProfileEditItem.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -891,6 +902,7 @@
 		CE6C1FF22B43E97200AA7F9C /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				CEE938112B7B7801003B4585 /* Profile */,
 				CE15528A2B5A54C60011D106 /* SearchTab */,
 				CE1552892B5A54B90011D106 /* DMs */,
 				CEA8F9B52B4949010062B45C /* WorkSpace */,
@@ -986,6 +998,7 @@
 		CE85749F2B4C01AD0025ED1B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				CEE938162B7B8101003B4585 /* Profile */,
 				CE1806E22B734B6E002DD9C3 /* DM */,
 				CE1806DC2B7342BD002DD9C3 /* Workspace */,
 				CE1806DB2B7342A5002DD9C3 /* Chatting */,
@@ -1275,6 +1288,23 @@
 			path = DmList;
 			sourceTree = "<group>";
 		};
+		CEE938112B7B7801003B4585 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CEE938122B7B781D003B4585 /* MyProfileViewController.swift */,
+				CEE938142B7B7860003B4585 /* MyProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		CEE938162B7B8101003B4585 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CEE938172B7B8110003B4585 /* ProfileEditCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		CEE989962B4A52E100590A19 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1393,6 +1423,7 @@
 				CE1806E02B734AB8002DD9C3 /* DmSection.swift */,
 				CE1806EB2B7360B4002DD9C3 /* DateFormatterType.swift */,
 				CE583B852B78BCC100B541EE /* CategoryType.swift */,
+				CEE938192B7B8637003B4585 /* MyProfileEditType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -1635,9 +1666,11 @@
 				CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */,
 				CE5F94D52B62A3EE006A4DA4 /* ChannelDTO.swift in Sources */,
 				CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */,
+				CEE938182B7B8110003B4585 /* ProfileEditCell.swift in Sources */,
 				CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
+				CEE938132B7B781D003B4585 /* MyProfileViewController.swift in Sources */,
 				CEC764322B51257F000578E9 /* InfoViewController.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
 				CE4904DE2B4D2E41003B0204 /* Item.swift in Sources */,
@@ -1656,6 +1689,7 @@
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
 				CE7A58A92B752D2700EBBDF5 /* DmChatDTO.swift in Sources */,
 				CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */,
+				CEE9381C2B7B8718003B4585 /* MyProfileEditItem.swift in Sources */,
 				CEA8F9CF2B49920E0062B45C /* EmailLoginViewController.swift in Sources */,
 				CEDD7FAB2B7A2E0B00F58A83 /* UnreadDmCntResDTO.swift in Sources */,
 				CE61AE0E2B5D64EA0091B03D /* ChatWriteView.swift in Sources */,
@@ -1685,6 +1719,7 @@
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
 				CEC46BB42B70BCE600F5A651 /* ChannelCHManagerDelegate.swift in Sources */,
 				CED8294D2B58C42900AD1828 /* ChangeWSManagerReactor.swift in Sources */,
+				CEE938152B7B7860003B4585 /* MyProfileView.swift in Sources */,
 				CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */,
 				CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */,
 				CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */,
@@ -1768,6 +1803,7 @@
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,
+				CEE9381A2B7B8637003B4585 /* MyProfileEditType.swift in Sources */,
 				CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */,
 				CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */,
 				CE1806D72B731D2F002DD9C3 /* DMListViewController.swift in Sources */,
