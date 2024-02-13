@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MyProfileRequestDto: Decodable {
+struct MyProfileResDto: Decodable {
     
     let user_id: Int
     let email: String

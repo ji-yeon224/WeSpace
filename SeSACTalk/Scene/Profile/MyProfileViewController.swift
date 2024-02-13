@@ -12,6 +12,8 @@ import RxCocoa
 final class MyProfileViewController: BaseViewController {
     
     private let mainView = MyProfileView()
+    var disposeBag = DisposeBag()
+    let requestMyInfo = PublishRelay<Void>()
     
     private let dummy1 = [
         MyProfileEditItem(type: .coin),
@@ -25,6 +27,8 @@ final class MyProfileViewController: BaseViewController {
         MyProfileEditItem(type: .linkSocial, vendor: "apple"),
         MyProfileEditItem(type: .logout)
     ]
+    private var section: [MyProfileSectionModel] = []
+    private let collectionItems = PublishRelay<[MyProfileSectionModel]>()
     
     override func loadView() {
         self.view = mainView
@@ -33,43 +37,86 @@ final class MyProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sectionSnapShot()
-        updateSnapShot()
+//        sectionSnapShot()
+//        updateSnapShot()
+        section = [MyProfileSectionModel(section: .section1, items: dummy1),
+                   MyProfileSectionModel(section: .section2, items: dummy2)]
+        collectionItems.accept(section)
+        requestMyInfo.accept(())
     }
     
     override func configure() {
         super.configure()
         configNav()
-        
+        self.reactor = MyProfileReactor()
     }
     
     
 }
 
-// CollectionView
-extension MyProfileViewController {
-    private func sectionSnapShot() {
-        var snapshot = NSDiffableDataSourceSnapshot<MyProfileSection, MyProfileEditItem>()
-        snapshot.appendSections([.section1, .section2])
-        mainView.dataSource.apply(snapshot)
+extension MyProfileViewController: View {
+    func bind(reactor: MyProfileReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+        bindEvent()
+    }
+    
+    private func bindAction(reactor: MyProfileReactor) {
+        requestMyInfo
+            .map { Reactor.Action.requestMyInfo }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindState(reactor: MyProfileReactor) {
+        reactor.state
+            .map { $0.msg }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: nil)
+            .filter { $0 != .none }
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.showToastMessage(message: value, position: .bottom)
+                }
+            }
+            .disposed(by: disposeBag)
         
+        reactor.state
+            .map { $0.loginRequest }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .bind(with: self) { owner, value in
+                print("loginRequest")
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.myProfile }
+            .filter { !$0.isEmpty }
+            .asDriver(onErrorJustReturn: [])
+            .drive(mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
+            .disposed(by: disposeBag)
+            
+        reactor.state
+            .map { $0.profileImage }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                owner.mainView.setProfileImage(value: value)
+            }
+            .disposed(by: disposeBag)
     }
     
-    private func setSectionItem() -> [MyProfileSection: [MyProfileEditItem]] {
-        var items: [MyProfileSection: [MyProfileEditItem]] = [:]
-        items[.section1] = dummy1
-        items[.section2] = dummy2
-        return items
-    }
-    
-    private func updateSnapShot() {
-        for (section, items) in setSectionItem() {
-            var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<MyProfileEditItem>()
-            sectionSnapshot.append(items)
-            mainView.dataSource.apply(sectionSnapshot, to: section, animatingDifferences: false)
-        }
+    private func bindEvent() {
+        
+        mainView.collectionView.rx.modelSelected(MyProfileEditItem.self)
+            .bind(with: self) { owner, value in
+                print(value)
+            }
+            .disposed(by: disposeBag)
     }
 }
+
 
 // Nav
 extension MyProfileViewController {

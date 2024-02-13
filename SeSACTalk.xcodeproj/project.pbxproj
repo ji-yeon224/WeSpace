@@ -240,12 +240,15 @@
 		CEE938182B7B8110003B4585 /* ProfileEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938172B7B8110003B4585 /* ProfileEditCell.swift */; };
 		CEE9381A2B7B8637003B4585 /* MyProfileEditType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938192B7B8637003B4585 /* MyProfileEditType.swift */; };
 		CEE9381C2B7B8718003B4585 /* MyProfileEditItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9381B2B7B8718003B4585 /* MyProfileEditItem.swift */; };
+		CEE9381E2B7BBC61003B4585 /* MyProfileReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9381D2B7BBC61003B4585 /* MyProfileReactor.swift */; };
+		CEE938202B7BBFBD003B4585 /* UserToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9381F2B7BBFBD003B4585 /* UserToastMessage.swift */; };
+		CEE938222B7BC2DC003B4585 /* MyProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938212B7BC2DC003B4585 /* MyProfileSectionModel.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
 		CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989922B4A4FE800590A19 /* EmailLoginResponseDTO.swift */; };
 		CEE989952B4A52C600590A19 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989942B4A52C600590A19 /* MyProfile.swift */; };
-		CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989972B4A52EE00590A19 /* MyProfileRequestDto.swift */; };
+		CEE989982B4A52EE00590A19 /* MyProfileResDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989972B4A52EE00590A19 /* MyProfileResDto.swift */; };
 		CEE9899B2B4A7E8C00590A19 /* HomeEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9899A2B4A7E8C00590A19 /* HomeEmptyViewController.swift */; };
 		CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */; };
 		CEE989A12B4A85E000590A19 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989A02B4A85E000590A19 /* HomeTopView.swift */; };
@@ -507,12 +510,15 @@
 		CEE938172B7B8110003B4585 /* ProfileEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCell.swift; sourceTree = "<group>"; };
 		CEE938192B7B8637003B4585 /* MyProfileEditType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEditType.swift; sourceTree = "<group>"; };
 		CEE9381B2B7B8718003B4585 /* MyProfileEditItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEditItem.swift; sourceTree = "<group>"; };
+		CEE9381D2B7BBC61003B4585 /* MyProfileReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileReactor.swift; sourceTree = "<group>"; };
+		CEE9381F2B7BBFBD003B4585 /* UserToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToastMessage.swift; sourceTree = "<group>"; };
+		CEE938212B7BC2DC003B4585 /* MyProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileSectionModel.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
 		CEE989922B4A4FE800590A19 /* EmailLoginResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginResponseDTO.swift; sourceTree = "<group>"; };
 		CEE989942B4A52C600590A19 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
-		CEE989972B4A52EE00590A19 /* MyProfileRequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRequestDto.swift; sourceTree = "<group>"; };
+		CEE989972B4A52EE00590A19 /* MyProfileResDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileResDto.swift; sourceTree = "<group>"; };
 		CEE9899A2B4A7E8C00590A19 /* HomeEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewController.swift; sourceTree = "<group>"; };
 		CEE9899C2B4A7E9700590A19 /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 		CEE989A02B4A85E000590A19 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
@@ -705,6 +711,7 @@
 				CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */,
 				CE1806E72B735BAD002DD9C3 /* DmItems.swift */,
 				CEE9381B2B7B8718003B4585 /* MyProfileEditItem.swift */,
+				CEE938212B7BC2DC003B4585 /* MyProfileSectionModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1293,6 +1300,7 @@
 			children = (
 				CEE938122B7B781D003B4585 /* MyProfileViewController.swift */,
 				CEE938142B7B7860003B4585 /* MyProfileView.swift */,
+				CEE9381D2B7BBC61003B4585 /* MyProfileReactor.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1309,7 +1317,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE989942B4A52C600590A19 /* MyProfile.swift */,
-				CEE989972B4A52EE00590A19 /* MyProfileRequestDto.swift */,
+				CEE989972B4A52EE00590A19 /* MyProfileResDto.swift */,
 				CEC764372B512E20000578E9 /* UserResDTO.swift */,
 				CEC764522B5176DA000578E9 /* User.swift */,
 			);
@@ -1405,6 +1413,7 @@
 				CE5D06762B4EF00300C067A3 /* WorkspaceToastMessage.swift */,
 				CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */,
 				CE583B832B7873BA00B541EE /* DmToastMessage.swift */,
+				CEE9381F2B7BBFBD003B4585 /* UserToastMessage.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -1642,6 +1651,7 @@
 				CE211F332B5AC4EF00C43028 /* ChannelsAPIManager.swift in Sources */,
 				CEC764362B512CCB000578E9 /* ChannelResDTO.swift in Sources */,
 				CE57E42B2B4557CE009BD53A /* CustomStackView.swift in Sources */,
+				CEE9381E2B7BBC61003B4585 /* MyProfileReactor.swift in Sources */,
 				CE9DEB7D2B6D1D7C0016382B /* UIScrollView+Extension.swift in Sources */,
 				CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */,
 				CEDCC0462B6100B1001D788C /* ChannelError.swift in Sources */,
@@ -1682,6 +1692,7 @@
 				CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */,
 				CE57E4272B454726009BD53A /* PageSheetManager.swift in Sources */,
 				CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */,
+				CEE938202B7BBFBD003B4585 /* UserToastMessage.swift in Sources */,
 				CED8294B2B58C41500AD1828 /* ChangeManagerView.swift in Sources */,
 				CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */,
 				CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */,
@@ -1732,6 +1743,7 @@
 				CE5F94D72B62A809006A4DA4 /* ChannelRepository.swift in Sources */,
 				CEE989932B4A4FE800590A19 /* EmailLoginResponseDTO.swift in Sources */,
 				CEA8F9C82B4981930062B45C /* KakaoLoginRequestDTO.swift in Sources */,
+				CEE938222B7BC2DC003B4585 /* MyProfileSectionModel.swift in Sources */,
 				CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */,
 				CE61ADFF2B5CEB290091B03D /* CreateChannelReactor.swift in Sources */,
 				CE5F94D12B626EBE006A4DA4 /* DBImageFileName.swift in Sources */,
@@ -1747,7 +1759,7 @@
 				CE61AE102B5E40DC0091B03D /* ChattingCell.swift in Sources */,
 				CED829512B590D7D00AD1828 /* AlertViewController.swift in Sources */,
 				CEEE4EBD2B46DF170059D1AF /* UsersAPIManager.swift in Sources */,
-				CEE989982B4A52EE00590A19 /* MyProfileRequestDto.swift in Sources */,
+				CEE989982B4A52EE00590A19 /* MyProfileResDto.swift in Sources */,
 				CE1806E12B734AB9002DD9C3 /* DmSection.swift in Sources */,
 				CE61ADF62B5B625A0091B03D /* EmailReqDTO.swift in Sources */,
 				CE57E4292B454E52009BD53A /* CustomTextField.swift in Sources */,

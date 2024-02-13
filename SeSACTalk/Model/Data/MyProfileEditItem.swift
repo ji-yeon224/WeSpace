@@ -10,6 +10,7 @@ import Foundation
 struct MyProfileEditItem: Hashable {
     var type: MyProfileEditType
     var subText: String?
+    var coin: Int?
     var email: String?
     var vendor: String?
 }

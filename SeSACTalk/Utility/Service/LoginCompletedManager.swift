@@ -18,7 +18,7 @@ final class LoginCompletedManager {
     func requestMyProfile() -> Observable<Result<MyProfile, ErrorResponse>> {
         
         return Observable.create { result in
-            UsersAPIManager.shared.request(api: .my, responseType: MyProfileRequestDto.self)
+            UsersAPIManager.shared.request(api: .my, responseType: MyProfileResDto.self)
                 .asObservable()
                 .subscribe(with: self) { owner, value in
                     switch value {

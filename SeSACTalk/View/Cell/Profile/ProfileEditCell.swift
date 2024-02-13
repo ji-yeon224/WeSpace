@@ -47,7 +47,7 @@ final class ProfileEditCell: BaseCollectionViewCell {
 //            make.centerY.equalTo(contentView)
         }
         coinCountLabel.snp.makeConstraints { make in
-            make.leading.equalTo(cellTitle.snp.trailing).offset(3)
+            make.leading.equalTo(cellTitle.snp.trailing).offset(5)
             make.verticalEdges.equalTo(contentView).inset(13)
         }
         rightChevron.snp.makeConstraints { make in

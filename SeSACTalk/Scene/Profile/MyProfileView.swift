@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxDataSources
 
 final class MyProfileView: BaseView {
     
@@ -13,9 +14,11 @@ final class MyProfileView: BaseView {
         $0.image = Constants.Image.dummyProfile[UserDefaultsManager.userId % 3]
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
+        $0.register(ProfileEditCell.self, forCellWithReuseIdentifier: ProfileEditCell.identifier)
+    }
     
-    var dataSource: UICollectionViewDiffableDataSource<MyProfileSection, MyProfileEditItem>!
+    var rxdataSource: RxCollectionViewSectionedReloadDataSource<MyProfileSectionModel>!
     
     override func configure() {
         super.configure()
@@ -49,21 +52,33 @@ final class MyProfileView: BaseView {
     }
     
     private func configDataSource() {
-        let cell = UICollectionView.CellRegistration<ProfileEditCell, MyProfileEditItem> { cell, indexPath, itemIdentifier in
-            cell.setCellLayout(type: itemIdentifier.type)
-            cell.cellTitle.text = itemIdentifier.type.rawValue
-            if let subText = itemIdentifier.subText {
+        
+        rxdataSource = RxCollectionViewSectionedReloadDataSource(configureCell: { dataSource, collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileEditCell.identifier, for: indexPath) as? ProfileEditCell else { return UICollectionViewCell() }
+            
+            cell.setCellLayout(type: item.type)
+            cell.cellTitle.text = item.type.rawValue
+            if let subText = item.subText {
                 cell.subTitle.text = subText
-            } else if let email = itemIdentifier.email {
+            } else if let email = item.email {
                 cell.emailLabel.text = email
             }
-            if let vendor = itemIdentifier.vendor {
+            if let coin = item.coin {
+                cell.coinCountLabel.text = "\(coin)"
+            }
+            if let vendor = item.vendor {
                 print(vendor)
             }
-        }
-        
-        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            return collectionView.dequeueConfiguredReusableCell(using: cell, for: indexPath, item: itemIdentifier)
+            
+            return cell
         })
+    }
+    
+    func setProfileImage(value: String?) {
+        if let value = value {
+            profileImageView.imageView.setImage(with: value)
+        } else {
+            profileImageView.imageView.image = Constants.Image.dummyProfile[UserDefaultsManager.userId % 3]
+        }
     }
 }
