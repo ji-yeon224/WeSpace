@@ -128,6 +128,7 @@ final class SocketNetworkManager {
     
     func disconnect() {
         socket.disconnect()
+        flag = false
     }
     
     func pauseConnect() {
