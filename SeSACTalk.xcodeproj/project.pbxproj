@@ -576,10 +576,8 @@
 		CE1552892B5A54B90011D106 /* DMs */ = {
 			isa = PBXGroup;
 			children = (
+				CEE938102B7B77AE003B4585 /* DmList */,
 				CEE7DA572B74C2C5007BAAE6 /* DmChat */,
-				CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */,
-				CE1806D82B7341C3002DD9C3 /* DMListView.swift */,
-				CEE7DA472B749486007BAAE6 /* DmListReactor.swift */,
 			);
 			path = DMs;
 			sourceTree = "<group>";
@@ -1265,6 +1263,16 @@
 				CEE7DA5C2B74C2E8007BAAE6 /* DmChatReactor.swift */,
 			);
 			path = DmChat;
+			sourceTree = "<group>";
+		};
+		CEE938102B7B77AE003B4585 /* DmList */ = {
+			isa = PBXGroup;
+			children = (
+				CE1806D62B731D2F002DD9C3 /* DMListViewController.swift */,
+				CE1806D82B7341C3002DD9C3 /* DMListView.swift */,
+				CEE7DA472B749486007BAAE6 /* DmListReactor.swift */,
+			);
+			path = DmList;
 			sourceTree = "<group>";
 		};
 		CEE989962B4A52E100590A19 /* Profile */ = {

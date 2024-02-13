@@ -324,12 +324,15 @@ extension HomeViewController {
                 SideMenuVCManager.shared.presentSideMenu()
             }
             .disposed(by: disposeBag)
+        
         mainView.topView.wsImageView.rx.tapGesture()
             .when(.recognized)
             .bind(with: self) { owner, _ in
                 SideMenuVCManager.shared.presentSideMenu()
             }
             .disposed(by: disposeBag)
+        
+        
         
         mainView.collectionView.rx.itemSelected
             .asDriver()
