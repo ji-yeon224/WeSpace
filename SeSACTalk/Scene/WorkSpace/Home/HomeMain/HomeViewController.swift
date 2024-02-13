@@ -16,7 +16,7 @@ final class HomeViewController: BaseViewController, View {
     private let mainView = HomeView()
     var disposeBag = DisposeBag()
     private let requestChannelInfo = PublishSubject<Void>()
-    private let requestDMsInfo = PublishSubject<Bool>()
+    private let requestDMsInfo = PublishSubject<Void>()
     private let requestAllWorkspaceInfo = PublishSubject<Bool>()
     private let requestChatItems = PublishRelay<Void>()
     private let createChannel = PublishRelay<Void>()
@@ -75,6 +75,7 @@ final class HomeViewController: BaseViewController, View {
         super.viewDidAppear(animated)
         
         requestChannelInfo.onNext(())
+        requestDMsInfo.onNext(())
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -94,7 +95,7 @@ final class HomeViewController: BaseViewController, View {
     
     private func initData() {
 //        requestChannelInfo.onNext(())
-        requestDMsInfo.onNext(true)
+//        requestDMsInfo.onNext(())
         requestAllWorkspaceInfo.onNext(true)
         if let workspace = workspace {
             configData(ws: workspace)

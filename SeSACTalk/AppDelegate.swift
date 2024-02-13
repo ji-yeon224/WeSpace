@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.registerForRemoteNotifications()
         KakaoSDK.initSDK(appKey: APIKey.kakaokey)
         
-        FirebaseApp.configure()
+//        FirebaseApp.configure()
                 
                 
         UNUserNotificationCenter.current().delegate = self

@@ -241,7 +241,7 @@ extension DmListReactor {
                 case .success(let response):
                     cnt = response?.count ?? 0
                     completion(cnt)
-                case .failure(let error):
+                case .failure(_):
                     completion(nil)
                 }
             }

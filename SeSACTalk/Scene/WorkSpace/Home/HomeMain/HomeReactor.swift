@@ -41,7 +41,7 @@ final class HomeReactor: Reactor {
         case channelInfo(channels: [Channel])
         case msg(msg: String)
         case loginRequest
-        case dmsInfo(dms: DMsRoomResDTO)
+        case dmsInfo(dms: [DMsRoom])
         case fetchAllWorkspace(data: [WorkspaceDto])
         case chatInfo(chInfo: ChannelDTO?, chatItems: [ChannelMessage])
         case userInfo(data: [Int: User])
@@ -119,7 +119,7 @@ final class HomeReactor: Reactor {
             newState.loginRequest = true
         case .dmsInfo(dms: let dms):
             newState.dmRoomItems = dms.map {
-                return WorkspaceItem(title: "'", subItems: [], item: $0.toDomain())
+                return WorkspaceItem(title: "'", subItems: [], item: $0)
             }
         case .fetchAllWorkspace(data: let data):
             newState.allWorkspace = data.map{
@@ -244,7 +244,6 @@ extension HomeReactor {
         channelData.chatItem.forEach {
             data.append($0.toDomain(name: channelData.name))
         }
-        print(#function, data.count)
         return data
     }
     
@@ -262,29 +261,7 @@ extension HomeReactor {
             }
     }
     
-    private func reqeustDMRoomInfo(id: Int) -> Observable<Mutation> {
-        
-        return DMsAPIManager.shared.request(api: .fetchDM(id: id), resonseType: DMsRoomResDTO.self)
-            .asObservable()
-            .map { result -> Mutation in
-                switch result {
-                case .success(let response):
-                    if let response = response {
-                        return Mutation.dmsInfo(dms: response)
-                    } else { return Mutation.msg(msg: "오류가 발생하였습니다.")}
-                case .failure(let error):
-                    if let error = WorkspaceError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
-                    } else if let error = CommonError(rawValue: error.errorCode) {
-                        return Mutation.msg(msg: error.localizedDescription)
-                    } else {
-                        return Mutation.loginRequest
-                    }
-                }
-                
-            }
-        
-    }
+    
     
     private func requestMyChannels(id: Int) -> Observable<Mutation> {
         return ChannelsAPIManager.shared.request(api: .myChannel(id: id), responseType: ChannelsItemResDTO.self)
@@ -366,6 +343,86 @@ extension HomeReactor {
 
 // DM
 extension HomeReactor {
+    
+    private func reqeustDMRoomInfo(id: Int) -> Observable<Mutation> {
+        
+        return DMsAPIManager.shared.request(api: .fetchDM(id: id), resonseType: DMsRoomResDTO.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(let response):
+                    if let response = response {
+                        let data = response.map { $0.toDomain() }
+                        let req = data.map {
+                            return ($0, self.dmRepository.fetchDmCursorDate(wsId: $0.workspaceID, roomId: $0.roomID))
+                        }
+                        return self.requestUnreadDMCnt(data: req)
+                            .map {
+                                return .dmsInfo(dms: $0)
+                            }
+                        
+                    }
+                    return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
+                case .failure(let error):
+                    if let error = WorkspaceError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else {
+                        return .just(.loginRequest)
+                    }
+                }
+                
+            }
+        
+    }
+    
+    private func requestUnreadDMCnt(data: [(DMsRoom, String?)]) -> Observable<[DMsRoom]> {
+        
+        return Observable.create { observer in
+            var dmItems: [DMsRoom] = []
+            let group = DispatchGroup()
+            
+            data.forEach { value in
+                var dmRoom = value.0
+                let last = value.1
+                group.enter()
+                DispatchQueue.main.async {
+                    self.requestUnreadDm(wsId: dmRoom.workspaceID, roomId: dmRoom.roomID, after: last) { cnt in
+                        dmRoom.unread = cnt ?? 0
+                        dmItems.append(dmRoom)
+                        group.leave()
+                    }
+                }
+            }
+            
+            group.notify(queue: DispatchQueue.main) {
+                observer.onNext(dmItems)
+                observer.onCompleted()
+            }
+            
+            
+            return Disposables.create()
+        }
+    }
+    
+    private func requestUnreadDm(wsId: Int, roomId: Int, after: String?, completion: @escaping ((Int?) -> Void)) {
+        var cnt = 0
+        DMsAPIManager.shared.request(api: .unreads(wsId: wsId, roomId: roomId, after: after), resonseType: UnreadDmCntResDTO.self)
+            .asObservable()
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let response):
+                    cnt = response?.count ?? 0
+                    completion(cnt)
+                case .failure(let error):
+                    completion(nil)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    
     private func requestUserInfo(userId: Int) -> Observable<Mutation> {
         return UsersAPIManager.shared.request(api: .otherUser(userId: userId), responseType: UserResDTO.self)
             .asObservable()

@@ -8,6 +8,7 @@
 import Foundation
 
 struct DmChat: Hashable {
+    let uuid = UUID()
     let dmId: Int
     let roomId: Int
     let content: String?
