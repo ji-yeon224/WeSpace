@@ -37,7 +37,7 @@ final class EmailLoginViewController: BaseViewController, View {
     
     private func bindAction(reactor: EmailLoginReactor) {
         
-        Observable.combineLatest(mainView.emailTextField.rx.text.orEmpty, mainView.passwordTextField.rx.text.orEmpty) { email, password in
+        Observable.combineLatest(mainView.emailInput.textfield.rx.text.orEmpty, mainView.passwordInput.textfield.rx.text.orEmpty) { email, password in
             return (email, password)
         }
         .map { Reactor.Action.inputValue(email: $0.0, password: $0.1)}
@@ -45,7 +45,7 @@ final class EmailLoginViewController: BaseViewController, View {
         .bind(to: reactor.action)
         .disposed(by: disposeBag)
         
-        let input = Observable.combineLatest(mainView.emailTextField.rx.text.orEmpty, mainView.passwordTextField.rx.text.orEmpty)
+        let input = Observable.combineLatest(mainView.emailInput.textfield.rx.text.orEmpty, mainView.passwordInput.textfield .rx.text.orEmpty)
         
         mainView.loginButton.rx.tap
             .withLatestFrom(input) { _, value in

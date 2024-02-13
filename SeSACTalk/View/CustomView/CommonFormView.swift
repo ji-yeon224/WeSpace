@@ -10,7 +10,7 @@ import UIKit
 final class CommonFormView: BaseView {
     
     private let backView = CustomStackView()
-    private var titleLabel = CustomBasicLabel(text: "", fontType: .title2)
+    var titleLabel = CustomBasicLabel(text: "", fontType: .title2)
     var textfield = CustomTextField(placeholder: "")
     
     init(title: String, placeholder: String, keyboardType: UIKeyboardType = .default) {
