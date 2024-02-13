@@ -16,6 +16,7 @@ final class SocketNetworkManager {
     let chatMessage = PublishSubject<ChannelMessage>()
     let dmContent = PublishSubject<DmChat>()
     var isConnected: Bool = false
+    var flag: Bool = false // true -> 잠시 중단
     private init() { }
     
     var manager: SocketManager!
@@ -23,7 +24,7 @@ final class SocketNetworkManager {
     
     func configSocketManager(type: SocketURL) {
         
-        manager = SocketManager(socketURL: type.url, config: [.log(true), .compress])
+        manager = SocketManager(socketURL: type.url, config: [.log(false), .compress])
         
         socket = manager.socket(forNamespace: type.nameSpace)
         
@@ -123,12 +124,22 @@ final class SocketNetworkManager {
             disconnect()
         }
         socket.connect()
-        isConnected = true
     }
     
     func disconnect() {
         socket.disconnect()
-        isConnected = false
     }
     
+    func pauseConnect() {
+        if isConnected && !flag {
+            disconnect()
+            flag = true
+        }
+    }
+    func reconnect() {
+        if flag {
+            connect()
+            flag = false
+        }
+    }
 }

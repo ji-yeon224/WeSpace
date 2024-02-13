@@ -57,6 +57,7 @@ final class DmChatViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(#function)
         connectSocket()
     }
     
