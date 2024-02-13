@@ -181,7 +181,6 @@ extension DmChatReactor {
         
         do {
             if let lastData = chat.last {
-                print(lastData.createdAt)
                 try dmRepository.updateDmLastDate(object: data, date: lastData.createdAt)
             }
         } catch {

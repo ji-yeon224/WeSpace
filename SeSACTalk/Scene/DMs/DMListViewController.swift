@@ -36,7 +36,6 @@ final class DMListViewController: BaseViewController {
     init(workspace: WorkSpace) {
         super.init(nibName: nil, bundle: nil)
         self.workspace = workspace
-        print(workspace)
     }
     
     @available(*, unavailable)
@@ -55,7 +54,6 @@ final class DMListViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(#function)
         guard let workspace = workspace else { return }
 //        requestMemberList.accept(workspace.workspaceId)
         requestDmList.accept(workspace.workspaceId)
