@@ -13,7 +13,8 @@ final class MyProfileViewController: BaseViewController {
     
     private let mainView = MyProfileView()
     var disposeBag = DisposeBag()
-    let requestMyInfo = PublishRelay<Void>()
+    private let requestMyInfo = PublishRelay<Void>()
+    private let changeProfileImage = PublishRelay<SelectImage>()
     
     private let dummy1 = [
         MyProfileEditItem(type: .coin),
@@ -66,6 +67,11 @@ extension MyProfileViewController: View {
             .map { Reactor.Action.requestMyInfo }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        changeProfileImage
+            .map { Reactor.Action.changeProfileImage(data: $0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: MyProfileReactor) {
@@ -114,6 +120,27 @@ extension MyProfileViewController: View {
                 print(value)
             }
             .disposed(by: disposeBag)
+        
+        mainView.profileImageView.rx.tapGesture()
+            .when(.recognized)
+            .bind(with: self) { owner, _ in
+                PHPickerManager.shared.presentPicker(vc: owner, selectedId: nil)
+            }
+            .disposed(by: disposeBag)
+        
+        PHPickerManager.shared.selectedImage
+            .bind(with: self) { owner, image in
+                if !image.1.isEmpty {
+                    owner.changeProfileImage.accept(SelectImage(img: image.1[0]))
+//                    owner.mainView.profileImageView.imageView.image = image.1[0]
+                    
+//                    owner.mainView.profileImageView.imageView.setImage(img: image.1[0])
+//                    owner.img = owner.mainView.imageView.image
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
     }
 }
 

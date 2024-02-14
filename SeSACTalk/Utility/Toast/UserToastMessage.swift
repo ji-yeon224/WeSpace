@@ -10,6 +10,7 @@ import Foundation
 enum UserToastMessage {
     case loadFail
     case otherError
+    case changeProfileImage
 }
 
 extension UserToastMessage {
@@ -19,6 +20,8 @@ extension UserToastMessage {
             return "정보를 불러오는데 실패하였습니다."
         case .otherError:
             return "문제가 발생하였습니다."
+        case .changeProfileImage:
+            return "프로필 이미지가 성공적으로 변경되었습니다."
         }
     }
 }

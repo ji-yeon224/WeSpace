@@ -15,11 +15,11 @@ struct MyProfileResDto: Decodable {
     let profileImage: String?
     let phone: String?
     let vendor: String?
-    let sesacCoin: Int
+    let sesacCoin: Int?
     let createdAt: String
     
     func toDomain() -> MyProfile {
-        .init(id: user_id, email: email, nickname: nickname, profileImage: profileImage, phone: phone, vendor: vendor, sesacCoin: sesacCoin, createdAt: createdAt)
+        .init(id: user_id, email: email, nickname: nickname, profileImage: profileImage, phone: phone, vendor: vendor, sesacCoin: sesacCoin ?? 0, createdAt: createdAt)
     }
     
 }

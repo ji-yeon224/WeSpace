@@ -17,6 +17,7 @@ enum UsersAPI {
     case my
     case deviceToken(data: DeviceTokenReq)
     case otherUser(userId: Int)
+    case profile(data: ProfileImageReqDTO)
 }
 extension UsersAPI: TargetType {
     
@@ -40,6 +41,8 @@ extension UsersAPI: TargetType {
             return Endpoint.user.rawValue + "/deviceToken"
         case .otherUser(let userId):
             return Endpoint.user.rawValue + "/\(userId)"
+        case .profile:
+            return Endpoint.user.rawValue + "/my/image"
         }
     }
     
@@ -49,6 +52,8 @@ extension UsersAPI: TargetType {
             return .post
         case .my, .otherUser:
             return .get
+        case .profile:
+            return .put
             
         }
     }
@@ -67,6 +72,8 @@ extension UsersAPI: TargetType {
             return .requestPlain
         case .deviceToken(let data):
             return .requestJSONEncodable(data)
+        case .profile(let data):
+            return .uploadMultipart(data.multipartData())
         }
     }
     
@@ -78,6 +85,8 @@ extension UsersAPI: TargetType {
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .deviceToken:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key, "Authorization": UserDefaultsManager.accessToken]
+        case .profile:
+            return ["Content-Type": "multipart/form-data", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         }
     }
     

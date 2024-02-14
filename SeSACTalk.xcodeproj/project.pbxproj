@@ -125,6 +125,7 @@
 		CE95923C2B68BA2000665659 /* SearchChannelReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923B2B68BA2000665659 /* SearchChannelReactor.swift */; };
 		CE95923E2B68D0E800665659 /* SearchChannelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */; };
 		CE9841F52B75FC46005F9352 /* DmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9841F42B75FC46005F9352 /* DmRepository.swift */; };
+		CE9B06462B7C61A5005D309B /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B06452B7C61A5005D309B /* UserError.swift */; };
 		CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */; };
 		CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */; };
 		CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */; };
@@ -243,6 +244,7 @@
 		CEE9381E2B7BBC61003B4585 /* MyProfileReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9381D2B7BBC61003B4585 /* MyProfileReactor.swift */; };
 		CEE938202B7BBFBD003B4585 /* UserToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9381F2B7BBFBD003B4585 /* UserToastMessage.swift */; };
 		CEE938222B7BC2DC003B4585 /* MyProfileSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938212B7BC2DC003B4585 /* MyProfileSectionModel.swift */; };
+		CEE938252B7BCEC0003B4585 /* ProfileImageReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE938242B7BCEC0003B4585 /* ProfileImageReqDTO.swift */; };
 		CEE9898D2B4A4B3E00590A19 /* LoginToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */; };
 		CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */; };
 		CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */; };
@@ -414,6 +416,7 @@
 		CE95923B2B68BA2000665659 /* SearchChannelReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelReactor.swift; sourceTree = "<group>"; };
 		CE95923D2B68D0E800665659 /* SearchChannelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelDelegate.swift; sourceTree = "<group>"; };
 		CE9841F42B75FC46005F9352 /* DmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmRepository.swift; sourceTree = "<group>"; };
+		CE9B06452B7C61A5005D309B /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
 		CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenReq.swift; sourceTree = "<group>"; };
 		CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
@@ -513,6 +516,7 @@
 		CEE9381D2B7BBC61003B4585 /* MyProfileReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileReactor.swift; sourceTree = "<group>"; };
 		CEE9381F2B7BBFBD003B4585 /* UserToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToastMessage.swift; sourceTree = "<group>"; };
 		CEE938212B7BC2DC003B4585 /* MyProfileSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileSectionModel.swift; sourceTree = "<group>"; };
+		CEE938242B7BCEC0003B4585 /* ProfileImageReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageReqDTO.swift; sourceTree = "<group>"; };
 		CEE9898C2B4A4B3E00590A19 /* LoginToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginToastMessage.swift; sourceTree = "<group>"; };
 		CEE9898E2B4A4BF900590A19 /* LoginInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputValue.swift; sourceTree = "<group>"; };
 		CEE989902B4A4FB600590A19 /* EmailLoginRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginRequestDTO.swift; sourceTree = "<group>"; };
@@ -758,8 +762,9 @@
 		CE5D06632B4E6A7400C067A3 /* Workspaces */ = {
 			isa = PBXGroup;
 			children = (
-				CEC7644D2B517427000578E9 /* DMs */,
 				CEC7643C2B5162F0000578E9 /* Channel */,
+				CEC7644D2B517427000578E9 /* DMs */,
+				CEE938232B7BCE5D003B4585 /* Users */,
 				CE5D06642B4E6A8A00C067A3 /* AllWorkspaceReDTO.swift */,
 				CE5D06662B4E6AF600C067A3 /* WorkSpace.swift */,
 				CE5D066E2B4EE69600C067A3 /* WsCreateReqDTO.swift */,
@@ -1229,6 +1234,7 @@
 				CEA8F9AF2B4926DA0062B45C /* JoinError.swift */,
 				CEA8F9CA2B49891E0062B45C /* LoginError.swift */,
 				CECFCDEE2B4FC91400EB0DB7 /* RefreshError.swift */,
+				CE9B06452B7C61A5005D309B /* UserError.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1311,6 +1317,14 @@
 				CEE938172B7B8110003B4585 /* ProfileEditCell.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		CEE938232B7BCE5D003B4585 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				CEE938242B7BCEC0003B4585 /* ProfileImageReqDTO.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		CEE989962B4A52E100590A19 /* Profile */ = {
@@ -1635,6 +1649,7 @@
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
 				CE61AE122B5E41670091B03D /* SquareFillImageView.swift in Sources */,
+				CE9B06462B7C61A5005D309B /* UserError.swift in Sources */,
 				CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */,
 				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
@@ -1642,6 +1657,7 @@
 				CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */,
+				CEE938252B7BCEC0003B4585 /* ProfileImageReqDTO.swift in Sources */,
 				CE5EA4C42B60FFCC00999704 /* ChatReqDTO.swift in Sources */,
 				CEC46BB02B708D0A00F5A651 /* ChangeCHManangerView.swift in Sources */,
 				CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */,

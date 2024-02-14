@@ -21,7 +21,7 @@ final class UsersAPIManager {
         
         var provider = provider
         switch api {
-        case .my, .deviceToken:
+        case .my, .deviceToken, .profile, .otherUser:
             provider = intercepterProvider
         default: break
         }
