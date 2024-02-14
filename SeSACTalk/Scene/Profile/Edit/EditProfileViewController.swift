@@ -16,7 +16,11 @@ final class EditProfileViewController: BaseViewController {
     private var editType: EditProfileType = .editNickname
     private var profileData: ProfileUpdateReqDTO?
     
+    private var requestUpdate = PublishRelay<ProfileUpdateReqDTO>()
+    
     var disposeBag = DisposeBag()
+    
+    var successUpdate: (() -> Void)?
     
     init(type: EditProfileType, data: ProfileUpdateReqDTO) {
         super.init(nibName: nil, bundle: nil)
@@ -35,20 +39,26 @@ final class EditProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindEvent()
     }
     
     override func configure() {
         super.configure()
         configNav()
+        self.reactor = EditProfileReactor()
         
         guard let profileData = profileData else { return }
         mainView.configTextFieldData(type: editType, data: profileData)
         
     }
     
-    private func bindEvent() {
-        
+    
+    
+}
+
+extension EditProfileViewController: View {
+    func bind(reactor: EditProfileReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
         
         switch editType {
         case .editNickname:
@@ -58,17 +68,73 @@ final class EditProfileViewController: BaseViewController {
         }
     }
     
+    private func bindAction(reactor: EditProfileReactor) {
+        requestUpdate
+            .map { Reactor.Action.requestEdit(type: self.editType, data: $0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindState(reactor: EditProfileReactor) {
+        reactor.state
+            .map { $0.msg }
+            .filter { $0 != .none }
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.showToastMessage(message: value, position: .top)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.successUpdate }
+            .asDriver(onErrorJustReturn: false)
+            .filter { $0 }
+            .drive(with: self) { owner, _ in
+                owner.successUpdate?()
+                owner.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     private func bindNicknameEvent() {
+        
+        mainView.completeButton.rx.tap
+            .withLatestFrom(mainView.editTextfield.rx.text.orEmpty)
+            .map({
+                return $0
+            })
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self) { owner, value in
+                owner.requestUpdate.accept(ProfileUpdateReqDTO(nickname: value, phone: owner.profileData?.phone))
+            }
+            .disposed(by: disposeBag)
+        
         mainView.editTextfield.rx.text.orEmpty
             .asDriver()
             .drive(with: self) { owner, value in
-                let enable = value.isEmpty || value == owner.profileData?.nickName
+                let enable = value.isEmpty || value == owner.profileData?.nickname
                 owner.mainView.setButtonEnable(isActive: !enable)
             }
             .disposed(by: disposeBag)
     }
     
     private func bindPhoneEvent() {
+        
+        mainView.completeButton.rx.tap
+            .withLatestFrom(mainView.editTextfield.rx.text.orEmpty)
+            .map({
+                return $0
+            })
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self) { owner, value in
+                if let profileData = owner.profileData {
+                    owner.requestUpdate.accept(ProfileUpdateReqDTO(nickname: profileData.nickname, phone: value))
+                }
+            }
+            .disposed(by: disposeBag)
+        
         mainView.editTextfield.rx.text.orEmpty
             .asDriver()
             .drive(with: self) { owner, value in
@@ -105,8 +171,6 @@ final class EditProfileViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-    
-    
 }
 
 extension EditProfileViewController {

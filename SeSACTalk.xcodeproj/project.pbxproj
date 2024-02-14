@@ -130,6 +130,7 @@
 		CE9B064B2B7C9368005D309B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B064A2B7C9368005D309B /* EditProfileView.swift */; };
 		CE9B064D2B7C968E005D309B /* EditProfileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B064C2B7C968E005D309B /* EditProfileType.swift */; };
 		CE9B064F2B7C9720005D309B /* ProfileUpdateReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B064E2B7C9720005D309B /* ProfileUpdateReqDTO.swift */; };
+		CE9B06512B7CA428005D309B /* EditProfileReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B06502B7CA428005D309B /* EditProfileReactor.swift */; };
 		CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */; };
 		CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */; };
 		CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */; };
@@ -425,6 +426,7 @@
 		CE9B064A2B7C9368005D309B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		CE9B064C2B7C968E005D309B /* EditProfileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileType.swift; sourceTree = "<group>"; };
 		CE9B064E2B7C9720005D309B /* ProfileUpdateReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateReqDTO.swift; sourceTree = "<group>"; };
+		CE9B06502B7CA428005D309B /* EditProfileReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileReactor.swift; sourceTree = "<group>"; };
 		CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenReq.swift; sourceTree = "<group>"; };
 		CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
@@ -1042,6 +1044,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9B06482B7C935E005D309B /* EditProfileViewController.swift */,
+				CE9B06502B7CA428005D309B /* EditProfileReactor.swift */,
 				CE9B064A2B7C9368005D309B /* EditProfileView.swift */,
 			);
 			path = Edit;
@@ -1750,6 +1753,7 @@
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
 				CEE7DA5D2B74C2E8007BAAE6 /* DmChatReactor.swift in Sources */,
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
+				CE9B06512B7CA428005D309B /* EditProfileReactor.swift in Sources */,
 				CE5D066B2B4E924300C067A3 /* PhPickerManager.swift in Sources */,
 				CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */,
 				CEE7DA562B74BA74007BAAE6 /* DmChatList.swift in Sources */,

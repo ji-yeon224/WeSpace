@@ -18,6 +18,7 @@ enum UsersAPI {
     case deviceToken(data: DeviceTokenReq)
     case otherUser(userId: Int)
     case profile(data: ProfileImageReqDTO)
+    case updateProfile(data: ProfileUpdateReqDTO)
 }
 extension UsersAPI: TargetType {
     
@@ -35,7 +36,7 @@ extension UsersAPI: TargetType {
             return Endpoint.user.rawValue + "/login/kakao"
         case .emailLogin:
             return Endpoint.user.rawValue + "/login"
-        case .my:
+        case .my, .updateProfile:
             return Endpoint.user.rawValue + "/my"
         case .deviceToken:
             return Endpoint.user.rawValue + "/deviceToken"
@@ -52,7 +53,7 @@ extension UsersAPI: TargetType {
             return .post
         case .my, .otherUser:
             return .get
-        case .profile:
+        case .profile, .updateProfile:
             return .put
             
         }
@@ -74,6 +75,8 @@ extension UsersAPI: TargetType {
             return .requestJSONEncodable(data)
         case .profile(let data):
             return .uploadMultipart(data.multipartData())
+        case .updateProfile(let data):
+            return .requestJSONEncodable(data)
         }
     }
     
@@ -83,7 +86,7 @@ extension UsersAPI: TargetType {
             return ["Content-Type": "application/json", "SesacKey": APIKey.key]
         case .my, .otherUser:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
-        case .deviceToken:
+        case .deviceToken, .updateProfile:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key, "Authorization": UserDefaultsManager.accessToken]
         case .profile:
             return ["Content-Type": "multipart/form-data", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]

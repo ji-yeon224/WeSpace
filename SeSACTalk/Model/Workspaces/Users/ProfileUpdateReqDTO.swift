@@ -8,6 +8,6 @@
 import Foundation
 
 struct ProfileUpdateReqDTO: Encodable {
-    var nickName: String
-    var phone: String
+    var nickname: String
+    var phone: String?
 }

@@ -38,6 +38,15 @@ final class ProfileEditCell: BaseCollectionViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        coinCountLabel.isHidden = true
+        rightChevron.isHidden = true
+        subTitle.isHidden = true
+        emailLabel.isHidden = true
+        socialImage.isHidden = true
+    }
+    
     override func setConstraints() {
         
         cellTitle.snp.makeConstraints { make in

@@ -145,13 +145,19 @@ extension MyProfileViewController {
         case .coin:
             print("coin")
         case .nickname:
-            let vc = EditProfileViewController(type: .editNickname, data: ProfileUpdateReqDTO(nickName: myInfo.nickname, phone: myInfo.phone ?? ""))
-            
+            let vc = EditProfileViewController(type: .editNickname, data: ProfileUpdateReqDTO(nickname: myInfo.nickname, phone: myInfo.phone ?? ""))
+            vc.successUpdate = {
+                self.showToastMessage(message: UserToastMessage.updateNickname.message, position: .bottom)
+                self.requestMyInfo.accept(())
+            }
             navigationController?.pushViewController(vc, animated: true)
             
         case .phone:
-            let vc = EditProfileViewController(type: .editPhone, data: ProfileUpdateReqDTO(nickName: myInfo.nickname, phone: myInfo.phone ?? ""))
-            
+            let vc = EditProfileViewController(type: .editPhone, data: ProfileUpdateReqDTO(nickname: myInfo.nickname, phone: myInfo.phone ?? ""))
+            vc.successUpdate = {
+                self.showToastMessage(message: UserToastMessage.updatePhone.message, position: .bottom)
+                self.requestMyInfo.accept(())
+            }
             navigationController?.pushViewController(vc, animated: true)
         case .email, .linkSocial:
             break

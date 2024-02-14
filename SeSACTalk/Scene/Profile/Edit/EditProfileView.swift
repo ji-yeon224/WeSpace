@@ -44,7 +44,7 @@ final class EditProfileView: BaseView {
         switch type {
         case .editNickname:
             editTextfield.placeholder = "닉네임을 입력하세요."
-            editTextfield.text = data.nickName
+            editTextfield.text = data.nickname
         case .editPhone:
             editTextfield.placeholder = "전화번호를 입력하세요."
             editTextfield.text = data.phone
