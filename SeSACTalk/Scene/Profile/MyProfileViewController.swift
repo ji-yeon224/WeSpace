@@ -110,7 +110,7 @@ extension MyProfileViewController: View {
         
         mainView.collectionView.rx.modelSelected(MyProfileEditItem.self)
             .bind(with: self) { owner, value in
-                print(value)
+                owner.editProfile(dataType: value.type)
             }
             .disposed(by: disposeBag)
         
@@ -135,6 +135,31 @@ extension MyProfileViewController: View {
             .disposed(by: disposeBag)
     }
     
+}
+
+extension MyProfileViewController {
+    
+    private func editProfile(dataType: MyProfileEditType) {
+        guard let myInfo = myInfo else { return }
+        switch dataType {
+        case .coin:
+            print("coin")
+        case .nickname:
+            let vc = EditProfileViewController(type: .editNickname, data: ProfileUpdateReqDTO(nickName: myInfo.nickname, phone: myInfo.phone ?? ""))
+            
+            navigationController?.pushViewController(vc, animated: true)
+            
+        case .phone:
+            let vc = EditProfileViewController(type: .editPhone, data: ProfileUpdateReqDTO(nickName: myInfo.nickname, phone: myInfo.phone ?? ""))
+            
+            navigationController?.pushViewController(vc, animated: true)
+        case .email, .linkSocial:
+            break
+        case .logout:
+            print("logout")
+        }
+    }
+    
     private func setUserProfile(data: MyProfile) -> [MyProfileSectionModel] {
         let section1: [MyProfileEditItem] = [
             MyProfileEditItem(type: .coin, coin: data.sesacCoin),
@@ -151,9 +176,7 @@ extension MyProfileViewController: View {
         return [MyProfileSectionModel(section: .section1, items: section1),
                      MyProfileSectionModel(section: .section2, items: section2)]
     }
-    
 }
-
 
 // Nav
 extension MyProfileViewController {
@@ -167,6 +190,6 @@ extension MyProfileViewController {
     }
     
     @objc private func backButtonTapped() {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
