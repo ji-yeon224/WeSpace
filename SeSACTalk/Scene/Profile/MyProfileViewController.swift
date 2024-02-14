@@ -19,6 +19,8 @@ final class MyProfileViewController: BaseViewController {
     private var section: [MyProfileSectionModel] = []
     private let collectionItems = PublishRelay<[MyProfileSectionModel]>()
     
+    private var myInfo: MyProfile?
+    
     override func loadView() {
         self.view = mainView
     }
@@ -80,12 +82,6 @@ extension MyProfileViewController: View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state
-            .map { $0.myProfile }
-            .filter { !$0.isEmpty }
-            .asDriver(onErrorJustReturn: [])
-            .drive(mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
-            .disposed(by: disposeBag)
             
         reactor.state
             .map { $0.profileImage }
@@ -95,6 +91,19 @@ extension MyProfileViewController: View {
                 owner.mainView.setProfileImage(value: value)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.profileData }
+            .filter { $0 != nil }
+            .bind(with: self) { owner, value in
+                if let value = value {
+                    owner.mainView.setProfileImage(value: value.profileImage)
+                    owner.collectionItems.accept(owner.setUserProfile(data: value))
+                    owner.myInfo = value
+                }
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindEvent() {
@@ -120,8 +129,29 @@ extension MyProfileViewController: View {
             }
             .disposed(by: disposeBag)
         
-        
+        collectionItems
+            .asDriver(onErrorJustReturn: [])
+            .drive(mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
+            .disposed(by: disposeBag)
     }
+    
+    private func setUserProfile(data: MyProfile) -> [MyProfileSectionModel] {
+        let section1: [MyProfileEditItem] = [
+            MyProfileEditItem(type: .coin, coin: data.sesacCoin),
+            MyProfileEditItem(type: .nickname, subText: data.nickname),
+            MyProfileEditItem(type: .phone, subText: data.phone)
+        ]
+        var section2: [MyProfileEditItem] = []
+        section2.append(MyProfileEditItem(type: .email, email: data.email))
+        if let vendor = data.vendor {
+            section2.append(MyProfileEditItem(type: .linkSocial, vendor: vendor))
+        }
+        section2.append(MyProfileEditItem(type: .logout))
+        
+        return [MyProfileSectionModel(section: .section1, items: section1),
+                     MyProfileSectionModel(section: .section2, items: section2)]
+    }
+    
 }
 
 

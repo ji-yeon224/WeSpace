@@ -8,7 +8,7 @@
 import Foundation
 
 struct MyProfile {
-    
+    let uuid = UUID()
     let id: Int
     let email: String
     let nickname: String
