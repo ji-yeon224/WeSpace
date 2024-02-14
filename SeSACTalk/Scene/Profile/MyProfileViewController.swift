@@ -132,10 +132,6 @@ extension MyProfileViewController: View {
             .bind(with: self) { owner, image in
                 if !image.1.isEmpty {
                     owner.changeProfileImage.accept(SelectImage(img: image.1[0]))
-//                    owner.mainView.profileImageView.imageView.image = image.1[0]
-                    
-//                    owner.mainView.profileImageView.imageView.setImage(img: image.1[0])
-//                    owner.img = owner.mainView.imageView.image
                 }
             }
             .disposed(by: disposeBag)

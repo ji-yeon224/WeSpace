@@ -24,7 +24,7 @@ final class MyProfileReactor: Reactor {
     }
     
     enum Mutation {
-        case myProfileData(data: MyProfile)
+        case myProfileData(data: MyProfile?)
         case msg(msg: String)
         case loginRequest
         case profileImage(data: String?)
@@ -51,8 +51,13 @@ final class MyProfileReactor: Reactor {
         
         switch mutation {
         case .myProfileData(let data):
-            newState.myProfile = setUserProfile(data: data)
-            newState.profileImage = data.profileImage
+            if let data = data {
+                newState.myProfile = setUserProfile(data: data)
+                newState.profileImage = data.profileImage
+            } else {
+                newState.myProfile = []
+            }
+            
         case .msg(let msg):
             newState.msg = msg
         case .loginRequest:
@@ -93,6 +98,7 @@ extension MyProfileReactor {
                         if let response = response {
                             return .concat(
                                 .just(.profileImage(data: response.profileImage)),
+                                .just(.msg(msg: "")),
                                 .just(.msg(msg: UserToastMessage.changeProfileImage.message))
                             )
                         }
@@ -117,18 +123,21 @@ extension MyProfileReactor {
     private func requstMyInfo() -> Observable<Mutation> {
         return UsersAPIManager.shared.request(api: .my, responseType: MyProfileResDto.self)
             .asObservable()
-            .map { result -> Mutation in
+            .flatMap { result -> Observable<Mutation> in
                 switch result {
                 case .success(let response):
                     if let response = response {
-                        return .myProfileData(data: response.toDomain())
+                        return .concat(
+                            .just(.myProfileData(data: response.toDomain())),
+                            .just(.myProfileData(data: nil))
+                        )
                     }
-                    return .msg(msg: UserToastMessage.loadFail.message)
+                    return .just(.msg(msg: UserToastMessage.loadFail.message))
                 case .failure(let error):
                     if let error = CommonError(rawValue: error.errorCode) {
-                        return .msg(msg: error.localizedDescription)
+                        return .just(.msg(msg: error.localizedDescription))
                     } else {
-                        return .loginRequest
+                        return .just(.loginRequest)
                     }
                     
                 }
