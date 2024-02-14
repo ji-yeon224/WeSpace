@@ -27,6 +27,7 @@
 		CE2ACE502B7CF137007468EA /* CoinCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */; };
 		CE2ACE522B7CF328007468EA /* CoinSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */; };
 		CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */; };
+		CE2ACE562B7D04C7007468EA /* CoinPurchageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE552B7D04C7007468EA /* CoinPurchageDelegate.swift */; };
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
 		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */; };
@@ -324,6 +325,7 @@
 		CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionCell.swift; sourceTree = "<group>"; };
 		CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSectionModel.swift; sourceTree = "<group>"; };
 		CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionItem.swift; sourceTree = "<group>"; };
+		CE2ACE552B7D04C7007468EA /* CoinPurchageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchageDelegate.swift; sourceTree = "<group>"; };
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
 		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
@@ -863,6 +865,7 @@
 				CE2BA81E2B6FE84F00B24B55 /* ChannelSettingDelegate.swift */,
 				CE2BA8202B6FEF1B00B24B55 /* ChannelChatDelegate.swift */,
 				CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */,
+				CE2ACE552B7D04C7007468EA /* CoinPurchageDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -1696,6 +1699,7 @@
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
 				CE61AE122B5E41670091B03D /* SquareFillImageView.swift in Sources */,
+				CE2ACE562B7D04C7007468EA /* CoinPurchageDelegate.swift in Sources */,
 				CE9B06462B7C61A5005D309B /* UserError.swift in Sources */,
 				CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */,
 				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,

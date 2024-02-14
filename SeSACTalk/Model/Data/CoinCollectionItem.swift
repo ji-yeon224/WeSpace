@@ -7,7 +7,6 @@
 
 import Foundation
 struct CoinCollectionItem: Hashable {
-    let title: String
-    let coin: String?
-    let price: String?
+    let coin: Int?
+    let price: Int?
 }

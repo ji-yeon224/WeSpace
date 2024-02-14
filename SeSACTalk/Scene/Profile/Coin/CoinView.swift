@@ -10,6 +10,8 @@ import RxDataSources
 
 final class CoinView: BaseView {
     
+    weak var delegate: CoinPurchageDelegate?
+    
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout()).then {
         $0.register(CoinCollectionCell.self, forCellWithReuseIdentifier: CoinCollectionCell.identifier)
     }
@@ -47,14 +49,22 @@ final class CoinView: BaseView {
             if indexPath.section == 0 {
                 cell.cellTitle.text = "🌱 현재 보유한 코인"
                 if let coin = item.coin {
-                    cell.coinCountLabel.text = "\(coin)"
+                    cell.coinCountLabel.text = "\(coin)개"
                 }
                 
             }
             else {
-                cell.cellTitle.text = "🌱 \(item.title)"
-                if let price = item.price {
-                    cell.buyButton.setTitle(price, for: .normal)
+                
+                if let coin = item.coin, let price = item.price {
+                    cell.cellTitle.text = "🌱 \(coin) Coin"
+                    cell.buyButton.setTitle("₩\(price)", for: .normal)
+                    cell.buyButton.rx.tap
+                        .bind(with: self) { owner, _ in
+                            if let coin = item.coin, let price = item.price {
+                                owner.delegate?.purchaseCoin(count: coin, price: price)
+                            }
+                        }
+                        .disposed(by: cell.disposeBag)
                 }
                 
             }

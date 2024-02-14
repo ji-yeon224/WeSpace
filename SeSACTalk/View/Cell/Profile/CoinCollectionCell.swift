@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CoinCollectionCell: BaseCollectionViewCell {
+    
+    var disposeBag = DisposeBag()
+    
     let cellTitle = CustomBasicLabel(text: "", fontType: .bodyBold)
     let coinCountLabel = CustomBasicLabel(text: "", fontType: .bodyBold, color: .brand).then {
         $0.isHidden = true
@@ -33,6 +37,7 @@ final class CoinCollectionCell: BaseCollectionViewCell {
         coinCountLabel.isHidden = true
         subTitle.isHidden = true
         buyButton.isHidden = true
+        disposeBag = DisposeBag()
     }
     
     override func setConstraints() {

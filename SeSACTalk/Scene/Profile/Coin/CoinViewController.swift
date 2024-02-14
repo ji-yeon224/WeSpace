@@ -30,6 +30,7 @@ final class CoinViewController: BaseViewController {
     
     override func configure() {
         super.configure()
+        mainView.delegate = self
         configNav()
         bindEvent()
         configData()
@@ -37,11 +38,11 @@ final class CoinViewController: BaseViewController {
     
     private func configData() {
         
-        let section1 = [CoinCollectionItem(title: "현재 보유한 코인", coin: "10개", price: nil)]
+        let section1 = [CoinCollectionItem(coin: 10, price: nil)]
         let section2 = [
-            CoinCollectionItem(title: "10 Coin", coin: nil, price: "₩100"),
-            CoinCollectionItem(title: "50 Coin", coin: nil, price: "₩500"),
-            CoinCollectionItem(title: "100 Coin", coin: nil, price: "₩1000")
+            CoinCollectionItem(coin: 10, price: 100),
+            CoinCollectionItem(coin: 50, price: 500),
+            CoinCollectionItem(coin: 100, price: 1000)
         ]
         let data = [
             CoinSectionModel(section: 0, items: section1),
@@ -51,6 +52,12 @@ final class CoinViewController: BaseViewController {
     }
     
     
+}
+
+extension CoinViewController: CoinPurchageDelegate {
+    func purchaseCoin(count: Int, price: Int) {
+        print(count, price)
+    }
 }
 
 extension CoinViewController {
