@@ -13,7 +13,7 @@ final class ProfileEditCell: BaseCollectionViewCell {
     let coinCountLabel = CustomBasicLabel(text: "", fontType: .bodyBold, color: .brand).then {
         $0.isHidden = true
     }
-    let rightChevron = UIImageView().then {
+    private let rightChevron = UIImageView().then {
         $0.image = .right
         $0.image = $0.image?.withRenderingMode(.alwaysTemplate)
         $0.tintColor = .secondaryText

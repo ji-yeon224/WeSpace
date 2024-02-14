@@ -22,6 +22,11 @@
 		CE211F372B5AC99A00C43028 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F362B5AC99A00C43028 /* InviteViewController.swift */; };
 		CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F382B5AC9A000C43028 /* InviteView.swift */; };
 		CE211F3D2B5AC9B700C43028 /* InviteReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE211F3C2B5AC9B700C43028 /* InviteReactor.swift */; };
+		CE2ACE4C2B7CEFF6007468EA /* CoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE4B2B7CEFF6007468EA /* CoinViewController.swift */; };
+		CE2ACE4E2B7CEFFC007468EA /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE4D2B7CEFFC007468EA /* CoinView.swift */; };
+		CE2ACE502B7CF137007468EA /* CoinCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */; };
+		CE2ACE522B7CF328007468EA /* CoinSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */; };
+		CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */; };
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
 		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */; };
@@ -314,6 +319,11 @@
 		CE211F362B5AC99A00C43028 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		CE211F382B5AC9A000C43028 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 		CE211F3C2B5AC9B700C43028 /* InviteReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteReactor.swift; sourceTree = "<group>"; };
+		CE2ACE4B2B7CEFF6007468EA /* CoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinViewController.swift; sourceTree = "<group>"; };
+		CE2ACE4D2B7CEFFC007468EA /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
+		CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionCell.swift; sourceTree = "<group>"; };
+		CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSectionModel.swift; sourceTree = "<group>"; };
+		CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionItem.swift; sourceTree = "<group>"; };
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
 		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
@@ -703,6 +713,15 @@
 			path = Invite;
 			sourceTree = "<group>";
 		};
+		CE2ACE4A2B7CEFED007468EA /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				CE2ACE4B2B7CEFF6007468EA /* CoinViewController.swift */,
+				CE2ACE4D2B7CEFFC007468EA /* CoinView.swift */,
+			);
+			path = Coin;
+			sourceTree = "<group>";
+		};
 		CE2BA8192B6F827F00B24B55 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +745,8 @@
 				CE1806E72B735BAD002DD9C3 /* DmItems.swift */,
 				CEE9381B2B7B8718003B4585 /* MyProfileEditItem.swift */,
 				CEE938212B7BC2DC003B4585 /* MyProfileSectionModel.swift */,
+				CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */,
+				CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1325,6 +1346,7 @@
 		CEE938112B7B7801003B4585 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CE2ACE4A2B7CEFED007468EA /* Coin */,
 				CE9B06472B7C9348005D309B /* Edit */,
 				CEE938122B7B781D003B4585 /* MyProfileViewController.swift */,
 				CEE938142B7B7860003B4585 /* MyProfileView.swift */,
@@ -1337,6 +1359,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE938172B7B8110003B4585 /* ProfileEditCell.swift */,
+				CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1679,6 +1702,7 @@
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
 				CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */,
 				CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */,
+				CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */,
 				CEE938252B7BCEC0003B4585 /* ProfileImageReqDTO.swift in Sources */,
@@ -1750,6 +1774,7 @@
 				CE9592382B68ADE500665659 /* SearchChannelCell.swift in Sources */,
 				CE95923A2B68B07000665659 /* ChannelSectionModel.swift in Sources */,
 				CE61AE032B5CF46F0091B03D /* ChannelCreateError.swift in Sources */,
+				CE2ACE4E2B7CEFFC007468EA /* CoinView.swift in Sources */,
 				CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */,
 				CEE7DA5D2B74C2E8007BAAE6 /* DmChatReactor.swift in Sources */,
 				CECFCDED2B4FC8C300EB0DB7 /* RefreshResultType.swift in Sources */,
@@ -1822,6 +1847,7 @@
 				CE61AE052B5D006F0091B03D /* ChannelToastMessage.swift in Sources */,
 				CEC764512B5176C2000578E9 /* DMsRoom.swift in Sources */,
 				CE1806E82B735BAD002DD9C3 /* DmItems.swift in Sources */,
+				CE2ACE522B7CF328007468EA /* CoinSectionModel.swift in Sources */,
 				CEEAA1D72B54085400EA1C58 /* WorkspaceListSettingView.swift in Sources */,
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,
 				CE85749E2B4BFF7F0025ED1B /* HomeTabBarController.swift in Sources */,
@@ -1842,6 +1868,7 @@
 				CE5D06752B4EEC4100C067A3 /* SelectImage.swift in Sources */,
 				CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
+				CE2ACE502B7CF137007468EA /* CoinCollectionCell.swift in Sources */,
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
@@ -1859,6 +1886,7 @@
 				CE5D06692B4E910400C067A3 /* MakeViewReactor.swift in Sources */,
 				CEC7644F2B517434000578E9 /* DMsRoomResDTO.swift in Sources */,
 				CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */,
+				CE2ACE4C2B7CEFF6007468EA /* CoinViewController.swift in Sources */,
 				CEE9381A2B7B8637003B4585 /* MyProfileEditType.swift in Sources */,
 				CED7C2C92B524F7B0069EA0A /* WorkSpaceListDelegate.swift in Sources */,
 				CE4904CC2B4D0C6B003B0204 /* BaseCollectionViewCell.swift in Sources */,
