@@ -161,6 +161,9 @@ extension MyProfileViewController {
         switch dataType {
         case .coin:
             print("coin")
+            let vc = CoinViewController()
+            vc.coin = myInfo.sesacCoin
+            navigationController?.pushViewController(vc, animated: true)
         case .nickname:
             let vc = EditProfileViewController(type: .editNickname, data: ProfileUpdateReqDTO(nickname: myInfo.nickname, phone: myInfo.phone ?? ""))
             vc.successUpdate = {
