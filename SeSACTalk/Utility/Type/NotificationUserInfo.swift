@@ -11,4 +11,5 @@ enum UserInfo {
     static let workspace = "workspace"
     static let alphaShow = "show"
     static let channelList = "channelList"
+    static let imageUrl = "imageUrl"
 }

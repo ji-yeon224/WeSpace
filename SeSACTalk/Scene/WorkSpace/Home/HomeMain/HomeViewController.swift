@@ -384,6 +384,16 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.refreshProfile)
+            .bind(with: self) { owner, noti in
+                if let img = noti.userInfo?[UserInfo.imageUrl] as? String {
+                    if !img.isEmpty {
+                        owner.mainView.topView.profileImageView.setImage(with: img)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
     }
     private func reloadHomeView(ws: WorkSpace) {
         let vc = HomeTabBarController(workspace: ws)

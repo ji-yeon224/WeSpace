@@ -67,7 +67,11 @@ final class MyProfileView: BaseView {
                 cell.coinCountLabel.text = "\(coin)"
             }
             if let vendor = item.vendor {
-                print(vendor)
+                if vendor == "kakao" {
+                    cell.socialImage.image = .socialKakao
+                } else if vendor == "apple" {
+                    cell.socialImage.image = .socialApple
+                }
             }
             
             return cell

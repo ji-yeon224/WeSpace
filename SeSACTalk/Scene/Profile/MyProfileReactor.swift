@@ -96,6 +96,7 @@ extension MyProfileReactor {
                     switch result {
                     case .success(let response):
                         if let response = response {
+                            NotificationCenter.default.post(name: .refreshProfile, object: nil, userInfo: [UserInfo.imageUrl: response.profileImage ?? ""])
                             return .concat(
                                 .just(.profileImage(data: response.profileImage)),
                                 .just(.msg(msg: "")),

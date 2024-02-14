@@ -12,4 +12,5 @@ extension Notification.Name {
     static let refreshWS = Notification.Name("refreshWS")
     static let resetWS = Notification.Name("resetWS")
     static let refreshChannel = Notification.Name("refreshChannel")
+    static let refreshProfile = Notification.Name("refreshProfileImage")
 }
