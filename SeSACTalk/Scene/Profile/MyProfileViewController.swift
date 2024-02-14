@@ -16,18 +16,6 @@ final class MyProfileViewController: BaseViewController {
     private let requestMyInfo = PublishRelay<Void>()
     private let changeProfileImage = PublishRelay<SelectImage>()
     
-    private let dummy1 = [
-        MyProfileEditItem(type: .coin),
-        MyProfileEditItem(type: .nickname, subText: "jigom"),
-        MyProfileEditItem(type: .phone, subText: "010-1111-1111"),
-        
-    ]
-    
-    private let dummy2 = [
-        MyProfileEditItem(type: .email, email: "aa@aa.com"),
-        MyProfileEditItem(type: .linkSocial, vendor: "apple"),
-        MyProfileEditItem(type: .logout)
-    ]
     private var section: [MyProfileSectionModel] = []
     private let collectionItems = PublishRelay<[MyProfileSectionModel]>()
     
@@ -38,11 +26,7 @@ final class MyProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        sectionSnapShot()
-//        updateSnapShot()
-        section = [MyProfileSectionModel(section: .section1, items: dummy1),
-                   MyProfileSectionModel(section: .section2, items: dummy2)]
-        collectionItems.accept(section)
+        
         requestMyInfo.accept(())
     }
     
