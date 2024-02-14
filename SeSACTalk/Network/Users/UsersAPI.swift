@@ -19,6 +19,7 @@ enum UsersAPI {
     case otherUser(userId: Int)
     case profile(data: ProfileImageReqDTO)
     case updateProfile(data: ProfileUpdateReqDTO)
+    case logout
 }
 extension UsersAPI: TargetType {
     
@@ -44,6 +45,8 @@ extension UsersAPI: TargetType {
             return Endpoint.user.rawValue + "/\(userId)"
         case .profile:
             return Endpoint.user.rawValue + "/my/image"
+        case .logout:
+            return Endpoint.user.rawValue + "/logout"
         }
     }
     
@@ -51,7 +54,7 @@ extension UsersAPI: TargetType {
         switch self {
         case .validation, .join, .kakaoLogin, .emailLogin, .deviceToken:
             return .post
-        case .my, .otherUser:
+        case .my, .otherUser, .logout:
             return .get
         case .profile, .updateProfile:
             return .put
@@ -69,7 +72,7 @@ extension UsersAPI: TargetType {
             return .requestJSONEncodable(data)
         case .emailLogin(let data):
             return .requestJSONEncodable(data)
-        case .my, .otherUser:
+        case .my, .otherUser, .logout:
             return .requestPlain
         case .deviceToken(let data):
             return .requestJSONEncodable(data)
@@ -84,7 +87,7 @@ extension UsersAPI: TargetType {
         switch self {
         case .validation, .join, .kakaoLogin, .emailLogin:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key]
-        case .my, .otherUser:
+        case .my, .otherUser, .logout:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         case .deviceToken, .updateProfile:
             return ["Content-Type": "application/json", "SesacKey": APIKey.key, "Authorization": UserDefaultsManager.accessToken]

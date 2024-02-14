@@ -65,13 +65,14 @@ final class KakaoLoginManager {
             }
         }
     }
-    func kakaoLogout() {
-        UserApi.shared.logout {(error) in
+    func kakaoLogout(completion: @escaping (Bool) -> Void) {
+        UserApi.shared.logout { (error) in
             if let error = error {
                 print(error)
-            }
-            else {
+                completion(false)
+            } else {
                 print("logout() success.")
+                completion(true)
             }
         }
     }

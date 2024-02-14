@@ -15,6 +15,7 @@ final class MyProfileViewController: BaseViewController {
     var disposeBag = DisposeBag()
     private let requestMyInfo = PublishRelay<Void>()
     private let changeProfileImage = PublishRelay<SelectImage>()
+    private let requestLogout = PublishRelay<String?>()
     
     private var section: [MyProfileSectionModel] = []
     private let collectionItems = PublishRelay<[MyProfileSectionModel]>()
@@ -56,6 +57,11 @@ extension MyProfileViewController: View {
         
         changeProfileImage
             .map { Reactor.Action.changeProfileImage(data: $0)}
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        requestLogout
+            .map { Reactor.Action.requestLogout(vendor: $0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -101,6 +107,17 @@ extension MyProfileViewController: View {
                     owner.collectionItems.accept(owner.setUserProfile(data: value))
                     owner.myInfo = value
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.logoutSuccess }
+            .filter { $0 }
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, _ in
+                UserDefaultsManager.initToken()
+                owner.view?.window?.rootViewController = OnBoardingViewController()
+                owner.view.window?.makeKeyAndVisible()
             }
             .disposed(by: disposeBag)
         
@@ -162,7 +179,11 @@ extension MyProfileViewController {
         case .email, .linkSocial:
             break
         case .logout:
-            print("logout")
+            
+            showPopUp(title: "로그아웃", message: "정말 로그아웃 할까요?", align: .center, cancelTitle: "취소", okTitle: "로그아웃", okCompletion:  {
+                self.requestLogout.accept(self.myInfo?.vendor)
+            })
+
         }
     }
     

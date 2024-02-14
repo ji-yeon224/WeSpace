@@ -14,13 +14,15 @@ final class MyProfileReactor: Reactor {
         msg: nil,
         loginRequest: false,
         profileImage: nil,
-        profileData: nil
+        profileData: nil,
+        logoutSuccess: false
     )
     
     
     enum Action {
         case requestMyInfo
         case changeProfileImage(data: SelectImage)
+        case requestLogout(vendor: String?)
     }
     
     enum Mutation {
@@ -28,6 +30,7 @@ final class MyProfileReactor: Reactor {
         case msg(msg: String)
         case loginRequest
         case profileImage(data: String?)
+        case logoutSuccess
     }
     
     struct State {
@@ -35,6 +38,7 @@ final class MyProfileReactor: Reactor {
         var loginRequest: Bool
         var profileImage: String?
         var profileData: MyProfile?
+        var logoutSuccess: Bool
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -43,6 +47,11 @@ final class MyProfileReactor: Reactor {
             return requstMyInfo()
         case .changeProfileImage(let data):
             return requestChangeImage(img: data)
+        case .requestLogout(let vendor):
+            return .concat(
+                requestFCMDelete(),
+                requestLogout(vendor: vendor)
+            )
         }
     }
     
@@ -58,6 +67,8 @@ final class MyProfileReactor: Reactor {
             newState.loginRequest = true
         case .profileImage(let data):
             newState.profileImage = data
+        case .logoutSuccess:
+            newState.logoutSuccess = true
         }
         return newState
     }
@@ -65,6 +76,48 @@ final class MyProfileReactor: Reactor {
 }
 
 extension MyProfileReactor {
+    
+    private func requestLogout(vendor: String?) -> Observable<Mutation> {
+        
+        if vendor == "kakao" {
+            return requestKakaoLogout()
+        } else if vendor == "apple" {
+            return .just(.logoutSuccess)
+        } else {
+            return .just(.logoutSuccess)
+        }
+    }
+    
+    private func requestKakaoLogout() -> Observable<Mutation> {
+        return Observable.create { observer in
+            KakaoLoginManager.shared.kakaoLogout { value in
+                if value {
+                    observer.onNext(.logoutSuccess)
+                } else {
+                    observer.onNext(.msg(msg: "로그아웃에 실패하였습니다."))
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+    
+    private func requestFCMDelete() -> Observable<Mutation> {
+        
+        return UsersAPIManager.shared.request(api: .logout, responseType: EmptyResponse.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(_):
+                    debugPrint("LOGOUT SUCCESS")
+                    return .empty()
+                case .failure(let error):
+                    debugPrint("LOGOUT ERROR ", error.errorCode)
+                    return .empty()
+                }
+            }
+    }
+
     
     private func requestChangeImage(img: SelectImage) -> Observable<Mutation> {
         if let img = img.img, let imgData = img.imageToData() {

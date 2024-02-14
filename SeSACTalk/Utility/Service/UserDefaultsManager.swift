@@ -57,6 +57,10 @@ final class UserDefaultsManager {
         UserDefaultsManager.isLogin = false
         UserDefaultsManager.accessToken = ""
         UserDefaultsManager.refreshToken = ""
+        UserDefaultsManager.userId = 0
+        UserDefaultsManager.nickName = ""
+        UserDefaultsManager.accessTokenExpire = Date()
+        UserDefaultsManager.refreshTokenExpire = Date()
     }
     
     static func setUserInfo(id: Int, nickName: String) {
