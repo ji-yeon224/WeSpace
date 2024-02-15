@@ -12,6 +12,7 @@ final class DeviceTokenManager {
     static let shared = DeviceTokenManager()
     private init() { }
     private let disposeBag = DisposeBag()
+    var saveTokenSuccess = false
     func requestSaveDeviceToken(token: String?) {
         if let token = token {
             UsersAPIManager.shared.request(api: .deviceToken(data: DeviceTokenReq(deviceToken: token)), responseType: EmptyResponse.self)
@@ -21,6 +22,7 @@ final class DeviceTokenManager {
                     switch result {
                     case .success(_):
                         print("[SUCCESS SAVE FCM TOKEN]")
+                        self.saveTokenSuccess = true
                     case .failure(let error):
                         if error.errorCode == "E11" {
                             print("[FAIL SAVE FCM TOKEN] " , "잘못된 요청")

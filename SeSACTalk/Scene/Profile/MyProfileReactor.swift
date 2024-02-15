@@ -110,6 +110,8 @@ extension MyProfileReactor {
                 switch result {
                 case .success(_):
                     debugPrint("LOGOUT SUCCESS")
+                    DeviceTokenManager.shared.saveTokenSuccess = false
+                    UserDefaultsManager.deviceToken = ""
                     return .empty()
                 case .failure(let error):
                     debugPrint("LOGOUT ERROR ", error.errorCode)
