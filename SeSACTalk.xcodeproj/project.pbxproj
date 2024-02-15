@@ -105,6 +105,25 @@
 		CE69B2672B7DDB550038AD53 /* CoinsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2662B7DDB550038AD53 /* CoinsAPIManager.swift */; };
 		CE69B26A2B7DE01C0038AD53 /* CoinReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2692B7DE01C0038AD53 /* CoinReactor.swift */; };
 		CE69B26C2B7DE7B10038AD53 /* CoinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B26B2B7DE7B10038AD53 /* CoinItem.swift */; };
+		CE69B2C22B7DFF560038AD53 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2C12B7DFF560038AD53 /* SnapKit */; };
+		CE69B2C52B7DFF7C0038AD53 /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2C42B7DFF7C0038AD53 /* iamport-ios */; };
+		CE69B2C82B7DFF940038AD53 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2C72B7DFF940038AD53 /* RxCocoa */; };
+		CE69B2CA2B7DFF940038AD53 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2C92B7DFF940038AD53 /* RxSwift */; };
+		CE69B2CD2B7DFFA70038AD53 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2CC2B7DFFA70038AD53 /* RxGesture */; };
+		CE69B2D02B7DFFB70038AD53 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2CF2B7DFFB70038AD53 /* IQKeyboardManagerSwift */; };
+		CE69B2D32B7DFFC70038AD53 /* AnyFormatKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2D22B7DFFC70038AD53 /* AnyFormatKit */; };
+		CE69B2D62B7DFFE00038AD53 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2D52B7DFFE00038AD53 /* Moya */; };
+		CE69B2D92B7DFFEE0038AD53 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2D82B7DFFEE0038AD53 /* Toast */; };
+		CE69B2DC2B7E00610038AD53 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2DB2B7E00610038AD53 /* KakaoSDK */; };
+		CE69B2DF2B7E008D0038AD53 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2DE2B7E008D0038AD53 /* ReactorKit */; };
+		CE69B2E22B7E009F0038AD53 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2E12B7E009F0038AD53 /* Kingfisher */; };
+		CE69B2E52B7E00B80038AD53 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2E42B7E00B80038AD53 /* SideMenu */; };
+		CE69B2E82B7E00CF0038AD53 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2E72B7E00CF0038AD53 /* RxDataSources */; };
+		CE69B2EB2B7E00F60038AD53 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2EA2B7E00F60038AD53 /* Realm */; };
+		CE69B2ED2B7E00F60038AD53 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2EC2B7E00F60038AD53 /* RealmSwift */; };
+		CE69B2F02B7E01180038AD53 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2EF2B7E01180038AD53 /* SocketIO */; };
+		CE69B2F32B7E01950038AD53 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2F22B7E01950038AD53 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		CE69B2F52B7E01950038AD53 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CE69B2F42B7E01950038AD53 /* FirebaseMessaging */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -183,26 +202,6 @@
 		CEC46BB02B708D0A00F5A651 /* ChangeCHManangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BAF2B708D0A00F5A651 /* ChangeCHManangerView.swift */; };
 		CEC46BB22B708D1600F5A651 /* ChangeCHManagerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */; };
 		CEC46BB42B70BCE600F5A651 /* ChannelCHManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */; };
-		CEC46BB72B70CC9100F5A651 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BB62B70CC9100F5A651 /* SnapKit */; };
-		CEC46BBA2B70CCB500F5A651 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BB92B70CCB500F5A651 /* RxCocoa */; };
-		CEC46BBC2B70CCB500F5A651 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BBB2B70CCB500F5A651 /* RxSwift */; };
-		CEC46BBF2B70CCC700F5A651 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BBE2B70CCC700F5A651 /* RxGesture */; };
-		CEC46BC22B70CCF200F5A651 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BC12B70CCF200F5A651 /* IQKeyboardManagerSwift */; };
-		CEC46BC52B70CD0100F5A651 /* AnyFormatKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BC42B70CD0100F5A651 /* AnyFormatKit */; };
-		CEC46BC82B70CD1000F5A651 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BC72B70CD1000F5A651 /* Moya */; };
-		CEC46BCB2B70CD2700F5A651 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BCA2B70CD2700F5A651 /* Toast */; };
-		CEC46BCE2B70CDCD00F5A651 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BCD2B70CDCD00F5A651 /* KakaoSDK */; };
-		CEC46BD12B70CDD900F5A651 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD02B70CDD900F5A651 /* Then */; };
-		CEC46BD42B70CDE700F5A651 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD32B70CDE700F5A651 /* ReactorKit */; };
-		CEC46BD72B70CDF300F5A651 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD62B70CDF300F5A651 /* Kingfisher */; };
-		CEC46BDA2B70CE8700F5A651 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BD92B70CE8700F5A651 /* SideMenu */; };
-		CEC46BDD2B70CE9800F5A651 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BDC2B70CE9800F5A651 /* RxDataSources */; };
-		CEC46BE02B70CEB100F5A651 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BDF2B70CEB100F5A651 /* Realm */; };
-		CEC46BE22B70CEB100F5A651 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE12B70CEB100F5A651 /* RealmSwift */; };
-		CEC46BE52B70CEBE00F5A651 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE42B70CEBE00F5A651 /* SocketIO */; };
-		CEC46BE82B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE72B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		CEC46BEA2B70CF3900F5A651 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BE92B70CF3900F5A651 /* FirebaseCrashlytics */; };
-		CEC46BEC2B70CF3900F5A651 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CEC46BEB2B70CF3900F5A651 /* FirebaseMessaging */; };
 		CEC46BEE2B70D06C00F5A651 /* ChangeWSManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BED2B70D06C00F5A651 /* ChangeWSManagerViewController.swift */; };
 		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
 		CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764282B5122E7000578E9 /* HomeReactor.swift */; };
@@ -583,26 +582,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC46BCE2B70CDCD00F5A651 /* KakaoSDK in Frameworks */,
-				CEC46BE02B70CEB100F5A651 /* Realm in Frameworks */,
-				CEC46BBF2B70CCC700F5A651 /* RxGesture in Frameworks */,
-				CEC46BBC2B70CCB500F5A651 /* RxSwift in Frameworks */,
-				CEC46BC22B70CCF200F5A651 /* IQKeyboardManagerSwift in Frameworks */,
-				CEC46BD72B70CDF300F5A651 /* Kingfisher in Frameworks */,
-				CEC46BE22B70CEB100F5A651 /* RealmSwift in Frameworks */,
-				CEC46BE82B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				CEC46BCB2B70CD2700F5A651 /* Toast in Frameworks */,
-				CEC46BB72B70CC9100F5A651 /* SnapKit in Frameworks */,
-				CEC46BDD2B70CE9800F5A651 /* RxDataSources in Frameworks */,
-				CEC46BE52B70CEBE00F5A651 /* SocketIO in Frameworks */,
-				CEC46BEC2B70CF3900F5A651 /* FirebaseMessaging in Frameworks */,
-				CEC46BD12B70CDD900F5A651 /* Then in Frameworks */,
-				CEC46BC52B70CD0100F5A651 /* AnyFormatKit in Frameworks */,
-				CEC46BEA2B70CF3900F5A651 /* FirebaseCrashlytics in Frameworks */,
-				CEC46BC82B70CD1000F5A651 /* Moya in Frameworks */,
-				CEC46BD42B70CDE700F5A651 /* ReactorKit in Frameworks */,
-				CEC46BDA2B70CE8700F5A651 /* SideMenu in Frameworks */,
-				CEC46BBA2B70CCB500F5A651 /* RxCocoa in Frameworks */,
+				CE69B2E22B7E009F0038AD53 /* Kingfisher in Frameworks */,
+				CE69B2D32B7DFFC70038AD53 /* AnyFormatKit in Frameworks */,
+				CE69B2DC2B7E00610038AD53 /* KakaoSDK in Frameworks */,
+				CE69B2DF2B7E008D0038AD53 /* ReactorKit in Frameworks */,
+				CE69B2C82B7DFF940038AD53 /* RxCocoa in Frameworks */,
+				CE69B2D62B7DFFE00038AD53 /* Moya in Frameworks */,
+				CE69B2F02B7E01180038AD53 /* SocketIO in Frameworks */,
+				CE69B2F32B7E01950038AD53 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				CE69B2F52B7E01950038AD53 /* FirebaseMessaging in Frameworks */,
+				CE69B2E52B7E00B80038AD53 /* SideMenu in Frameworks */,
+				CE69B2D92B7DFFEE0038AD53 /* Toast in Frameworks */,
+				CE69B2ED2B7E00F60038AD53 /* RealmSwift in Frameworks */,
+				CE69B2C22B7DFF560038AD53 /* SnapKit in Frameworks */,
+				CE69B2EB2B7E00F60038AD53 /* Realm in Frameworks */,
+				CE69B2CD2B7DFFA70038AD53 /* RxGesture in Frameworks */,
+				CE69B2CA2B7DFF940038AD53 /* RxSwift in Frameworks */,
+				CE69B2E82B7E00CF0038AD53 /* RxDataSources in Frameworks */,
+				CE69B2C52B7DFF7C0038AD53 /* iamport-ios in Frameworks */,
+				CE69B2D02B7DFFB70038AD53 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1593,26 +1591,25 @@
 			);
 			name = SeSACTalk;
 			packageProductDependencies = (
-				CEC46BB62B70CC9100F5A651 /* SnapKit */,
-				CEC46BB92B70CCB500F5A651 /* RxCocoa */,
-				CEC46BBB2B70CCB500F5A651 /* RxSwift */,
-				CEC46BBE2B70CCC700F5A651 /* RxGesture */,
-				CEC46BC12B70CCF200F5A651 /* IQKeyboardManagerSwift */,
-				CEC46BC42B70CD0100F5A651 /* AnyFormatKit */,
-				CEC46BC72B70CD1000F5A651 /* Moya */,
-				CEC46BCA2B70CD2700F5A651 /* Toast */,
-				CEC46BCD2B70CDCD00F5A651 /* KakaoSDK */,
-				CEC46BD02B70CDD900F5A651 /* Then */,
-				CEC46BD32B70CDE700F5A651 /* ReactorKit */,
-				CEC46BD62B70CDF300F5A651 /* Kingfisher */,
-				CEC46BD92B70CE8700F5A651 /* SideMenu */,
-				CEC46BDC2B70CE9800F5A651 /* RxDataSources */,
-				CEC46BDF2B70CEB100F5A651 /* Realm */,
-				CEC46BE12B70CEB100F5A651 /* RealmSwift */,
-				CEC46BE42B70CEBE00F5A651 /* SocketIO */,
-				CEC46BE72B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport */,
-				CEC46BE92B70CF3900F5A651 /* FirebaseCrashlytics */,
-				CEC46BEB2B70CF3900F5A651 /* FirebaseMessaging */,
+				CE69B2C12B7DFF560038AD53 /* SnapKit */,
+				CE69B2C42B7DFF7C0038AD53 /* iamport-ios */,
+				CE69B2C72B7DFF940038AD53 /* RxCocoa */,
+				CE69B2C92B7DFF940038AD53 /* RxSwift */,
+				CE69B2CC2B7DFFA70038AD53 /* RxGesture */,
+				CE69B2CF2B7DFFB70038AD53 /* IQKeyboardManagerSwift */,
+				CE69B2D22B7DFFC70038AD53 /* AnyFormatKit */,
+				CE69B2D52B7DFFE00038AD53 /* Moya */,
+				CE69B2D82B7DFFEE0038AD53 /* Toast */,
+				CE69B2DB2B7E00610038AD53 /* KakaoSDK */,
+				CE69B2DE2B7E008D0038AD53 /* ReactorKit */,
+				CE69B2E12B7E009F0038AD53 /* Kingfisher */,
+				CE69B2E42B7E00B80038AD53 /* SideMenu */,
+				CE69B2E72B7E00CF0038AD53 /* RxDataSources */,
+				CE69B2EA2B7E00F60038AD53 /* Realm */,
+				CE69B2EC2B7E00F60038AD53 /* RealmSwift */,
+				CE69B2EF2B7E01180038AD53 /* SocketIO */,
+				CE69B2F22B7E01950038AD53 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				CE69B2F42B7E01950038AD53 /* FirebaseMessaging */,
 			);
 			productName = SeSACTalk;
 			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
@@ -1687,22 +1684,22 @@
 			);
 			mainGroup = CE6C1FB52B43E8BA00AA7F9C;
 			packageReferences = (
-				CEC46BB52B70CC9100F5A651 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				CEC46BBD2B70CCC700F5A651 /* XCRemoteSwiftPackageReference "RxGesture" */,
-				CEC46BC02B70CCF200F5A651 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				CEC46BC32B70CD0100F5A651 /* XCRemoteSwiftPackageReference "AnyFormatKit" */,
-				CEC46BC62B70CD1000F5A651 /* XCRemoteSwiftPackageReference "Moya" */,
-				CEC46BC92B70CD2700F5A651 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				CEC46BCC2B70CDCD00F5A651 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
-				CEC46BCF2B70CDD900F5A651 /* XCRemoteSwiftPackageReference "Then" */,
-				CEC46BD22B70CDE700F5A651 /* XCRemoteSwiftPackageReference "ReactorKit" */,
-				CEC46BD52B70CDF300F5A651 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				CEC46BD82B70CE8700F5A651 /* XCRemoteSwiftPackageReference "SideMenu" */,
-				CEC46BDB2B70CE9800F5A651 /* XCRemoteSwiftPackageReference "RxDataSources" */,
-				CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */,
-				CEC46BE32B70CEBE00F5A651 /* XCRemoteSwiftPackageReference "socket" */,
-				CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CE69B2C02B7DFF560038AD53 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CE69B2C32B7DFF7C0038AD53 /* XCRemoteSwiftPackageReference "iamport-ios" */,
+				CE69B2C62B7DFF940038AD53 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				CE69B2CB2B7DFFA70038AD53 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				CE69B2CE2B7DFFB70038AD53 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				CE69B2D12B7DFFC70038AD53 /* XCRemoteSwiftPackageReference "AnyFormatKit" */,
+				CE69B2D42B7DFFE00038AD53 /* XCRemoteSwiftPackageReference "Moya" */,
+				CE69B2D72B7DFFEE0038AD53 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				CE69B2DA2B7E00610038AD53 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				CE69B2DD2B7E008D0038AD53 /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				CE69B2E02B7E009F0038AD53 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CE69B2E32B7E00B80038AD53 /* XCRemoteSwiftPackageReference "SideMenu" */,
+				CE69B2E62B7E00CF0038AD53 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				CE69B2E92B7E00F60038AD53 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CE69B2EE2B7E01180038AD53 /* XCRemoteSwiftPackageReference "socket" */,
+				CE69B2F12B7E01950038AD53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = CE6C1FBF2B43E8BA00AA7F9C /* Products */;
 			projectDirPath = "";
@@ -2355,7 +2352,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CEC46BB52B70CC9100F5A651 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		CE69B2C02B7DFF560038AD53 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -2363,7 +2360,15 @@
 				minimumVersion = 5.7.0;
 			};
 		};
-		CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		CE69B2C32B7DFF7C0038AD53 /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iamport/iamport-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 1.4.1;
+			};
+		};
+		CE69B2C62B7DFF940038AD53 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
@@ -2371,7 +2376,7 @@
 				minimumVersion = 6.6.0;
 			};
 		};
-		CEC46BBD2B70CCC700F5A651 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+		CE69B2CB2B7DFFA70038AD53 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
 			requirement = {
@@ -2379,7 +2384,7 @@
 				minimumVersion = 4.0.4;
 			};
 		};
-		CEC46BC02B70CCF200F5A651 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		CE69B2CE2B7DFFB70038AD53 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
 			requirement = {
@@ -2387,7 +2392,7 @@
 				minimumVersion = 7.0.1;
 			};
 		};
-		CEC46BC32B70CD0100F5A651 /* XCRemoteSwiftPackageReference "AnyFormatKit" */ = {
+		CE69B2D12B7DFFC70038AD53 /* XCRemoteSwiftPackageReference "AnyFormatKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/luximetr/AnyFormatKit.git";
 			requirement = {
@@ -2395,7 +2400,7 @@
 				minimumVersion = 2.5.2;
 			};
 		};
-		CEC46BC62B70CD1000F5A651 /* XCRemoteSwiftPackageReference "Moya" */ = {
+		CE69B2D42B7DFFE00038AD53 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
@@ -2403,7 +2408,7 @@
 				minimumVersion = 15.0.3;
 			};
 		};
-		CEC46BC92B70CD2700F5A651 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+		CE69B2D72B7DFFEE0038AD53 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift";
 			requirement = {
@@ -2411,7 +2416,7 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		CEC46BCC2B70CDCD00F5A651 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+		CE69B2DA2B7E00610038AD53 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
 			requirement = {
@@ -2419,15 +2424,7 @@
 				minimumVersion = 2.20.0;
 			};
 		};
-		CEC46BCF2B70CDD900F5A651 /* XCRemoteSwiftPackageReference "Then" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-		CEC46BD22B70CDE700F5A651 /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
+		CE69B2DD2B7E008D0038AD53 /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactorKit/ReactorKit";
 			requirement = {
@@ -2435,15 +2432,15 @@
 				minimumVersion = 3.2.0;
 			};
 		};
-		CEC46BD52B70CDF300F5A651 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		CE69B2E02B7E009F0038AD53 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.10.2;
+				minimumVersion = 7.11.0;
 			};
 		};
-		CEC46BD82B70CE8700F5A651 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+		CE69B2E32B7E00B80038AD53 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jonkykong/SideMenu";
 			requirement = {
@@ -2451,7 +2448,7 @@
 				minimumVersion = 6.5.0;
 			};
 		};
-		CEC46BDB2B70CE9800F5A651 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+		CE69B2E62B7E00CF0038AD53 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
 			requirement = {
@@ -2459,7 +2456,7 @@
 				minimumVersion = 5.0.2;
 			};
 		};
-		CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		CE69B2E92B7E00F60038AD53 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -2467,7 +2464,7 @@
 				kind = branch;
 			};
 		};
-		CEC46BE32B70CEBE00F5A651 /* XCRemoteSwiftPackageReference "socket" */ = {
+		CE69B2EE2B7E01180038AD53 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
 			requirement = {
@@ -2475,115 +2472,110 @@
 				kind = branch;
 			};
 		};
-		CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		CE69B2F12B7E01950038AD53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.20.0;
+				minimumVersion = 10.21.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CEC46BB62B70CC9100F5A651 /* SnapKit */ = {
+		CE69B2C12B7DFF560038AD53 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BB52B70CC9100F5A651 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = CE69B2C02B7DFF560038AD53 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		CEC46BB92B70CCB500F5A651 /* RxCocoa */ = {
+		CE69B2C42B7DFF7C0038AD53 /* iamport-ios */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = CE69B2C32B7DFF7C0038AD53 /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			productName = "iamport-ios";
+		};
+		CE69B2C72B7DFF940038AD53 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE69B2C62B7DFF940038AD53 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		CEC46BBB2B70CCB500F5A651 /* RxSwift */ = {
+		CE69B2C92B7DFF940038AD53 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BB82B70CCB500F5A651 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = CE69B2C62B7DFF940038AD53 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		CEC46BBE2B70CCC700F5A651 /* RxGesture */ = {
+		CE69B2CC2B7DFFA70038AD53 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BBD2B70CCC700F5A651 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			package = CE69B2CB2B7DFFA70038AD53 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
 		};
-		CEC46BC12B70CCF200F5A651 /* IQKeyboardManagerSwift */ = {
+		CE69B2CF2B7DFFB70038AD53 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BC02B70CCF200F5A651 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = CE69B2CE2B7DFFB70038AD53 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
-		CEC46BC42B70CD0100F5A651 /* AnyFormatKit */ = {
+		CE69B2D22B7DFFC70038AD53 /* AnyFormatKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BC32B70CD0100F5A651 /* XCRemoteSwiftPackageReference "AnyFormatKit" */;
+			package = CE69B2D12B7DFFC70038AD53 /* XCRemoteSwiftPackageReference "AnyFormatKit" */;
 			productName = AnyFormatKit;
 		};
-		CEC46BC72B70CD1000F5A651 /* Moya */ = {
+		CE69B2D52B7DFFE00038AD53 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BC62B70CD1000F5A651 /* XCRemoteSwiftPackageReference "Moya" */;
+			package = CE69B2D42B7DFFE00038AD53 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
 		};
-		CEC46BCA2B70CD2700F5A651 /* Toast */ = {
+		CE69B2D82B7DFFEE0038AD53 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BC92B70CD2700F5A651 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			package = CE69B2D72B7DFFEE0038AD53 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
-		CEC46BCD2B70CDCD00F5A651 /* KakaoSDK */ = {
+		CE69B2DB2B7E00610038AD53 /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BCC2B70CDCD00F5A651 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			package = CE69B2DA2B7E00610038AD53 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDK;
 		};
-		CEC46BD02B70CDD900F5A651 /* Then */ = {
+		CE69B2DE2B7E008D0038AD53 /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BCF2B70CDD900F5A651 /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
-		};
-		CEC46BD32B70CDE700F5A651 /* ReactorKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEC46BD22B70CDE700F5A651 /* XCRemoteSwiftPackageReference "ReactorKit" */;
+			package = CE69B2DD2B7E008D0038AD53 /* XCRemoteSwiftPackageReference "ReactorKit" */;
 			productName = ReactorKit;
 		};
-		CEC46BD62B70CDF300F5A651 /* Kingfisher */ = {
+		CE69B2E12B7E009F0038AD53 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BD52B70CDF300F5A651 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = CE69B2E02B7E009F0038AD53 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		CEC46BD92B70CE8700F5A651 /* SideMenu */ = {
+		CE69B2E42B7E00B80038AD53 /* SideMenu */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BD82B70CE8700F5A651 /* XCRemoteSwiftPackageReference "SideMenu" */;
+			package = CE69B2E32B7E00B80038AD53 /* XCRemoteSwiftPackageReference "SideMenu" */;
 			productName = SideMenu;
 		};
-		CEC46BDC2B70CE9800F5A651 /* RxDataSources */ = {
+		CE69B2E72B7E00CF0038AD53 /* RxDataSources */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BDB2B70CE9800F5A651 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			package = CE69B2E62B7E00CF0038AD53 /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
 		};
-		CEC46BDF2B70CEB100F5A651 /* Realm */ = {
+		CE69B2EA2B7E00F60038AD53 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = CE69B2E92B7E00F60038AD53 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
-		CEC46BE12B70CEB100F5A651 /* RealmSwift */ = {
+		CE69B2EC2B7E00F60038AD53 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BDE2B70CEB000F5A651 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = CE69B2E92B7E00F60038AD53 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		CEC46BE42B70CEBE00F5A651 /* SocketIO */ = {
+		CE69B2EF2B7E01180038AD53 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BE32B70CEBE00F5A651 /* XCRemoteSwiftPackageReference "socket" */;
+			package = CE69B2EE2B7E01180038AD53 /* XCRemoteSwiftPackageReference "socket" */;
 			productName = SocketIO;
 		};
-		CEC46BE72B70CF3900F5A651 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+		CE69B2F22B7E01950038AD53 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CE69B2F12B7E01950038AD53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
-		CEC46BE92B70CF3900F5A651 /* FirebaseCrashlytics */ = {
+		CE69B2F42B7E01950038AD53 /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		CEC46BEB2B70CF3900F5A651 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEC46BE62B70CF3900F5A651 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CE69B2F12B7E01950038AD53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */

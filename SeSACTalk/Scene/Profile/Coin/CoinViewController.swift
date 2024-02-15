@@ -107,9 +107,7 @@ extension CoinViewController: View {
     }
     
     private func bindEvent() {
-//        coinItems
-//            .bind(to: mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
-//            .disposed(by: disposeBag)
+        
     }
 }
 

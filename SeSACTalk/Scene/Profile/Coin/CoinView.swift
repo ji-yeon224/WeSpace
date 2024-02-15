@@ -28,7 +28,7 @@ final class CoinView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(5)
-        }
+        } 
     }
     
     private func createLayout() -> UICollectionViewLayout {

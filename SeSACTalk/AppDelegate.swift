@@ -12,6 +12,7 @@ import KakaoSDKAuth
 import FirebaseCore
 import FirebaseMessaging
 import Firebase
+import iamport_ios
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -85,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return AuthController.handleOpenUrl(url: url)
         }
         
+        Iamport.shared.receivedURL(url)
         return false
     }
 }
