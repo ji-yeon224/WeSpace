@@ -100,6 +100,9 @@
 		CE61AE272B5F7AB90091B03D /* ImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */; };
 		CE64BF432B57BE9100C81438 /* NotificationUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */; };
 		CE6513CC2B71F2000084EB9C /* UnreadChannelCntResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6513CB2B71F2000084EB9C /* UnreadChannelCntResDTO.swift */; };
+		CE69B2622B7DDA960038AD53 /* CoinItemResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2612B7DDA960038AD53 /* CoinItemResDTO.swift */; };
+		CE69B2652B7DDB4F0038AD53 /* CoinsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2642B7DDB4F0038AD53 /* CoinsAPI.swift */; };
+		CE69B2672B7DDB550038AD53 /* CoinsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2662B7DDB550038AD53 /* CoinsAPIManager.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -397,6 +400,9 @@
 		CE61AE262B5F7AB90091B03D /* ImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageView.swift; sourceTree = "<group>"; };
 		CE64BF422B57BE9100C81438 /* NotificationUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUserInfo.swift; sourceTree = "<group>"; };
 		CE6513CB2B71F2000084EB9C /* UnreadChannelCntResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadChannelCntResDTO.swift; sourceTree = "<group>"; };
+		CE69B2612B7DDA960038AD53 /* CoinItemResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemResDTO.swift; sourceTree = "<group>"; };
+		CE69B2642B7DDB4F0038AD53 /* CoinsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPI.swift; sourceTree = "<group>"; };
+		CE69B2662B7DDB550038AD53 /* CoinsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIManager.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -911,6 +917,7 @@
 		CE69B25F2B7DCCC90038AD53 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CE69B2602B7DDA8D0038AD53 /* Coin */,
 				CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */,
 				CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */,
 				CE5D06632B4E6A7400C067A3 /* Workspaces */,
@@ -919,6 +926,23 @@
 				CEE938232B7BCE5D003B4585 /* Users */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		CE69B2602B7DDA8D0038AD53 /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				CE69B2612B7DDA960038AD53 /* CoinItemResDTO.swift */,
+			);
+			path = Coin;
+			sourceTree = "<group>";
+		};
+		CE69B2632B7DDB400038AD53 /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				CE69B2642B7DDB4F0038AD53 /* CoinsAPI.swift */,
+				CE69B2662B7DDB550038AD53 /* CoinsAPIManager.swift */,
+			);
+			path = Coin;
 			sourceTree = "<group>";
 		};
 		CE6C1FB52B43E8BA00AA7F9C = {
@@ -1295,6 +1319,7 @@
 		CED65F862B45B67100CFD04C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CE69B2632B7DDB400038AD53 /* Coin */,
 				CE69B25E2B7DCCB30038AD53 /* Config */,
 				CE5719302B69EBE700EC3E18 /* Socket */,
 				CECFCDE52B4FBBDC00EB0DB7 /* Auth */,
@@ -1819,6 +1844,7 @@
 				CE61AE0E2B5D64EA0091B03D /* ChatWriteView.swift in Sources */,
 				CE7A58A72B75291C00EBBDF5 /* DmDTO.swift in Sources */,
 				CE61AE182B5E5BE40091B03D /* ChatImageCell.swift in Sources */,
+				CE69B2672B7DDB550038AD53 /* CoinsAPIManager.swift in Sources */,
 				CE9592382B68ADE500665659 /* SearchChannelCell.swift in Sources */,
 				CE95923A2B68B07000665659 /* ChannelSectionModel.swift in Sources */,
 				CE61AE032B5CF46F0091B03D /* ChannelCreateError.swift in Sources */,
@@ -1840,6 +1866,7 @@
 				CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */,
 				CEC764452B516C04000578E9 /* DMsAPI.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
+				CE69B2622B7DDA960038AD53 /* CoinItemResDTO.swift in Sources */,
 				CEEAA1D52B53FB9800EA1C58 /* WorkspaceEmptyView.swift in Sources */,
 				CE2BA8212B6FEF1B00B24B55 /* ChannelChatDelegate.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
@@ -1897,6 +1924,7 @@
 				CE1806E82B735BAD002DD9C3 /* DmItems.swift in Sources */,
 				CE2ACE522B7CF328007468EA /* CoinSectionModel.swift in Sources */,
 				CEEAA1D72B54085400EA1C58 /* WorkspaceListSettingView.swift in Sources */,
+				CE69B2652B7DDB4F0038AD53 /* CoinsAPI.swift in Sources */,
 				CEA8F9B82B4949160062B45C /* InitialViewController.swift in Sources */,
 				CE85749E2B4BFF7F0025ED1B /* HomeTabBarController.swift in Sources */,
 				CEE989A52B4A9FDA00590A19 /* LoginCompletedManager.swift in Sources */,
