@@ -16,7 +16,7 @@ final class CoinViewController: BaseViewController {
     var disposeBag = DisposeBag()
     var coin = 0
     
-    private var coinItems = PublishRelay<[CoinSectionModel]>()
+    private var requestItemList = PublishRelay<Void>()
     
     override func loadView() {
         self.view = mainView
@@ -30,41 +30,86 @@ final class CoinViewController: BaseViewController {
     
     override func configure() {
         super.configure()
+        self.reactor = CoinReactor()
         mainView.delegate = self
         configNav()
-        bindEvent()
-        configData()
+        requestItemList.accept(())
     }
     
-    private func configData() {
+    private func configData(item: [CoinItem]) -> [CoinSectionModel] {
         
-        let section1 = [CoinCollectionItem(coin: 10, price: nil)]
-        let section2 = [
-            CoinCollectionItem(coin: 10, price: 100),
-            CoinCollectionItem(coin: 50, price: 500),
-            CoinCollectionItem(coin: 100, price: 1000)
-        ]
+        let section1 = [CoinCollectionItem(count: coin, item: nil)]
+        let itemListSection = item.map { CoinCollectionItem(count: nil, item: $0)}
         let data = [
             CoinSectionModel(section: 0, items: section1),
-            CoinSectionModel(section: 1, items: section2)
+            CoinSectionModel(section: 1, items: itemListSection)
         ]
-        coinItems.accept(data)
+        return data
     }
     
     
 }
 
-extension CoinViewController: CoinPurchageDelegate {
-    func purchaseCoin(count: Int, price: Int) {
-        print(count, price)
+extension CoinViewController: CoinPurchaseDelegate {
+    func purchaseCoin(item: CoinItem) {
+        print(item)
     }
 }
 
-extension CoinViewController {
-    private func bindEvent() {
-        coinItems
-            .bind(to: mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
+extension CoinViewController: View {
+    
+    func bind(reactor: CoinReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+        bindEvent()
+    }
+    
+    private func bindAction(reactor: CoinReactor) {
+        requestItemList
+            .map { Reactor.Action.requestItemList }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
+    }
+    
+    private func bindState(reactor: CoinReactor) {
+        reactor.state
+            .map { $0.msg }
+            .filter { $0 != .none }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.showToastMessage(message: value, position: .bottom)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loginRequest }
+            .filter { $0 }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, value in
+                print("login request")
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.itemList }
+            .filter { !$0.isEmpty }
+            .asDriver(onErrorJustReturn: [])
+            .map {
+                return self.configData(item: $0)
+            }
+            .drive(mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func bindEvent() {
+//        coinItems
+//            .bind(to: mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
+//            .disposed(by: disposeBag)
     }
 }
 

@@ -27,7 +27,7 @@
 		CE2ACE502B7CF137007468EA /* CoinCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */; };
 		CE2ACE522B7CF328007468EA /* CoinSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */; };
 		CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */; };
-		CE2ACE562B7D04C7007468EA /* CoinPurchageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE552B7D04C7007468EA /* CoinPurchageDelegate.swift */; };
+		CE2ACE562B7D04C7007468EA /* CoinPurchaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */; };
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
 		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */; };
@@ -103,6 +103,8 @@
 		CE69B2622B7DDA960038AD53 /* CoinItemResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2612B7DDA960038AD53 /* CoinItemResDTO.swift */; };
 		CE69B2652B7DDB4F0038AD53 /* CoinsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2642B7DDB4F0038AD53 /* CoinsAPI.swift */; };
 		CE69B2672B7DDB550038AD53 /* CoinsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2662B7DDB550038AD53 /* CoinsAPIManager.swift */; };
+		CE69B26A2B7DE01C0038AD53 /* CoinReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B2692B7DE01C0038AD53 /* CoinReactor.swift */; };
+		CE69B26C2B7DE7B10038AD53 /* CoinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE69B26B2B7DE7B10038AD53 /* CoinItem.swift */; };
 		CE6C1FC22B43E8BA00AA7F9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */; };
 		CE6C1FC42B43E8BA00AA7F9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */; };
 		CE6C1FC62B43E8BA00AA7F9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */; };
@@ -327,7 +329,7 @@
 		CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionCell.swift; sourceTree = "<group>"; };
 		CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSectionModel.swift; sourceTree = "<group>"; };
 		CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionItem.swift; sourceTree = "<group>"; };
-		CE2ACE552B7D04C7007468EA /* CoinPurchageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchageDelegate.swift; sourceTree = "<group>"; };
+		CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseDelegate.swift; sourceTree = "<group>"; };
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
 		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
@@ -403,6 +405,8 @@
 		CE69B2612B7DDA960038AD53 /* CoinItemResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemResDTO.swift; sourceTree = "<group>"; };
 		CE69B2642B7DDB4F0038AD53 /* CoinsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPI.swift; sourceTree = "<group>"; };
 		CE69B2662B7DDB550038AD53 /* CoinsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIManager.swift; sourceTree = "<group>"; };
+		CE69B2692B7DE01C0038AD53 /* CoinReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinReactor.swift; sourceTree = "<group>"; };
+		CE69B26B2B7DE7B10038AD53 /* CoinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItem.swift; sourceTree = "<group>"; };
 		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -724,6 +728,7 @@
 			children = (
 				CE2ACE4B2B7CEFF6007468EA /* CoinViewController.swift */,
 				CE2ACE4D2B7CEFFC007468EA /* CoinView.swift */,
+				CE69B2692B7DE01C0038AD53 /* CoinReactor.swift */,
 			);
 			path = Coin;
 			sourceTree = "<group>";
@@ -746,6 +751,7 @@
 				CE61AE212B5EC47C0091B03D /* SelectImageModel.swift */,
 				CE9592392B68B07000665659 /* ChannelSectionModel.swift */,
 				CE9DEB7A2B6CD5350016382B /* ChannelMemberItem.swift */,
+				CEEE4EB92B46DE900059D1AF /* Users */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -858,7 +864,7 @@
 				CE2BA81E2B6FE84F00B24B55 /* ChannelSettingDelegate.swift */,
 				CE2BA8202B6FEF1B00B24B55 /* ChannelChatDelegate.swift */,
 				CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */,
-				CE2ACE552B7D04C7007468EA /* CoinPurchageDelegate.swift */,
+				CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -932,6 +938,7 @@
 			isa = PBXGroup;
 			children = (
 				CE69B2612B7DDA960038AD53 /* CoinItemResDTO.swift */,
+				CE69B26B2B7DE7B10038AD53 /* CoinItem.swift */,
 			);
 			path = Coin;
 			sourceTree = "<group>";
@@ -1039,7 +1046,6 @@
 				CE69B25F2B7DCCC90038AD53 /* Network */,
 				CE5EA4AE2B60AB0000999704 /* Realm */,
 				CE4904D22B4D0EA9003B0204 /* Data */,
-				CEEE4EB92B46DE900059D1AF /* Users */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1769,7 +1775,7 @@
 				CE5D06622B4E67FE00C067A3 /* WorkspacesAPIManager.swift in Sources */,
 				CEE9898F2B4A4BF900590A19 /* LoginInputValue.swift in Sources */,
 				CE61AE122B5E41670091B03D /* SquareFillImageView.swift in Sources */,
-				CE2ACE562B7D04C7007468EA /* CoinPurchageDelegate.swift in Sources */,
+				CE2ACE562B7D04C7007468EA /* CoinPurchaseDelegate.swift in Sources */,
 				CE9B06462B7C61A5005D309B /* UserError.swift in Sources */,
 				CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */,
 				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,
@@ -1801,6 +1807,7 @@
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
 				CE5EA4B02B60AB1200999704 /* ChannelChatDTO.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
+				CE69B26A2B7DE01C0038AD53 /* CoinReactor.swift in Sources */,
 				CE1806DF2B734358002DD9C3 /* NoMemberDmView.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
 				CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */,
@@ -1893,6 +1900,7 @@
 				CE95923C2B68BA2000665659 /* SearchChannelReactor.swift in Sources */,
 				CEE9899D2B4A7E9700590A19 /* HomeEmptyView.swift in Sources */,
 				CEB7F84D2B44618E00B9A035 /* UILabel+Extension.swift in Sources */,
+				CE69B26C2B7DE7B10038AD53 /* CoinItem.swift in Sources */,
 				CEC46BAE2B708CF400F5A651 /* ChangeCHManagerViewController.swift in Sources */,
 				CED829552B59331800AD1828 /* ChangeWSManageDelegate.swift in Sources */,
 				CEC764532B5176DA000578E9 /* User.swift in Sources */,

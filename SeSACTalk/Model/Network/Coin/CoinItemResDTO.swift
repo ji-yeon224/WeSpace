@@ -10,6 +10,10 @@ import Foundation
 struct CoinItemResDTO: Decodable {
     let item: String
     let amount: String
+    
+    func toDomain() -> CoinItem {
+        return .init(item: item, amount: amount)
+    }
 }
 
 typealias CoinItemListRes = [CoinItemResDTO]
