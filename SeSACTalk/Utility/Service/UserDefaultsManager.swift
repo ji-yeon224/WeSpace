@@ -32,6 +32,8 @@ final class UserDefaultsManager {
         case userId
         case accessTokenExpire
         case refreshTokenExpire
+        case channelId
+        case dmId
     }
     
     @Defaults(key: Key.isLogin.rawValue, defaultValue: false) static var isLogin
@@ -42,7 +44,8 @@ final class UserDefaultsManager {
     @Defaults(key: Key.userId.rawValue, defaultValue: -1) static var userId
     @Defaults(key: Key.accessTokenExpire.rawValue, defaultValue: Date()) static var accessTokenExpire
     @Defaults(key: Key.refreshTokenExpire.rawValue, defaultValue: Date()) static var refreshTokenExpire
-    
+    @Defaults(key: Key.channelId.rawValue, defaultValue: -1) static var channelId
+    @Defaults(key: Key.dmId.rawValue, defaultValue: -1) static var dmId
     
     static func setToken(token: Token) {
         UserDefaultsManager.isLogin = true
@@ -66,6 +69,11 @@ final class UserDefaultsManager {
     static func setUserInfo(id: Int, nickName: String) {
         UserDefaultsManager.userId = id
         UserDefaultsManager.nickName = nickName
+    }
+    
+    static func setInitChatId() {
+        UserDefaultsManager.channelId = -1
+        UserDefaultsManager.dmId = -1
     }
     
 }

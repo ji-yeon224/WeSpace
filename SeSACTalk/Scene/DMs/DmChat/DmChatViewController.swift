@@ -53,6 +53,7 @@ final class DmChatViewController: BaseViewController {
         
         guard let dmRoomInfo = dmRoomInfo else { return }
         requestUncheckedChat.accept(dmRoomInfo)
+        UserDefaultsManager.dmId = dmRoomInfo.roomId
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +67,7 @@ final class DmChatViewController: BaseViewController {
         if SocketNetworkManager.shared.isConnected {
             SocketNetworkManager.shared.disconnect()
         }
+        UserDefaultsManager.dmId = -1
     }
     
     override func configure() {

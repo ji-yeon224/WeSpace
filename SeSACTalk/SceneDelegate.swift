@@ -49,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if SocketNetworkManager.shared.isConnected {
             SocketNetworkManager.shared.disconnect()
         }
-        
+        UserDefaultsManager.setInitChatId()
         
     }
     

@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        completionHandler([.list, .banner])
+        
 //        print(notification.request.content.userInfo)
         
         guard let responseInfo = notification.request.content.userInfo as? Dictionary<String, Any> else {
@@ -95,23 +95,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if let type = responseInfo["type"] as? String {
             if type == "channel" {
-                if let data = data {
-                    do {
-                        let jsonData = try JSONDecoder().decode(ChannelPushDTO.self, from: data)
-                        print(jsonData)
-                    } catch {
-                        print("error", error)
+                if let id = responseInfo["channel_id"] as? String, let channelId = Int(id) {
+                    if UserDefaultsManager.channelId != channelId {
+                        if let data = data, let resData = data.convertToChannelPushDto {
+                            print(resData.aps.alert.body)
+                            completionHandler([.list, .banner])
+                        }
                     }
                 }
+               
             } else if type == "dm" {
-                if let data = data {
-                    do {
-                        let jsonData = try JSONDecoder().decode(DmPushDTO.self, from: data)
-                        print(jsonData)
-                    } catch {
-                        print("error", error)
+                if let id = responseInfo["room_id"] as? String , let dmId = Int(id) {
+                    if UserDefaultsManager.dmId != dmId {
+                        if let data = data, let resData = data.convertToDmPushDto {
+                            print(resData.aps.alert.body)
+                            completionHandler([.list, .banner])
+                        }
                     }
                 }
+                
             }
         }
         
@@ -120,6 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         //        print(response.notification.request.content.userInfo)
+        
         
         
     }

@@ -72,7 +72,6 @@ final class DMListView: BaseView {
             }
             cell.nickNameLabel.text = user.nickname
             cell.messagelabel.text = "메세지"
-            print(itemIdentifier.unread)
             if itemIdentifier.unread > 0 {
                 cell.unreadView.isHidden = false
                 cell.unreadView.countLabel.text = "\(itemIdentifier.unread)"

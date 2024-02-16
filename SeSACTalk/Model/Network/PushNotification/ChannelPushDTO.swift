@@ -24,3 +24,4 @@ struct Aps: Decodable {
 struct Alert: Decodable {
     let body, title: String
 }
+
