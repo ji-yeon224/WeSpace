@@ -81,6 +81,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             completionHandler([.list, .banner])
         }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+//        print(response.notification.request.content.userInfo)
+        var data: Data?
+        
+        
+        do {
+            data = try JSONSerialization.data(withJSONObject: response.notification.request.content.userInfo)
+            
+        } catch {
+            print("decode error")
+        }
+        
+        if let data = data {
+            print("!!")
+            do {
+                let jsonData = try JSONDecoder().decode(ChannelPushDTO.self, from: data)
+                print(jsonData)
+            } catch {
+                print("error")
+            }
+        }
+        
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if (AuthApi.isKakaoTalkLoginUrl(url)) {
             return AuthController.handleOpenUrl(url: url)
@@ -96,6 +120,7 @@ extension AppDelegate: MessagingDelegate {
     // 토큰 갱신 모니터링
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
 //        print("Firebase registration token: \(String(describing: fcmToken))")
+        print(#function)
         Messaging.messaging().token { token, error in
           if let error = error {
             print("Error fetching FCM registration token: \(error)")

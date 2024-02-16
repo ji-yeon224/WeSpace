@@ -147,6 +147,7 @@
 		CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */; };
 		CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */; };
 		CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */; };
+		CE92AB402B7F7E370026231F /* ChannelPushData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92AB3F2B7F7E370026231F /* ChannelPushData.swift */; };
 		CE9592342B68ADA000665659 /* SearchChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592332B68ADA000665659 /* SearchChannelViewController.swift */; };
 		CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592352B68ADA700665659 /* SearchChannelView.swift */; };
 		CE9592382B68ADE500665659 /* SearchChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592372B68ADE500665659 /* SearchChannelCell.swift */; };
@@ -160,7 +161,6 @@
 		CE9B064D2B7C968E005D309B /* EditProfileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B064C2B7C968E005D309B /* EditProfileType.swift */; };
 		CE9B064F2B7C9720005D309B /* ProfileUpdateReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B064E2B7C9720005D309B /* ProfileUpdateReqDTO.swift */; };
 		CE9B06512B7CA428005D309B /* EditProfileReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B06502B7CA428005D309B /* EditProfileReactor.swift */; };
-		CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */; };
 		CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */; };
 		CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */; };
 		CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */; };
@@ -297,6 +297,7 @@
 		CEFE75C22B7F306700DEC480 /* BillingResultResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C12B7F306700DEC480 /* BillingResultResDTO.swift */; };
 		CEFE75C42B7F32DB00DEC480 /* PurchaseToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C32B7F32DB00DEC480 /* PurchaseToastMessage.swift */; };
 		CEFE75C62B7F3CBC00DEC480 /* BillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C52B7F3CBC00DEC480 /* BillingResult.swift */; };
+		CEFE75C82B7F532600DEC480 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEFE75C72B7F532600DEC480 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -442,6 +443,7 @@
 		CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadCntView.swift; sourceTree = "<group>"; };
+		CE92AB3F2B7F7E370026231F /* ChannelPushData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPushData.swift; sourceTree = "<group>"; };
 		CE9592332B68ADA000665659 /* SearchChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewController.swift; sourceTree = "<group>"; };
 		CE9592352B68ADA700665659 /* SearchChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelView.swift; sourceTree = "<group>"; };
 		CE9592372B68ADE500665659 /* SearchChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelCell.swift; sourceTree = "<group>"; };
@@ -455,7 +457,6 @@
 		CE9B064C2B7C968E005D309B /* EditProfileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileType.swift; sourceTree = "<group>"; };
 		CE9B064E2B7C9720005D309B /* ProfileUpdateReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateReqDTO.swift; sourceTree = "<group>"; };
 		CE9B06502B7CA428005D309B /* EditProfileReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileReactor.swift; sourceTree = "<group>"; };
-		CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenReq.swift; sourceTree = "<group>"; };
 		CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
 		CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewController.swift; sourceTree = "<group>"; };
@@ -593,6 +594,7 @@
 		CEFE75C12B7F306700DEC480 /* BillingResultResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingResultResDTO.swift; sourceTree = "<group>"; };
 		CEFE75C32B7F32DB00DEC480 /* PurchaseToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseToastMessage.swift; sourceTree = "<group>"; };
 		CEFE75C52B7F3CBC00DEC480 /* BillingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingResult.swift; sourceTree = "<group>"; };
+		CEFE75C72B7F532600DEC480 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -948,6 +950,7 @@
 				CEC7643C2B5162F0000578E9 /* Channel */,
 				CEC7644D2B517427000578E9 /* DMs */,
 				CEE938232B7BCE5D003B4585 /* Users */,
+				CE92AB3F2B7F7E370026231F /* ChannelPushData.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -996,7 +999,7 @@
 		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
 			isa = PBXGroup;
 			children = (
-				CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */,
+				CEFE75C72B7F532600DEC480 /* GoogleService-Info.plist */,
 				CEA8F9B12B492B9D0062B45C /* SeSACTalk.entitlements */,
 				CED65F8B2B45B6EE00CFD04C /* Error */,
 				CED65F862B45B67100CFD04C /* Network */,
@@ -1758,7 +1761,7 @@
 				CE6C1FCB2B43E8BB00AA7F9C /* Assets.xcassets in Resources */,
 				CE6C1FC92B43E8BA00AA7F9C /* Main.storyboard in Resources */,
 				CEB7F84A2B445E7900B9A035 /* SF-Pro.ttf in Resources */,
-				CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */,
+				CEFE75C82B7F532600DEC480 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2004,6 +2007,7 @@
 				CE6513CC2B71F2000084EB9C /* UnreadChannelCntResDTO.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
+				CE92AB402B7F7E370026231F /* ChannelPushData.swift in Sources */,
 				CE9DEB7B2B6CD5350016382B /* ChannelMemberItem.swift in Sources */,
 				CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */,
 				CE583B842B7873BA00B541EE /* DmToastMessage.swift in Sources */,
@@ -2224,9 +2228,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DJP8DYB9HG;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2240,8 +2246,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiyeon.SeSACTalk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2254,9 +2262,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DJP8DYB9HG;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2270,8 +2280,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiyeon.SeSACTalk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

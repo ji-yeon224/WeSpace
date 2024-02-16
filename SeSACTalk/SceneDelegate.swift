@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        if UserDefaultsManager.isLogin {
+        if UserDefaultsManager.isLogin && UserDefaultsManager.refreshTokenExpire > Date() {
             
             EnterViewControllerMananger.shared.fetchWorkspace()
                 .asObservable()
@@ -33,6 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 })
                 .disposed(by: EnterViewControllerMananger.shared.disposeBag)
         } else {
+            UserDefaultsManager.initToken()
             window?.rootViewController = OnBoardingViewController()
             window?.makeKeyAndVisible()
         }
