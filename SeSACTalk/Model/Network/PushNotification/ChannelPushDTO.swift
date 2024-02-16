@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct ChannelPushDTO: Codable {
+struct ChannelPushDTO: Decodable {
     let aps: Aps
     let type, workspaceID, channelID: String
 
@@ -17,10 +17,10 @@ struct ChannelPushDTO: Codable {
     }
 }
 
-struct Aps: Codable {
+struct Aps: Decodable {
     let alert: Alert
 }
 
-struct Alert: Codable {
+struct Alert: Decodable {
     let body, title: String
 }

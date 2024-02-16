@@ -83,25 +83,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
 //        print(response.notification.request.content.userInfo)
-        var data: Data?
-        
-        
-        do {
-            data = try JSONSerialization.data(withJSONObject: response.notification.request.content.userInfo)
-            
-        } catch {
-            print("decode error")
-        }
-        
-        if let data = data {
-            print("!!")
+        if let responseData = response.notification.request.content.userInfo as? Dictionary<String, Any> {
+            var data: Data?
             do {
-                let jsonData = try JSONDecoder().decode(ChannelPushDTO.self, from: data)
-                print(jsonData)
+                data = try JSONSerialization.data(withJSONObject: response.notification.request.content.userInfo)
+                
             } catch {
-                print("error")
+                print("decode error")
             }
+            
+            if let type = responseData["type"] as? String {
+                if type == "channel" {
+                    if let data = data {
+                        do {
+                            let jsonData = try JSONDecoder().decode(ChannelPushDTO.self, from: data)
+                        } catch {
+                            print("error", error)
+                        }
+                    }
+                } else if type == "dm" {
+                    if let data = data {
+                        do {
+                            let jsonData = try JSONDecoder().decode(DmPushDTO.self, from: data)
+                        } catch {
+                            print("error", error)
+                        }
+                    }
+                }
+            }
+            
+            
         }
+       
         
     }
     
