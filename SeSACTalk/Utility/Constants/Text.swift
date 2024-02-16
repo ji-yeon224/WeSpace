@@ -77,4 +77,8 @@ enum Text {
     static let noMemberDmTitle = "워크스페이스에\n 멤버가 없어요."
     static let noMemberDmMsg = "새로운 팀원을 초대해보세요."
     static let inviteMember = "팀원 초대하기"
+    
+    //Portone
+    static let purchaseBackButton = "결제를 취소"
+    static let purchaseBackMsg = "결제를 취소하시겠습니까?"
 }

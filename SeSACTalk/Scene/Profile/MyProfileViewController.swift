@@ -150,6 +150,13 @@ extension MyProfileViewController: View {
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
             .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.refreshMyInfo)
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, _ in
+                owner.requestMyInfo.accept(())
+            }
+            .disposed(by: disposeBag)
     }
     
 }

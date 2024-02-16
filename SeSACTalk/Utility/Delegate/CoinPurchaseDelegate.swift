@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CoinPurchageDelegate: AnyObject {
-    func purchaseCoin(count: Int, price: Int)
+protocol CoinPurchaseDelegate: AnyObject {
+    func purchaseCoin(item: CoinItem)
 }

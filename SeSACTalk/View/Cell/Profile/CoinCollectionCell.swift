@@ -44,7 +44,6 @@ final class CoinCollectionCell: BaseCollectionViewCell {
         cellTitle.snp.makeConstraints { make in
             make.leading.equalTo(contentView).inset(15)
             make.verticalEdges.equalTo(contentView).inset(13)
-            make.height.equalTo(20)
         }
         coinCountLabel.snp.makeConstraints { make in
             make.leading.equalTo(cellTitle.snp.trailing).offset(5)
