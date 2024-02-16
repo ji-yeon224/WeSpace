@@ -17,6 +17,7 @@ final class CoinViewController: BaseViewController {
     var coin = 0
     
     private var requestItemList = PublishRelay<Void>()
+    private var requestPurchaseValid = PublishRelay<PortOneValidationReqDTO>()
     
     override func loadView() {
         self.view = mainView
@@ -53,6 +54,19 @@ final class CoinViewController: BaseViewController {
 extension CoinViewController: CoinPurchaseDelegate {
     func purchaseCoin(item: CoinItem) {
         print(item)
+        let vc = PortonePurchaseViewController(item: item)
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension CoinViewController: PortOneResponseDelegate {
+    func purchaseResponse(success: Bool, data: PortOneValidationReqDTO?, item: CoinItem?) {
+        if success, let data = data {
+            requestPurchaseValid.accept(data)
+        } else {
+            showToastMessage(message: PurchaseToastMessage.fail.message, position: .bottom)
+        }
     }
 }
 
@@ -67,6 +81,11 @@ extension CoinViewController: View {
     private func bindAction(reactor: CoinReactor) {
         requestItemList
             .map { Reactor.Action.requestItemList }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        requestPurchaseValid
+            .map { Reactor.Action.requestPurchaseValid(data: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -104,10 +123,35 @@ extension CoinViewController: View {
             .drive(mainView.collectionView.rx.items(dataSource: mainView.rxdataSource))
             .disposed(by: disposeBag)
         
+        reactor.state
+            .map {$0.showIndicator}
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, value in
+                owner.showIndicator(show: value)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.billingValidation }
+            .filter { $0 != nil }
+            .distinctUntilChanged({
+                return $0?.billing_id == $1?.billing_id
+            })
+            .bind(with: self) { owner, value in
+                if let value = value, value.success {
+                    owner.showToastMessage(message: PurchaseToastMessage.success(coin: "\(value.sesacCoin)").message, position: .bottom)
+                    owner.coin += value.sesacCoin
+                    owner.requestItemList.accept(())
+                }
+                
+            }
+            .disposed(by: disposeBag)
+            
+        
     }
     
     private func bindEvent() {
-        
     }
 }
 

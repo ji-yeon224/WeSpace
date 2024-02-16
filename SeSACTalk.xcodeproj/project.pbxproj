@@ -288,6 +288,15 @@
 		CEEE4EC12B46E7FC0059D1AF /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */; };
 		CEEE4EC52B4702A10059D1AF /* JoinToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */; };
 		CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEE4EC72B470B250059D1AF /* JoinInputValue.swift */; };
+		CEFE75B52B7F115200DEC480 /* PortonePurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75B42B7F115200DEC480 /* PortonePurchaseManager.swift */; };
+		CEFE75B72B7F129000DEC480 /* PortonePurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75B62B7F129000DEC480 /* PortonePurchaseViewController.swift */; };
+		CEFE75B92B7F191700DEC480 /* PortonePurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75B82B7F191700DEC480 /* PortonePurchaseView.swift */; };
+		CEFE75BB2B7F27BD00DEC480 /* PortOneValidationReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75BA2B7F27BD00DEC480 /* PortOneValidationReqDTO.swift */; };
+		CEFE75BD2B7F2BA700DEC480 /* PortOneResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75BC2B7F2BA700DEC480 /* PortOneResponseDelegate.swift */; };
+		CEFE75C02B7F2E9000DEC480 /* PurchaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75BF2B7F2E9000DEC480 /* PurchaseError.swift */; };
+		CEFE75C22B7F306700DEC480 /* BillingResultResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C12B7F306700DEC480 /* BillingResultResDTO.swift */; };
+		CEFE75C42B7F32DB00DEC480 /* PurchaseToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C32B7F32DB00DEC480 /* PurchaseToastMessage.swift */; };
+		CEFE75C62B7F3CBC00DEC480 /* BillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C52B7F3CBC00DEC480 /* BillingResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -575,6 +584,15 @@
 		CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		CEEE4EC42B4702A10059D1AF /* JoinToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinToastMessage.swift; sourceTree = "<group>"; };
 		CEEE4EC72B470B250059D1AF /* JoinInputValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinInputValue.swift; sourceTree = "<group>"; };
+		CEFE75B42B7F115200DEC480 /* PortonePurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortonePurchaseManager.swift; sourceTree = "<group>"; };
+		CEFE75B62B7F129000DEC480 /* PortonePurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortonePurchaseViewController.swift; sourceTree = "<group>"; };
+		CEFE75B82B7F191700DEC480 /* PortonePurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortonePurchaseView.swift; sourceTree = "<group>"; };
+		CEFE75BA2B7F27BD00DEC480 /* PortOneValidationReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortOneValidationReqDTO.swift; sourceTree = "<group>"; };
+		CEFE75BC2B7F2BA700DEC480 /* PortOneResponseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortOneResponseDelegate.swift; sourceTree = "<group>"; };
+		CEFE75BF2B7F2E9000DEC480 /* PurchaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseError.swift; sourceTree = "<group>"; };
+		CEFE75C12B7F306700DEC480 /* BillingResultResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingResultResDTO.swift; sourceTree = "<group>"; };
+		CEFE75C32B7F32DB00DEC480 /* PurchaseToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseToastMessage.swift; sourceTree = "<group>"; };
+		CEFE75C52B7F3CBC00DEC480 /* BillingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -724,6 +742,7 @@
 		CE2ACE4A2B7CEFED007468EA /* Coin */ = {
 			isa = PBXGroup;
 			children = (
+				CEFE75BE2B7F2DAD00DEC480 /* PortOne */,
 				CE2ACE4B2B7CEFF6007468EA /* CoinViewController.swift */,
 				CE2ACE4D2B7CEFFC007468EA /* CoinView.swift */,
 				CE69B2692B7DE01C0038AD53 /* CoinReactor.swift */,
@@ -863,6 +882,7 @@
 				CE2BA8202B6FEF1B00B24B55 /* ChannelChatDelegate.swift */,
 				CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */,
 				CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */,
+				CEFE75BC2B7F2BA700DEC480 /* PortOneResponseDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -937,6 +957,9 @@
 			children = (
 				CE69B2612B7DDA960038AD53 /* CoinItemResDTO.swift */,
 				CE69B26B2B7DE7B10038AD53 /* CoinItem.swift */,
+				CEFE75BA2B7F27BD00DEC480 /* PortOneValidationReqDTO.swift */,
+				CEFE75C12B7F306700DEC480 /* BillingResultResDTO.swift */,
+				CEFE75C52B7F3CBC00DEC480 /* BillingResult.swift */,
 			);
 			path = Coin;
 			sourceTree = "<group>";
@@ -1342,6 +1365,7 @@
 				CED65F8E2B45B77900CFD04C /* Auth */,
 				CED65F8C2B45B6F800CFD04C /* CommonError.swift */,
 				CE5F94CC2B620004006A4DA4 /* DBError.swift */,
+				CEFE75BF2B7F2E9000DEC480 /* PurchaseError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1540,6 +1564,7 @@
 				CED829452B58C28900AD1828 /* ReusableProtocol.swift */,
 				CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */,
 				CE5F94D22B626F3B006A4DA4 /* ImageFileManager.swift */,
+				CEFE75B42B7F115200DEC480 /* PortonePurchaseManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1553,6 +1578,7 @@
 				CE61AE042B5D006F0091B03D /* ChannelToastMessage.swift */,
 				CE583B832B7873BA00B541EE /* DmToastMessage.swift */,
 				CEE9381F2B7BBFBD003B4585 /* UserToastMessage.swift */,
+				CEFE75C32B7F32DB00DEC480 /* PurchaseToastMessage.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -1572,6 +1598,15 @@
 				CEE938192B7B8637003B4585 /* MyProfileEditType.swift */,
 			);
 			path = Type;
+			sourceTree = "<group>";
+		};
+		CEFE75BE2B7F2DAD00DEC480 /* PortOne */ = {
+			isa = PBXGroup;
+			children = (
+				CEFE75B62B7F129000DEC480 /* PortonePurchaseViewController.swift */,
+				CEFE75B82B7F191700DEC480 /* PortonePurchaseView.swift */,
+			);
+			path = PortOne;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1775,6 +1810,7 @@
 				CE2ACE562B7D04C7007468EA /* CoinPurchaseDelegate.swift in Sources */,
 				CE9B06462B7C61A5005D309B /* UserError.swift in Sources */,
 				CEE989AE2B4AAC2F00590A19 /* CommonFormView.swift in Sources */,
+				CEFE75C02B7F2E9000DEC480 /* PurchaseError.swift in Sources */,
 				CEA8F9CB2B49891E0062B45C /* LoginError.swift in Sources */,
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
 				CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */,
@@ -1799,6 +1835,7 @@
 				CEA4EB562B5686CB00413500 /* WorkspaceListReactor.swift in Sources */,
 				CE4904DA2B4D11C9003B0204 /* HomeDmSection.swift in Sources */,
 				CE57E4252B454594009BD53A /* LoginViewControllerDelegate.swift in Sources */,
+				CEFE75BD2B7F2BA700DEC480 /* PortOneResponseDelegate.swift in Sources */,
 				CEA8F9AE2B4924FD0062B45C /* JoinSuccess.swift in Sources */,
 				CED829442B58C22C00AD1828 /* MemberCollectionViewCell.swift in Sources */,
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
@@ -1820,6 +1857,7 @@
 				CEE989A32B4A874300590A19 /* ProfileImageView.swift in Sources */,
 				CEE938182B7B8110003B4585 /* ProfileEditCell.swift in Sources */,
 				CE8574932B4AFEB50025ED1B /* LoginReactor.swift in Sources */,
+				CEFE75C62B7F3CBC00DEC480 /* BillingResult.swift in Sources */,
 				CEB7F84F2B44622C00B9A035 /* Font.swift in Sources */,
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEE938132B7B781D003B4585 /* MyProfileViewController.swift in Sources */,
@@ -1839,6 +1877,7 @@
 				CECFCDEF2B4FC91400EB0DB7 /* RefreshError.swift in Sources */,
 				CEE7DA4B2B74ACC8007BAAE6 /* DmError.swift in Sources */,
 				CE85748C2B4AE7A10025ED1B /* EditImageView.swift in Sources */,
+				CEFE75BB2B7F27BD00DEC480 /* PortOneValidationReqDTO.swift in Sources */,
 				CE7A58A92B752D2700EBBDF5 /* DmChatDTO.swift in Sources */,
 				CE9B064D2B7C968E005D309B /* EditProfileType.swift in Sources */,
 				CED7C2C52B5234AD0069EA0A /* WorkspaceListViewController.swift in Sources */,
@@ -1875,6 +1914,7 @@
 				CE2BA8212B6FEF1B00B24B55 /* ChannelChatDelegate.swift in Sources */,
 				CE5D06602B4E67F400C067A3 /* WorkspacesAPI.swift in Sources */,
 				CEC46BB42B70BCE600F5A651 /* ChannelCHManagerDelegate.swift in Sources */,
+				CEFE75B52B7F115200DEC480 /* PortonePurchaseManager.swift in Sources */,
 				CED8294D2B58C42900AD1828 /* ChangeWSManagerReactor.swift in Sources */,
 				CEE938152B7B7860003B4585 /* MyProfileView.swift in Sources */,
 				CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */,
@@ -1940,12 +1980,14 @@
 				CEE989AC2B4AAB8800590A19 /* MakeView.swift in Sources */,
 				CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */,
 				CE5F94D32B626F3B006A4DA4 /* ImageFileManager.swift in Sources */,
+				CEFE75B72B7F129000DEC480 /* PortonePurchaseViewController.swift in Sources */,
 				CE211F392B5AC9A000C43028 /* InviteView.swift in Sources */,
 				CED65F8A2B45B68300CFD04C /* BaseURL.swift in Sources */,
 				CE4904D82B4D1137003B0204 /* ChannelSection.swift in Sources */,
 				CEA8F9B02B4926DA0062B45C /* JoinError.swift in Sources */,
 				CEC7644B2B5173AE000578E9 /* DMsAPIManager.swift in Sources */,
 				CE1806EC2B7360B4002DD9C3 /* DateFormatterType.swift in Sources */,
+				CEFE75B92B7F191700DEC480 /* PortonePurchaseView.swift in Sources */,
 				CE5D06752B4EEC4100C067A3 /* SelectImage.swift in Sources */,
 				CE3001C82B54D6D2005CB58D /* SideMenuVCManager.swift in Sources */,
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
@@ -1954,6 +1996,7 @@
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
 				CEC46BEE2B70D06C00F5A651 /* ChangeWSManagerViewController.swift in Sources */,
+				CEFE75C42B7F32DB00DEC480 /* PurchaseToastMessage.swift in Sources */,
 				CE9DEB752B6CB7E70016382B /* ChannelSettingView.swift in Sources */,
 				CE1806D92B7341C3002DD9C3 /* DMListView.swift in Sources */,
 				CEA8F9C52B497C670062B45C /* LoginViewModel.swift in Sources */,
@@ -1975,6 +2018,7 @@
 				CEEE4EB32B46DBF40059D1AF /* UsersAPI.swift in Sources */,
 				CE85749A2B4BFE9B0025ED1B /* HomeViewController.swift in Sources */,
 				CEE989AA2B4AAB8300590A19 /* MakeViewController.swift in Sources */,
+				CEFE75C22B7F306700DEC480 /* BillingResultResDTO.swift in Sources */,
 				CE1806E62B734B8B002DD9C3 /* DmChatCell.swift in Sources */,
 				CEE9899B2B4A7E8C00590A19 /* HomeEmptyViewController.swift in Sources */,
 				CE61AE0C2B5D5FAF0091B03D /* ChatTableViewCell.swift in Sources */,

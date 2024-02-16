@@ -10,7 +10,7 @@ import Moya
 
 enum CoinsAPI {
     case coinItemList
-    
+    case validation(data: PortOneValidationReqDTO)
 }
 
 extension CoinsAPI: TargetType {
@@ -22,6 +22,8 @@ extension CoinsAPI: TargetType {
         switch self {
         case .coinItemList:
             return Endpoint.coin.rawValue + "/item/list"
+        case .validation:
+            return Endpoint.coin.rawValue + "/pay/validation"
         }
     }
     
@@ -29,6 +31,8 @@ extension CoinsAPI: TargetType {
         switch self {
         case .coinItemList:
             return .get
+        case .validation:
+            return .post
         }
     }
     
@@ -36,6 +40,8 @@ extension CoinsAPI: TargetType {
         switch self {
         case .coinItemList:
             return .requestPlain
+        case .validation(let data):
+            return .requestJSONEncodable(data)
         }
     }
     
@@ -43,6 +49,8 @@ extension CoinsAPI: TargetType {
         switch self {
         case .coinItemList:
             return ["Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
+        case .validation:
+            return ["Content-Type": "application/json", "Authorization": UserDefaultsManager.accessToken, "SesacKey": APIKey.key]
         }
     }
     
