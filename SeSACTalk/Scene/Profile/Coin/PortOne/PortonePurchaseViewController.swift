@@ -13,11 +13,8 @@ import RxSwift
 final class PortonePurchaseViewController: BaseViewController {
     
     private let mainView = PortonePurchaseView()
-    private var amount: String?
-    private var name: String?
     private var item: CoinItem?
     
-    private var disposeBag = DisposeBag()
     weak var delegate: PortOneResponseDelegate?
     
     override func loadView() {
@@ -34,14 +31,24 @@ final class PortonePurchaseViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configNav()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        PortonePurchaseManager.shared.closePortone()
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
         mainView.willRemoveSubview(mainView.webView)
         mainView.webView.stopLoading()
         mainView.webView.removeFromSuperview()
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        PortonePurchaseManager.shared.closePortone()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "결제하기"
@@ -51,7 +58,6 @@ final class PortonePurchaseViewController: BaseViewController {
         
         PortonePurchaseManager.shared.purchaseResponse
             .subscribe(with: self) { owner, value in
-                print("@@@@@")
                 owner.delegate?.purchaseResponse(success: value.0, data: value.1, item: owner.item)
                 owner.navigationController?.popViewController(animated: true)
                 
@@ -64,5 +70,23 @@ final class PortonePurchaseViewController: BaseViewController {
     
     
     
+}
+
+extension PortonePurchaseViewController {
+    private func configNav() {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .left, style: .plain, target: self, action: #selector(backButtonTapped))
+        
+        navigationItem.leftBarButtonItem?.tintColor = .basicText
+        navigationController?.setupBarAppearance()
+    }
+    
+    @objc private func backButtonTapped() {
+        showPopUp(title: Text.purchaseBackButton, message: Text.purchaseBackMsg, align: .center, cancelTitle: "취소", okTitle: "확인", cancelCompletion: nil) {
+            self.navigationController?.popViewController(animated: true)
+        }
+
+        
+    }
 }
 

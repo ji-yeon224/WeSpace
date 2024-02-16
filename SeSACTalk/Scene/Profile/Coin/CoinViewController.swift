@@ -143,6 +143,7 @@ extension CoinViewController: View {
                     owner.showToastMessage(message: PurchaseToastMessage.success(coin: "\(value.sesacCoin)").message, position: .bottom)
                     owner.coin += value.sesacCoin
                     owner.requestItemList.accept(())
+                    NotificationCenter.default.post(name: .refreshMyInfo, object: nil)
                 }
                 
             }
