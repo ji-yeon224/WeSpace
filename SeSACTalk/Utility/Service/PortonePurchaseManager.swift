@@ -12,15 +12,14 @@ import RxSwift
 
 final class PortonePurchaseManager {
     
-    //    private var amount: String?
-    //    private var name: String
-    private var webView: WKWebView?
-    private var payment: IamportPayment?
-    let purchaseResponse = PublishSubject<(Bool, PortOneValidationReqDTO?)>()
-    var disposeBag = DisposeBag()
     
     static let shared = PortonePurchaseManager()
     private init() { }
+    
+    let purchaseResponse = PublishSubject<(Bool, PortOneValidationReqDTO?)>()
+    var disposeBag = DisposeBag()
+    
+    
     
     private func config(amount: String, name: String) -> IamportPayment {
         return IamportPayment(
