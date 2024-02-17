@@ -14,6 +14,7 @@ final class EmailLoginViewController: BaseViewController, View {
     
     private let mainView = EmailLoginView()
     var disposeBag = DisposeBag()
+    weak var delegate: EmailLoginCompleteDelegate?
     
     override func loadView() {
         self.view = mainView
@@ -125,12 +126,8 @@ final class EmailLoginViewController: BaseViewController, View {
             }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, data in
-                if let data = data.0 {
-                    owner.transitionHomeView(vc: HomeTabBarController(workspace: data))
-                } else {
-                    let nav = UINavigationController(rootViewController: HomeEmptyViewController())
-                    owner.transitionHomeView(vc: nav)
-                }
+                owner.dismiss(animated: false)
+                owner.delegate?.completeLogin(workspace: data.0)
             }
             .disposed(by: disposeBag)
     }

@@ -28,6 +28,7 @@
 		CE2ACE522B7CF328007468EA /* CoinSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */; };
 		CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */; };
 		CE2ACE562B7D04C7007468EA /* CoinPurchaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */; };
+		CE2B1B5F2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */; };
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
 		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */; };
@@ -340,6 +341,7 @@
 		CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSectionModel.swift; sourceTree = "<group>"; };
 		CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionItem.swift; sourceTree = "<group>"; };
 		CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseDelegate.swift; sourceTree = "<group>"; };
+		CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginCompleteDelegate.swift; sourceTree = "<group>"; };
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
 		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
@@ -887,6 +889,7 @@
 				CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */,
 				CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */,
 				CEFE75BC2B7F2BA700DEC480 /* PortOneResponseDelegate.swift */,
+				CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -1829,6 +1832,7 @@
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
 				CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */,
 				CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */,
+				CE2B1B5F2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift in Sources */,
 				CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */,

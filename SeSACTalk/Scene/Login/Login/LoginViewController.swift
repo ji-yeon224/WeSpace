@@ -47,6 +47,7 @@ final class LoginViewController: BaseViewController, View {
         mainView.emailButton.rx.tap
             .bind(with: self, onNext: { owner, _ in
                 let vc = EmailLoginViewController()
+                vc.delegate = self
                 let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
                 nav.setupBarAppearance()
                 owner.present(nav, animated: true)
@@ -115,8 +116,9 @@ final class LoginViewController: BaseViewController, View {
             }
             .observe(on: MainScheduler.asyncInstance)
             .bind(with: self) { owner, data in
-                SideMenuVCManager.shared.initSideMenu()
+//                SideMenuVCManager.shared.initSideMenu()
                 if let data = data.0 {
+                    SideMenuVCManager.shared.initSideMenu()
                     owner.transitionHomeView(vc: HomeTabBarController(workspace: data))
                 } else {
                     owner.transitionHomeView(vc: HomeEmptyViewController())
@@ -144,6 +146,19 @@ final class LoginViewController: BaseViewController, View {
         let nav = PageSheetManager.sheetPresentation(vc, detent: .large())
         nav.setupBarAppearance()
         present(nav, animated: true)
+    }
+    
+    
+}
+
+extension LoginViewController: EmailLoginCompleteDelegate {
+    func completeLogin(workspace: WorkSpace?) {
+        if let data = workspace {
+            SideMenuVCManager.shared.initSideMenu()
+            transitionHomeView(vc: HomeTabBarController(workspace: data))
+        } else {
+            transitionHomeView(vc: HomeEmptyViewController())
+        }
     }
     
     
