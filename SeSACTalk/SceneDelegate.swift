@@ -58,6 +58,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         // 중단된게 있다면 다시 연결
         SocketNetworkManager.shared.reconnect()
+        
+        //앱 진입 시 쌓인 알림 스택 제거
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
