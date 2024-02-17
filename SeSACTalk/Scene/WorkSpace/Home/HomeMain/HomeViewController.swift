@@ -90,9 +90,9 @@ final class HomeViewController: BaseViewController, View {
         updateSnapShot(section: .newFriend, item: newFriend)
 //        SideMenuVCManager.shared.initSideMenu(vc: self, curWS: workspace)
         
-//        if !DeviceTokenManager.shared.saveTokenSuccess {
-//            DeviceTokenManager.shared.requestSaveDeviceToken(token: UserDefaultsManager.deviceToken)
-//        }
+        if !DeviceTokenManager.shared.saveTokenSuccess {
+            DeviceTokenManager.shared.requestSaveDeviceToken(token: UserDefaultsManager.deviceToken)
+        }
 
         
     }

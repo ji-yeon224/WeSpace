@@ -14,7 +14,7 @@ final class DeviceTokenManager {
     private let disposeBag = DisposeBag()
     var saveTokenSuccess = false
     func requestSaveDeviceToken(token: String?) {
-        if let token = token {
+        if let token = token, UserDefaultsManager.deviceToken != token {
             UsersAPIManager.shared.request(api: .deviceToken(data: DeviceTokenReq(deviceToken: token)), responseType: EmptyResponse.self)
                 .asObservable()
                 .debug()
