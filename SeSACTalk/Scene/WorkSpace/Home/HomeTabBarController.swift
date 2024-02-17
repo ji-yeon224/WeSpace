@@ -9,9 +9,10 @@ import UIKit
 
 final class HomeTabBarController: UITabBarController {
     
-    init(workspace: WorkSpace) {
+    init(workspace: WorkSpace, push: Bool = false, defaultTab: Int = 0) {
         super.init(nibName: nil, bundle: nil)
-        setTabBar(ws: workspace)
+        setTabBar(ws: workspace, defaultTab: defaultTab)
+        self.selectedIndex = defaultTab
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +30,7 @@ final class HomeTabBarController: UITabBarController {
         
     }
     
-    private func setTabBar(ws: WorkSpace) {
+    private func setTabBar(ws: WorkSpace, defaultTab: Int) {
         
         let home = HomeViewController(workspace: ws)
         home.tabBarItem.image = .home

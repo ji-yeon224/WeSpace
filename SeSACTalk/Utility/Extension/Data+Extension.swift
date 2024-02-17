@@ -37,4 +37,14 @@ extension Data {
         }
         return nil
     }
+    
+    var convertToPushDto: PushDTO? {
+        do {
+            let jsonData = try JSONDecoder().decode(PushDTO.self, from: self)
+            return jsonData
+        } catch {
+            print("error", error)
+        }
+        return nil
+    }
 }

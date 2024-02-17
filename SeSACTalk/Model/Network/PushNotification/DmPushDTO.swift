@@ -19,3 +19,17 @@ struct DmPushDTO: Decodable {
 }
 
 
+struct PushDTO: Decodable {
+    let aps: Aps
+    let type, workspaceID: String
+    let roomID, channelID, oppendID: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case aps, type
+        case workspaceID = "workspace_id"
+        case channelID = "channel_id"
+        case roomID = "room_id"
+        case oppendID = "opponent_id"
+    }
+
+}

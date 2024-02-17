@@ -86,7 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
                
             } else if type == "dm" {
-                print("99")
                 if let id = responseInfo["room_id"] as? String , let dmId = Int(id) {
                     if UserDefaultsManager.dmId != dmId {
                         completionHandler([.list, .banner, .badge])
@@ -104,7 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         // 푸시 클릭해서 들어올 때 제거
         unNotification.removeAllDeliveredNotifications()
-        
         guard let responseInfo = response.notification.request.content.userInfo as? Dictionary<String, Any> else {
             return
         }
@@ -116,26 +114,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("decode error")
         }
         
-        if let type = responseInfo["type"] as? String {
-            if type == "channel" {
-                if let id = responseInfo["channel_id"] as? String, let channelId = Int(id) {
-                    if UserDefaultsManager.channelId != channelId {
-                        if let data = data, let resData = data.convertToChannelPushDto {
-                            print(resData.aps.alert.body)
-                        }
-                    }
-                }
-               
-            } else if type == "dm" {
-                if let id = responseInfo["room_id"] as? String , let dmId = Int(id) {
-                    if UserDefaultsManager.dmId != dmId {
-                        if let data = data, let resData = data.convertToDmPushDto {
-                            print(resData.aps.alert.body)
-                        }
-                    }
-                }
-                
-            }
+        if let data = data {
+            PushNotiCoordinator.shared.configPushNotiTabAction(responseInfo: data)
         }
         
     }

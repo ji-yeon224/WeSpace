@@ -29,6 +29,7 @@
 		CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */; };
 		CE2ACE562B7D04C7007468EA /* CoinPurchaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */; };
 		CE2B1B5F2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */; };
+		CE2B1B612B80732E00F84C08 /* PushNotiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1B602B80732E00F84C08 /* PushNotiCoordinator.swift */; };
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
 		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */; };
@@ -342,6 +343,7 @@
 		CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionItem.swift; sourceTree = "<group>"; };
 		CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseDelegate.swift; sourceTree = "<group>"; };
 		CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginCompleteDelegate.swift; sourceTree = "<group>"; };
+		CE2B1B602B80732E00F84C08 /* PushNotiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotiCoordinator.swift; sourceTree = "<group>"; };
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
 		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
@@ -1582,6 +1584,7 @@
 				CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */,
 				CE5F94D22B626F3B006A4DA4 /* ImageFileManager.swift */,
 				CEFE75B42B7F115200DEC480 /* PortonePurchaseManager.swift */,
+				CE2B1B602B80732E00F84C08 /* PushNotiCoordinator.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2055,6 +2058,7 @@
 				CE5D06772B4EF00300C067A3 /* WorkspaceToastMessage.swift in Sources */,
 				CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */,
 				CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */,
+				CE2B1B612B80732E00F84C08 /* PushNotiCoordinator.swift in Sources */,
 				CE5D06732B4EE91F00C067A3 /* ImageCompression.swift in Sources */,
 				CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */,
 				CEC7643E2B516306000578E9 /* Channel.swift in Sources */,
