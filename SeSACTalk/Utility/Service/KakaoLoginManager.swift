@@ -26,6 +26,7 @@ final class KakaoLoginManager {
                 if let error = error {
                     print(error)
                     self.loginRequest.onNext(.failure(error))
+                    self.loginRequest.onCompleted()
                 }
                 else {
                     print("loginWithKakaoTalk() success.")
@@ -34,6 +35,7 @@ final class KakaoLoginManager {
                         return
                     }
                     self.loginRequest.onNext(.success(oauthToken.accessToken))
+                    self.loginRequest.onCompleted()
                 }
             }
         } else { // 웹으로 로그인
@@ -42,6 +44,7 @@ final class KakaoLoginManager {
                 if let error = error {
                     print(error)
                     self.loginRequest.onNext(.failure(error))
+                    self.loginRequest.onCompleted()
                 }
                 else {
                     print("loginWithKakaoAccount() success.")
@@ -50,6 +53,7 @@ final class KakaoLoginManager {
                         return
                     }
                     self.loginRequest.onNext(.success(oauthToken.accessToken))
+                    self.loginRequest.onCompleted()
                 }
             }
         }

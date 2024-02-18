@@ -33,6 +33,7 @@ final class LoginCompletedManager {
                     }
                 }
                 .disposed(by: self.disposeBag)
+            result.onCompleted()
             return Disposables.create()
         }
         
@@ -52,15 +53,19 @@ final class LoginCompletedManager {
                             value = data
                             if !value.isEmpty {
                                 result.onNext(.success(value[0].toDomain()))
+                                result.onCompleted()
                             } else {
                                 result.onNext(.success(nil))
+                                result.onCompleted()
                             }
                            
                         } else {
                             result.onNext(.success(nil))
+                            result.onCompleted()
                         }
                     case .failure(let error):
                         result.onNext(.failure(error))
+                        result.onCompleted()
                         
                     }
                 }

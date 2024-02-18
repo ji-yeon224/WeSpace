@@ -69,8 +69,6 @@ final class HomeViewController: BaseViewController, View {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function, isPush)
-        
         navigationController?.navigationBar.isHidden = true
         
         
@@ -156,6 +154,7 @@ extension HomeViewController {
             .disposed(by: disposeBag)
         
         enterChannel
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .map { Reactor.Action.searchChannelDB(wsId: self.workspace?.workspaceId, chInfo: $0)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -166,6 +165,7 @@ extension HomeViewController {
             .disposed(by: disposeBag)
         
         enterDmRoom
+            .throttle(.seconds(1), scheduler: MainScheduler.asyncInstance)
             .map { Reactor.Action.requestDmRoomInfo(wsId: $0.workspaceID, roomId: $0.roomID, userId: $0.user.userId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
