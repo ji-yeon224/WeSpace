@@ -7,6 +7,8 @@
 
 import Foundation
 extension String {
+    
+    
     var lastString: String {
         get {
             if self.isEmpty { return self }
@@ -74,6 +76,16 @@ extension String {
             return DateFormatter.convertToString(format: to, date: dateType)
         }
         return ""
+    }
+    
+    var splitHashtag: String {
+        
+        if self.isEmpty { return self }
+        
+        let startIndex = self.index(self.startIndex, offsetBy: 1)
+        let lastIndex = self.index(before: self.endIndex)
+        let range = startIndex...
+        return String(self[range])
     }
     
 }

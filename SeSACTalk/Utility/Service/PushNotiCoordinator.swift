@@ -14,18 +14,29 @@ final class PushNotiCoordinator {
     static let shared = PushNotiCoordinator()
     private init() { }
     let disposeBag = DisposeBag()
+    let pushNotiDataToChannel = PublishSubject<(Int, String)>()
+    let pushNotiDataToDM = PublishSubject<PushDTO>()
     var window: UIWindow?
-    
+    var channelData: (Int, String)?
     
     
     func configPushNotiTabAction(responseInfo: Data) {
         if let pushData = responseInfo.convertToPushDto, let wsId = Int(pushData.workspaceID) {
+            print(pushData)
             fetchWorkspace(wsId: wsId)
                 .subscribe(with: self) { owner, result in
                     switch result {
                     case .success(let response):
                         if let response = response {
-                            owner.window?.rootViewController = HomeTabBarController(workspace: response, push: true, defaultTab: 1)
+                            
+                            if pushData.type == "channel" {
+                                let name = pushData.aps.alert.body.components(separatedBy: "\n")[0].splitHashtag
+                                
+                                owner.channelData = (wsId, name)
+                            } else {
+                                owner.pushNotiDataToDM.onNext(pushData)
+                            }
+                            owner.window?.rootViewController = HomeTabBarController(workspace: response, push: true, type: pushData.type)
                             owner.window?.makeKeyAndVisible()
                         }
                     case .failure(let error):
@@ -66,6 +77,7 @@ final class PushNotiCoordinator {
             return Disposables.create()
         }
     }
+    
     
     
     

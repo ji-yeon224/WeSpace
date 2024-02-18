@@ -9,10 +9,21 @@ import UIKit
 
 final class HomeTabBarController: UITabBarController {
     
-    init(workspace: WorkSpace, push: Bool = false, defaultTab: Int = 0) {
+    private var channelPush: Bool = false
+    
+    init(workspace: WorkSpace, push: Bool = false, type: String? = nil, data: PushDTO? = nil) {
         super.init(nibName: nil, bundle: nil)
-        setTabBar(ws: workspace, defaultTab: defaultTab)
-        self.selectedIndex = defaultTab
+        
+        
+        if type == "dm" {
+            self.selectedIndex = 1
+        } else {
+            channelPush = push
+            
+        }
+        
+        setTabBar(ws: workspace)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -30,9 +41,9 @@ final class HomeTabBarController: UITabBarController {
         
     }
     
-    private func setTabBar(ws: WorkSpace, defaultTab: Int) {
-        
-        let home = HomeViewController(workspace: ws)
+    private func setTabBar(ws: WorkSpace) {
+        print("&&& ", channelPush)
+        let home = HomeViewController(workspace: ws, push: channelPush)
         home.tabBarItem.image = .home
         home.tabBarItem.selectedImage = .homeActive
         home.tabBarItem.title = "홈"
