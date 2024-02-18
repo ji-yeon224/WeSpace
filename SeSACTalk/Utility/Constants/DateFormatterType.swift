@@ -13,4 +13,5 @@ enum DateFormatterType: String {
     case time2 = "a hh:mm"
     case yearByDot = "yy. MM. dd"
     case yearByLan = "yyyy년 MM월 dd일"
+    case monthAndDay = "MM/dd"
 }

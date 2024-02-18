@@ -88,7 +88,7 @@ final class DmChatView: BaseView {
                 cell.chatMsgView.isHidden = true
             }
             
-            cell.timeLabel.text = itemIdentifier.createdAt.convertToTimeString
+            cell.setTimeLabel(date: itemIdentifier.createdAt)
             if !itemIdentifier.files.isEmpty {
 
                 if let imgUrls = itemIdentifier.imgUrls, !imgUrls.isEmpty{
@@ -105,12 +105,14 @@ final class DmChatView: BaseView {
                     cell.configImage(files: itemIdentifier.files)
                 }
                 
-                cell.chatImgView.isHidden = false
-                cell.stackView.isHidden = false
+//                cell.chatImgView.isHidden = false
+//                cell.stackView.isHidden = false
+                cell.setImageViewHidden(hidden: false)
                 cell.layoutSubviews()
             } else {
-                cell.chatImgView.isHidden = true
-                cell.stackView.isHidden = true
+//                cell.chatImgView.isHidden = true
+//                cell.stackView.isHidden = true
+                cell.setImageViewHidden(hidden: true)
             }
             
             return cell

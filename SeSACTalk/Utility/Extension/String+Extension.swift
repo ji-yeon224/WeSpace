@@ -61,6 +61,13 @@ extension String {
         return ""
     }
     
+    var convertToDateString: String {
+        if let dateType = String.convertToDate(format: .fullDate, date: self) {
+            return DateFormatter.convertToString(format: .monthAndDay, date: dateType)
+        }
+        
+        return ""
+    }
     
     var convertToTimeString: String {
         if let dateType = String.convertToDate(format: .fullDate, date: self) {

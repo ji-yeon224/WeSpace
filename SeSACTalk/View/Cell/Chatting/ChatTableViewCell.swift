@@ -31,19 +31,19 @@ final class ChatTableViewCell: BaseTableViewCell {
     }
     let chatTextLabel = CustomBasicLabel(text: "", fontType: .body, line: 0)
     
-    let stackView = UIStackView().then {
+    private let stackView = UIStackView().then {
         $0.axis = .horizontal
         $0.isHidden = true
     }
     
-    var chatImgView = ImageMessageView().then {
+    private var chatImgView = ImageMessageView().then {
         $0.isHidden = true
     }
-    
-    let timeLabel = CustomBasicLabel(text: "", fontType: .caption2, color: .secondaryText)
+    private let dateLabel = CustomBasicLabel(text: "", fontType: .caption2, color: .secondaryText)
+    private let timeLabel = CustomBasicLabel(text: "", fontType: .caption2, color: .secondaryText)
     
     override func configure() {
-        [profileImageView, contentStackView, timeLabel].forEach {
+        [profileImageView, contentStackView, dateLabel, timeLabel].forEach {
             contentView.addSubview($0)
         }
         
@@ -72,7 +72,15 @@ final class ChatTableViewCell: BaseTableViewCell {
         nickNameLabel.snp.makeConstraints { make in
 //            make.height.equalTo(18)
         }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.leading.equalTo(contentStackView.snp.trailing).offset(8)
+            make.bottom.equalTo(timeLabel.snp.top).offset(-3)
+//            make.trailing.greaterThanOrEqualTo(contentView).inset(14)
+        }
+        
         timeLabel.snp.makeConstraints { make in
+//            make.top.equalTo(contentView)
             make.leading.equalTo(contentStackView.snp.trailing).offset(8)
             make.bottom.equalTo(contentView).inset(10)
             make.trailing.greaterThanOrEqualTo(contentView).inset(14)
@@ -100,6 +108,7 @@ final class ChatTableViewCell: BaseTableViewCell {
         chatImgView.initImageView()
         chatMsgView.isHidden = false
         chatTextLabel.text = nil
+        dateLabel.isHidden = false
     }
     
     func configImage(files: [String]) {
@@ -109,5 +118,18 @@ final class ChatTableViewCell: BaseTableViewCell {
         chatImgView.configUIImage(img: imgs)
     }
     
+    func setImageViewHidden(hidden: Bool) {
+        chatImgView.isHidden = hidden
+        stackView.isHidden = hidden
+    }
+    
+    func setTimeLabel(date: String) {
+        timeLabel.text = date.convertToTimeString
+        if !Date.isTodayDate(compareDate: date) {
+            dateLabel.text = date.convertToDateString
+        } else {
+            dateLabel.isHidden = true
+        }
+    }
     
 }
