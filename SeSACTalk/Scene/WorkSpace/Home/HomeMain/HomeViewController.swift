@@ -36,7 +36,7 @@ final class HomeViewController: BaseViewController, View {
     private var allWorkspace: [WorkSpace]?
     private var isNeedChannelRefresh: Bool = false
     private var myInfo: User?
-    private let transitionByShow = PublishRelay<Bool>()
+    
     private var isPush: Bool = false
     override func loadView() {
         self.view = mainView
@@ -72,13 +72,7 @@ final class HomeViewController: BaseViewController, View {
         print(#function, isPush)
         
         navigationController?.navigationBar.isHidden = true
-        if isPush {
-            if let data = PushNotiCoordinator.shared.channelData {
-                requestPushAction.accept(data)
-                isPush = false
-            }
-            
-        }
+        
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -106,6 +100,13 @@ final class HomeViewController: BaseViewController, View {
             DeviceTokenManager.shared.requestSaveDeviceToken(token: UserDefaultsManager.deviceToken)
         }
 
+        if isPush {
+            if let data = PushNotiCoordinator.shared.channelData {
+                requestPushAction.accept(data)
+                isPush = false
+            }
+            
+        }
         
     }
     
@@ -171,10 +172,10 @@ extension HomeViewController {
         
         requestPushAction
             .map {
-                return Reactor.Action.requestOneChannelInfo(wsId: $0.0, name: $0.1)
+                Reactor.Action.requestOneChannelInfo(wsId: $0.0, name: $0.1)
             }
             .bind(to: reactor.action)
-            .disposed(by: PushNotiCoordinator.shared.disposeBag)
+            .disposed(by: disposeBag)
     }
     
     

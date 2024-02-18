@@ -10,22 +10,25 @@ import UIKit
 final class HomeTabBarController: UITabBarController {
     
     private var channelPush: Bool = false
-    
-    init(workspace: WorkSpace, push: Bool = false, type: String? = nil, data: PushDTO? = nil) {
+    private var dmPush: Bool = false
+    private var defaultTab: Int = 0
+    init(workspace: WorkSpace, type: String? = nil) {
         super.init(nibName: nil, bundle: nil)
         
-        
         if type == "dm" {
-            self.selectedIndex = 1
+            defaultTab = 1
+            dmPush = true
         } else {
-            channelPush = push
+            defaultTab = 0
+            channelPush = true
             
         }
         
         setTabBar(ws: workspace)
-        
+        self.selectedIndex = defaultTab
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,14 +45,14 @@ final class HomeTabBarController: UITabBarController {
     }
     
     private func setTabBar(ws: WorkSpace) {
-        print("&&& ", channelPush)
+        
         let home = HomeViewController(workspace: ws, push: channelPush)
         home.tabBarItem.image = .home
         home.tabBarItem.selectedImage = .homeActive
         home.tabBarItem.title = "홈"
         let homeNav = UINavigationController(rootViewController: home)
         
-        let dm = DMListViewController(workspace: ws)
+        let dm = DMListViewController(workspace: ws, push: dmPush)
         dm.tabBarItem.image = .message
         dm.tabBarItem.selectedImage = .messageActive
         dm.tabBarItem.title = "DM"
