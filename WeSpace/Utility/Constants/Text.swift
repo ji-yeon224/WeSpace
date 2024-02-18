@@ -8,7 +8,7 @@
 import Foundation
 
 enum Text {
-    static let completMessage = "님의 조직을 위해 새로운 새싹톡 워크스페이스를 시작할 준비가 완료되었어요!"
+    static let completMessage = "님의 조직을 위해 새로운 워크스페이스를 시작할 준비가 완료되었어요!"
     static let makeWorkspace = "워크스페이스 생성"
     
     static let noWorkSpaceTitle = "워크스페이스를 찾을 수 없어요."
