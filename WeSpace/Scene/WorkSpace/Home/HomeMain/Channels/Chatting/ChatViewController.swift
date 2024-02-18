@@ -197,7 +197,10 @@ final class ChatViewController: BaseViewController {
         requireScroll
             .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
-                owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
+                if owner.chatData.count > 0 {
+                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
+                }
+                
             }.disposed(by: disposeBag)
             
     }

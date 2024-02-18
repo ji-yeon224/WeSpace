@@ -241,7 +241,10 @@ extension DmChatViewController: View {
         requireScroll
             .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
-                owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
+                if owner.dmData.count > 0 {
+                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
+                }
+                
             }.disposed(by: disposeBag)
     }
 }
