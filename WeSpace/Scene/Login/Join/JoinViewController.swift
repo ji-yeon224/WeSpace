@@ -28,6 +28,7 @@ final class JoinViewController: BaseViewController {
         bind()
     }
     
+    
     override func configure() {
         super.configure()
         configNavBar()

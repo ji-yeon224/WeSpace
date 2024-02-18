@@ -55,6 +55,8 @@ final class DmChatViewController: BaseViewController {
         guard let dmRoomInfo = dmRoomInfo else { return }
         requestUncheckedChat.accept(dmRoomInfo)
         UserDefaultsManager.dmId = dmRoomInfo.roomId
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +70,8 @@ final class DmChatViewController: BaseViewController {
             SocketNetworkManager.shared.disconnect()
         }
         UserDefaultsManager.dmId = -1
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     override func configure() {
@@ -85,6 +89,10 @@ final class DmChatViewController: BaseViewController {
             title = userInfo.nickname
         }
         
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        requireScroll.accept(())
     }
     
     private func connectSocket() {

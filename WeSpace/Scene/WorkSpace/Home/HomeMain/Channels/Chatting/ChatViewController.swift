@@ -41,7 +41,7 @@ final class ChatViewController: BaseViewController {
     
     deinit {
         self.disposeBag = DisposeBag()
-        NotificationCenter.default.removeObserver(self, name: .refreshChannel, object: nil)
+        
         print("ChatVC deinit")
     }
     
@@ -77,7 +77,7 @@ final class ChatViewController: BaseViewController {
         
 //        ChannelMsgRepository().getLocation()
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -86,6 +86,9 @@ final class ChatViewController: BaseViewController {
         }
         UserDefaultsManager.channelId = -1
 //        self.disposeBag = DisposeBag()
+        
+        NotificationCenter.default.removeObserver(self, name: .refreshChannel, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     private func configData() {
@@ -101,6 +104,9 @@ final class ChatViewController: BaseViewController {
         
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        requireScroll.accept(())
+    }
     
     override func configure() {
         configNav()
@@ -202,7 +208,7 @@ final class ChatViewController: BaseViewController {
                 }
                 
             }.disposed(by: disposeBag)
-            
+        
     }
     
     
