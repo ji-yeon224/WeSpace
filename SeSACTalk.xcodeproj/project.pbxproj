@@ -28,6 +28,8 @@
 		CE2ACE522B7CF328007468EA /* CoinSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */; };
 		CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */; };
 		CE2ACE562B7D04C7007468EA /* CoinPurchaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */; };
+		CE2B1B5F2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */; };
+		CE2B1B612B80732E00F84C08 /* PushNotiCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B1B602B80732E00F84C08 /* PushNotiCoordinator.swift */; };
 		CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */; };
 		CE2BA8182B6F54DC00B24B55 /* CreateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA8172B6F54DC00B24B55 /* CreateType.swift */; };
 		CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */; };
@@ -147,6 +149,8 @@
 		CE8574A12B4C01C70025ED1B /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */; };
 		CE8574A32B4C02AC0025ED1B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */; };
 		CE8574A52B4C04B00025ED1B /* UnreadCntView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */; };
+		CE92AB402B7F7E370026231F /* ChannelPushDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92AB3F2B7F7E370026231F /* ChannelPushDTO.swift */; };
+		CE92AB432B7F83D90026231F /* DmPushDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92AB422B7F83D90026231F /* DmPushDTO.swift */; };
 		CE9592342B68ADA000665659 /* SearchChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592332B68ADA000665659 /* SearchChannelViewController.swift */; };
 		CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592352B68ADA700665659 /* SearchChannelView.swift */; };
 		CE9592382B68ADE500665659 /* SearchChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9592372B68ADE500665659 /* SearchChannelCell.swift */; };
@@ -160,7 +164,6 @@
 		CE9B064D2B7C968E005D309B /* EditProfileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B064C2B7C968E005D309B /* EditProfileType.swift */; };
 		CE9B064F2B7C9720005D309B /* ProfileUpdateReqDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B064E2B7C9720005D309B /* ProfileUpdateReqDTO.swift */; };
 		CE9B06512B7CA428005D309B /* EditProfileReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B06502B7CA428005D309B /* EditProfileReactor.swift */; };
-		CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */; };
 		CE9DEB6E2B6BDF0E0016382B /* DeviceTokenReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */; };
 		CE9DEB702B6BE1A90016382B /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */; };
 		CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */; };
@@ -297,6 +300,7 @@
 		CEFE75C22B7F306700DEC480 /* BillingResultResDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C12B7F306700DEC480 /* BillingResultResDTO.swift */; };
 		CEFE75C42B7F32DB00DEC480 /* PurchaseToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C32B7F32DB00DEC480 /* PurchaseToastMessage.swift */; };
 		CEFE75C62B7F3CBC00DEC480 /* BillingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFE75C52B7F3CBC00DEC480 /* BillingResult.swift */; };
+		CEFE75C82B7F532600DEC480 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEFE75C72B7F532600DEC480 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -338,6 +342,8 @@
 		CE2ACE512B7CF328007468EA /* CoinSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSectionModel.swift; sourceTree = "<group>"; };
 		CE2ACE532B7CF354007468EA /* CoinCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectionItem.swift; sourceTree = "<group>"; };
 		CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPurchaseDelegate.swift; sourceTree = "<group>"; };
+		CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginCompleteDelegate.swift; sourceTree = "<group>"; };
+		CE2B1B602B80732E00F84C08 /* PushNotiCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotiCoordinator.swift; sourceTree = "<group>"; };
 		CE2BA8152B6F32B300B24B55 /* ChannelSettingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingReactor.swift; sourceTree = "<group>"; };
 		CE2BA8172B6F54DC00B24B55 /* CreateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateType.swift; sourceTree = "<group>"; };
 		CE2BA81C2B6FB61F00B24B55 /* ImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDTO.swift; sourceTree = "<group>"; };
@@ -442,6 +448,8 @@
 		CE8574A02B4C01C70025ED1B /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A22B4C02AC0025ED1B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		CE8574A42B4C04B00025ED1B /* UnreadCntView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadCntView.swift; sourceTree = "<group>"; };
+		CE92AB3F2B7F7E370026231F /* ChannelPushDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPushDTO.swift; sourceTree = "<group>"; };
+		CE92AB422B7F83D90026231F /* DmPushDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmPushDTO.swift; sourceTree = "<group>"; };
 		CE9592332B68ADA000665659 /* SearchChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewController.swift; sourceTree = "<group>"; };
 		CE9592352B68ADA700665659 /* SearchChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelView.swift; sourceTree = "<group>"; };
 		CE9592372B68ADE500665659 /* SearchChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelCell.swift; sourceTree = "<group>"; };
@@ -455,7 +463,6 @@
 		CE9B064C2B7C968E005D309B /* EditProfileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileType.swift; sourceTree = "<group>"; };
 		CE9B064E2B7C9720005D309B /* ProfileUpdateReqDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateReqDTO.swift; sourceTree = "<group>"; };
 		CE9B06502B7CA428005D309B /* EditProfileReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileReactor.swift; sourceTree = "<group>"; };
-		CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE9DEB6D2B6BDF0E0016382B /* DeviceTokenReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenReq.swift; sourceTree = "<group>"; };
 		CE9DEB6F2B6BE1A90016382B /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
 		CE9DEB722B6CB7DA0016382B /* ChannelSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingViewController.swift; sourceTree = "<group>"; };
@@ -593,6 +600,7 @@
 		CEFE75C12B7F306700DEC480 /* BillingResultResDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingResultResDTO.swift; sourceTree = "<group>"; };
 		CEFE75C32B7F32DB00DEC480 /* PurchaseToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseToastMessage.swift; sourceTree = "<group>"; };
 		CEFE75C52B7F3CBC00DEC480 /* BillingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingResult.swift; sourceTree = "<group>"; };
+		CEFE75C72B7F532600DEC480 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -883,6 +891,7 @@
 				CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */,
 				CE2ACE552B7D04C7007468EA /* CoinPurchaseDelegate.swift */,
 				CEFE75BC2B7F2BA700DEC480 /* PortOneResponseDelegate.swift */,
+				CE2B1B5E2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -941,6 +950,7 @@
 		CE69B25F2B7DCCC90038AD53 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CE92AB412B7F83BF0026231F /* PushNotification */,
 				CE69B2602B7DDA8D0038AD53 /* Coin */,
 				CEEE4EB72B46DE4B0059D1AF /* ErrorResponse.swift */,
 				CEEE4EC02B46E7FC0059D1AF /* EmptyResponse.swift */,
@@ -996,7 +1006,7 @@
 		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
 			isa = PBXGroup;
 			children = (
-				CE9DEB642B6BD9A90016382B /* GoogleService-Info.plist */,
+				CEFE75C72B7F532600DEC480 /* GoogleService-Info.plist */,
 				CEA8F9B12B492B9D0062B45C /* SeSACTalk.entitlements */,
 				CED65F8B2B45B6EE00CFD04C /* Error */,
 				CED65F862B45B67100CFD04C /* Network */,
@@ -1151,6 +1161,15 @@
 				CE1806DA2B734290002DD9C3 /* Channel */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		CE92AB412B7F83BF0026231F /* PushNotification */ = {
+			isa = PBXGroup;
+			children = (
+				CE92AB3F2B7F7E370026231F /* ChannelPushDTO.swift */,
+				CE92AB422B7F83D90026231F /* DmPushDTO.swift */,
+			);
+			path = PushNotification;
 			sourceTree = "<group>";
 		};
 		CE9592322B68AD9200665659 /* Search */ = {
@@ -1565,6 +1584,7 @@
 				CE5F94CE2B623A36006A4DA4 /* ImageDownloadManager.swift */,
 				CE5F94D22B626F3B006A4DA4 /* ImageFileManager.swift */,
 				CEFE75B42B7F115200DEC480 /* PortonePurchaseManager.swift */,
+				CE2B1B602B80732E00F84C08 /* PushNotiCoordinator.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1758,7 +1778,7 @@
 				CE6C1FCB2B43E8BB00AA7F9C /* Assets.xcassets in Resources */,
 				CE6C1FC92B43E8BA00AA7F9C /* Main.storyboard in Resources */,
 				CEB7F84A2B445E7900B9A035 /* SF-Pro.ttf in Resources */,
-				CE9DEB652B6BD9A90016382B /* GoogleService-Info.plist in Resources */,
+				CEFE75C82B7F532600DEC480 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1815,6 +1835,7 @@
 				CEA8F9BA2B49491D0062B45C /* InitialView.swift in Sources */,
 				CE2BA81D2B6FB61F00B24B55 /* ImageDTO.swift in Sources */,
 				CE5D06672B4E6AF600C067A3 /* WorkSpace.swift in Sources */,
+				CE2B1B5F2B806BA400F84C08 /* EmailLoginCompleteDelegate.swift in Sources */,
 				CE2ACE542B7CF354007468EA /* CoinCollectionItem.swift in Sources */,
 				CED65F902B45B78600CFD04C /* EmailError.swift in Sources */,
 				CE9DEB732B6CB7DA0016382B /* ChannelSettingViewController.swift in Sources */,
@@ -1917,6 +1938,7 @@
 				CEFE75B52B7F115200DEC480 /* PortonePurchaseManager.swift in Sources */,
 				CED8294D2B58C42900AD1828 /* ChangeWSManagerReactor.swift in Sources */,
 				CEE938152B7B7860003B4585 /* MyProfileView.swift in Sources */,
+				CE92AB432B7F83D90026231F /* DmPushDTO.swift in Sources */,
 				CE9592362B68ADA700665659 /* SearchChannelView.swift in Sources */,
 				CE2BA8162B6F32B300B24B55 /* ChannelSettingReactor.swift in Sources */,
 				CE4904D42B4D0EC4003B0204 /* WorkspaceItem.swift in Sources */,
@@ -2004,6 +2026,7 @@
 				CE6513CC2B71F2000084EB9C /* UnreadChannelCntResDTO.swift in Sources */,
 				CE57E4232B454136009BD53A /* JoinView.swift in Sources */,
 				CEA4EB542B56855900413500 /* MakeWSDelegate.swift in Sources */,
+				CE92AB402B7F7E370026231F /* ChannelPushDTO.swift in Sources */,
 				CE9DEB7B2B6CD5350016382B /* ChannelMemberItem.swift in Sources */,
 				CE61AE202B5EBAEF0091B03D /* ChatImageSelectDelegate.swift in Sources */,
 				CE583B842B7873BA00B541EE /* DmToastMessage.swift in Sources */,
@@ -2035,6 +2058,7 @@
 				CE5D06772B4EF00300C067A3 /* WorkspaceToastMessage.swift in Sources */,
 				CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */,
 				CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */,
+				CE2B1B612B80732E00F84C08 /* PushNotiCoordinator.swift in Sources */,
 				CE5D06732B4EE91F00C067A3 /* ImageCompression.swift in Sources */,
 				CEB7F83D2B4456E000B9A035 /* OnBoardingViewController.swift in Sources */,
 				CEC7643E2B516306000578E9 /* Channel.swift in Sources */,
@@ -2224,9 +2248,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DJP8DYB9HG;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2240,8 +2267,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiyeon.SeSACTalk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2254,9 +2283,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DJP8DYB9HG;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2270,8 +2302,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiyeon.SeSACTalk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

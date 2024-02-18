@@ -83,6 +83,7 @@ final class ChatViewController: BaseViewController {
         if SocketNetworkManager.shared.isConnected {
             SocketNetworkManager.shared.disconnect()
         }
+        UserDefaultsManager.channelId = -1
 //        self.disposeBag = DisposeBag()
     }
     
@@ -94,6 +95,7 @@ final class ChatViewController: BaseViewController {
             chatData.append(contentsOf: chats)
             
             lastDate = chats.last?.createdAt
+            UserDefaultsManager.channelId = channel.channelId
         }
         
     }

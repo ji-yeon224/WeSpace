@@ -22,20 +22,23 @@ final class DMListViewController: BaseViewController {
     private var enterDmRoom = PublishRelay<DMsRoom>()
     private var requestUserInfo = PublishRelay<Int>()
     private let requestMyInfo = PublishRelay<Void>()
+    private let requestPushDmEnter = PublishRelay<(Int, Int, Int)>()
     
     private let enterDmData = PublishRelay<(DmDTO?, [DmChat])>()
     private let dmUserData = PublishRelay<User>()
     private let selectUserCell = PublishRelay<User>()
     
     private var myInfo: User?
+    private var isPush: Bool = false
     
     override func loadView() {
         self.view = mainView
     }
     
-    init(workspace: WorkSpace) {
+    init(workspace: WorkSpace, push: Bool = false) {
         super.init(nibName: nil, bundle: nil)
         self.workspace = workspace
+        isPush = push
     }
     
     @available(*, unavailable)
@@ -54,9 +57,6 @@ final class DMListViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let workspace = workspace else { return }
-//        requestMemberList.accept(workspace.workspaceId)
-        requestDmList.accept(workspace.workspaceId)
     }
     
     override func configure() {
@@ -69,6 +69,15 @@ final class DMListViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         requestMemberList.accept(workspace.workspaceId)
+        requestDmList.accept(workspace.workspaceId)
+        
+        if isPush {
+            if let data = PushNotiCoordinator.shared.dmData {
+                requestPushDmEnter.accept(data)
+                isPush = false
+            }
+            
+        }
         
     }
     
@@ -117,6 +126,11 @@ extension DMListViewController: View {
         
         selectUserCell
             .map { Reactor.Action.selectUserCell(wsId: self.workspace?.workspaceId, user: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        requestPushDmEnter
+            .map { Reactor.Action.enterDmRoom(wsId: $0.0, roomId: $0.1, userId: $0.2)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         

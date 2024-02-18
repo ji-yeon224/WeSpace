@@ -23,6 +23,7 @@ final class HomeViewController: BaseViewController, View {
     private let searchChannel = PublishRelay<Void>()
     private let enterChannel = PublishRelay<Channel>()
     private let requestMyInfo = PublishRelay<Void>()
+    private let requestPushAction = PublishRelay<(Int, String)>()
     
     private let enterDmRoom = PublishRelay<DMsRoom>()
     private let dmRoomData = PublishRelay<(DmDTO?, [DmChat])>()
@@ -36,13 +37,15 @@ final class HomeViewController: BaseViewController, View {
     private var isNeedChannelRefresh: Bool = false
     private var myInfo: User?
     
+    private var isPush: Bool = false
     override func loadView() {
         self.view = mainView
     }
     
-    init(workspace: WorkSpace) {
+    init(workspace: WorkSpace, push: Bool = false) {
         super.init(nibName: nil, bundle: nil)
         self.workspace = workspace
+        self.isPush = push
         
     }
     
@@ -62,10 +65,11 @@ final class HomeViewController: BaseViewController, View {
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         SideMenuVCManager.shared.setViewController(vc: self, ws: workspace)
         SideMenuVCManager.shared.enableSideMenu()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function)
+        print(#function, isPush)
         
         navigationController?.navigationBar.isHidden = true
         
@@ -76,6 +80,8 @@ final class HomeViewController: BaseViewController, View {
         
         requestChannelInfo.onNext(())
         requestDMsInfo.onNext(())
+        
+        
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -94,12 +100,18 @@ final class HomeViewController: BaseViewController, View {
             DeviceTokenManager.shared.requestSaveDeviceToken(token: UserDefaultsManager.deviceToken)
         }
 
+        if isPush {
+            if let data = PushNotiCoordinator.shared.channelData {
+                requestPushAction.accept(data)
+                isPush = false
+            }
+            
+        }
         
     }
     
     private func initData() {
-//        requestChannelInfo.onNext(())
-//        requestDMsInfo.onNext(())
+        
         requestAllWorkspaceInfo.onNext(true)
         if let workspace = workspace {
             configData(ws: workspace)
@@ -157,7 +169,13 @@ extension HomeViewController {
             .map { Reactor.Action.requestDmRoomInfo(wsId: $0.workspaceID, roomId: $0.roomID, userId: $0.user.userId)}
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-            
+        
+        requestPushAction
+            .map {
+                Reactor.Action.requestOneChannelInfo(wsId: $0.0, name: $0.1)
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     
@@ -279,7 +297,17 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
-        
+        reactor.state
+            .map { $0.oneChannel }
+            .filter { $0 != .none }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { owner, value in
+                if let value = value {
+                    owner.enterChannel.accept(value)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     
@@ -311,7 +339,6 @@ extension HomeViewController {
                 let channelDto = value.0.0
                 let chatMsg = value.0.1
                 let userInfo = value.1
-                
                 if let ws = owner.workspace, let channel = channelDto {
                     let vc = ChatViewController(info: channel, workspace: ws, chatItems: chatMsg, userInfo: userInfo)
                     vc.delegate = self

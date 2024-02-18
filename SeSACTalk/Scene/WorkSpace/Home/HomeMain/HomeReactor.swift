@@ -25,7 +25,8 @@ final class HomeReactor: Reactor {
         userInfo: [:],
         myInfo: nil,
         dmInfo: (nil, []),
-        dmUserInfo: nil
+        dmUserInfo: nil,
+        oneChannel: nil
     )
     
     enum Action {
@@ -35,6 +36,8 @@ final class HomeReactor: Reactor {
         case searchChannelDB(wsId: Int?, chInfo: Channel?)
         case requestMyInfo
         case requestDmRoomInfo(wsId: Int?, roomId: Int?, userId: Int)
+        case requestPushChannel(wsId: Int, name: String)
+        case requestOneChannelInfo(wsId: Int, name: String)
     }
     
     enum Mutation {
@@ -48,6 +51,8 @@ final class HomeReactor: Reactor {
         case myInfo(data: User)
         case dmInfo(data: DmDTO?, dmChat: [DmChat])
         case dmUserInfo (data: User?)
+        case oneChannelInfo(data: Channel)
+        
     }
     
     struct State {
@@ -62,6 +67,7 @@ final class HomeReactor: Reactor {
         var myInfo: User?
         var dmInfo: (DmDTO?, [DmChat])
         var dmUserInfo: User?
+        var oneChannel: Channel?
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -103,7 +109,12 @@ final class HomeReactor: Reactor {
             } else {
                 return .just(.msg(msg: WorkspaceToastMessage.loadError.message))
             }
+        case .requestPushChannel(let wsId, let name):
+            return requestPushNotiData(wsId: wsId, name: name)
+        case .requestOneChannelInfo(let wsId, let name):
+            return requestOneChannelInfo(wsId: wsId, name: name)
         }
+        
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
@@ -135,6 +146,8 @@ final class HomeReactor: Reactor {
             newState.dmInfo = (data, dmChat)
         case .dmUserInfo(data: let data):
             newState.dmUserInfo = data
+        case .oneChannelInfo(let data):
+            newState.oneChannel = data
         }
         
         return newState
@@ -143,6 +156,61 @@ final class HomeReactor: Reactor {
 }
 
 extension HomeReactor {
+    
+    private func requestOneChannelInfo(wsId: Int, name: String) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .oneChannel(wsId: wsId, name: name), responseType: ChannelResDTO.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(let response):
+                    print("3")
+                    if let chInfo = response {
+                        print("4")
+                        print(chInfo.name)
+                        return .just(.oneChannelInfo(data: chInfo.toDomain()))
+                    } else {
+                        return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
+                    }
+                case .failure(let error):
+                    if let error = ChannelError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else {
+                        return .just(.loginRequest)
+                    }
+                }
+            }
+    }
+    
+    private func requestPushNotiData(wsId: Int, name: String) -> Observable<Mutation> {
+        return ChannelsAPIManager.shared.request(api: .oneChannel(wsId: wsId, name: name), responseType: ChannelResDTO.self)
+            .asObservable()
+            .flatMap { result -> Observable<Mutation> in
+                switch result {
+                case .success(let response):
+                    print("3")
+                    if let chInfo = response {
+                        print("4")
+                        print(chInfo.name)
+                        return .concat(
+                            self.requestChannelInfo(wsId: wsId, chInfo: chInfo.toDomain()),
+                            self.fetchChannelMembers(wsId: wsId, name: chInfo.name)
+                        )
+                    } else {
+                        return .just(.msg(msg: ChannelToastMessage.loadFailChat.message))
+                    }
+                case .failure(let error):
+                    if let error = ChannelError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else if let error = CommonError(rawValue: error.errorCode) {
+                        return .just(.msg(msg: error.localizedDescription))
+                    } else {
+                        return .just(.loginRequest)
+                    }
+                }
+            }
+    }
     
     private func requestMyInfo() -> Observable<Mutation> {
         return UsersAPIManager.shared.request(api: .my, responseType: UserResDTO.self)
