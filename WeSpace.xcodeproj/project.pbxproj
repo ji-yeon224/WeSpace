@@ -420,7 +420,7 @@
 		CE69B2662B7DDB550038AD53 /* CoinsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsAPIManager.swift; sourceTree = "<group>"; };
 		CE69B2692B7DE01C0038AD53 /* CoinReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinReactor.swift; sourceTree = "<group>"; };
 		CE69B26B2B7DE7B10038AD53 /* CoinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItem.swift; sourceTree = "<group>"; };
-		CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6C1FBE2B43E8BA00AA7F9C /* WeSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FC12B43E8BA00AA7F9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC32B43E8BA00AA7F9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CE6C1FC52B43E8BA00AA7F9C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -428,9 +428,9 @@
 		CE6C1FCA2B43E8BB00AA7F9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE6C1FCD2B43E8BB00AA7F9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE6C1FCF2B43E8BB00AA7F9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE6C1FD42B43E8BC00AA7F9C /* SeSACTalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeSACTalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6C1FD42B43E8BC00AA7F9C /* WeSpaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeSpaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FD82B43E8BC00AA7F9C /* SeSACTalkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTalkTests.swift; sourceTree = "<group>"; };
-		CE6C1FDE2B43E8BC00AA7F9C /* SeSACTalkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeSACTalkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6C1FDE2B43E8BC00AA7F9C /* WeSpaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeSpaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6C1FE22B43E8BC00AA7F9C /* SeSACTalkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTalkUITests.swift; sourceTree = "<group>"; };
 		CE6C1FE42B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACTalkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE6C1FF62B43E99E00AA7F9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -476,7 +476,7 @@
 		CEA8F9AA2B4924490062B45C /* JoinResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponseDTO.swift; sourceTree = "<group>"; };
 		CEA8F9AD2B4924FD0062B45C /* JoinSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinSuccess.swift; sourceTree = "<group>"; };
 		CEA8F9AF2B4926DA0062B45C /* JoinError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinError.swift; sourceTree = "<group>"; };
-		CEA8F9B12B492B9D0062B45C /* SeSACTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSACTalk.entitlements; sourceTree = "<group>"; };
+		CEA8F9B12B492B9D0062B45C /* WeSpace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeSpace.entitlements; sourceTree = "<group>"; };
 		CEA8F9B22B492D370062B45C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		CEA8F9B72B4949160062B45C /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		CEA8F9B92B49491D0062B45C /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
@@ -984,9 +984,9 @@
 		CE6C1FB52B43E8BA00AA7F9C = {
 			isa = PBXGroup;
 			children = (
-				CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */,
-				CE6C1FD72B43E8BC00AA7F9C /* SeSACTalkTests */,
-				CE6C1FE12B43E8BC00AA7F9C /* SeSACTalkUITests */,
+				CE6C1FC02B43E8BA00AA7F9C /* WeSpace */,
+				CE6C1FD72B43E8BC00AA7F9C /* WeSpaceTests */,
+				CE6C1FE12B43E8BC00AA7F9C /* WeSpaceUITests */,
 				CE6C1FBF2B43E8BA00AA7F9C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -994,18 +994,18 @@
 		CE6C1FBF2B43E8BA00AA7F9C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */,
-				CE6C1FD42B43E8BC00AA7F9C /* SeSACTalkTests.xctest */,
-				CE6C1FDE2B43E8BC00AA7F9C /* SeSACTalkUITests.xctest */,
+				CE6C1FBE2B43E8BA00AA7F9C /* WeSpace.app */,
+				CE6C1FD42B43E8BC00AA7F9C /* WeSpaceTests.xctest */,
+				CE6C1FDE2B43E8BC00AA7F9C /* WeSpaceUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE6C1FC02B43E8BA00AA7F9C /* SeSACTalk */ = {
+		CE6C1FC02B43E8BA00AA7F9C /* WeSpace */ = {
 			isa = PBXGroup;
 			children = (
 				CEFE75C72B7F532600DEC480 /* GoogleService-Info.plist */,
-				CEA8F9B12B492B9D0062B45C /* SeSACTalk.entitlements */,
+				CEA8F9B12B492B9D0062B45C /* WeSpace.entitlements */,
 				CED65F8B2B45B6EE00CFD04C /* Error */,
 				CED65F862B45B67100CFD04C /* Network */,
 				CE6C1FF32B43E97900AA7F9C /* Model */,
@@ -1023,24 +1023,24 @@
 				CE6C1FCF2B43E8BB00AA7F9C /* Info.plist */,
 				CED65F842B45B5FA00CFD04C /* .gitIgnore */,
 			);
-			path = SeSACTalk;
+			path = WeSpace;
 			sourceTree = "<group>";
 		};
-		CE6C1FD72B43E8BC00AA7F9C /* SeSACTalkTests */ = {
+		CE6C1FD72B43E8BC00AA7F9C /* WeSpaceTests */ = {
 			isa = PBXGroup;
 			children = (
 				CE6C1FD82B43E8BC00AA7F9C /* SeSACTalkTests.swift */,
 			);
-			path = SeSACTalkTests;
+			path = WeSpaceTests;
 			sourceTree = "<group>";
 		};
-		CE6C1FE12B43E8BC00AA7F9C /* SeSACTalkUITests */ = {
+		CE6C1FE12B43E8BC00AA7F9C /* WeSpaceUITests */ = {
 			isa = PBXGroup;
 			children = (
 				CE6C1FE22B43E8BC00AA7F9C /* SeSACTalkUITests.swift */,
 				CE6C1FE42B43E8BC00AA7F9C /* SeSACTalkUITestsLaunchTests.swift */,
 			);
-			path = SeSACTalkUITests;
+			path = WeSpaceUITests;
 			sourceTree = "<group>";
 		};
 		CE6C1FF12B43E96600AA7F9C /* Utility */ = {
@@ -1629,9 +1629,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CE6C1FBD2B43E8BA00AA7F9C /* SeSACTalk */ = {
+		CE6C1FBD2B43E8BA00AA7F9C /* WeSpace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE6C1FE82B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "SeSACTalk" */;
+			buildConfigurationList = CE6C1FE82B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "WeSpace" */;
 			buildPhases = (
 				CE6C1FBA2B43E8BA00AA7F9C /* Sources */,
 				CE6C1FBB2B43E8BA00AA7F9C /* Frameworks */,
@@ -1641,7 +1641,7 @@
 			);
 			dependencies = (
 			);
-			name = SeSACTalk;
+			name = WeSpace;
 			packageProductDependencies = (
 				CE69B2C12B7DFF560038AD53 /* SnapKit */,
 				CE69B2C42B7DFF7C0038AD53 /* iamport-ios */,
@@ -1664,12 +1664,12 @@
 				CE69B2F42B7E01950038AD53 /* FirebaseMessaging */,
 			);
 			productName = SeSACTalk;
-			productReference = CE6C1FBE2B43E8BA00AA7F9C /* SeSACTalk.app */;
+			productReference = CE6C1FBE2B43E8BA00AA7F9C /* WeSpace.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CE6C1FD32B43E8BC00AA7F9C /* SeSACTalkTests */ = {
+		CE6C1FD32B43E8BC00AA7F9C /* WeSpaceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE6C1FEB2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "SeSACTalkTests" */;
+			buildConfigurationList = CE6C1FEB2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "WeSpaceTests" */;
 			buildPhases = (
 				CE6C1FD02B43E8BC00AA7F9C /* Sources */,
 				CE6C1FD12B43E8BC00AA7F9C /* Frameworks */,
@@ -1680,14 +1680,14 @@
 			dependencies = (
 				CE6C1FD62B43E8BC00AA7F9C /* PBXTargetDependency */,
 			);
-			name = SeSACTalkTests;
+			name = WeSpaceTests;
 			productName = SeSACTalkTests;
-			productReference = CE6C1FD42B43E8BC00AA7F9C /* SeSACTalkTests.xctest */;
+			productReference = CE6C1FD42B43E8BC00AA7F9C /* WeSpaceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CE6C1FDD2B43E8BC00AA7F9C /* SeSACTalkUITests */ = {
+		CE6C1FDD2B43E8BC00AA7F9C /* WeSpaceUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CE6C1FEE2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "SeSACTalkUITests" */;
+			buildConfigurationList = CE6C1FEE2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "WeSpaceUITests" */;
 			buildPhases = (
 				CE6C1FDA2B43E8BC00AA7F9C /* Sources */,
 				CE6C1FDB2B43E8BC00AA7F9C /* Frameworks */,
@@ -1698,9 +1698,9 @@
 			dependencies = (
 				CE6C1FE02B43E8BC00AA7F9C /* PBXTargetDependency */,
 			);
-			name = SeSACTalkUITests;
+			name = WeSpaceUITests;
 			productName = SeSACTalkUITests;
-			productReference = CE6C1FDE2B43E8BC00AA7F9C /* SeSACTalkUITests.xctest */;
+			productReference = CE6C1FDE2B43E8BC00AA7F9C /* WeSpaceUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -1726,7 +1726,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CE6C1FB92B43E8BA00AA7F9C /* Build configuration list for PBXProject "SeSACTalk" */;
+			buildConfigurationList = CE6C1FB92B43E8BA00AA7F9C /* Build configuration list for PBXProject "WeSpace" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1757,9 +1757,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CE6C1FBD2B43E8BA00AA7F9C /* SeSACTalk */,
-				CE6C1FD32B43E8BC00AA7F9C /* SeSACTalkTests */,
-				CE6C1FDD2B43E8BC00AA7F9C /* SeSACTalkUITests */,
+				CE6C1FBD2B43E8BA00AA7F9C /* WeSpace */,
+				CE6C1FD32B43E8BC00AA7F9C /* WeSpaceTests */,
+				CE6C1FDD2B43E8BC00AA7F9C /* WeSpaceUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -2089,12 +2089,12 @@
 /* Begin PBXTargetDependency section */
 		CE6C1FD62B43E8BC00AA7F9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CE6C1FBD2B43E8BA00AA7F9C /* SeSACTalk */;
+			target = CE6C1FBD2B43E8BA00AA7F9C /* WeSpace */;
 			targetProxy = CE6C1FD52B43E8BC00AA7F9C /* PBXContainerItemProxy */;
 		};
 		CE6C1FE02B43E8BC00AA7F9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CE6C1FBD2B43E8BA00AA7F9C /* SeSACTalk */;
+			target = CE6C1FBD2B43E8BA00AA7F9C /* WeSpace */;
 			targetProxy = CE6C1FDF2B43E8BC00AA7F9C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2243,7 +2243,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeSpace/WeSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2251,7 +2251,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SeSACTalk/Info.plist;
+				INFOPLIST_FILE = WeSpace/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2278,7 +2278,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SeSACTalk/SeSACTalk.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeSpace/WeSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2286,7 +2286,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SeSACTalk/Info.plist;
+				INFOPLIST_FILE = WeSpace/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -2324,7 +2324,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeSACTalk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SeSACTalk";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeSpace.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeSpace";
 			};
 			name = Debug;
 		};
@@ -2344,7 +2344,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeSACTalk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SeSACTalk";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeSpace.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeSpace";
 			};
 			name = Release;
 		};
@@ -2387,7 +2387,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CE6C1FB92B43E8BA00AA7F9C /* Build configuration list for PBXProject "SeSACTalk" */ = {
+		CE6C1FB92B43E8BA00AA7F9C /* Build configuration list for PBXProject "WeSpace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE6C1FE62B43E8BC00AA7F9C /* Debug */,
@@ -2396,7 +2396,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE6C1FE82B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "SeSACTalk" */ = {
+		CE6C1FE82B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "WeSpace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE6C1FE92B43E8BC00AA7F9C /* Debug */,
@@ -2405,7 +2405,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE6C1FEB2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "SeSACTalkTests" */ = {
+		CE6C1FEB2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "WeSpaceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE6C1FEC2B43E8BC00AA7F9C /* Debug */,
@@ -2414,7 +2414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE6C1FEE2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "SeSACTalkUITests" */ = {
+		CE6C1FEE2B43E8BC00AA7F9C /* Build configuration list for PBXNativeTarget "WeSpaceUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CE6C1FEF2B43E8BC00AA7F9C /* Debug */,

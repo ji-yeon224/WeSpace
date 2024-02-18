@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE6C1FBD2B43E8BA00AA7F9C"
-               BuildableName = "SeSACTalk.app"
-               BlueprintName = "SeSACTalk"
-               ReferencedContainer = "container:SeSACTalk.xcodeproj">
+               BuildableName = "WeSpace.app"
+               BlueprintName = "WeSpace"
+               ReferencedContainer = "container:WeSpace.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,9 +35,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE6C1FD32B43E8BC00AA7F9C"
-               BuildableName = "SeSACTalkTests.xctest"
-               BlueprintName = "SeSACTalkTests"
-               ReferencedContainer = "container:SeSACTalk.xcodeproj">
+               BuildableName = "WeSpaceTests.xctest"
+               BlueprintName = "WeSpaceTests"
+               ReferencedContainer = "container:WeSpace.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -46,9 +46,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CE6C1FDD2B43E8BC00AA7F9C"
-               BuildableName = "SeSACTalkUITests.xctest"
-               BlueprintName = "SeSACTalkUITests"
-               ReferencedContainer = "container:SeSACTalk.xcodeproj">
+               BuildableName = "WeSpaceUITests.xctest"
+               BlueprintName = "WeSpaceUITests"
+               ReferencedContainer = "container:WeSpace.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -68,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE6C1FBD2B43E8BA00AA7F9C"
-            BuildableName = "SeSACTalk.app"
-            BlueprintName = "SeSACTalk"
-            ReferencedContainer = "container:SeSACTalk.xcodeproj">
+            BuildableName = "WeSpace.app"
+            BlueprintName = "WeSpace"
+            ReferencedContainer = "container:WeSpace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CE6C1FBD2B43E8BA00AA7F9C"
-            BuildableName = "SeSACTalk.app"
-            BlueprintName = "SeSACTalk"
-            ReferencedContainer = "container:SeSACTalk.xcodeproj">
+            BuildableName = "WeSpace.app"
+            BlueprintName = "WeSpace"
+            ReferencedContainer = "container:WeSpace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
