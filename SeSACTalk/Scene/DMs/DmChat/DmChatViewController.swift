@@ -19,6 +19,7 @@ final class DmChatViewController: BaseViewController {
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
     private var requestUncheckedChat = PublishRelay<DmDTO>()
+    private var requireScroll = PublishRelay<Void>()
     private var dmData: [DmChat] = []
     private var usersInfo: [Int: User] = [:]
     
@@ -58,7 +59,6 @@ final class DmChatViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function)
         connectSocket()
     }
     
@@ -145,10 +145,8 @@ extension DmChatViewController: View {
             .asDriver(onErrorJustReturn: nil)
             .drive(with: self) { owner, value in
                 if let value = value {
-                    print(value)
                     owner.dmData.append(value)
                     owner.updateTableSnapShot()
-                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
                 }
@@ -163,7 +161,6 @@ extension DmChatViewController: View {
             .drive(with: self) { owner, value in
                 owner.dmData.append(contentsOf: value)
                 owner.updateTableSnapShot()
-                owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
             }
             .disposed(by: disposeBag)
         
@@ -176,7 +173,6 @@ extension DmChatViewController: View {
                 if let value = value {
                     owner.dmData.append(value)
                     owner.updateTableSnapShot()
-                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
                 }
             }
             .disposed(by: disposeBag)
@@ -242,6 +238,11 @@ extension DmChatViewController: View {
             }
             .disposed(by: disposeBag)
         
+        requireScroll
+            .asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.dmData.count-1, section: 0), at: .bottom, animated: false)
+            }.disposed(by: disposeBag)
     }
 }
 
@@ -262,7 +263,7 @@ extension DmChatViewController {
         snapshot.appendSections([""])
         snapshot.appendItems(dmData)
         mainView.tabledataSource.apply(snapshot, animatingDifferences: false)
-        
+        requireScroll.accept(())
     }
     
     private func configSelectImage() {

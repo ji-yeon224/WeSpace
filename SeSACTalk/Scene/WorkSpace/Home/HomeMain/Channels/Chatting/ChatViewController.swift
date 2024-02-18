@@ -20,6 +20,7 @@ final class ChatViewController: BaseViewController {
     private var selectImageModel = SelectImageModel(section: "", items: [])
     private var imgData = PublishRelay<[SelectImageModel]>()
     private var requestUncheckedChat = PublishRelay<String?>()
+    private var requireScroll = PublishRelay<Void>()
     private var chatData: [ChannelMessage] = []
     private var lastDate: String?
 
@@ -193,7 +194,12 @@ final class ChatViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        
+        requireScroll
+            .asDriver(onErrorJustReturn: ())
+            .drive(with: self) { owner, _ in
+                owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
+            }.disposed(by: disposeBag)
+            
     }
     
     
@@ -282,7 +288,6 @@ extension ChatViewController: View {
                     owner.lastDate = value.createdAt
                     owner.chatData.append(value)
                     owner.updateTableSnapShot()
-                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                     owner.initImageCell()
                     owner.mainView.chatWriteView.textView.text = nil
                     
@@ -301,7 +306,6 @@ extension ChatViewController: View {
                 if let value = value {
                     owner.chatData.append(value)
                     owner.updateTableSnapShot()
-                    owner.mainView.tableView.scrollToRow(at: IndexPath(item: owner.chatData.count-1, section: 0), at: .bottom, animated: false)
                 }
             }
             .disposed(by: disposeBag)
@@ -355,7 +359,7 @@ extension ChatViewController {
         snapshot.appendSections([""])
         snapshot.appendItems(chatData)
         mainView.tabledataSource.apply(snapshot, animatingDifferences: false)
-        
+        requireScroll.accept(())
     }
 }
 
