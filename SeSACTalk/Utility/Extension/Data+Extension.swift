@@ -17,27 +17,6 @@ extension Data {
     }
     
     
-    var convertToChannelPushDto: ChannelPushDTO? {
-        do {
-            let jsonData = try JSONDecoder().decode(ChannelPushDTO.self, from: self)
-            print(jsonData)
-            return jsonData
-        } catch {
-            print("error", error)
-        }
-        return nil
-    }
-    
-    var convertToDmPushDto: DmPushDTO? {
-        do {
-            let jsonData = try JSONDecoder().decode(DmPushDTO.self, from: self)
-            return jsonData
-        } catch {
-            print("error", error)
-        }
-        return nil
-    }
-    
     var convertToPushDto: PushDTO? {
         do {
             let jsonData = try JSONDecoder().decode(PushDTO.self, from: self)
