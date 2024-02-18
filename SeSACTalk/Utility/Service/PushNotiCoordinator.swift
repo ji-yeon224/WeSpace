@@ -40,7 +40,7 @@ final class PushNotiCoordinator {
                             owner.window?.makeKeyAndVisible()
                         }
                     case .failure(let error):
-                        print(error.errorCode)
+                        debugPrint(error.errorCode)
                         owner.window?.rootViewController = OnBoardingViewController()
                         owner.window?.makeKeyAndVisible()
                     }
@@ -82,3 +82,4 @@ final class PushNotiCoordinator {
     
     
 }
+

@@ -134,13 +134,10 @@ extension AppDelegate: MessagingDelegate {
     
     // 토큰 갱신 모니터링
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        //        print("Firebase registration token: \(String(describing: fcmToken))")
-        print(#function)
         Messaging.messaging().token { token, error in
             if let error = error {
                 print("Error fetching FCM registration token: \(error)")
             } else if let token = token {
-                print("FCM registration token: \(token)")
                 UserDefaultsManager.deviceToken = token
                 if UserDefaultsManager.isLogin {
                     DeviceTokenManager.shared.requestSaveDeviceToken(token: token)
@@ -154,10 +151,5 @@ extension AppDelegate: MessagingDelegate {
             object: nil,
             userInfo: dataDict
         )
-        //        print("FCM ", fcmToken)
-        //        UserDefaultsManager.deviceToken = fcmToken ?? ""
-        
-        
-        
     }
 }

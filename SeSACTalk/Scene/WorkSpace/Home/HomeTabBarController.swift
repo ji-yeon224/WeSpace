@@ -11,10 +11,10 @@ final class HomeTabBarController: UITabBarController {
     
     private var channelPush: Bool = false
     private var dmPush: Bool = false
-    private var defaultTab: Int = 0
+    
     init(workspace: WorkSpace, type: String? = nil) {
         super.init(nibName: nil, bundle: nil)
-        
+        var defaultTab = 0
         if type == "dm" {
             defaultTab = 1
             dmPush = true
