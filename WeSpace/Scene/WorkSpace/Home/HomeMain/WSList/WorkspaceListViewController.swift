@@ -120,7 +120,7 @@ final class WorkspaceListViewController: BaseViewController, View {
             .asDriver(onErrorJustReturn: ())
             .drive(with: self) { owner, _ in
                 if owner.workspace?.ownerId == UserDefaultsManager.userId {
-                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExitManager, okTitle: "나가기", okCompletion: nil)
+                    owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExitManager, okTitle: "확인", okCompletion: nil)
                     
                 } else {
                     owner.showPopUp(title: Text.wsExitTitle, message: Text.workspaceExit, align: .center, cancelTitle: "취소", okTitle: "나가기") { } okCompletion: {

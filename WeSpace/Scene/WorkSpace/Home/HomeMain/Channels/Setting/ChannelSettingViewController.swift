@@ -67,7 +67,7 @@ final class ChannelSettingViewController: BaseViewController {
         
         configNav()
         title = "채널 설정"
-        mainView.configDummyData()
+//        mainView.configDummyData()
         mainView.setButtonHidden(isAdmin: true)
         
         

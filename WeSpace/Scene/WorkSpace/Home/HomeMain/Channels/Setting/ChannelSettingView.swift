@@ -46,11 +46,6 @@ final class ChannelSettingView: BaseView {
     let changeButton = CustomButton(bgColor: .white, borderColor: .black, titleColor: .basicText, title: Text.changeChannelTitle)
     let deleteButton = CustomButton(bgColor: .white, borderColor: .error, titleColor: .error, title: Text.deleteChannelTitle)
     
-    func configDummyData() {
-        channelNameLabel.text = "# channelName"
-        descriptionLabel.text = "채널 설명 어쩌구 저쩌구 아아아ㅏ아아아ㅏ아아아ㅏ아아아ㅏㅇㄴ이ㅏ닝니아니ㅏㅇ나이니ㅏdfsaasdfee나ㅓㅇ"
-        
-    }
     
     override func configure() {
         super.configure()
