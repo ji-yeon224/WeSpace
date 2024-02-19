@@ -204,6 +204,11 @@
 		CEC46BB22B708D1600F5A651 /* ChangeCHManagerReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */; };
 		CEC46BB42B70BCE600F5A651 /* ChannelCHManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */; };
 		CEC46BEE2B70D06C00F5A651 /* ChangeWSManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC46BED2B70D06C00F5A651 /* ChangeWSManagerViewController.swift */; };
+		CEC540852B83947C00888014 /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC540842B83947C00888014 /* OtherProfileViewController.swift */; };
+		CEC540872B83948100888014 /* OtherProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC540862B83948100888014 /* OtherProfileView.swift */; };
+		CEC540892B83948F00888014 /* OtherProfileReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC540882B83948F00888014 /* OtherProfileReactor.swift */; };
+		CEC5408C2B83983F00888014 /* OtherProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC5408B2B83983F00888014 /* OtherProfileItem.swift */; };
+		CEC5408E2B83A06600888014 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC5408D2B83A06600888014 /* ProfileCell.swift */; };
 		CEC764252B50FF21000578E9 /* EnterViewControllerMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */; };
 		CEC764292B5122E7000578E9 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC764282B5122E7000578E9 /* HomeReactor.swift */; };
 		CEC7642E2B512431000578E9 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */; };
@@ -502,6 +507,11 @@
 		CEC46BB12B708D1600F5A651 /* ChangeCHManagerReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCHManagerReactor.swift; sourceTree = "<group>"; };
 		CEC46BB32B70BCE600F5A651 /* ChannelCHManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCHManagerDelegate.swift; sourceTree = "<group>"; };
 		CEC46BED2B70D06C00F5A651 /* ChangeWSManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWSManagerViewController.swift; sourceTree = "<group>"; };
+		CEC540842B83947C00888014 /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
+		CEC540862B83948100888014 /* OtherProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileView.swift; sourceTree = "<group>"; };
+		CEC540882B83948F00888014 /* OtherProfileReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileReactor.swift; sourceTree = "<group>"; };
+		CEC5408B2B83983F00888014 /* OtherProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileItem.swift; sourceTree = "<group>"; };
+		CEC5408D2B83A06600888014 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		CEC764242B50FF21000578E9 /* EnterViewControllerMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewControllerMananger.swift; sourceTree = "<group>"; };
 		CEC764282B5122E7000578E9 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
 		CEC7642D2B512431000578E9 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -766,6 +776,7 @@
 		CE4904D22B4D0EA9003B0204 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CEC5408A2B83980200888014 /* OtherProfile */,
 				CE69B25C2B7DCBDB0038AD53 /* Coin */,
 				CE69B25B2B7DCB960038AD53 /* MyProfile */,
 				CE69B25A2B7DC9E70038AD53 /* Home */,
@@ -1315,6 +1326,24 @@
 			path = ChangeManager;
 			sourceTree = "<group>";
 		};
+		CEC540832B8393F000888014 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				CEC540842B83947C00888014 /* OtherProfileViewController.swift */,
+				CEC540862B83948100888014 /* OtherProfileView.swift */,
+				CEC540882B83948F00888014 /* OtherProfileReactor.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		CEC5408A2B83980200888014 /* OtherProfile */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5408B2B83983F00888014 /* OtherProfileItem.swift */,
+			);
+			path = OtherProfile;
+			sourceTree = "<group>";
+		};
 		CEC7643C2B5162F0000578E9 /* Channel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1460,6 +1489,7 @@
 		CEE938112B7B7801003B4585 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CEC540832B8393F000888014 /* Other */,
 				CE2ACE4A2B7CEFED007468EA /* Coin */,
 				CE9B06472B7C9348005D309B /* Edit */,
 				CEE938122B7B781D003B4585 /* MyProfileViewController.swift */,
@@ -1474,6 +1504,7 @@
 			children = (
 				CEE938172B7B8110003B4585 /* ProfileEditCell.swift */,
 				CE2ACE4F2B7CF137007468EA /* CoinCollectionCell.swift */,
+				CEC5408D2B83A06600888014 /* ProfileCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1855,6 +1886,7 @@
 				CE5D066D2B4EDA0400C067A3 /* UIImage+Extension.swift in Sources */,
 				CE5EA4B02B60AB1200999704 /* ChannelChatDTO.swift in Sources */,
 				CE6C1FFB2B43F1A900AA7F9C /* Image.swift in Sources */,
+				CEC5408C2B83983F00888014 /* OtherProfileItem.swift in Sources */,
 				CE69B26A2B7DE01C0038AD53 /* CoinReactor.swift in Sources */,
 				CE1806DF2B734358002DD9C3 /* NoMemberDmView.swift in Sources */,
 				CEEE4EC82B470B250059D1AF /* JoinInputValue.swift in Sources */,
@@ -1864,6 +1896,7 @@
 				CE211F312B5AC09000C43028 /* ChannelsAPI.swift in Sources */,
 				CE15528E2B5A55040011D106 /* SearchViewController.swift in Sources */,
 				CE5F94CF2B623A36006A4DA4 /* ImageDownloadManager.swift in Sources */,
+				CEC540892B83948F00888014 /* OtherProfileReactor.swift in Sources */,
 				CEB7F8512B44664400B9A035 /* CustomBasicLabel.swift in Sources */,
 				CEA8F9BE2B49608B0062B45C /* UINavigationController+Extension.swift in Sources */,
 				CEC764302B512471000578E9 /* ImageLoadManager.swift in Sources */,
@@ -1876,6 +1909,7 @@
 				CEA8F9AB2B4924490062B45C /* JoinResponseDTO.swift in Sources */,
 				CEE938132B7B781D003B4585 /* MyProfileViewController.swift in Sources */,
 				CEC764322B51257F000578E9 /* InfoViewController.swift in Sources */,
+				CEC540852B83947C00888014 /* OtherProfileViewController.swift in Sources */,
 				CEA8F9D32B49921A0062B45C /* EmailLoginViewModel.swift in Sources */,
 				CEEE4EB82B46DE4B0059D1AF /* ErrorResponse.swift in Sources */,
 				CE5D06822B4F057F00C067A3 /* Data+Extension.swift in Sources */,
@@ -1920,6 +1954,7 @@
 				CEE7DA542B74BA1D007BAAE6 /* DmChatListResDTO.swift in Sources */,
 				CE61AE0A2B5D525F0091B03D /* ChatView.swift in Sources */,
 				CED65F882B45B67C00CFD04C /* APIKey.swift in Sources */,
+				CEC5408E2B83A06600888014 /* ProfileCell.swift in Sources */,
 				CECFCDEB2B4FC85D00EB0DB7 /* AuthResponseDTO.swift in Sources */,
 				CEC764452B516C04000578E9 /* DMsAPI.swift in Sources */,
 				CEB7F8402B44571800B9A035 /* OnBoardingView.swift in Sources */,
@@ -2008,6 +2043,7 @@
 				CEB7F8372B444B4400B9A035 /* BaseViewController.swift in Sources */,
 				CE2ACE502B7CF137007468EA /* CoinCollectionCell.swift in Sources */,
 				CEC764382B512E20000578E9 /* UserResDTO.swift in Sources */,
+				CEC540872B83948100888014 /* OtherProfileView.swift in Sources */,
 				CEE989912B4A4FB600590A19 /* EmailLoginRequestDTO.swift in Sources */,
 				CEEAA1DB2B54278700EA1C58 /* DateFormatter+Extension.swift in Sources */,
 				CEC46BEE2B70D06C00F5A651 /* ChangeWSManagerViewController.swift in Sources */,
