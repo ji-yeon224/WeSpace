@@ -45,7 +45,6 @@
 		CE4904DA2B4D11C9003B0204 /* HomeDmSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4904D92B4D11C9003B0204 /* HomeDmSection.swift */; };
 		CE5719322B69EBF800EC3E18 /* SocketNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */; };
 		CE5719342B69F00700EC3E18 /* SocketURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5719332B69F00700EC3E18 /* SocketURL.swift */; };
-		CE57E4182B452A02009BD53A /* splashImg.png in Resources */ = {isa = PBXBuildFile; fileRef = CE57E4172B452A02009BD53A /* splashImg.png */; };
 		CE57E41B2B452FE9009BD53A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E41A2B452FE9009BD53A /* LoginViewController.swift */; };
 		CE57E41D2B452FF2009BD53A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E41C2B452FF2009BD53A /* LoginView.swift */; };
 		CE57E4212B454131009BD53A /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57E4202B454131009BD53A /* JoinViewController.swift */; };
@@ -358,7 +357,6 @@
 		CE4904D92B4D11C9003B0204 /* HomeDmSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDmSection.swift; sourceTree = "<group>"; };
 		CE5719312B69EBF800EC3E18 /* SocketNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketNetworkManager.swift; sourceTree = "<group>"; };
 		CE5719332B69F00700EC3E18 /* SocketURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketURL.swift; sourceTree = "<group>"; };
-		CE57E4172B452A02009BD53A /* splashImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashImg.png; sourceTree = "<group>"; };
 		CE57E41A2B452FE9009BD53A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE57E41C2B452FF2009BD53A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE57E4202B454131009BD53A /* JoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
@@ -1019,7 +1017,6 @@
 				CE6C1FC72B43E8BA00AA7F9C /* Main.storyboard */,
 				CE6C1FCA2B43E8BB00AA7F9C /* Assets.xcassets */,
 				CE6C1FCC2B43E8BB00AA7F9C /* LaunchScreen.storyboard */,
-				CE57E4172B452A02009BD53A /* splashImg.png */,
 				CE6C1FCF2B43E8BB00AA7F9C /* Info.plist */,
 				CED65F842B45B5FA00CFD04C /* .gitIgnore */,
 			);
@@ -1770,7 +1767,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE6C1FCE2B43E8BB00AA7F9C /* LaunchScreen.storyboard in Resources */,
-				CE57E4182B452A02009BD53A /* splashImg.png in Resources */,
 				CED65F852B45B5FA00CFD04C /* .gitIgnore in Resources */,
 				CE6C1FCB2B43E8BB00AA7F9C /* Assets.xcassets in Resources */,
 				CE6C1FC92B43E8BA00AA7F9C /* Main.storyboard in Resources */,
