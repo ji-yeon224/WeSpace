@@ -189,6 +189,12 @@ extension ChannelSettingViewController: View {
                     owner.mainView.scrollView.updateContentView()
                     owner.mainView.collectionView.layoutIfNeeded()
                     
+                } else {
+//                    print(owner.memberList[indexPath.item-1].item?.userId)
+                    if let user = owner.memberList[indexPath.item-1].item {
+                        let vc = OtherProfileViewController(userId: user.userId)
+                        owner.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             }
             .disposed(by: disposeBag)
@@ -239,6 +245,7 @@ extension ChannelSettingViewController: View {
                 })
             }
             .disposed(by: disposeBag)
+        
     }
     
     
