@@ -1,8 +1,9 @@
-![[WeSpaceAppLogo.png|150]]
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/808f89b0-38a0-4352-b65a-25c842d09d42" width="20%"/>
+
 # 💬 WeSpace
 
 ## 미리보기
-![[Group 1.png]]
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/1025bec5-04f2-4cff-9d77-c21842e05671" width="100%"/>
 
 
 ## 🗓️ 프로젝트
@@ -17,7 +18,7 @@
 - `RxSwift`, `RxCocoa`, `RxDataSource`, `RxGesture`
 - `Firebase Cloud Messaging`, `iamPort`, `KakaoOpenSDK` 
 - `SoketIO`, `Moya`, `Kingfisher`, `Realm`, `Codable`
-- `UIKit`, `SnapKit`, `Then`, `AutoLayout`
+- `WebKit`, `UIKit`, `SnapKit`, `Then`, `AutoLayout`
 - `DiffableDataSource`, `CompostionalLayout`
 - `AnyFormatKit`, `SideMenu`, `IQKeyboardManager`, `Toast`
 
@@ -30,47 +31,51 @@
 
 ## 🔎 주요 기능
 ### ✔️ 회원 가입 및 로그인
-![[회원가입로그인.png]]
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/006d9b85-4b3d-4ef2-bd2c-c98bbc75c141" width="100%"/>
 - 애플 로그인 및 카카오 로그인으로 소셜 로그인을 사용할 수 있다.
 - 이메일 회원가입 시 입력 값에 대한 유효성 및 조건 검증 로직을 통과한 후 회원가입을 완료한다.
 
 ### ✔️ 워크스페이스
 
-![[Group 3.jpg]]
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/c1247e15-e0a7-41d8-8aac-679e2f992882" width="100%"/>
 
 - 메인 화면에서 사용자의 채널 채팅 목록과 Dm 목록을 조회한다.
-- **NSDiffableDataSourceSectionSnapshot**을 통해 하나의 섹션이 계층적 구조를 가질 수 있도록 구현하여 토글이 가능하도록 구현하였다.
+- `NSDiffableDataSourceSectionSnapshot`을 통해 하나의 섹션이 계층적 구조를 가질 수 있도록 구현하여 토글이 가능하도록 구현하였다.
 - 워크스페이스 관리자 여부에 따라 편집 및 삭제 권한이 주어진다.
 - 워크스페이스를 나갈 때 워크스페이스 관리자 여부와 채널 관리자 여부를 확인한 후 나가기 로직을 수행한다.
 
 ### ✔️ 채널, DM
-![[채널디엠.png]]
-- Realm을 사용하여 과거 채팅 내역과 이미지 파일을 저장하여 비효율적인 서버 통신을 줄였다.
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/a24dce9e-f986-49dc-8acd-83882759185d" width="100%"/>
+
+- `Realm`을 사용하여 과거 채팅 내역과 이미지 파일을 저장하여 비효율적인 서버 통신을 줄였다.
 - DB에 마지막으로 저장된 날짜 데이터를 Cursor 값으로 서버에 요청하여 읽지 않은 메세지를 서버에게 응답받는다.
--  채팅 방 진입 후 SocketIO를 통해 소켓 연결을 하여 실시간 채팅 기능을 구현하였고, 해당 화면을 나가거나 앱종료 또는 백그라운드 모드로 전환 될 경우 소켓 연결을 해제하여 불필요한 서버 호출을 방지하였다.
+-  채팅 방 진입 후 `SocketIO`를 통해 소켓 연결을 하여 실시간 채팅 기능을 구현하였고, 해당 화면을 나가거나 앱종료 또는 백그라운드 모드로 전환 될 경우 소켓 연결을 해제하여 불필요한 서버 호출을 방지하였다.
 
 
 
 ### ✔️ Push Notification
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/cd5a3916-2d44-4304-8b2f-29dd9d5dce0a" width="20%"/>
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/5901d6dd-937c-498b-a3d2-2daa35527d11" width="22%"/>
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/e264ebfb-c2c6-431f-bb7e-1e5855661752" width="22%"/>
 
-![[푸시 이미지.png|150]] ![[푸시탭이동.gif|150]]![[알림 이동.gif|150]]
-
-
-- Firebase Cloud Messaging 서비스를 활용하여 실시간으로 채팅 Push Notification을 수신할 수 있다.
+- `Firebase Cloud Messaging` 서비스를 활용하여 실시간으로 채팅 Push Notification을 수신할 수 있다.
 - 알림 탭 시 수신받은 데이터를 디코딩하여 해당 채팅방으로 화면을 이동하도록 구현하였다.
 
 
 ### ✔️ 프로필 및 인앱결제
-![[마이페이지결제.png|500]]
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/7717e5fc-f2a0-475e-bc34-ad8d33d3e298" width="60%"/>
+
 - 프로필 사진, 닉네임, 연락처를 수정할 수 있다.
-- 웹 뷰 기반 포트원을 연동으로 인앱 결제를 구현하였다. 결제 영수증을 통해 서버에 유효성 체크 후 구매한 코인을 반영한다.
+- 포트원을 웹뷰 기반으로 연동하여 인앱 결제를 구현하였다. 결제 영수증을 통해 서버에 유효성 체크 후 구매한 코인을 반영한다.
+
+</br>
 
 ## 🚨 트러블 슈팅
 
 ### ✔️ DB 조회 및 네트워크 통신 비동기 이슈
 - 채팅 목록 및 안읽은 메세지 개수 데이터 요청을 위해 DB 접근과 여러 번의 서버 통신을 구현하면서 모든 작업이 완료되기 전에 데이터가 리턴되어 안읽은 개수 데이터가 누락된 채로 뷰에 채널 목록이 보여지는 문제가 발생하였다.
 - 여러 번의 서버 통신으로 여러 번의 비동기 작업이 수행되어 작업 완료 시점을 체크하지 못하여 발생하였다. 
-- DispatchGroup을 통해 여러 개의 비동기 작업을 그룹화하고, 모든 작업이 완료되었음을 notify로 체크하여 데이터를 한 번에 리턴하도록 구현하였다.
+- `DispatchGroup`을 통해 여러 개의 비동기 작업을 그룹화하고, 모든 작업이 완료되었음을 notify로 체크하여 데이터를 한 번에 리턴하도록 구현하였다.
 
 ``` swift
 // HomeReactor.swift
