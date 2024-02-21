@@ -43,7 +43,7 @@
 
 ### ✔️ 워크스페이스
 
-<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/c1247e15-e0a7-41d8-8aac-679e2f992882" width="100%"/>
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/844a1918-6974-41c8-8716-9e0b28c26eb8" width="100%"/>
 
 - 메인 화면에서 사용자의 채널 채팅 목록과 Dm 목록을 조회한다.
 - `NSDiffableDataSourceSectionSnapshot`을 통해 하나의 섹션이 계층적 구조를 가질 수 있도록 구현하여 토글이 가능하도록 구현하였다.
