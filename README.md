@@ -2,16 +2,19 @@
 
 # 💬 WeSpace
 
-## 미리보기
+### 미리보기
 <img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/1025bec5-04f2-4cff-9d77-c21842e05671" width="100%"/>
 
 
 ## 🗓️ 프로젝트
 - 개인 프로젝트
 - 2024.01.02 ~ 2024.02.19 (7주)
+- 최소 지원 버전 iOS 16.0
+</br>
 
 ## ✏️ 한 줄 소개
 - 같은 관심사를 공유하는 사용자 간 소통할 수 있는 메신저 어플리케이션
+</br>
 
 ## 💻 기술 스택
 - `ReactorKit`
@@ -21,6 +24,7 @@
 - `WebKit`, `UIKit`, `SnapKit`, `Then`, `AutoLayout`
 - `DiffableDataSource`, `CompostionalLayout`
 - `AnyFormatKit`, `SideMenu`, `IQKeyboardManager`, `Toast`
+</br>
 
 ## 📖 프로젝트 목표
 - 애플 로그인, 카카오 로그인으로 **소셜 로그인** 기능 추가
@@ -28,10 +32,12 @@
 - `SocketIO`를 통해 실시간 채팅 기능 구현
 - `FCM` 기능을 추가하여 채널 또는 디엠 채팅방 알림 실시간 수신
 - `iamPort`서비스를 추가하여 앱 내 인앱결제 기능 구현
+</br>
 
 ## 🔎 주요 기능
 ### ✔️ 회원 가입 및 로그인
 <img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/006d9b85-4b3d-4ef2-bd2c-c98bbc75c141" width="100%"/>
+
 - 애플 로그인 및 카카오 로그인으로 소셜 로그인을 사용할 수 있다.
 - 이메일 회원가입 시 입력 값에 대한 유효성 및 조건 검증 로직을 통과한 후 회원가입을 완료한다.
 
@@ -54,7 +60,7 @@
 
 
 ### ✔️ Push Notification
-<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/cd5a3916-2d44-4304-8b2f-29dd9d5dce0a" width="20%"/>
+<img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/cd5a3916-2d44-4304-8b2f-29dd9d5dce0a" width="21%"/>
 <img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/5901d6dd-937c-498b-a3d2-2daa35527d11" width="22%"/>
 <img src = "https://github.com/ji-yeon224/WeSpace/assets/69784492/e264ebfb-c2c6-431f-bb7e-1e5855661752" width="22%"/>
 
@@ -128,6 +134,7 @@ private func reqeustUnreadChannel(wsId: Int, name: String, after: String?, compl
 }
 ```
 
+</br>
 
 ### ✔️ 채팅 이미지 로컬 저장 및 조회 시점 이슈
 - 네트워크 통신 수를 줄이기 위해 이미지를 로컬에 저장하도록 구현하였는데, 여러 장의 이미지를 로컬에 저장한 후 이미지 이름을 DB에 저장하려고 할 때, 이미지 다운로드 과정이 비동기로 동작하면서 이미지 이름이 DB에 저장되지 않는 문제가 발생하였다. 
@@ -158,6 +165,7 @@ private func saveChatItems(wsId: Int, data: ChannelDTO, chat: [ChannelMessage]) 
     }
 }
 ```
+</br>
 
 ### ✔️ 소켓 통신 종료 시점
 - 실시간으로 채팅을 수행하기 위해 채팅 화면에 들어가있는 시점에는 소켓을 연결하고, 화면을 나갈 경우에는 연결을 종료해야 하기 때문에 viewWillAppear()와 viewDidDisappear()시점에 연결과 해제를 하였지만, 채팅 화면에서 앱을 나가게 되었을 경우에는 소켓이 종료되지 않는 문제가 발생하였다.
